@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>When Should We Book? — Jet2 Holiday Group Project</title>
+<meta name="description" content="A full-screen scrollytelling data story about flight prices and availability around major holidays. Georgia Tech group project.">
+<link href="https://fonts.googleapis.com/css?family=Acme|Bangers|Pangolin|Permanent+Marker|Roboto|Staatliches&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+</head>
+<body>
+
+<nav id="dots" aria-label="Section navigation"></nav>
+
+<div id="fullpage">
+
+  <!-- TITLE (mirrors Marvel title-sec: full-bleed animated vis) -->
+  <div class="section" id="title-sec" data-label="Title">
+    <canvas id="title-canvas"></canvas>
+    <div id="title-overlay">
+      <h1>WHEN SHOULD WE BOOK?</h1>
+      <h2>How holiday flight prices really move</h2>
+      <p class="scroll-cue">scroll down ↓</p>
+    </div>
+    <div id="plane" class="plane" aria-hidden="true">
+      <svg viewBox="0 0 64 64" width="54" height="54" focusable="false">
+        <g transform="rotate(-24 32 32)">
+          <path d="M4 34 L56 22 L14 36 L18 46 L24 38 L34 40 L30 48 L22 46 L18 56 Z" fill="#ffd200" stroke="#0b2540" stroke-width="2" stroke-linejoin="round"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- INTRO (mirrors Marvel intro-sec: tilted image + hook text in a box) -->
+  <div class="section" id="intro-sec" data-label="Hook">
+    <div class="container box">
+      <div class="row">
+        <div class="col-5 poster-col">
+          <div class="boarding-pass">
+            <p class="bp-airline">JET2 HOLIDAY ✈</p>
+            <p class="bp-route">ATL → JFK</p>
+            <p class="bp-fare">$258 <span>lowest seen</span></p>
+            <p class="bp-fare later">$371 <span>day before</span></p>
+            <p class="bp-stub">BUY BEFORE 21 DAYS OUT</p>
+          </div>
+        </div>
+        <div class="col-7">
+          <h3>Is waiting for a cheaper fare real?</h3>
+          <p class="big">
+            Booking flights around major holidays means guessing when to buy. Should you grab a fare
+            two months out, or hold out for a last-minute drop?
+          </p>
+          <p class="big">
+            We tracked one-way fares searched April&nbsp;16 – October&nbsp;5, 2022 for Memorial Day,
+            July&nbsp;4, and Labor Day — plus a non-holiday baseline. Let's look at the data to see
+            whether hunting the cheapest day actually works.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIARY (mirrors Marvel cookiechart-sec: chart + Next button + slider, staged text box) -->
+  <div class="section white-background" id="diary-sec" data-label="Noise">
+    <div class="container">
+      <div class="row">
+        <div class="col-8">
+          <div id="diary-vis" class="vis-container"></div>
+          <button type="button" id="play-button" class="btn play_btn">Next&nbsp;&nbsp;▶</button>
+          <div id="diary-slider-wrap"><label for="diary-slider">Days before departure: <span id="diary-slider-val">60</span></label>
+          <input type="range" id="diary-slider" min="1" max="60" value="60"></div>
+        </div>
+        <div class="col-4">
+          <div class="box side-box">
+            <h3>Daily fare checks<br>are mostly noise.</h3>
+            <p class="stage" id="diary-text-1">
+              Each square is one day of fare checks, 60 days out on the left, color-coded by whether
+              matched fares rose, fell, or barely moved. On a typical day, ~10% rise 10%+, ~10% fall
+              10%+, and ~80% barely move. Press Next to group them.
+            </p>
+            <p class="stage" id="diary-text-2" hidden>
+              Grouped by outcome, most days are flat grey. Daily checking gives you nothing to act on —
+              the signal is hiding somewhere else. Press Next to find it.
+            </p>
+            <p class="stage" id="diary-text-3" hidden>
+              There it is: big jumps land on a few specific days, right after the 21-, 14-, and
+              7-day advance-purchase cutoffs. Fares move in steps, not slopes.
+            </p>
+            <p class="stage" id="diary-text-4" hidden>
+              So stop watching for a gradual climb you can react to — it never comes. Scroll down to
+              see the clearest staircase of all: Labor Day.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAIRCASE (mirrors Marvel linechart-sec: box with chart + text) -->
+  <div class="section" id="stairs-sec" data-label="Steps">
+    <div class="container box box2">
+      <h3>The fare sits flat, then jumps overnight</h3>
+      <div class="row">
+        <div class="col">
+          <div id="stairs-vis" class="vis-container"></div>
+        </div>
+        <div class="col">
+          <p class="big">
+            <br>
+            Labor Day is the clearest staircase: the median lowest fare slid from <b>$290</b> at
+            60 days to <b>$258</b> at 14 days, jumped to <b>$284</b> the next morning, then climbed
+            to <b>$371</b> the day before departure — 44% above the floor. A traveler watching for a
+            gradual climb never sees it coming.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MESSAGE INTRO (mirrors Marvel mcu-intro-sec: full-bleed bg + intro box) -->
+  <div class="section sky-background" id="message-sec" data-label="Message">
+    <div class="spacer"></div>
+    <div class="container box message-box">
+      <h3>What is the 21-day rule?</h3>
+      <p class="big">
+        Three findings from our data explain it: the cheapest moment moves by route, waiting costs
+        you seats as well as dollars, and the jumps cluster at predictable cutoffs. You can't predict
+        the cheapest day to buy — but you can predict the days it gets more expensive. So stop hunting
+        the low point and just buy before the 21-day cutoff.
+      </p>
+    </div>
+  </div>
+
+  <!-- ROUTES (mirrors Marvel plot-flow-sec: numbered h3 + toggle + chart) -->
+  <div class="section" id="routes-sec" data-label="Routes">
+    <div class="container box">
+      <h3>1. No single best booking day</h3>
+      <div class="row caption-row">
+        <div class="col caption text">Each row is a route, each column a 10-day window. Red = fares rose, blue = fell. The late columns are red everywhere.</div>
+        <div class="col caption" id="route-btns">
+          <button type="button" class="btn btn-toggle on" data-r="ATL-JFK">ATL–JFK</button>
+          <button type="button" class="btn btn-toggle" data-r="ATL-BOS">ATL–BOS</button>
+          <button type="button" class="btn btn-toggle" data-r="ATL-LAX">ATL–LAX</button>
+          <button type="button" class="btn btn-toggle" data-r="ATL-LGA">ATL–LGA</button>
+          <span> to compare July&nbsp;4 fare curves per route.</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col"><div id="heatmap-vis" class="vis-container"></div></div>
+      </div>
+      <div class="row">
+        <div class="col"><div id="routes-vis" class="vis-container"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEATS (mirrors Marvel map-sec: box with chart + carousel) -->
+  <div class="section" id="seats-sec" data-label="Seats">
+    <div class="container box box2" id="seats-container">
+      <h3>2. Waiting costs seats, not just dollars</h3>
+      <div class="row caption-row">
+        <div class="col caption">Solid = median lowest fare · Dashed = share with 1–3 seats left. Pick a window:</div>
+        <div class="col caption" id="seat-btns">
+          <button type="button" class="btn btn-toggle on" data-w="july4">July 4</button>
+          <button type="button" class="btn btn-toggle" data-w="labor">Labor Day</button>
+          <button type="button" class="btn btn-toggle" data-w="memorial">Memorial Day</button>
+          <button type="button" class="btn btn-toggle" data-w="base">Non-holiday</button>
+        </div>
+      </div>
+      <div id="seats-vis" class="vis-container"></div>
+      <div class="posterContainer">
+        <ol class="carousel-indicators" id="window-dots"></ol>
+        <div class="carousel-track" id="window-track"></div>
+        <a class="carousel-control-prev" id="window-prev" role="button" aria-label="Previous">‹<span class="sr-only">Previous</span></a>
+        <a class="carousel-control-next" id="window-next" role="button" aria-label="Next">›<span class="sr-only">Next</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ODDS (mirrors Marvel characters-sec: two-col charts) -->
+  <div class="section" id="odds-sec" data-label="Odds">
+    <div class="container box">
+      <h3>3. Waiting is a bet you usually lose</h3>
+      <div class="row">
+        <div class="col-md-5 col-left">
+          <h4>Spikes at the cutoffs</h4>
+          <div id="spikes-vis" class="vis-container"></div>
+        </div>
+        <div class="col-md-7 col-right">
+          <div id="minis-vis" class="vis-container"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAKEAWAY (mirrors Marvel future-sec: bg + conclusion box) -->
+  <div class="section clouds-background" id="takeaway-sec" data-label="Takeaway">
+    <div class="spacer"></div>
+    <div class="container box">
+      <h3>So when should you book?</h3>
+      <p class="big">
+        Buy before the 21-day cutoff. Once inside it, jump risk climbs from ~10% to 25%+, the median
+        fare climbs with it ($258 → $371 on Labor Day past 14 days), and the seats drain away.
+        One rule beats fare-watching — set your buy-now band and stop hunting the low point.
+      </p>
+    </div>
+  </div>
+
+  <!-- TEAM (mirrors Marvel conclusion-sec: thank-you + profiles) -->
+  <div class="section" id="team-sec" data-label="Team">
+    <div class="container box">
+      <h3>Thank you!</h3>
+      <p>Whether you track fares daily or just want the cheapest way home for the holidays, we hope
+      you enjoyed exploring our flight-price data with us!</p>
+      <p>We are a group of graduate students at Georgia Tech, and this visualization project is for
+      our Data Visualization class in Fall 2026.</p>
+      <div class="row profiles">
+        <div class="col profile"><div class="avatar">JJ</div><span class="name">Jangkyu Ju</span><br><span class="degree">Team leader</span></div>
+        <div class="col profile"><div class="avatar">SS</div><span class="name">Sagarika Srinivasan</span><br><span class="degree">M.S. team member</span></div>
+        <div class="col profile"><div class="avatar">CZ</div><span class="name">Cynthia Zhou</span><br><span class="degree">M.S. team member</span></div>
+        <div class="col profile"><div class="avatar">YH</div><span class="name">Yuhan Hu</span><br><span class="degree">M.S. team member</span></div>
+        <div class="col profile"><div class="avatar">AG</div><span class="name">Arrington Goss</span><br><span class="degree">M.S. team member</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATA (mirrors Marvel data-sec) -->
+  <div class="section" id="data-sec" data-label="Data">
+    <div class="container box box2">
+      <h3>Data Sources and Methods</h3>
+      <div class="row">
+        <div class="col small-text">
+          <p><b>Data</b></p>
+          <ul>
+            <li><b>Expedia flight prices</b> (primary): one-way fares searched Apr 16 – Oct 5, 2022. Attributes: searchDate, flightDate, startingAirport, destinationAirport, airline, legId, baseFare, totalFare, isNonStop, travelDuration, seatsRemaining, cabin; derived route, days-before-flight, holiday window (May 26–31, Jun 30 – Jul 5, Sep 1–6; baseline Jun 9–14, Aug 11–16).</li>
+            <li><b>U.S. BTS DB1C/OD40</b>: origin-destination flows and fares by purchase window. <b>DOT Table 6</b>: city-pair fares, low-cost vs largest-carrier shares.</li>
+            <li><b>BTS On-Time Performance</b>: noted as out of scope for the delays question (Q6).</li>
+          </ul>
+          <p><b>Methods</b></p>
+          <ul>
+            <li>Medians of the lowest fare per route-day; matched legId tracking across search dates for ±10% moves; advance-purchase cutoff comparison (21/14/7 days).</li>
+            <li>Out of scope with current data: cookie-clearing effects, points-vs-cash, driving-vs-nearby-airport costs.</li>
+          </ul>
+          <p>Page structure inspired by a Marvel Cinematic Universe scrollytelling reference (full-screen sections, staged Next-button story, card carousel). All words, numbers, graphics, and code here are our own.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="tip" class="tip" hidden></div>
+<script src="js/charts.js"></script>
+</body>
+</html>
