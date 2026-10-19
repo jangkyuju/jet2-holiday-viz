@@ -1,7 +1,7 @@
 /* Jet2 Holiday scrollytelling — comic-book look, own implementation.
    Full-screen snap sections, hand-drawn boxes, staged story, card carousel. */
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-snap-type: y proximity; }
 
 html, body {
   margin: 0;
