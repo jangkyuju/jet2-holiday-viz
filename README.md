@@ -1,15 +1,14 @@
 # When Should We Book?
 
 A full-screen scrollytelling data story about flight prices and availability around
-major holidays — Georgia Tech Data Visualization group project (Jet2 Holiday team).
+major holidays — Georgia Tech Data Visualization (CS6730) group project (Jet2 Holiday team).
 
 **Story in one line:** you can't predict the cheapest day to buy a flight, but you
 can predict the days it gets more expensive — so buy before the 21-day cutoff.
 
 ## View it
 
-- Live site (GitHub Pages): https://jangkyuju.github.io/jet2-holiday-viz/
-- Or open `index.html` directly in a browser (needs internet for the fonts/D3 CDN).
+- Open `index.html` directly in a browser (needs internet for the fonts/D3 CDN).
 
 ## Files
 
