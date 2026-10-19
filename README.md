@@ -26,4 +26,4 @@ BTS DB1C/OD40, and DOT Table 6. Swap in the full CSVs where marked in `charts.js
 
 ## Team
 
-Jangkyu Ju (lead), Sagarika Srinivasan, Cynthia Zhou, Yuhan Hu, Arrington Goss.
+Jangkyu Ju, Sagarika Srinivasan, Cynthia Zhou, Yuhan Hu, Arrington Goss.
