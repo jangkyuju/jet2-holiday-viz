@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css?family=Acme|Bangers|Pangolin|Permanent+Marker|Roboto|Staatliches&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
 </head>
 <body>
 
@@ -15,12 +16,12 @@
 
 <div id="fullpage">
 
-  <!-- TITLE (mirrors Marvel title-sec: full-bleed animated vis) -->
+  <!-- TITLE -->
   <div class="section" id="title-sec" data-label="Title">
     <canvas id="title-canvas"></canvas>
     <div id="title-overlay">
       <h1>WHEN SHOULD WE BOOK?</h1>
-      <h2>How holiday flight prices really move</h2>
+      <h2>Where to go, what to pay, when to buy</h2>
       <p class="scroll-cue">scroll down ↓</p>
     </div>
     <div id="plane" class="plane" aria-hidden="true">
@@ -32,36 +33,81 @@
     </div>
   </div>
 
-  <!-- INTRO (mirrors Marvel intro-sec: tilted image + hook text in a box) -->
+  <!-- INTRO HOOK -->
   <div class="section" id="intro-sec" data-label="Hook">
     <div class="container box">
       <div class="row">
         <div class="col-5 poster-col">
           <div class="boarding-pass">
             <p class="bp-airline">JET2 HOLIDAY ✈</p>
-            <p class="bp-route">ATL → JFK</p>
+            <p class="bp-route">??? → ???</p>
             <p class="bp-fare">$258 <span>lowest seen</span></p>
             <p class="bp-fare later">$371 <span>day before</span></p>
-            <p class="bp-stub">BUY BEFORE 21 DAYS OUT</p>
+            <p class="bp-stub">FIRST: WHERE TO GO?</p>
           </div>
         </div>
         <div class="col-7">
-          <h3>Is waiting for a cheaper fare real?</h3>
+          <h3>Holiday flights: where, how much, when?</h3>
           <p class="big">
-            Booking flights around major holidays means guessing when to buy. Should you grab a fare
-            two months out, or hold out for a last-minute drop?
+            Booking flights around major holidays means answering three questions in order:
+            <b>where</b> should we go, <b>how much</b> will the ticket cost, and <b>when</b>
+            should we buy it?
           </p>
           <p class="big">
             We tracked one-way fares searched April&nbsp;16 – October&nbsp;5, 2022 for Memorial Day,
-            July&nbsp;4, and Labor Day — plus a non-holiday baseline. Let's look at the data to see
-            whether hunting the cheapest day actually works.
+            July&nbsp;4, and Labor Day — plus a non-holiday baseline. Start with the fun question:
+            where to go?
           </p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- DIARY (mirrors Marvel cookiechart-sec: chart + Next button + slider, staged text box) -->
+  <!-- 1. AG01 DESTINATION MAP -->
+  <div class="section" id="map-sec" data-label="Where">
+    <div class="container box box2">
+      <h3>1. Where to go?</h3>
+      <div class="row">
+        <div class="col-8">
+          <div id="map-vis" class="vis-container"></div>
+        </div>
+        <div class="col-4">
+          <div class="side-box">
+            <p>
+              Not everyone has a destination yet. This map shades each state by the median fare
+              to fly there from our origin — darker costs more. Hover for prices, click states
+              to build a shortlist.
+            </p>
+            <div id="map-shortlist"><p class="caption">No states picked yet — click the map.</p></div>
+            <p class="caption">Sketch AG01 · Values shown are layout samples so the team can judge the design; swap in real route medians before submitting.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. YH02 NONSTOP VS CONNECTING -->
+  <div class="section" id="nonstop-sec" data-label="How much">
+    <div class="container box">
+      <h3>2. How much will the ticket cost?</h3>
+      <div class="row">
+        <div class="col">
+          <div id="nonstop-vis" class="vis-container"></div>
+        </div>
+        <div class="col">
+          <p class="big">
+            <br>
+            Destination picked? Now check <i>what kind</i> of ticket. Around July&nbsp;4, nonstop
+            flights came out <b>cheaper</b> than connecting ones — backwards from what most people
+            assume. Never assume the connection saves money; price both before you start
+            watching the calendar.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. CZ01 PRICE DIARY -->
   <div class="section white-background" id="diary-sec" data-label="Noise">
     <div class="container">
       <div class="row">
@@ -73,7 +119,7 @@
         </div>
         <div class="col-4">
           <div class="box side-box">
-            <h3>Daily fare checks<br>are mostly noise.</h3>
+            <h3>3. Daily checks<br>are mostly noise.</h3>
             <p class="stage" id="diary-text-1">
               Each square is one day of fare checks, 60 days out on the left, color-coded by whether
               matched fares rose, fell, or barely moved. On a typical day, ~10% rise 10%+, ~10% fall
@@ -97,10 +143,10 @@
     </div>
   </div>
 
-  <!-- STAIRCASE (mirrors Marvel linechart-sec: box with chart + text) -->
+  <!-- 4. CZ03 STAIRCASE -->
   <div class="section" id="stairs-sec" data-label="Steps">
     <div class="container box box2">
-      <h3>The fare sits flat, then jumps overnight</h3>
+      <h3>4. The fare sits flat, then jumps overnight</h3>
       <div class="row">
         <div class="col">
           <div id="stairs-vis" class="vis-container"></div>
@@ -118,26 +164,12 @@
     </div>
   </div>
 
-  <!-- MESSAGE INTRO (mirrors Marvel mcu-intro-sec: full-bleed bg + intro box) -->
-  <div class="section sky-background" id="message-sec" data-label="Message">
-    <div class="spacer"></div>
-    <div class="container box message-box">
-      <h3>What is the 21-day rule?</h3>
-      <p class="big">
-        Three findings from our data explain it: the cheapest moment moves by route, waiting costs
-        you seats as well as dollars, and the jumps cluster at predictable cutoffs. You can't predict
-        the cheapest day to buy — but you can predict the days it gets more expensive. So stop hunting
-        the low point and just buy before the 21-day cutoff.
-      </p>
-    </div>
-  </div>
-
-  <!-- ROUTES (mirrors Marvel plot-flow-sec: numbered h3 + toggle + chart) -->
+  <!-- 5. JK3 ROUTES -->
   <div class="section" id="routes-sec" data-label="Routes">
     <div class="container box">
-      <h3>1. No single best booking day</h3>
+      <h3>5. The cheapest moment moves by route</h3>
       <div class="row caption-row">
-        <div class="col caption text">Each row is a route, each column a 10-day window. Red = fares rose, blue = fell. The late columns are red everywhere.</div>
+        <div class="col caption text">Each row is a route, each column a 10-day window. Red = fares rose, blue = fell. The late columns are red everywhere — but the low point lands at different times per route.</div>
         <div class="col caption" id="route-btns">
           <button type="button" class="btn btn-toggle on" data-r="ATL-JFK">ATL–JFK</button>
           <button type="button" class="btn btn-toggle" data-r="ATL-BOS">ATL–BOS</button>
@@ -155,59 +187,39 @@
     </div>
   </div>
 
-  <!-- SEATS (mirrors Marvel map-sec: box with chart + carousel) -->
-  <div class="section" id="seats-sec" data-label="Seats">
-    <div class="container box box2" id="seats-container">
-      <h3>2. Waiting costs seats, not just dollars</h3>
+  <!-- 6. SS5 RIBBON PAYOFF -->
+  <div class="section" id="ribbon-sec" data-label="Odds">
+    <div class="container box box2">
+      <h3>6. Waiting is a bet you usually lose</h3>
       <div class="row caption-row">
-        <div class="col caption">Solid = median lowest fare · Dashed = share with 1–3 seats left. Pick a window:</div>
-        <div class="col caption" id="seat-btns">
-          <button type="button" class="btn btn-toggle on" data-w="july4">July 4</button>
-          <button type="button" class="btn btn-toggle" data-w="labor">Labor Day</button>
+        <div class="col caption text">Every flight, every day, lands in one band: it jumped 10%+, fell 10%+, or sat steady. Watch the red band swell at the cutoffs.</div>
+        <div class="col caption" id="ribbon-btns">
+          <button type="button" class="btn btn-toggle on" data-w="labor">Labor Day</button>
+          <button type="button" class="btn btn-toggle" data-w="july4">July 4</button>
           <button type="button" class="btn btn-toggle" data-w="memorial">Memorial Day</button>
           <button type="button" class="btn btn-toggle" data-w="base">Non-holiday</button>
         </div>
       </div>
-      <div id="seats-vis" class="vis-container"></div>
-      <div class="posterContainer">
-        <ol class="carousel-indicators" id="window-dots"></ol>
-        <div class="carousel-track" id="window-track"></div>
-        <a class="carousel-control-prev" id="window-prev" role="button" aria-label="Previous">‹<span class="sr-only">Previous</span></a>
-        <a class="carousel-control-next" id="window-next" role="button" aria-label="Next">›<span class="sr-only">Next</span></a>
-      </div>
+      <div id="ribbon-vis" class="vis-container"></div>
+      <p class="caption">Sketch SS5 · Near the cutoffs at least 1 in 4 flights rise 10%+, while on most days fewer than 1 in 6 fall that far. You can't predict the cheapest day — but you can predict the days it gets more expensive.</p>
     </div>
   </div>
 
-  <!-- ODDS (mirrors Marvel characters-sec: two-col charts) -->
-  <div class="section" id="odds-sec" data-label="Odds">
-    <div class="container box">
-      <h3>3. Waiting is a bet you usually lose</h3>
-      <div class="row">
-        <div class="col-md-5 col-left">
-          <h4>Spikes at the cutoffs</h4>
-          <div id="spikes-vis" class="vis-container"></div>
-        </div>
-        <div class="col-md-7 col-right">
-          <div id="minis-vis" class="vis-container"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TAKEAWAY (mirrors Marvel future-sec: bg + conclusion box) -->
+  <!-- TAKEAWAY -->
   <div class="section clouds-background" id="takeaway-sec" data-label="Takeaway">
     <div class="spacer"></div>
     <div class="container box">
       <h3>So when should you book?</h3>
       <p class="big">
-        Buy before the 21-day cutoff. Once inside it, jump risk climbs from ~10% to 25%+, the median
-        fare climbs with it ($258 → $371 on Labor Day past 14 days), and the seats drain away.
-        One rule beats fare-watching — set your buy-now band and stop hunting the low point.
+        Pick the destination on the map, price the nonstop, then buy before the 21-day cutoff.
+        Once inside it, jump risk climbs from ~10% to 25%+, the median fare climbs with it
+        ($258 → $371 on Labor Day past 14 days), and the seats drain away. One rule beats
+        fare-watching — set your buy-now band and stop hunting the low point.
       </p>
     </div>
   </div>
 
-  <!-- TEAM (mirrors Marvel conclusion-sec: thank-you + profiles) -->
+  <!-- TEAM -->
   <div class="section" id="team-sec" data-label="Team">
     <div class="container box">
       <h3>Thank you!</h3>
@@ -225,7 +237,7 @@
     </div>
   </div>
 
-  <!-- DATA (mirrors Marvel data-sec) -->
+  <!-- DATA -->
   <div class="section" id="data-sec" data-label="Data">
     <div class="container box box2">
       <h3>Data Sources and Methods</h3>
@@ -240,6 +252,7 @@
           <p><b>Methods</b></p>
           <ul>
             <li>Medians of the lowest fare per route-day; matched legId tracking across search dates for ±10% moves; advance-purchase cutoff comparison (21/14/7 days).</li>
+            <li>State map and team-note values are layout samples until the team pastes real medians (see the override hook in <code>js/charts.js</code>).</li>
             <li>Out of scope with current data: cookie-clearing effects, points-vs-cash, driving-vs-nearby-airport costs.</li>
           </ul>
           <p>Page structure inspired by a Marvel Cinematic Universe scrollytelling reference (full-screen sections, staged Next-button story, card carousel). All words, numbers, graphics, and code here are our own.</p>

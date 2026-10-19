@@ -1,5 +1,6 @@
-/* Jet2 Holiday charts + interactions (D3 v7). Inline sample data from the
-   team process book — swap with full CSVs. All code is original. */
+/* Jet2 Holiday charts + interactions (D3 v7). Fare numbers come from the team
+   process book; state medians are clearly-marked layout SAMPLES until the team
+   pastes real values (see STATE_FARES below). All code is original. */
 (function () {
   "use strict";
   if (typeof d3 === "undefined") {
@@ -55,7 +56,7 @@
     secs.forEach(function (s) { io.observe(s); });
   })();
 
-  /* ---------- title canvas: ambient planes + clouds ---------- */
+  /* ---------- title canvas: stars + clouds + flights ---------- */
   (function () {
     var cv = document.getElementById("title-canvas");
     if (!cv) return;
@@ -74,8 +75,6 @@
     var stars = [];
     for (var st = 0; st < 80; st++) stars.push({ x: Math.random(), y: Math.random() * 0.36,
       r: 0.6 + Math.random() * 1.7, p: Math.random() * 6.28, sp: 0.5 + Math.random() * 2 });
-    /* A clearly readable side-profile jet: tail fin, fuselage, wings,
-       windows, plus a contrail so it reads as a flight, not a star. */
     function drawPlane(x, y, s, t, seed) {
       var bob = Math.sin(t / 700 + seed) * 5;
       ctx.save(); ctx.translate(x, y + bob); ctx.scale(s, s); ctx.rotate(-0.25);
@@ -107,7 +106,6 @@
       [16, 10, 4].forEach(function (wx) { ctx.beginPath(); ctx.arc(wx, -1, 1.8, 0, 6.29); ctx.fill(); });
       ctx.restore();
     }
-    /* Puffy shaded cloud: grey underside + white domes, flat bottom. */
     function cloud(cx, cy, s) {
       ctx.fillStyle = "rgba(170,192,208,0.9)";
       ctx.beginPath(); ctx.ellipse(cx, cy + s * 0.22, s * 0.62, s * 0.2, 0, 0, 6.29); ctx.fill();
@@ -188,25 +186,132 @@
     frame();
   })();
 
-  /* ---------- diary data ---------- */
-  var SPIKES = { 40: true, 47: true, 55: true }; // indexes = 20d, 13d, 5d
+  /* ---------- AG01 destination map ---------- */
+  /* SAMPLE medians from origin (USD) — replace with real route medians.
+     The team can also override at runtime: window.JET2_STATE_FARES = {...} */
+  var STATE_FARES = {
+    AL: 238, AK: 486, AZ: 342, AR: 262, CA: 398, CO: 296, CT: 228, DE: 219, FL: 252,
+    GA: 196, HI: 512, ID: 348, IL: 248, IN: 242, IA: 272, KS: 282, KY: 236, LA: 258,
+    ME: 264, MD: 224, MA: 238, MI: 246, MN: 278, MS: 252, MO: 268, MT: 372, NE: 292,
+    NV: 362, NH: 252, NJ: 226, NM: 318, NY: 242, NC: 228, ND: 322, OH: 238, OK: 282,
+    OR: 382, PA: 232, RI: 244, SC: 232, SD: 318, TN: 234, TX: 288, UT: 332, VT: 268,
+    VA: 226, WA: 392, WV: 258, WI: 262, WY: 358, DC: 222
+  };
+  if (window.JET2_STATE_FARES) STATE_FARES = window.JET2_STATE_FARES;
+  var picked = {};
+  function renderShortlist() {
+    var box = document.getElementById("map-shortlist");
+    var keys = Object.keys(picked);
+    if (!keys.length) { box.innerHTML = "<p class='caption'>No states picked yet — click the map.</p>"; return; }
+    keys.sort(function (a, b) { return STATE_FARES[a] - STATE_FARES[b]; });
+    box.innerHTML = "<p class='caption'>Your shortlist (click a row to remove):</p><ul>" +
+      keys.map(function (k) { return "<li data-k='" + k + "'><span>" + k + "</span><span>$" + STATE_FARES[k] + "</span></li>"; }).join("") + "</ul>";
+    box.querySelectorAll("li").forEach(function (li) {
+      li.addEventListener("click", function () {
+        delete picked[li.dataset.k];
+        d3.selectAll(".map-state").classed("picked", function (d) { return !!picked[d.id]; });
+        renderShortlist();
+      });
+    });
+  }
+  (function map() {
+    var W = 720, H = 440;
+    var vals = Object.keys(STATE_FARES).map(function (k) { return STATE_FARES[k]; });
+    var color = d3.scaleQuantize()
+      .domain([d3.min(vals), d3.max(vals)])
+      .range(["#fdf6d8", "#f9e79f", "#f5c542", "#e67e22", "#c0392b"]);
+    function legend(s, x0) {
+      var r = color.range(), ext = vals.slice().sort(function (a, b) { return a - b; });
+      var lg = s.append("g").attr("transform", "translate(" + x0 + "," + (H - 24) + ")").attr("font-size", 12);
+      lg.append("text").attr("x", -8).attr("y", 12).text("$" + ext[0]);
+      r.forEach(function (c, i) { lg.append("rect").attr("x", i * 34).attr("width", 32).attr("height", 14).attr("fill", c).attr("stroke", "#111"); });
+      lg.append("text").attr("x", r.length * 34 + 6).attr("y", 12).text("$" + ext[ext.length - 1]);
+    }
+    function hover(sel) {
+      sel.on("mousemove", function (e, d) {
+          var nm = d.properties ? d.properties.name : d.id;
+          var f = STATE_FARES[d.id];
+          showTip("<strong>" + nm + "</strong><br>" + (f ? "Median fare $" + f + " (sample)" : "No data"), e.clientX, e.clientY);
+        })
+        .on("mouseleave", hideTip)
+        .on("click", function (e, d) {
+          if (picked[d.id]) delete picked[d.id]; else picked[d.id] = true;
+          d3.selectAll(".map-state").classed("picked", function (o) { return !!picked[o.id]; });
+          renderShortlist();
+        });
+    }
+    function fallback() {
+      var s = svg("#map-vis", W, H);
+      var top = Object.keys(STATE_FARES).sort(function (a, b) { return STATE_FARES[a] - STATE_FARES[b]; }).slice(0, 14);
+      var x = d3.scaleLinear().domain([0, d3.max(vals)]).range([70, W - 70]);
+      top.forEach(function (k, i) {
+        var y = 14 + i * 29;
+        s.append("text").attr("x", 8).attr("y", y + 15).attr("font-size", 13).attr("font-family", "Acme, sans-serif").text(k);
+        s.append("rect").attr("x", 70).attr("y", y).attr("width", x(STATE_FARES[k]) - 70).attr("height", 20)
+          .attr("rx", 4).attr("fill", color(STATE_FARES[k])).attr("stroke", "#111");
+        s.append("text").attr("x", x(STATE_FARES[k]) + 6).attr("y", y + 15).attr("font-size", 12).text("$" + STATE_FARES[k]);
+      });
+      s.append("text").attr("x", 8).attr("y", H - 8).attr("font-size", 12).attr("fill", "#51606f")
+        .text("Map tiles unavailable offline — 14 cheapest sample states shown.");
+    }
+    if (typeof topojson === "undefined") { fallback(); renderShortlist(); return; }
+    d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json").then(function (us) {
+      var s = svg("#map-vis", W, H);
+      var states = topojson.feature(us, us.objects.states).features;
+      // us-atlas uses FIPS ids; map to postal codes
+      var FIPS = { "01": "AL", "02": "AK", "04": "AZ", "05": "AR", "06": "CA", "08": "CO", "09": "CT", "10": "DE", "11": "DC", "12": "FL", "13": "GA", "15": "HI", "16": "ID", "17": "IL", "18": "IN", "19": "IA", "20": "KS", "21": "KY", "22": "LA", "23": "ME", "24": "MD", "25": "MA", "26": "MI", "27": "MN", "28": "MS", "29": "MO", "30": "MT", "31": "NE", "32": "NV", "33": "NH", "34": "NJ", "35": "NM", "36": "NY", "37": "NC", "38": "ND", "39": "OH", "40": "OK", "41": "OR", "42": "PA", "44": "RI", "45": "SC", "46": "SD", "47": "TN", "48": "TX", "49": "UT", "50": "VT", "51": "VA", "53": "WA", "54": "WV", "55": "WI", "56": "WY" };
+      states.forEach(function (f) { f.id = FIPS[f.id] || f.id; });
+      var proj = d3.geoAlbersUsa().fitExtent([[8, 8], [W - 8, H - 44]], { type: "FeatureCollection", features: states });
+      var path = d3.geoPath(proj);
+      s.selectAll("path").data(states).join("path")
+        .attr("d", path)
+        .attr("class", "map-state")
+        .attr("fill", function (d) { return STATE_FARES[d.id] ? color(STATE_FARES[d.id]) : "#e3e8ed"; })
+        .call(hover);
+      s.append("path")
+        .datum(topojson.mesh(us, us.objects.states, function (a, b) { return a !== b; }))
+        .attr("d", path).attr("fill", "none").attr("stroke", "#fff").attr("stroke-width", 1)
+        .attr("pointer-events", "none");
+      legend(s, 30);
+      renderShortlist();
+    }).catch(function () { fallback(); renderShortlist(); });
+  })();
+
+  /* ---------- YH02 nonstop vs connecting ---------- */
+  (function () {
+    var s1 = svg("#nonstop-vis", 560, 220);
+    var d1 = [["Nonstop", 318], ["Connecting", 356]];
+    var x1 = d3.scaleLinear().domain([0, 400]).range([150, 470]);
+    d1.forEach(function (d, i) {
+      var y = 30 + i * 72;
+      s1.append("text").attr("x", 8).attr("y", y + 24).attr("font-size", 15).attr("font-family", "Acme, sans-serif").text(d[0]);
+      s1.append("rect").attr("x", 150).attr("y", y).attr("width", x1(d[1]) - 150).attr("height", 32).attr("rx", 4)
+        .attr("fill", i === 0 ? "#0b2540" : "#8aa0b4").attr("stroke", "#111")
+        .on("mousemove", function (e) { showTip("<strong>" + d[0] + "</strong><br>Sample median $" + d[1] + " (July 4 window)", e.clientX, e.clientY); })
+        .on("mouseleave", hideTip);
+      s1.append("text").attr("x", x1(d[1]) + 8).attr("y", y + 23).attr("font-size", 14).attr("font-weight", "bold").text("$" + d[1]);
+    });
+    s1.append("text").attr("x", 8).attr("y", 205).attr("font-size", 13).attr("fill", "#51606f")
+      .text("Sketch YH-02 · July 4 sample medians — backwards from the usual assumption.");
+  })();
+
+  /* ---------- CZ01 price diary ---------- */
   function diaryData() {
     var r = rng(11), out = [];
     for (var d = 60; d >= 1; d--) {
       var i = 60 - d, upP = (i === 40) ? 0.25 : (i === 47) ? 0.34 : (i === 55) ? 0.48 : 0.10;
       var v = r();
       out.push({ day: d, idx: i, s: v < upP ? "up" : (v < upP + 0.10 ? "down" : "flat"),
-        spike: !!((i === 40 || i === 47 || i === 55)) });
+        spike: (i === 40 || i === 47 || i === 55) });
     }
     return out;
   }
   var DIARY = diaryData(), diaryStage = 1, diaryMax = 60;
   var DCOL = { up: "#c0392b", down: "#1e7d4f", flat: "#cfd8e1" };
   var DLAB = { up: "rose 10%+", down: "fell 10%+", flat: "barely moved" };
-
   function drawDiary() {
     var data = DIARY.filter(function (d) { return d.day <= diaryMax; });
-    var W = 720, H = 300, cols = 12, cw = 56, chSide = 56, top = 14;
+    var W = 720, H = 300, cols = 12, cw = 56, top = 14;
     var s = svg("#diary-vis", W, H);
     data.forEach(function (d, i) {
       var gx, gy;
@@ -246,7 +351,7 @@
   });
   drawDiary();
 
-  /* ---------- staircase ---------- */
+  /* ---------- CZ03 staircase ---------- */
   (function () {
     var data = [
       { d: 60, f: 290 }, { d: 45, f: 285 }, { d: 30, f: 278 }, { d: 21, f: 270 },
@@ -273,7 +378,7 @@
       });
   })();
 
-  /* ---------- heatmap ---------- */
+  /* ---------- JK3 heatmap ---------- */
   (function () {
     var routes = ["ATL-JFK", "ATL-BOS", "ATL-LAX", "ATL-DFW", "ATL-LGA"];
     var wins = ["60–50", "50–40", "40–30", "30–20", "20–10", "10–0"];
@@ -336,147 +441,71 @@
   });
   drawRoute("ATL-JFK");
 
-  /* ---------- seats ---------- */
-  var SEATS = {
-    july4:    { fare: [[60, 379], [45, 365], [30, 350], [21, 340], [14, 335], [7, 322], [3, 340], [1, 360]], seats: [[60, 15], [45, 18], [30, 22], [21, 26], [14, 30], [7, 35], [3, 38], [1, 40]] },
-    labor:    { fare: [[60, 290], [45, 282], [30, 272], [21, 265], [14, 258], [13, 284], [7, 320], [1, 371]], seats: [[60, 12], [45, 14], [30, 16], [21, 18], [14, 21], [7, 28], [3, 33], [1, 36]] },
-    memorial: { fare: [[44, 300], [30, 292], [21, 285], [14, 278], [7, 295], [3, 320], [1, 352]], seats: [[44, 16], [30, 20], [21, 24], [14, 28], [7, 34], [3, 37], [1, 39]] },
-    base:     { fare: [[60, 310], [45, 305], [30, 300], [21, 295], [14, 300], [7, 320], [3, 335], [1, 347]], seats: [[60, 13], [45, 15], [30, 18], [21, 21], [14, 25], [7, 30], [3, 33], [1, 35]] }
+  /* ---------- SS5 odds ribbon ---------- */
+  /* Share of matched fares per outcome. Spike heights follow Chart 2
+     (baseline ~10% jumps; 25/34/46% at 20/13/5 days out). */
+  var RIBBON = {
+    labor:    { jump: [[20, 25], [13, 34], [5, 46]], fell: 9 },
+    july4:    { jump: [[20, 22], [13, 30], [5, 36]], fell: 12 },
+    memorial: { jump: [[20, 20], [13, 28], [5, 33]], fell: 11 },
+    base:     { jump: [[20, 24], [13, 31], [5, 38]], fell: 10 }
   };
-  function drawSeats(key) {
-    var cfg = SEATS[key], W = 720, H = 300, m = { t: 16, r: 54, b: 40, l: 58 };
-    var s = svg("#seats-vis", W, H);
-    var x = d3.scaleLinear().domain([60, 0]).range([m.l, W - m.r]);
-    var yF = d3.scaleLinear().domain([240, 400]).range([H - m.b, m.t]);
-    var yS = d3.scaleLinear().domain([0, 50]).range([H - m.b, m.t]);
-    s.append("g").attr("transform", "translate(0," + (H - m.b) + ")").call(d3.axisBottom(x).ticks(7));
-    s.append("g").attr("transform", "translate(" + m.l + ",0)").call(d3.axisLeft(yF).ticks(5).tickFormat(function (v) { return "$" + v; }));
-    s.append("g").attr("transform", "translate(" + (W - m.r) + ",0)").call(d3.axisRight(yS).ticks(5).tickFormat(function (v) { return v + "%"; }));
-    var lf = d3.line().x(function (d) { return x(d[0]); }).y(function (d) { return yF(d[1]); }).curve(d3.curveMonotoneX);
-    var ls = d3.line().x(function (d) { return x(d[0]); }).y(function (d) { return yS(d[1]); }).curve(d3.curveMonotoneX);
-    s.append("path").datum(cfg.fare).attr("d", lf).attr("fill", "none").attr("stroke", "#0b2540").attr("stroke-width", 3);
-    s.append("path").datum(cfg.seats).attr("d", ls).attr("fill", "none").attr("stroke", "#c0392b").attr("stroke-width", 2.5).attr("stroke-dasharray", "7 5");
-    s.selectAll("circle").data(cfg.fare).join("circle")
-      .attr("cx", function (d) { return x(d[0]); }).attr("cy", function (d) { return yF(d[1]); })
-      .attr("r", 5).attr("fill", "#ffd200").attr("stroke", "#111").attr("stroke-width", 1.8)
-      .on("mousemove", function (e, d) { showTip("<strong>" + d[0] + " days out</strong><br>Median fare $" + d[1], e.clientX, e.clientY); })
-      .on("mouseleave", hideTip);
-  }
-  d3.selectAll("#seat-btns button").on("click", function () {
-    d3.selectAll("#seat-btns button").classed("on", false);
-    d3.select(this).classed("on", true);
-    drawSeats(this.dataset.w);
-  });
-  drawSeats("july4");
-
-  /* ---------- window card carousel (2 slides x 6 cards) ---------- */
-  (function () {
-    var track = document.getElementById("window-track"), dots = document.getElementById("window-dots");
-    var slides = [
-      { t: "Labor Day windows", cards: [
-        ["60–50d", "Flat, $290 area", "cool"], ["50–40d", "Drifting down", "cool"], ["40–30d", "Still calm", "cool"],
-        ["30–20d", "Cutoff looms", ""], ["20–10d", "$258 floor, then +$26", "hot"], ["10–0d", "Climbs to $371", "hot"]] },
-      { t: "July 4 windows", cards: [
-        ["60–50d", "High but falling", "cool"], ["50–40d", "Falling", "cool"], ["40–30d", "Choppy", ""],
-        ["30–20d", "Spikes at 20d", ""], ["20–10d", "Bottoms ~$322", "cool"], ["10–0d", "Seats nearly gone", "hot"]] }
-    ];
-    slides.forEach(function (sl) {
-      var div = document.createElement("div");
-      div.className = "window-slide";
-      sl.cards.forEach(function (c) {
-        var card = document.createElement("div");
-        card.className = "window-card " + c[2];
-        card.innerHTML = "<div class='w-range'>" + c[0] + "</div><div class='w-tip'>" + c[1] + "</div>";
-        div.appendChild(card);
+  function ribbonData(key) {
+    var cfg = RIBBON[key], out = [];
+    function spike(d, at, h) {
+      var sum = 0;
+      cfg.jump.forEach(function (j) {
+        var dist = (d - j[0]) / 1.6;
+        sum += (j[1] - 10) * Math.exp(-dist * dist);
       });
-      track.appendChild(div);
-    });
-    var idx = 0, n = slides.length;
-    slides.forEach(function (_, i) {
-      var li = document.createElement("li");
-      if (i === 0) li.className = "active";
-      li.addEventListener("click", function () { go(i); });
-      dots.appendChild(li);
-    });
-    function go(i) {
-      idx = (i + n) % n;
-      track.style.transform = "translateX(-" + idx * 100 + "%)";
-      dots.querySelectorAll("li").forEach(function (l, k) { l.classList.toggle("active", k === idx); });
+      return 10 + sum;
     }
-    document.getElementById("window-prev").addEventListener("click", function () { go(idx - 1); });
-    document.getElementById("window-next").addEventListener("click", function () { go(idx + 1); });
-  })();
-
-  /* ---------- spikes + minis ---------- */
-  (function () {
-    var data = [
-      { k: "Baseline", up: 10, down: 10 }, { k: "20 days", up: 25, down: 10 },
-      { k: "13 days", up: 34, down: 9 }, { k: "5 days", up: 46, down: 8 }
-    ];
-    var W = 420, H = 330, m = { t: 26, r: 12, b: 44, l: 48 };
-    var s = svg("#spikes-vis", W, H);
-    var x = d3.scaleBand().domain(data.map(function (d) { return d.k; })).range([m.l, W - m.r]).padding(0.32);
-    var y = d3.scaleLinear().domain([0, 55]).range([H - m.b, m.t]);
-    s.append("g").attr("transform", "translate(0," + (H - m.b) + ")").call(d3.axisBottom(x));
-    s.append("g").attr("transform", "translate(" + m.l + ",0)").call(d3.axisLeft(y).ticks(5).tickFormat(function (v) { return v + "%"; }));
-    var half = x.bandwidth() / 2;
-    data.forEach(function (d) {
-      s.append("rect").attr("x", x(d.k)).attr("y", y(d.up)).attr("width", half - 3).attr("height", y(0) - y(d.up))
-        .attr("fill", "#c0392b").attr("rx", 3).attr("stroke", "#111")
-        .on("mousemove", function (e) { showTip("<strong>" + d.k + "</strong><br>" + d.up + "% rose 10%+", e.clientX, e.clientY); })
-        .on("mouseleave", hideTip);
-      s.append("rect").attr("x", x(d.k) + half + 3).attr("y", y(d.down)).attr("width", half - 3).attr("height", y(0) - y(d.down))
-        .attr("fill", "#1e7d4f").attr("rx", 3).attr("stroke", "#111")
-        .on("mousemove", function (e) { showTip("<strong>" + d.k + "</strong><br>" + d.down + "% fell 10%+", e.clientX, e.clientY); })
-        .on("mouseleave", hideTip);
-    });
-    var lg = s.append("g").attr("transform", "translate(" + m.l + ",2)").attr("font-size", 12);
-    lg.append("rect").attr("width", 12).attr("height", 12).attr("fill", "#c0392b").attr("stroke", "#111");
-    lg.append("text").attr("x", 16).attr("y", 11).text("rose 10%+");
-    lg.append("rect").attr("x", 110).attr("width", 12).attr("height", 12).attr("fill", "#1e7d4f").attr("stroke", "#111");
-    lg.append("text").attr("x", 126).attr("y", 11).text("fell 10%+");
-  })();
-
-  (function () {
-    var host = d3.select("#minis-vis");
-    function mini(title) {
-      host.append("p").attr("class", "caption").text(title);
-      return host.append("div").append("svg").attr("viewBox", "0 0 560 150").attr("role", "img");
+    for (var d = 60; d >= 0; d--) {
+      var j = Math.min(52, spike(d));
+      out.push({ d: d, jump: +j.toFixed(1), fell: cfg.fell, steady: +(100 - j - cfg.fell).toFixed(1) });
     }
-    var d1 = [["Nonstop", 318], ["Connecting", 356]], x1 = d3.scaleLinear().domain([0, 400]).range([150, 470]);
-    var s1 = mini("July 4: nonstop came out cheaper than connecting");
-    d1.forEach(function (d, i) {
-      var y = 18 + i * 62;
-      s1.append("text").attr("x", 6).attr("y", y + 24).attr("font-size", 15).attr("font-family", "Acme, sans-serif").text(d[0]);
-      s1.append("rect").attr("x", 150).attr("y", y).attr("width", x1(d[1]) - 150).attr("height", 32).attr("rx", 4)
-        .attr("fill", i === 0 ? "#0b2540" : "#8aa0b4").attr("stroke", "#111")
-        .on("mousemove", function (e) { showTip("<strong>" + d[0] + "</strong><br>Sample median $" + d[1], e.clientX, e.clientY); })
-        .on("mouseleave", hideTip);
-      s1.append("text").attr("x", x1(d[1]) + 8).attr("y", y + 23).attr("font-size", 14).attr("font-weight", "bold").text("$" + d[1]);
-    });
-    var d2 = [["Low-cost avg", 82], ["Delta", 105], ["American", 103], ["United", 124], ["JetBlue", 121]];
-    var x2 = d3.scaleLinear().domain([0, 140]).range([150, 470]);
-    var s2 = mini("Airline price index (100 = average; low-cost routes ~41% below full-service)");
-    s2.attr("viewBox", "0 0 560 240");
-    d2.forEach(function (d, i) {
-      var y = 12 + i * 44;
-      s2.append("text").attr("x", 6).attr("y", y + 20).attr("font-size", 14).attr("font-family", "Acme, sans-serif").text(d[0]);
-      s2.append("rect").attr("x", 150).attr("y", y).attr("width", x2(d[1]) - 150).attr("height", 26).attr("rx", 4)
-        .attr("fill", d[1] > 110 ? "#c0392b" : "#0b2540").attr("stroke", "#111")
-        .on("mousemove", function (e) { showTip("<strong>" + d[0] + "</strong><br>Index " + d[1], e.clientX, e.clientY); })
-        .on("mouseleave", hideTip);
-    });
-    var d3d = [["Mon", 335], ["Tue", 318], ["Thu", 336], ["Fri", 338], ["Sat", 334], ["Sun", 340]];
-    var s3 = mini("Tuesday averaged ~$318, the clear dip (Wed: no observations)");
-    s3.attr("viewBox", "0 0 560 190");
-    var x3 = d3.scaleBand().domain(d3d.map(function (d) { return d[0]; })).range([30, 530]).padding(0.3);
-    var y3 = d3.scaleLinear().domain([300, 350]).range([140, 20]);
-    s3.append("g").attr("transform", "translate(0,140)").call(d3.axisBottom(x3));
-    s3.selectAll("rect").data(d3d).join("rect")
-      .attr("x", function (d) { return x3(d[0]); }).attr("y", function (d) { return y3(d[1]); })
-      .attr("width", x3.bandwidth()).attr("height", function (d) { return 140 - y3(d[1]); })
-      .attr("rx", 4).attr("fill", function (d) { return d[0] === "Tue" ? "#ffd200" : "#0b2540"; }).attr("stroke", "#111")
-      .on("mousemove", function (e, d) { showTip("<strong>" + d[0] + "</strong><br>Average ~$" + d[1], e.clientX, e.clientY); })
+    return out;
+  }
+  function drawRibbon(key) {
+    var data = ribbonData(key), W = 720, H = 320, m = { t: 16, r: 16, b: 40, l: 52 };
+    var s = svg("#ribbon-vis", W, H);
+    var x = d3.scaleLinear().domain([60, 0]).range([m.l, W - m.r]);
+    var y = d3.scaleLinear().domain([0, 100]).range([H - m.b, m.t]);
+    var keys = ["jump", "fell", "steady"];
+    var col = { jump: "#c0392b", fell: "#1e7d4f", steady: "#cfd8e1" };
+    var lab = { jump: "jumped 10%+", fell: "fell 10%+", steady: "sat steady" };
+    var stacked = d3.stack().keys(keys)(data);
+    var area = d3.area()
+      .x(function (d) { return x(d.data.d); })
+      .y0(function (d) { return y(d[0]); })
+      .y1(function (d) { return y(d[1]); })
+      .curve(d3.curveMonotoneX);
+    s.selectAll("path.band").data(stacked).join("path")
+      .attr("class", "band").attr("d", area)
+      .attr("fill", function (d) { return col[d.key]; })
+      .attr("stroke", "#111").attr("stroke-width", 1)
+      .attr("opacity", 0.92)
+      .on("mousemove", function (e, d) {
+        var xm = d3.pointer(e)[0], day = Math.round(x.invert(xm));
+        var row = data.filter(function (r) { return r.d === day; })[0] || data[0];
+        showTip("<strong>" + row.d + " days out</strong><br>" +
+          "Jumped: " + row.jump + "% · Fell: " + row.fell + "% · Steady: " + row.steady + "%",
+          e.clientX, e.clientY);
+      })
       .on("mouseleave", hideTip);
-  })();
+    s.append("g").attr("transform", "translate(0," + (H - m.b) + ")").call(d3.axisBottom(x).ticks(7));
+    s.append("g").attr("transform", "translate(" + m.l + ",0)").call(d3.axisLeft(y).ticks(5).tickFormat(function (v) { return v + "%"; }));
+    s.append("text").attr("x", (W + m.l - m.r) / 2).attr("y", H - 8).attr("text-anchor", "middle").attr("font-size", 13).text("Days before departure");
+    var lg = s.append("g").attr("transform", "translate(" + m.l + ",2)").attr("font-size", 12);
+    keys.forEach(function (k, i) {
+      lg.append("rect").attr("x", i * 150).attr("width", 12).attr("height", 12).attr("fill", col[k]).attr("stroke", "#111");
+      lg.append("text").attr("x", i * 150 + 16).attr("y", 11).text(lab[k]);
+    });
+  }
+  d3.selectAll("#ribbon-btns button").on("click", function () {
+    d3.selectAll("#ribbon-btns button").classed("on", false);
+    d3.select(this).classed("on", true);
+    drawRibbon(this.dataset.w);
+  });
+  drawRibbon("labor");
 })();

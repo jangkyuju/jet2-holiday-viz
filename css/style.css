@@ -145,28 +145,17 @@ h4 { text-align: center; font-family: 'Bangers', cursive; font-size: 26px; lette
 .vis-container svg { width: 100%; height: auto; display: block; background: #fff; border: 2px solid #111; border-radius: 6px; }
 #seats-sec .vis-container svg, #stairs-sec .vis-container svg { background: #fff; }
 
-/* Booking-window card carousel */
-.posterContainer { position: relative; margin-top: 14px; overflow: hidden; }
-.carousel-track { display: flex; transition: transform 0.45s ease; }
-.window-slide { flex: 0 0 100%; display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; padding: 6px 44px 26px; }
-.window-card {
-  border: 3px solid #111; border-radius: 8px; background: #fffdf4;
-  padding: 10px 8px; text-align: center; font-family: 'Staatliches', cursive;
+/* Destination map + shortlist */
+.map-state { stroke: #111; stroke-width: 1; cursor: pointer; }
+.map-state:hover { stroke-width: 3; }
+.map-state.picked { stroke: #0b2540; stroke-width: 3.5; }
+#map-shortlist ul { list-style: none; padding: 0; margin: 8px 0; }
+#map-shortlist li {
+  border: 2px solid #111; border-radius: 6px; padding: 4px 10px; margin-bottom: 6px;
+  font-family: 'Staatliches', cursive; font-size: 18px; background: #fffdf4;
+  display: flex; justify-content: space-between; cursor: pointer;
 }
-.window-card .w-range { font-size: 19px; }
-.window-card .w-tip { font-size: 14px; font-family: 'Pangolin', cursive; color: #42505f; }
-.window-card.hot { background: #fdeceb; }
-.window-card.cool { background: #e8f5ec; }
-.carousel-control-prev, .carousel-control-next {
-  position: absolute; top: 30%; font-size: 44px; color: #0b2540; cursor: pointer;
-  text-decoration: none; user-select: none; padding: 0 8px; font-family: 'Staatliches', cursive;
-}
-.carousel-control-prev { left: 2px; }
-.carousel-control-next { right: 2px; }
-.carousel-indicators { list-style: none; display: flex; gap: 8px; justify-content: center; padding: 0; margin: 4px 0 0; }
-.carousel-indicators li { width: 11px; height: 11px; border-radius: 100%; background: grey; cursor: pointer; }
-.carousel-indicators li.active { background: #111; width: 15px; height: 15px; }
-.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; }
+#map-shortlist li:hover { background: #fdeceb; }
 
 /* Team */
 .profiles { margin-top: 10px; }
