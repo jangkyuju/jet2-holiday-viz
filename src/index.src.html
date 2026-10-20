@@ -1,0 +1,1120 @@
+<title>When Should We Book?</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: airport-wayfinding scrollytelling. Each scene is a tall track with a sticky full-screen stage; scroll progress drives the animation. One yellow "sign" accent, split-flap departure-board type. */
+:root {
+  --hh: 0px;
+  --navy: #003a70;
+  --navy-2: #00234a;
+  --accent: #c8102e;
+  --accent-ink: #ffffff;
+  --bg: #f4f6f9;
+  --surface: #ffffff;
+  --land: #e6ebf2;
+  --ink: #0a1f3c;
+  --ink-2: #44546c;
+  --muted: #6f7c90;
+  --line: #dce2eb;
+  --line-2: #c0cad8;
+  --rose: #d0263c;
+  --fell: #2a6fd0;
+  --flat-strong: #a3adbd;
+  --div-mid: #eceff3;
+  --seq-lo: #fbd9d3;
+  --seq-hi: #8f1424;
+  --cloud: rgba(255, 255, 255, 0.14);
+  --runway: #0d1b30;
+  --tile: #0b2a5b;
+  --tile-ink: #ffffff;
+  --plane: #ffffff;
+  --plane-line: #003a70;
+  --font-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #06111f; --surface: #0d1d35; --land: #13284a; --ink: #e9eef6; --ink-2: #b3bfd2; --muted: #7d8aa2;
+    --line: #1c2d48; --line-2: #2d4266; --accent: #e3354d; --rose: #ec5a68; --fell: #4d8fe8; --flat-strong: #5d6a82; --div-mid: #22324d;
+    --seq-lo: #3a2230; --seq-hi: #ff7f86; --tile: #021228; --plane-line: #00234a; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #06111f; --surface: #0d1d35; --land: #13284a; --ink: #e9eef6; --ink-2: #b3bfd2; --muted: #7d8aa2;
+  --line: #1c2d48; --line-2: #2d4266; --accent: #e3354d; --rose: #ec5a68; --fell: #4d8fe8; --flat-strong: #5d6a82; --div-mid: #22324d;
+  --seq-lo: #3a2230; --seq-hi: #ff7f86; --tile: #021228; --plane-line: #00234a; color-scheme: dark;
+}
+/* navy brand scenes (title, takeoff): tokens re-scoped so type and drawings read light-on-navy */
+.navy {
+  --ink: #ffffff; --ink-2: #c8d5ea; --muted: #9fb2cf; --line-2: rgba(255, 255, 255, 0.35); --surface: #0d3a72;
+  background: radial-gradient(120% 90% at 70% 10%, #0a4a8c 0%, var(--navy) 45%, var(--navy-2) 100%); color: var(--ink);
+}
+
+* { box-sizing: border-box; }
+html { scroll-padding-top: var(--hh); }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: clamp(1.05rem, 1.15vw, 1.3rem); line-height: 1.55; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--navy-2); }
+.gutter { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1680px; margin: 0 auto; width: 100%; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.02; }
+h2 { font-size: clamp(2.1rem, 3.8vw, 4rem); font-weight: 600; }
+h3 { font-size: 1.4rem; font-weight: 600; }
+p { margin: 0; max-width: 46ch; }
+.muted { color: var(--ink-2); }
+.mono { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.02em; }
+button, select, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--fell); outline-offset: 2px; }
+svg { display: block; width: 100%; height: auto; overflow: visible; }
+svg text { font-family: var(--font-mono); }
+
+/* Progress dots (no header) */
+.dots { position: fixed; right: max(14px, env(safe-area-inset-right, 0px)); top: 50%; transform: translateY(-50%); z-index: 40; display: grid; gap: 10px; }
+.dots a { width: 11px; height: 11px; border-radius: 50%; border: 2px solid var(--muted); display: block; position: relative; background: transparent; }
+.dots a.on { background: var(--accent); border-color: var(--accent); transform: scale(1.25); }
+.dots a span { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); white-space: nowrap; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; background: var(--navy); color: #fff; padding: 2px 8px; border-radius: 3px; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+.dots a:hover span, .dots a:focus-visible span { opacity: 1; }
+
+/* Split-flap tiles */
+.flap { display: inline-flex; gap: 0.08em; font-family: var(--font-mono); font-weight: 600; }
+.fc { display: inline-block; width: 0.82em; height: 1.24em; line-height: 1.24em; text-align: center; background: var(--tile); color: var(--tile-ink); border-radius: 0.1em; position: relative; }
+.fc::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(0, 0, 0, 0.55); }
+.fc.flip { animation: flip 0.11s ease-out; }
+@keyframes flip { from { transform: scaleY(0.15); filter: brightness(1.6); } to { transform: scaleY(1); } }
+
+/* Scenes: tall track + sticky stage */
+.scene { position: relative; height: calc(var(--len, 300) * 1vh); }
+.stage { position: sticky; top: var(--hh); height: calc(100vh - var(--hh)); height: calc(100svh - var(--hh)); overflow: hidden; display: grid; align-items: center; }
+.stage > .wrap { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 7fr); gap: clamp(20px, 3vw, 64px); padding-right: max(44px, env(safe-area-inset-right, 0px)); align-items: center; position: relative; z-index: 2; }
+.fill { position: absolute; inset: 0; width: 100%; height: 100%; }
+.copy { display: grid; gap: 16px; min-width: 0; align-content: center; }
+[data-at] { opacity: 0; transform: translateY(14px); transition: opacity 0.45s ease, transform 0.45s ease; }
+[data-at].in { opacity: 1; transform: none; }
+.sign { justify-self: start; font-family: var(--font-display); font-weight: 700; font-size: clamp(0.95rem, 1.1vw, 1.2rem); letter-spacing: 0.14em; text-transform: uppercase; background: var(--accent); color: var(--accent-ink); padding: 4px 12px 3px; }
+.callout { border-left: 4px solid var(--accent); padding: 2px 0 2px 16px; font-weight: 500; }
+.hint { font-family: var(--font-mono); font-size: 0.74rem; color: var(--muted); }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: clamp(12px, 1.6vw, 20px); display: grid; gap: 10px; min-width: 0; position: relative; }
+.panel-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 14px; }
+.panel-title { font-weight: 600; font-size: clamp(0.95rem, 1.1vw, 1.2rem); }
+.panel-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 14px; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: clamp(0.8rem, 0.95vw, 1rem); color: var(--ink-2); align-items: center; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
+.sw.out { border: 1.5px solid var(--line-2); }
+.tabs { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--line-2); border-radius: 4px; overflow: hidden; }
+.tabs button { border: 0; background: transparent; padding: 4px 11px; font-size: 0.82rem; cursor: pointer; color: var(--ink-2); border-right: 1px solid var(--line-2); }
+.tabs button:last-child { border-right: 0; }
+.tabs button[aria-pressed="true"] { background: var(--navy); color: #fff; }
+.btn { border: 1px solid var(--ink); background: transparent; padding: 7px 14px; border-radius: 4px; cursor: pointer; font-weight: 500; font-size: 0.9rem; justify-self: start; }
+.btn:hover { background: var(--ink); color: var(--bg); }
+.btn.small { padding: 3px 10px; font-size: 0.78rem; }
+.btn.big { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; letter-spacing: 0.06em; padding: 10px 26px; text-transform: uppercase; }
+.btn.big.yes { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+select, input[type="date"] { background: var(--surface); border: 1px solid var(--line-2); border-radius: 4px; padding: 5px 9px; }
+label.field { display: inline-flex; align-items: center; gap: 10px; font-size: 0.9rem; color: var(--ink-2); }
+.cap { max-height: calc(100svh - 150px); }
+
+/* Title */
+.stage > .wrap.title-copy { grid-template-columns: minmax(0, 1fr); }
+.title-copy { position: relative; z-index: 2; display: grid; gap: 18px; align-content: center; }
+.title-copy .flap { font-size: clamp(2rem, 8.4vw, 8.4rem); }
+.navy .fc { background: rgba(0, 18, 44, 0.85); }
+.title-copy .rows { display: grid; gap: 0.12em; }
+.lede { font-size: clamp(1.15rem, 1.8vw, 1.8rem); color: var(--ink-2); max-width: 44ch; }
+.chip { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line-2); background: var(--surface); padding: 4px 10px; border-radius: 999px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-2); }
+.chip i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; font-size: 0.9rem; color: var(--ink-2); }
+.cue { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-2); animation: bob 1.6s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(5px); } }
+
+/* Boarding pass */
+.pass { display: grid; grid-template-columns: minmax(0, 1fr) auto; border: 1px solid var(--line-2); border-radius: 6px; background: var(--surface); overflow: hidden; }
+.pass .main { padding: 12px 16px; display: grid; gap: 3px; min-width: 0; }
+.pass .route { font-family: var(--font-display); font-size: clamp(1.9rem, 2.6vw, 3rem); font-weight: 700; letter-spacing: 0.04em; line-height: 1; }
+.pass .stub { border-left: 2px dashed var(--line-2); padding: 12px 16px; display: grid; gap: 4px; align-content: center; justify-items: end; }
+.pass .flap { font-size: clamp(1.5rem, 2vw, 2.3rem); }
+.pass.print { animation: print 0.9s steps(12) both; }
+@keyframes print { from { clip-path: inset(0 0 100% 0); transform: translateY(-10px); } to { clip-path: inset(0 0 0 0); transform: none; } }
+
+/* Steps / shake */
+.shake { animation: shake 0.45s ease-in-out; }
+@keyframes shake { 20% { transform: translate(-3px, 2px) rotate(-0.4deg); } 40% { transform: translate(3px, -2px) rotate(0.4deg); } 60% { transform: translate(-2px, 1px); } 80% { transform: translate(2px, -1px); } }
+.counter { display: flex; align-items: center; gap: 10px; }
+.counter .flap { font-size: clamp(2rem, 3.2vw, 3.6rem); }
+.overlay { position: absolute; pointer-events: none; }
+.pulse { animation: pulse 1s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: 0.45; } }
+
+/* Bet */
+#bet .stage > .wrap { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+#bet .cap { max-height: calc(100svh - 260px); }
+.bet-top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px 40px; align-items: end; }
+.bet-main { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.odds-col { display: grid; gap: 12px; align-content: start; }
+#odds { width: 100%; aspect-ratio: 1; max-width: 300px; border: 1px dashed var(--line-2); border-radius: 6px; }
+
+/* Book */
+#book .stage > .wrap { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+.cal { position: relative; width: min(440px, 100%); aspect-ratio: 1 / 0.9; justify-self: center; perspective: 900px; }
+.cal .ring { position: absolute; top: -10px; left: 0; right: 0; display: flex; justify-content: space-evenly; z-index: 5; }
+.cal .ring i { width: 12px; height: 26px; border-radius: 6px; background: var(--ink-2); }
+.page { position: absolute; inset: 0; background: var(--surface); border: 1px solid var(--line-2); border-radius: 8px; display: grid; align-content: center; justify-items: center; gap: 6px; box-shadow: 0 10px 24px rgba(15, 23, 38, 0.12); transform-origin: top center; }
+.page::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 26%; background: var(--navy); border-radius: 8px 8px 0 0; }
+.page .t { font-family: var(--font-display); font-weight: 700; font-size: clamp(3rem, 8vw, 8rem); line-height: 1; margin-top: 18%; }
+.page .d { font-family: var(--font-mono); font-size: clamp(0.95rem, 1.3vw, 1.4rem); color: var(--ink-2); }
+.page.tear { animation: tear 0.7s ease-in forwards; z-index: 4; }
+@keyframes tear { 0% { transform: rotateX(0); } 35% { transform: rotateX(-25deg) rotate(-4deg); } 100% { transform: translateY(140%) rotate(-18deg); opacity: 0; } }
+.stamp { position: absolute; z-index: 6; left: 50%; top: 58%; font-family: var(--font-display); font-weight: 700; font-size: 2.4rem; letter-spacing: 0.1em; color: #1f8a3b; border: 4px solid #1f8a3b; border-radius: 8px; padding: 0 14px; transform: translate(-50%, -50%) rotate(-12deg) scale(2.4); opacity: 0; transition: transform 0.35s cubic-bezier(0.2, 1.6, 0.4, 1), opacity 0.2s; background: color-mix(in srgb, var(--surface) 70%, transparent); }
+.cal.stamped .stamp { transform: translate(-50%, -50%) rotate(-12deg) scale(1); opacity: 1; }
+.boardbox { display: grid; gap: 6px; }
+.boardbox .flap { font-size: clamp(1.3rem, 3vw, 3.2rem); }
+.milestones { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.milestones div { border-top: 3px solid var(--accent); padding-top: 6px; font-size: 0.86rem; color: var(--ink-2); }
+.milestones b { display: block; color: var(--ink); font-weight: 600; }
+
+/* Plain sections */
+.plain { padding-block: clamp(56px, 8vw, 100px); border-top: 1px solid var(--line); min-height: 100svh; display: grid; align-items: center; }
+.plain .wrap { padding-right: max(44px, env(safe-area-inset-right, 0px)); display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 7fr); gap: clamp(20px, 3.5vw, 52px); align-items: center; }
+.quiz { min-height: calc(100svh - var(--hh)); display: grid; align-items: center; text-align: center; }
+.quiz .wrap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; justify-items: center; }
+.quiz h2 { font-size: clamp(2.4rem, 6vw, 5.6rem); max-width: 18ch; }
+.quiz .choices { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.quiz p { margin: 0 auto; }
+
+/* Takeoff + carousel */
+.belt { position: absolute; left: 0; right: 0; bottom: 6%; height: 290px; z-index: 3; }
+.belt::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 16px; background: repeating-linear-gradient(90deg, var(--runway) 0 26px, var(--ink-2) 26px 30px); border-radius: 4px; }
+.track { position: absolute; bottom: 22px; left: 0; display: flex; gap: 28px; will-change: transform; }
+.tag { flex: none; width: 360px; height: 240px; background: var(--accent); color: var(--accent-ink); clip-path: polygon(14% 0, 100% 0, 100% 100%, 14% 100%, 0 82%, 0 18%); padding: 16px 16px 16px 50px; display: grid; align-content: start; gap: 6px; position: relative; }
+.tag::before { content: ""; position: absolute; left: 18px; top: 50%; width: 18px; height: 18px; margin-top: -9px; border-radius: 50%; background: var(--navy-2); }
+.tag { padding: 22px 22px 22px 62px; gap: 10px; }
+.tag .n { font-family: var(--font-mono); font-size: 0.85rem; }
+.tag b { font-family: var(--font-display); font-size: 2.3rem; line-height: 1.02; }
+.tag span { font-size: 1.05rem; line-height: 1.4; }
+.fly-copy { position: absolute; top: 8%; left: 0; right: 0; z-index: 3; }
+
+/* Team passes */
+.passes { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.mini { border: 1px solid var(--line-2); border-radius: 6px; background: var(--surface); padding: 12px; display: grid; gap: 4px; }
+.mini { border-top: 4px solid var(--accent); }
+.mini .seat { font-family: var(--font-display); font-weight: 700; font-size: 2.4rem; line-height: 1; }
+.mini .nm { font-weight: 600; font-size: 0.92rem; }
+.about .wrap { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; }
+.about p, .about li { font-size: 0.92rem; color: var(--ink-2); }
+.about ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+footer { padding-block: 26px 40px; border-top: 1px solid var(--line); color: var(--muted); }
+
+#tip { position: fixed; z-index: 50; pointer-events: none; max-width: 280px; background: var(--navy-2); color: #fff; padding: 8px 10px; border-radius: 4px; font-size: 0.8rem; line-height: 1.45; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18); }
+
+/* Reduced motion: no pinning, final states */
+body.still .scene { height: auto; }
+body.still .stage { position: relative; top: 0; height: auto; min-height: calc(100svh - var(--hh)); padding-block: 48px; }
+body.still [data-at] { opacity: 1; transform: none; transition: none; }
+body.still .cue, body.still .pulse { animation: none; }
+
+@media (max-width: 900px) {
+  .stage > .wrap, .plain .wrap, .about .wrap, .bet-top, .bet-main { grid-template-columns: minmax(0, 1fr); }
+  .stage > .wrap { gap: 12px; align-content: center; }
+  .copy { gap: 10px; }
+  .copy .more { display: none; }
+  h2 { font-size: 1.6rem; }
+  .dots { display: none; }
+  .stage > .wrap, .plain .wrap { padding-right: 0; }
+  .passes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .odds-col { grid-template-columns: 120px minmax(0, 1fr); align-items: center; }
+  #odds { max-width: 120px; }
+  .cap { max-height: 46svh; }
+  .cal { width: min(260px, 60vw); }
+}
+@media (max-width: 520px) {
+  .brand span { display: none; }
+  .pass { grid-template-columns: minmax(0, 1fr); }
+  .pass .stub { border-left: 0; border-top: 2px dashed var(--line-2); justify-items: start; }
+  .milestones { grid-template-columns: minmax(0, 1fr); }
+  .tag { width: 250px; height: 190px; }
+  .tag b { font-size: 1.6rem; }
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="plane-sym" viewBox="-24 -24 48 48">
+    <path d="M22 0C22-2 19-3 15-3L4-3-6-18-11-18-5-3-15-3-19-9-22-9-20 0-22 9-19 9-15 3-5 3-11 18-6 18 4 3 15 3C19 3 22 2 22 0Z" style="fill:var(--plane);stroke:var(--plane-line);stroke-width:1.6;stroke-linejoin:round"/>
+    <path d="M-15-3-19-9-22-9-20 0-22 9-19 9-15 3Z" style="fill:var(--accent)"/>
+  </symbol>
+</svg>
+
+<nav class="dots" id="dots" aria-label="Story progress"></nav>
+
+<!-- 0. TITLE -->
+<section class="scene" id="title" style="--len:150" data-status="Title">
+  <div class="stage navy">
+    <svg id="title-svg" class="fill" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+    <div class="wrap gutter title-copy" id="title-copy">
+      <div class="rows"><div id="t1"></div><div id="t2"></div></div>
+      <p class="lede">A visual story about holiday airfares: where to go, when to buy, and why waiting for a better price usually costs you.</p>
+      <div class="meta"><span class="chip"><i></i>Prototype · placeholder data shaped to our exploration findings</span><span>Jangkyu Ju, Sagarika Srinivasan, Cynthia Zhou, Arrington Goss, Yuhan Hu</span></div>
+      <p class="cue">Scroll to board ↓</p>
+    </div>
+  </div>
+</section>
+
+<!-- 1. WHERE -->
+<section class="scene" id="where" style="--len:185" data-status="Where to?">
+  <div class="stage">
+    <div class="wrap gutter">
+      <div class="copy">
+        <span class="sign" data-at="0.05">Hook · Where to?</span>
+        <h2 data-at="0.08">A long weekend is coming. You want to go somewhere. But where?</h2>
+        <p class="muted more" data-at="0.4">Every dot is a destination, shaded by the median one-way fare from your airport. Click one to make it your trip.</p>
+        <label class="field" for="origin" data-at="0.6">Flying from <select id="origin"></select></label>
+        <div class="pass" id="pass" data-at="0.82"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><span class="panel-title" id="map-title"></span><div class="legend" id="map-legend"></div></div>
+        <svg id="map" class="cap" viewBox="0 0 975 610" role="img" aria-label="Map of destinations shaded by fare"></svg>
+        <div class="panel-foot"><span class="mono">Sketch AG01 · answers Q5</span><span class="hint">Hover for fares · click a dot to fly there</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. WATCHING -->
+<section class="scene" id="watching" style="--len:190" data-status="Watching the fare">
+  <div class="stage">
+    <div class="wrap gutter">
+      <div class="copy">
+        <span class="sign">Hook · Watching the fare</span>
+        <h2>So you start checking the price every day.</h2>
+        <div class="pass">
+          <div class="main"><span class="mono muted">YOUR TRIP · LABOR DAY</span><span class="route" id="w-route"></span><span class="mono muted" id="w-sub">Flight 1 · checked daily</span></div>
+          <div class="stub"><span class="mono muted">FARE TODAY</span><span id="w-fare"></span><span id="w-t"></span></div>
+        </div>
+        <p class="muted more">Each square is one day's check: red if the fare rose 10% or more since the day before, blue if it fell 10% or more, empty if it barely moved.</p>
+        <p class="callout" id="diary-stat" data-at="0.9"></p>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <span class="panel-title" id="diary-title"></span>
+          <div class="legend"><span><i class="sw" style="background:var(--rose)"></i>Rose 10%+</span><span><i class="sw" style="background:var(--fell)"></i>Fell 10%+</span><span><i class="sw out"></i>Barely moved</span></div>
+        </div>
+        <svg id="diary" viewBox="0 0 1000 170" role="img" aria-label="Daily fare changes for four flights"></svg>
+        <div class="panel-foot"><span class="mono">Sketch CZ-01 · answers Q2, Q15</span><button class="btn small" id="diary-redo" type="button">Follow four other flights</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="plain quiz gutter" id="quiz" data-status="Your call">
+  <div class="wrap">
+    <span class="sign">Your call</span>
+    <h2 id="quiz-q">The fare is $258 today. Buy now, or wait for a better price?</h2>
+    <div class="choices"><button class="btn big yes" type="button" data-a="buy">Buy now</button><button class="btn big" type="button" data-a="wait">Wait</button></div>
+    <p class="muted" id="quiz-a" aria-live="polite">Pick one. Then scroll on to see how thousands of travelers' bets turned out.</p>
+  </div>
+</section>
+
+<!-- 3. STEPS -->
+<section class="scene" id="steps" style="--len:215" data-status="Fares jump">
+  <div class="stage">
+    <div class="wrap gutter">
+      <div class="copy">
+        <span class="sign">Rising insight 1</span>
+        <h2>Zoom out, and fares don't creep up. They jump.</h2>
+        <p class="muted more">Thousands of daily checks collapse into one line: the median lowest fare. It drifts down for six weeks, bottoms out at $258 fourteen days before departure, then jumps $26 overnight.</p>
+        <div class="counter"><span class="mono muted">MEDIAN<br>FARE</span><span id="stair-fare"></span></div>
+        <p class="callout" data-at="0.92">A traveler waiting for a gradual climb never sees the jump coming.</p>
+      </div>
+      <div class="panel" id="stair-panel">
+        <div class="panel-head"><div class="tabs" id="hol-tabs" role="group" aria-label="Travel period"></div><span class="hint">Hover the line once it lands</span></div>
+        <span class="panel-title" id="stair-title"></span>
+        <div style="position:relative">
+          <svg id="stair" class="cap" viewBox="0 0 640 290" role="img" aria-label="Median lowest fare by days before departure"></svg>
+          <canvas id="stair-canvas" class="overlay" style="left:0;top:0"></canvas>
+        </div>
+        <div class="panel-foot"><span class="mono">Sketch CZ-03 · answers Q1, Q2</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. ROUTES -->
+<section class="scene" id="routes" style="--len:185" data-status="Every route">
+  <div class="stage">
+    <div class="wrap gutter">
+      <div class="copy">
+        <span class="sign">Rising insight 2</span>
+        <h2>Every route bottoms out at a different time. Every route ends in red.</h2>
+        <p class="muted more">The staircase breaks into 10-day stretches. Each stretch flips into a tile: blue if the fare fell, red if it rose. Then every other route from Atlanta lines up beneath it.</p>
+        <p class="callout" data-at="0.88">There is no single best day to book. But the last ten days are red on every route.</p>
+        <p class="hint" data-at="0.9">Click a route row to redraw the staircase for that route.</p>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><span class="panel-title" id="routes-title"></span><button class="btn small" id="route-reset" type="button" hidden>Show all routes</button></div>
+        <svg id="routes-svg" class="cap" viewBox="0 0 640 480" role="img" aria-label="Staircase linked to a heatmap of fare change by route"></svg>
+        <div class="panel-foot"><span class="mono">Sketch JK3 · answers Q13, Q2 · linked view</span><div class="legend"><span><i class="sw" style="background:var(--fell)"></i>Fell</span><span><i class="sw" style="background:var(--rose)"></i>Rose</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. THE BET -->
+<section class="scene" id="bet" style="--len:250" data-status="The bet">
+  <div class="stage">
+    <canvas id="bet-canvas" class="overlay" style="inset:0;z-index:3"></canvas>
+    <div class="wrap gutter">
+      <div class="bet-top">
+        <div class="copy"><span class="sign">Main message</span><h2>Waiting is a bet you usually lose.</h2></div>
+        <p class="muted more">Each dot is one flight. Watch 1,000 flights move between three fare bands, the floor, the middle and the jumped, from 60 days out to one week out.</p>
+      </div>
+      <div class="bet-main">
+        <div class="panel">
+          <div class="panel-head"><span class="panel-title" id="flow-title"></span>
+            <div class="legend"><span><i class="sw" style="background:var(--rose)"></i>Jumped</span><span><i class="sw" style="background:var(--flat-strong)"></i>Middle</span><span><i class="sw" style="background:var(--fell)"></i>Floor</span><button class="btn small" id="flow-reset" type="button" hidden>Show all flights</button></div>
+          </div>
+          <svg id="flow" class="cap" viewBox="0 0 1000 440" role="img" aria-label="Alluvial chart of flights moving between fare bands"></svg>
+          <div class="panel-foot"><span class="mono">Sketch SS5 · innovative view</span><span class="hint" data-at="0.97">Hover a ribbon · click a band to follow it</span></div>
+        </div>
+        <div class="odds-col">
+          <div id="odds" aria-label="100 flights near a cutoff: 25 jump, 16 drop, 59 barely move"></div>
+          <p class="callout" data-at="0.95">Near a cutoff, 25 in 100 fares jump 10%+ by the next check. Only 16 in 100 drop that much.</p>
+        </div>
+      </div>
+      <p class="callout" id="flow-stat" data-at="0.97"></p>
+    </div>
+  </div>
+</section>
+
+<!-- 6. BOOK -->
+<section class="scene" id="book" style="--len:175" data-status="Book by">
+  <div class="stage">
+    <div class="wrap gutter">
+      <div class="cal" id="cal"><div class="ring"><i></i><i></i><i></i><i></i></div><div class="page" id="cal-page"><span class="t"></span><span class="d"></span></div><div class="stamp">BOOKED</div></div>
+      <div class="copy">
+        <span class="sign">Solution</span>
+        <h2>Stop hunting for the low point. Book before day 21.</h2>
+        <div class="boardbox"><div id="b1"></div><div id="b2"></div></div>
+        <label class="field" for="fly-date" data-at="0.8">I fly on <input type="date" id="fly-date" value="2022-09-02"></label>
+        <div class="milestones" id="milestones" data-at="0.85"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6b. RACE -->
+<section class="plain gutter" id="race" data-status="Nonstop vs connecting">
+  <div class="wrap">
+    <div class="copy">
+      <span class="sign">One more check</span>
+      <h2>Price the nonstop before you assume the connection is cheaper.</h2>
+      <p class="muted">Two planes, same trip. The length of each contrail is the median fare. In our sample, nonstop came out cheaper in every travel period.</p>
+      <p class="hint">Caveat: connecting itineraries skew toward longer routes, so part of this gap may come from route mix. The final version compares within the same route.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span class="panel-title">Median fare, nonstop vs. connecting</span><div class="tabs" id="bar-tabs" role="group" aria-label="Travel period"></div></div>
+      <svg id="race-svg" viewBox="0 0 640 210" role="img" aria-label="Median fare, nonstop versus connecting"></svg>
+      <div class="panel-foot"><span class="mono">Sketch YH-02 · answers Q7</span><button class="btn small" id="race-again" type="button">Race again</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. TAKEOFF + TAKEAWAYS -->
+<section class="scene" id="fly" style="--len:190" data-status="Takeoff">
+  <div class="stage navy">
+    <svg id="fly-svg" class="fill" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+    <div class="fly-copy gutter"><div class="wrap"><span class="sign">Before your next trip</span><h2 style="margin-top:12px">Four rules to carry on board.</h2></div></div>
+    <div class="belt"><div class="track" id="track">
+      <div class="tag"><span class="n">01 / WHERE</span><b>Pick where with the map</b><span>Some destinations cost far less to reach from your airport.</span></div>
+      <div class="tag"><span class="n">02 / WATCHING</span><b>Don't watch it daily</b><span>Day-to-day moves are noise with nothing to act on.</span></div>
+      <div class="tag"><span class="n">03 / WHEN</span><b>Book before day 21</b><span>Fares jump right after the 21-, 14- and 7-day marks.</span></div>
+      <div class="tag"><span class="n">04 / HOW</span><b>Check nonstop too</b><span>Around the holidays it was often the cheaper option.</span></div>
+    </div></div>
+  </div>
+</section>
+
+<section class="plain gutter" id="team" data-status="Team">
+  <div class="wrap" style="grid-template-columns:minmax(0,1fr)">
+    <h2>Passenger list</h2>
+    <div class="passes">
+      <div class="mini"><span class="mono muted">SEAT</span><span class="seat">1A</span><span class="nm">Jangkyu Ju</span><span class="mono muted">Team lead</span></div>
+      <div class="mini"><span class="mono muted">SEAT</span><span class="seat">1B</span><span class="nm">Sagarika Srinivasan</span><span class="mono muted">Team member</span></div>
+      <div class="mini"><span class="mono muted">SEAT</span><span class="seat">1C</span><span class="nm">Cynthia Zhou</span><span class="mono muted">Team member</span></div>
+      <div class="mini"><span class="mono muted">SEAT</span><span class="seat">2A</span><span class="nm">Arrington Goss</span><span class="mono muted">Team member</span></div>
+      <div class="mini"><span class="mono muted">SEAT</span><span class="seat">2B</span><span class="nm">Yuhan Hu</span><span class="mono muted">Team member</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="plain gutter about" id="about" data-status="Data">
+  <div class="wrap">
+    <div><h3>Data</h3><p>Expedia Flight Prices (Kaggle, <span class="mono">dilwong/flightprices</span>): one-way fares from 16 U.S. airports, searched April 16 to October 5, 2022. We derived days before departure, route and holiday period. This prototype uses placeholder numbers shaped to our exploration results.</p></div>
+    <div><h3>Travel periods</h3><ul><li>Memorial Day: flights May 26–31</li><li>July 4: flights Jun 30 – Jul 5</li><li>Labor Day: flights Sep 1–6</li><li>Non-holiday: Jun 9–14 and Aug 11–16</li></ul></div>
+    <div><h3>Limits</h3><ul><li>Memorial Day searches only reach 44 days out.</li><li>One-way fares only; no round trips or award tickets.</li><li>Seat counts of 0 are treated as missing.</li><li>Each check is compared with the same flight's previous check.</li></ul></div>
+  </div>
+</section>
+
+<footer class="gutter"><div class="wrap mono">Jet 2 Holiday · Georgia Tech · Final project prototype · Process book and clean-data link go here</div></footer>
+<div id="tip" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+/*MAPDATA*/
+</script>
+<script>
+// ================= helpers =================
+const $ = s => document.querySelector(s);
+const tok = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const seg = (p, a, b) => clamp((p - a) / (b - a));
+const ease = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+const lerp = (a, b, t) => a + (b - a) * t;
+const cubic = (a, b, c, d, t) => { const m = 1 - t; return m * m * m * a + 3 * m * m * t * b + 3 * m * t * t * c + t * t * t * d; };
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function hash(str) { let h = 2166136261; for (const c of str) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; }
+const usd = v => '$' + Math.round(v).toLocaleString('en-US');
+const pct = v => (v > 0 ? '+' : '') + Math.round(v * 100) + '%';
+
+const tip = $('#tip');
+function showTip(ev, html) {
+  tip.innerHTML = html; tip.hidden = false;
+  const pad = 14, r = tip.getBoundingClientRect();
+  let x = ev.clientX + pad, y = ev.clientY + pad;
+  if (x + r.width > innerWidth - 8) x = ev.clientX - r.width - pad;
+  if (y + r.height > innerHeight - 8) y = ev.clientY - r.height - pad;
+  tip.style.left = x + 'px'; tip.style.top = y + 'px';
+}
+function hideTip() { tip.hidden = true; }
+function reveal(root, p) { root.querySelectorAll('[data-at]').forEach(el => el.classList.toggle('in', p >= +el.dataset.at)); }
+
+// split-flap board
+const CH = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$';
+class Flap {
+  constructor(el, len) { this.el = el; this.len = len; this.text = ''; this.timers = []; el.classList.add('flap'); this.cells = Array.from({ length: len }, () => { const c = document.createElement('span'); c.className = 'fc'; c.textContent = ' '; el.appendChild(c); return c; }); }
+  set(text, fast) {
+    text = text.toUpperCase().padEnd(this.len).slice(0, this.len); if (text === this.text) return; this.text = text;
+    this.el.setAttribute('aria-label', text.trim());
+    this.timers.forEach(clearTimeout); this.timers = [];
+    this.cells.forEach((c, i) => {
+      const target = text[i] === ' ' ? ' ' : text[i];
+      if (c.textContent === target) return;
+      if (REDUCED) { c.textContent = target; return; }
+      const flips = fast ? 2 : 3 + ((i * 7) % 5);
+      for (let k = 0; k <= flips; k++) this.timers.push(setTimeout(() => {
+        c.textContent = k === flips ? target : CH[Math.floor(Math.random() * CH.length)];
+        c.classList.remove('flip'); void c.offsetWidth; c.classList.add('flip');
+      }, (fast ? i * 8 : i * 35) + k * (fast ? 35 : 65)));
+    });
+  }
+}
+
+// a dashed contrail revealed behind a plane flying along a path
+let uid = 0;
+function contrail(g, d, o = {}) {
+  const id = 'ct' + (++uid), w = o.w || 2;
+  const trail = g.append('path').attr('d', d).attr('mask', `url(#${id})`).style('fill', 'none').style('stroke', o.color || 'var(--ink)')
+    .style('stroke-width', w).style('stroke-dasharray', o.dash || '1 7').style('stroke-linecap', 'round').style('opacity', o.op ?? 0.6);
+  const node = trail.node(), L = node.getTotalLength();
+  const mp = g.append('mask').attr('id', id).attr('maskUnits', 'userSpaceOnUse').attr('x', -4000).attr('y', -4000).attr('width', 9000).attr('height', 9000)
+    .append('path').attr('d', d).style('fill', 'none').style('stroke', '#fff').style('stroke-width', w * 8).style('stroke-dasharray', `0 ${L + 1}`);
+  const plane = g.append('g').style('pointer-events', 'none');
+  plane.append('use').attr('href', '#plane-sym').attr('x', -24).attr('y', -24).attr('width', 48).attr('height', 48);
+  return {
+    L, plane, trail,
+    update(t, show = true) {
+      t = clamp(t); const l = t * L;
+      mp.style('stroke-dasharray', `${l} ${L + 1}`);
+      const a = node.getPointAtLength(Math.max(0, l - 1)), b = node.getPointAtLength(Math.min(L, l + 1)), c = node.getPointAtLength(l);
+      plane.attr('transform', `translate(${c.x},${c.y}) rotate(${Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI}) scale(${o.s || 1})`)
+        .style('opacity', show && t > 0 ? 1 : 0);
+    }
+  };
+}
+function animate(ms, fn, done) {
+  if (REDUCED) { fn(1); done && done(); return; }
+  const t0 = performance.now();
+  const step = now => { const t = clamp((now - t0) / ms); fn(ease(t)); if (t < 1) requestAnimationFrame(step); else done && done(); };
+  requestAnimationFrame(step);
+}
+function sizeCanvas(cv, w, h) { const dpr = Math.min(2, devicePixelRatio || 1); if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); cv.style.width = w + 'px'; cv.style.height = h + 'px'; } const ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); return ctx; }
+
+// ================= placeholder data =================
+const HOL = { mem: { label: 'Memorial Day', short: 'Memorial' }, jul: { label: 'July 4', short: 'July 4' }, lab: { label: 'Labor Day', short: 'Labor Day' }, non: { label: 'Non-holiday', short: 'Non-holiday' } };
+const NAMES = { ATL: 'Atlanta', BOS: 'Boston', CLT: 'Charlotte', DEN: 'Denver', DFW: 'Dallas/Fort Worth', DTW: 'Detroit', EWR: 'Newark', IAD: 'Washington Dulles', JFK: 'New York JFK', LAX: 'Los Angeles', LGA: 'New York LaGuardia', MIA: 'Miami', OAK: 'Oakland', ORD: "Chicago O'Hare", PHL: 'Philadelphia', SFO: 'San Francisco' };
+const NUDGE = { LGA: [6, -16], JFK: [18, 10], EWR: [-12, 12], SFO: [4, 18], OAK: [10, -12] };
+const XY = Object.fromEntries(Object.entries(AIRPORT_XY).map(([k, v]) => [k, NUDGE[k] ? [v[0] + NUDGE[k][0], v[1] + NUDGE[k][1]] : v]));
+const state = { origin: 'ATL', dest: 'BOS', flown: false, holiday: 'lab', route: null, cohort: null, diarySeed: 1, barHoliday: 'jul' };
+
+function mapFare(o, d) {
+  const a = AIRPORT_XY[o], b = AIRPORT_XY[d], dist = Math.hypot(a[0] - b[0], a[1] - b[1]);
+  if (o === d || dist < 30) return null;
+  return Math.round(95 + dist * 0.36 + (rng(hash(o < d ? o + d : d + o))() - 0.5) * 70);
+}
+const KP = {
+  lab: [[60,290],[58,298],[56,286],[52,282],[48,279],[44,278],[40,276],[36,269],[32,268],[28,263],[24,262],[20,258],[13,284],[10,288],[8,300],[6,318],[5,357],[3,359],[1,371]],
+  jul: [[60,379],[57,384],[55,408],[53,374],[51,405],[50,419],[48,384],[47,336],[46,396],[44,377],[42,403],[40,378],[37,386],[35,399],[34,422],[32,396],[30,378],[29,419],[27,399],[26,367],[24,370],[21,369],[18,368],[16,352],[14,342],[12,345],[10,328],[9,322],[5,341],[3,334],[2,331],[1,347]],
+  mem: [[44,348],[43,379],[41,353],[39,377],[36,367],[35,388],[34,395],[33,369],[31,384],[28,375],[25,372],[22,370],[20,364],[18,385],[17,368],[15,342],[14,358],[13,371],[12,372],[11,349],[10,341],[8,348],[6,341],[5,351],[3,348],[2,340],[1,368]],
+  non: [[60,346],[57,342],[55,345],[50,342],[47,340],[45,350],[40,353],[36,358],[33,342],[30,345],[28,329],[26,332],[25,342],[23,351],[20,347],[16,347],[14,341],[13,350],[10,345],[7,342],[5,354],[3,358],[2,352],[1,369]]
+};
+function holidayCurve(h) { const kp = KP[h], out = []; let i = 0; for (let d = kp[0][0]; d >= 1; d--) { while (i + 1 < kp.length && kp[i + 1][0] >= d) i++; out.push({ d, v: kp[i][1] }); } return out; }
+const ROUTES = [{ id: 'JFK', s: 1.05, m: 38, p: 52 }, { id: 'LAX', s: 1.45, m: 27, p: 45 }, { id: 'BOS', s: 0.95, m: 33, p: 56 }, { id: 'ORD', s: 0.85, m: 24, p: 40 }, { id: 'LGA', s: 0.75, m: 46, p: 30 }, { id: 'DEN', s: 0.9, m: 53, p: 36 }];
+function routeCurve(id, h) {
+  const r = ROUTES.find(x => x.id === id); let last = null;
+  return holidayCurve(h).map(({ d, v }) => { const x = v * r.s * (1 - 0.11 * Math.exp(-((d - r.m) ** 2) / 72) + 0.07 * Math.exp(-((d - r.p) ** 2) / 50)); if (last === null || Math.abs(x - last) / last > 0.025) last = x; return { d, v: Math.round(last) }; });
+}
+const curveFor = (route, h) => route ? routeCurve(route, h) : holidayCurve(h);
+const WINDOWS = [[60, 50], [50, 40], [40, 30], [30, 20], [20, 10], [10, 1]];
+function annotate(data) {
+  const min = d3.min(data, d => d.v), floor = data.filter(d => d.v === min).at(-1), after = data.filter(d => d.d < floor.d);
+  let jump = null; for (let i = 0; i < after.length; i++) { const prev = i ? after[i - 1].v : floor.v; if (after[i].v / prev - 1 >= 0.03) { jump = { ...after[i], by: after[i].v - prev }; break; } }
+  return { floor, jump, end: data.at(-1) };
+}
+function diaryRows(seed, n, base) {
+  const R = rng(seed);
+  return d3.range(n).map(i => {
+    let f = base * (0.9 + R() * 0.2); const days = [];
+    for (let d = 60; d >= 1; d--) {
+      const cut = [20, 13, 5].includes(d), pr = cut ? 0.28 : 0.09, pf = cut ? 0.06 : 0.10, u = R();
+      let ch = u < pr ? 0.10 + R() * 0.18 : u < pr + pf ? -(0.10 + R() * 0.12) : (R() - 0.5) * 0.08;
+      if (d === 60) ch = 0;
+      f = Math.max(60, f * (1 + ch));
+      days.push({ d, fare: f, ch, cls: d === 60 ? 'flat' : ch >= 0.10 ? 'rose' : ch <= -0.10 ? 'fell' : 'flat' });
+    }
+    return { name: `Flight ${i + 1}`, days };
+  });
+}
+
+// ================= scene registry =================
+const scenes = [];
+function scene(id, update) { const el = document.getElementById(id); const s = { id, el, update, p: -1 }; scenes.push(s); return s; }
+const S = {};
+
+// ================= 0. TITLE =================
+const title = { f1: new Flap($('#t1'), 11), f2: new Flap($('#t2'), 8), orbitT: 0 };
+function buildTitle() {
+  const svg = d3.select('#title-svg'); svg.selectAll('*').remove();
+  const cloud = (g, x, y, s, o) => { const c = g.append('g').attr('transform', `translate(${x},${y}) scale(${s})`).style('opacity', o); [[0, 0, 60, 26], [-45, 10, 40, 20], [45, 8, 46, 22], [10, -16, 38, 24]].forEach(([cx, cy, rx, ry]) => c.append('ellipse').attr('cx', cx).attr('cy', cy).attr('rx', rx).attr('ry', ry).style('fill', 'var(--cloud)')); };
+  title.layers = [0, 1, 2].map(() => svg.append('g'));
+  [[120, 90, 0.8], [520, 60, 0.6], [880, 120, 0.9], [300, 520, 0.7]].forEach(([x, y, s]) => cloud(title.layers[0], x, y, s, 0.55));
+  [[720, 330, 1.1], [80, 380, 1.2], [460, 470, 1]].forEach(([x, y, s]) => cloud(title.layers[1], x, y, s, 0.8));
+  [[930, 520, 1.8], [620, 610, 1.6]].forEach(([x, y, s]) => cloud(title.layers[2], x, y, s, 0.95));
+  const g = svg.append('g');
+  title.orbit = g.append('circle').attr('cx', 760).attr('cy', 170).attr('r', 62).style('fill', 'none').style('stroke', 'var(--ink)').style('stroke-dasharray', '1 7').style('stroke-linecap', 'round').style('opacity', 0.35).style('stroke-width', 2);
+  title.exit = contrail(g, 'M760,108 C560,40 240,110 270,300 S640,520 500,720', { w: 2.4, s: 1.3, op: 0.55 });
+}
+function updateTitle(p) {
+  title.layers.forEach((l, i) => l.attr('transform', `translate(${-p * (30 + i * 40)},${-p * (60 + i * 110)})`));
+  const c = $('#title-copy'); c.style.transform = `translateY(${-seg(p, 0.3, 0.9) * 80}px)`; c.style.opacity = 1 - seg(p, 0.45, 0.85);
+  title.orbit.style('opacity', 0.35 * (1 - seg(p, 0.1, 0.2)));
+  title.p = p;
+  if (p > 0.1) title.exit.update(seg(p, 0.1, 0.95));
+  else placeOrbit();
+}
+function placeOrbit() {
+  const a = title.orbitT, x = 760 + 62 * Math.cos(a), y = 170 + 62 * Math.sin(a);
+  title.exit.update(0, false);
+  title.exit.plane.attr('transform', `translate(${x},${y}) rotate(${a * 180 / Math.PI - 90}) scale(1.3)`).style('opacity', 1);
+}
+function orbitLoop(now) {
+  if (!REDUCED && (title.p ?? 0) <= 0.1) { title.orbitT = -now * 0.0011; placeOrbit(); }
+  requestAnimationFrame(orbitLoop);
+}
+
+// ================= 1. WHERE =================
+const where = {};
+function destFares() { return Object.keys(NAMES).map(code => ({ code, fare: mapFare(state.origin, code) })).filter(d => d.fare !== null); }
+function initOrigin() {
+  const sel = $('#origin');
+  Object.keys(NAMES).sort().forEach(k => { const o = document.createElement('option'); o.value = k; o.textContent = `${k} · ${NAMES[k]}`; sel.appendChild(o); });
+  sel.value = state.origin;
+  sel.addEventListener('change', () => {
+    state.origin = sel.value; state.flown = false;
+    const f = destFares(); if (!f.find(d => d.code === state.dest)) state.dest = f[Math.floor(f.length / 2)].code;
+    buildWhere(); S.where.update(S.where.p); renderPass(false); buildWatching(); S.watching.update(S.watching.p); updateQuiz();
+  });
+}
+function buildWhere() {
+  const svg = d3.select('#map'); svg.selectAll('*').remove();
+  const fares = destFares(), ext = d3.extent(fares, d => d.fare);
+  const color = d3.scaleLinear().domain(ext).range([tok('--seq-lo'), tok('--seq-hi')]).interpolate(d3.interpolateLab);
+  where.color = color;
+  $('#map-title').textContent = `Median one-way fare from ${state.origin}`;
+  $('#map-legend').innerHTML = `<span>${usd(ext[0])}</span><i style="display:inline-block;width:80px;height:10px;border-radius:2px;background:linear-gradient(90deg,${tok('--seq-lo')},${tok('--seq-hi')})"></i><span>${usd(ext[1])}</span>`;
+  svg.append('path').attr('d', US_NATION).style('fill', 'var(--land)').style('stroke', 'var(--line-2)');
+  svg.append('path').attr('d', US_STATES).style('fill', 'none').style('stroke', 'var(--line-2)').style('stroke-width', 0.6);
+  const o = XY[state.origin];
+  const arcD = code => { const t = XY[code], mx = (o[0] + t[0]) / 2, my = (o[1] + t[1]) / 2, dx = t[0] - o[0], dy = t[1] - o[1], len = Math.hypot(dx, dy) || 1, k = len * 0.18; return `M${o[0]},${o[1]} Q${mx + dy / len * k},${my - dx / len * k} ${t[0]},${t[1]}`; };
+  where.arcD = arcD;
+  where.arcs = svg.append('g').selectAll('path').data(fares).join('path').attr('d', d => arcD(d.code)).style('fill', 'none').style('stroke-width', 1.3)
+    .each(function (d) { d.len = this.getTotalLength(); });
+  const live = svg.append('g');
+  where.dots = live.selectAll('g').data(fares).join('g').style('cursor', 'pointer')
+    .on('mousemove', (ev, d) => showTip(ev, `<b>${state.origin} → ${d.code}</b><br>${NAMES[d.code]}<br>Median fare ${usd(d.fare)}`))
+    .on('mouseleave', hideTip).on('click', (ev, d) => flyTo(d.code));
+  where.dots.append('circle').attr('r', 20).style('fill', 'transparent');
+  where.dots.append('circle').attr('class', 'dot').attr('r', 9).style('stroke', 'var(--surface)').style('stroke-width', 2);
+  where.dots.append('text').text(d => d.code).attr('x', 14).attr('y', 5).style('font-size', '15px').style('fill', 'var(--ink)').style('paint-order', 'stroke').style('stroke', 'var(--land)').style('stroke-width', 3);
+  const og = svg.append('g').attr('transform', `translate(${o})`);
+  og.append('circle').attr('r', 10).style('fill', 'var(--accent)').style('stroke', 'var(--ink)').style('stroke-width', 2.5);
+  og.append('text').text(`${state.origin} · you`).attr('x', 15).attr('y', -12).style('font-size', '15px').style('font-weight', 600).style('fill', 'var(--ink)').style('paint-order', 'stroke').style('stroke', 'var(--land)').style('stroke-width', 3);
+  where.entry = contrail(svg.append('g'), `M${o[0] + 60},-140 C${o[0] + 200},${o[1] * 0.35} ${o[0] - 260},${o[1] - 130} ${o[0]},${o[1]}`, { w: 2.2, s: 1.1 });
+  where.flight = svg.append('g');
+  where.svg = svg;
+}
+function styleSelection() {
+  where.arcs.style('stroke', d => d.code === state.dest && state.flown ? 'var(--ink)' : where.color(d.fare)).style('stroke-width', d => d.code === state.dest && state.flown ? 2.4 : 1.3);
+  where.dots.select('.dot').attr('r', d => d.code === state.dest && state.flown ? 11 : 9).style('stroke', d => d.code === state.dest && state.flown ? 'var(--ink)' : 'var(--surface)');
+}
+function updateWhere(p) {
+  reveal($('#where'), p);
+  where.entry.update(seg(p, 0.02, 0.35), !state.flown);
+  where.dots.attr('transform', (d, i) => `translate(${XY[d.code]}) scale(${ease(seg(p, 0.36 + i * 0.012, 0.43 + i * 0.012))})`);
+  where.arcs.each(function (d, i) {
+    const t = seg(p, 0.55 + i * 0.01, 0.68 + i * 0.01);
+    d3.select(this).style('stroke-dasharray', `${t * d.len} ${d.len + 1}`).style('opacity', 0.65);
+    where.dots.filter(x => x.code === d.code).select('.dot').style('fill', t >= 1 ? where.color(d.fare) : 'var(--line-2)');
+  });
+  styleSelection();
+  where.svg.style('pointer-events', p > 0.75 ? 'auto' : 'none');
+}
+function flyTo(code) {
+  hideTip();
+  where.flight.selectAll('*').remove();
+  const c = contrail(where.flight, where.arcD(code), { w: 2.4, s: 1.1, op: 0.9 });
+  state.flown = true; where.entry.update(1, false);
+  animate(1300, t => c.update(t), () => {
+    state.dest = code; styleSelection(); renderPass(true);
+    buildWatching(); S.watching.update(S.watching.p); updateQuiz(); syncRouteFromTrip();
+  });
+}
+function renderPass(print) {
+  const fare = mapFare(state.origin, state.dest), el = $('#pass');
+  el.innerHTML = `<div class="main"><span class="mono muted">YOUR TRIP · LABOR DAY · ONE WAY</span><span class="route">${state.origin} → ${state.dest}</span><span class="muted" style="font-size:0.88rem">${NAMES[state.origin]} to ${NAMES[state.dest]} · Fri, Sep 2</span></div><div class="stub"><span class="mono muted">FARE TODAY</span><span class="route">${usd(fare)}</span><span class="mono muted">T–60 days</span></div>`;
+  if (print) { el.classList.remove('print'); void el.offsetWidth; el.classList.add('print'); }
+}
+
+// ================= 2. WATCHING =================
+const watch = { fare: new Flap($('#w-fare'), 5), t: new Flap($('#w-t'), 4) };
+function buildWatching() {
+  const base = mapFare(state.origin, state.dest);
+  watch.flights = diaryRows(hash(state.origin + state.dest) + state.diarySeed * 9973, 4, base);
+  $('#w-route').textContent = `${state.origin} → ${state.dest}`;
+  $('#diary-title').textContent = `Daily fare checks · ${state.origin} → ${state.dest}`;
+  const svg = d3.select('#diary'); svg.selectAll('*').remove();
+  const x0 = 96, cell = 13, step = 15, rowH = 30, y0 = 36;
+  svg.append('text').attr('x', x0).attr('y', 16).text('60 days out').style('font-size', '17px').style('fill', 'var(--muted)');
+  svg.append('text').attr('x', x0 + 59 * step + cell).attr('y', 16).attr('text-anchor', 'end').text('departure →').style('font-size', '17px').style('fill', 'var(--muted)');
+  watch.rects = watch.flights.map((fl, r) => {
+    const y = y0 + r * rowH;
+    svg.append('text').attr('x', 0).attr('y', y + 13).text(fl.name).style('font-size', '17px').style('fill', 'var(--ink-2)');
+    return svg.append('g').selectAll('rect').data(fl.days).join('rect')
+      .attr('x', (d, i) => x0 + i * step + 0.75).attr('y', y + 0.75).attr('width', cell - 1.5).attr('height', cell + 4.5).attr('rx', 2)
+      .style('fill', d => d.cls === 'rose' ? 'var(--rose)' : d.cls === 'fell' ? 'var(--fell)' : 'var(--surface)')
+      .style('stroke', d => d.cls === 'flat' ? 'var(--line-2)' : 'none').style('stroke-width', 1.5)
+      .style('transition', REDUCED ? 'none' : 'transform 0.35s cubic-bezier(.3,1.6,.5,1), opacity 0.25s').style('transform-box', 'fill-box')
+      .on('mousemove', (ev, d) => showTip(ev, `<b>${fl.name} · ${d.d} days out</b><br>${usd(d.fare)}${d.d === 60 ? ' (first check)' : ` · ${pct(d.ch)} vs. day before`}`))
+      .on('mouseleave', hideTip);
+  });
+  const all = watch.flights.flatMap(f => f.days.slice(1)), c = k => all.filter(d => d.cls === k).length, n = all.length;
+  $('#diary-stat').textContent = `Out of ${n} daily checks, ${Math.round(c('rose') / n * 100)}% rose 10%+, ${Math.round(c('fell') / n * 100)}% fell 10%+, and ${Math.round(c('flat') / n * 100)}% barely moved. Nothing here tells you when to buy.`;
+}
+function updateWatching(p) {
+  reveal($('#watching'), p);
+  const n1 = Math.round(seg(p, 0.04, 0.6) * 59) + 1, rest = Math.round(seg(p, 0.6, 0.86) * 180);
+  watch.rects.forEach((sel, r) => sel.each(function (d, i) {
+    const on = r === 0 ? i < n1 : (r - 1) * 60 + i < rest;
+    this.style.opacity = on ? 1 : 0; this.style.transform = on ? 'none' : 'translateY(-22px)';
+  }));
+  const day = watch.flights[0].days[n1 - 1];
+  watch.fare.set(usd(day.fare).padStart(5), true);
+  watch.t.set('T-' + day.d, true);
+  $('#w-sub').textContent = n1 < 60 ? `Flight 1 · day ${n1} of checking` : 'Flight 1 · 60 days of checks';
+}
+$('#diary-redo').addEventListener('click', () => { state.diarySeed++; buildWatching(); S.watching.update(S.watching.p); });
+
+// ================= quiz =================
+function updateQuiz() { $('#quiz-q').textContent = `Your ${state.origin} → ${state.dest} fare is ${usd(mapFare(state.origin, state.dest))} today. Buy now, or wait for a better price?`; }
+document.querySelectorAll('#quiz [data-a]').forEach(b => b.addEventListener('click', () => {
+  $('#quiz-a').textContent = b.dataset.a === 'buy'
+    ? 'Good instinct. Scroll on to see why buying early beats most of the people who waited.'
+    : 'Most travelers make that bet. Scroll on to see how it usually turns out.';
+}));
+
+// ================= 3. STEPS =================
+const stair = { W: 640, H: 290, m: { t: 26, r: 18, b: 34, l: 50 }, fare: new Flap($('#stair-fare'), 4), shaken: false };
+function renderTabs(el, key, onPick) {
+  el.innerHTML = '';
+  Object.entries(HOL).forEach(([k, h]) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = h.short; b.setAttribute('aria-pressed', state[key] === k); b.addEventListener('click', () => { state[key] = k; onPick(); }); el.appendChild(b); });
+}
+function onHoliday() { buildSteps(); S.steps.update(S.steps.p); buildRoutes(); S.routes.update(S.routes.p); }
+function buildSteps() {
+  renderTabs($('#hol-tabs'), 'holiday', onHoliday);
+  const { W, H, m } = stair, data = holidayCurve(state.holiday);
+  $('#stair-title').textContent = `Median lowest fare · all routes · ${HOL[state.holiday].label}`;
+  const x = d3.scaleLinear().domain([60, 1]).range([m.l, W - m.r]);
+  const [lo, hi] = d3.extent(data, d => d.v);
+  const y = d3.scaleLinear().domain([Math.floor(lo / 25) * 25 - 10, Math.ceil(hi / 25) * 25 + 15]).range([H - m.b, m.t]);
+  Object.assign(stair, { data, x, y, ann: annotate(data) });
+  const svg = d3.select('#stair'); svg.selectAll('*').remove();
+  y.ticks(5).forEach(t => { svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(t)).attr('y2', y(t)).style('stroke', 'var(--line)'); svg.append('text').attr('x', m.l - 8).attr('y', y(t) + 4).attr('text-anchor', 'end').text('$' + t).style('font-size', '11px').style('fill', 'var(--muted)'); });
+  [60, 50, 40, 30, 21, 14, 7, 1].forEach(t => svg.append('text').attr('x', x(t)).attr('y', H - m.b + 18).attr('text-anchor', 'middle').text(t).style('font-size', '11px').style('fill', 'var(--muted)'));
+  svg.append('text').attr('x', W - m.r).attr('y', H - 2).attr('text-anchor', 'end').text('days before departure').style('font-size', '11px').style('fill', 'var(--muted)');
+  [21, 14, 7].forEach(t => { svg.append('line').attr('x1', x(t)).attr('x2', x(t)).attr('y1', m.t - 8).attr('y2', H - m.b).style('stroke', 'var(--line-2)').style('stroke-dasharray', '3 3'); svg.append('text').attr('x', x(t)).attr('y', m.t - 12).attr('text-anchor', 'middle').text(`${t}-day`).style('font-size', '10.5px').style('fill', 'var(--muted)'); });
+  if (data[0].d < 60) svg.append('text').attr('x', x(60)).attr('y', m.t + 14).text(`No searches before ${data[0].d} days out`).style('font-size', '11px').style('fill', 'var(--muted)');
+  stair.clip = svg.append('clipPath').attr('id', 'stairclip').append('rect').attr('x', 0).attr('y', 0).attr('height', H).attr('width', 0);
+  stair.line = svg.append('path').datum(data).attr('clip-path', 'url(#stairclip)').attr('d', d3.line().x(d => x(d.d)).y(d => y(d.v)).curve(d3.curveStepAfter)).style('fill', 'none').style('stroke', 'var(--ink)').style('stroke-width', 2.4);
+  const note = (g, px, py, txt, anchor) => g.append('text').attr('x', px).attr('y', py).attr('text-anchor', anchor).text(txt).style('font-size', '12px').style('font-weight', 500).style('fill', 'var(--ink)').style('paint-order', 'stroke').style('stroke', 'var(--surface)').style('stroke-width', 4);
+  const dot = (g, d, col) => g.append('circle').attr('cx', x(d.d)).attr('cy', y(d.v)).attr('r', 5).style('fill', col).style('stroke', 'var(--surface)').style('stroke-width', 2);
+  const { floor, jump, end } = stair.ann;
+  stair.gFloor = svg.append('g'); dot(stair.gFloor, floor, 'var(--fell)'); note(stair.gFloor, x(floor.d), y(floor.v) + 20, `Floor ${usd(floor.v)} · ${floor.d} days out`, 'middle');
+  stair.gJump = svg.append('g'); if (jump) { dot(stair.gJump, jump, 'var(--rose)'); note(stair.gJump, x(jump.d) + 8, y(jump.v) - 10, `+${usd(jump.by)} overnight`, 'start'); }
+  stair.gEnd = svg.append('g'); dot(stair.gEnd, end, 'var(--rose)'); note(stair.gEnd, x(end.d), y(end.v) - 12, `${usd(end.v)} · ${pct(end.v / floor.v - 1)} over the floor`, 'end');
+  stair.rider = svg.append('g').style('pointer-events', 'none'); stair.rider.append('use').attr('href', '#plane-sym').attr('x', -24).attr('y', -24).attr('width', 48).attr('height', 48);
+  const cross = svg.append('line').attr('y1', m.t).attr('y2', H - m.b).style('stroke', 'var(--muted)').style('opacity', 0);
+  svg.append('rect').attr('x', m.l).attr('y', m.t).attr('width', W - m.l - m.r).attr('height', H - m.t - m.b).style('fill', 'transparent')
+    .on('mousemove', ev => { if (stair.r < 1) return; const day = Math.round(x.invert(d3.pointer(ev)[0])), d = data.find(q => q.d === day); if (!d) { hideTip(); return; } cross.attr('x1', x(d.d)).attr('x2', x(d.d)).style('opacity', 1); showTip(ev, `<b>${d.d} days out</b><br>Median lowest fare ${usd(d.v)}`); })
+    .on('mouseleave', () => { cross.style('opacity', 0); hideTip(); });
+  // diary cells that will collapse into the line
+  const cw = (W - m.l - m.r) / 60, rows = Math.floor((H - m.t - m.b) / cw);
+  const R = rng(7), dr = diaryRows(99, rows, 300);
+  stair.cells = []; dr.forEach((row, ri) => row.days.forEach((d, ci) => stair.cells.push({ ri, ci, cls: d.cls, j: R() })));
+  Object.assign(stair, { cw, rows });
+  stair.col = { rose: tok('--rose'), fell: tok('--fell'), flat: tok('--line-2'), ink: tok('--ink') };
+}
+function updateSteps(p) {
+  reveal($('#steps'), p);
+  const { W, m, x, y, data, cw, rows } = stair;
+  const z = ease(seg(p, 0.02, 0.24)), c = seg(p, 0.24, 0.46), r = seg(p, 0.46, 0.9);
+  stair.r = r;
+  // canvas: zoom out over many diaries, then collapse them onto the median line
+  const svgEl = $('#stair'), cv = $('#stair-canvas'), rect = svgEl.getBoundingClientRect();
+  const ctx = sizeCanvas(cv, rect.width, rect.height), k = Math.min(rect.width / W, rect.height / stair.H), offX = (rect.width - W * k) / 2, offY = (rect.height - stair.H * k) / 2;
+  ctx.clearRect(0, 0, rect.width, rect.height);
+  const alpha = 1 - seg(p, 0.46, 0.56);
+  if (alpha > 0 && rect.width > 0) {
+    ctx.save(); ctx.translate(offX, offY); ctx.scale(k, k); ctx.beginPath(); ctx.rect(0, 0, W, stair.H); ctx.clip();
+    const s = lerp(3.2, 1, z);
+    for (const cell of stair.cells) {
+      const day = 60 - cell.ci, pt = data.find(q => q.d === day);
+      const gx = m.l + (cell.ci * cw + cw / 2) * s, gy = m.t + (cell.ri * cw + cw / 2) * s;
+      const e = ease(clamp(c * 1.5 - (cell.ri / rows) * 0.35 - cell.j * 0.15));
+      if (!pt && e > 0.5) continue;
+      const tx = pt ? x(day) : gx, ty = pt ? y(pt.v) : gy;
+      const px = lerp(gx, tx, e), py = lerp(gy, ty, e), size = lerp((cw - 1.6) * s, 3, e);
+      ctx.globalAlpha = alpha * (cell.cls === 'flat' && e < 0.6 ? 0.55 : 1);
+      ctx.fillStyle = e > 0.6 ? stair.col.ink : stair.col[cell.cls];
+      ctx.fillRect(px - size / 2, py - size / 2, size, size);
+    }
+    ctx.restore();
+  }
+  // svg line draws while a plane rides its leading edge
+  const lead = Math.round(lerp(60, 1, r)), cur = data.find(q => q.d === lead) || data[0];
+  stair.clip.attr('width', r > 0 ? x(lead) + 2 : 0);
+  stair.rider.attr('transform', `translate(${x(cur.d)},${y(cur.v) - 2}) scale(0.75)`).style('opacity', r > 0 && r < 1 ? 1 : 0);
+  const { floor, jump } = stair.ann;
+  stair.gFloor.style('opacity', r > 0 && lead <= floor.d ? 1 : 0);
+  stair.gJump.style('opacity', jump && r > 0 && lead <= jump.d ? 1 : 0);
+  stair.gEnd.style('opacity', r >= 1 ? 1 : 0);
+  if (jump && r > 0 && lead <= jump.d && !stair.shaken && !REDUCED) { const pnl = $('#stair-panel'); pnl.classList.remove('shake'); void pnl.offsetWidth; pnl.classList.add('shake'); stair.shaken = true; }
+  if (!jump || lead > jump.d) stair.shaken = false;
+  stair.fare.set(usd(r > 0 ? cur.v : data[0].v), true);
+}
+
+// ================= 4. ROUTES (linked) =================
+const rt = { W: 640, sm: { t: 22, r: 18, b: 24, l: 50, h: 190 }, hm: { t: 228, l: 92, r: 4, rowH: 32, gap: 3 } };
+function syncRouteFromTrip() { if (state.origin === 'ATL' && ROUTES.some(r => r.id === state.dest)) { state.route = state.dest; buildRoutes(); S.routes.update(S.routes.p); } }
+function buildRoutes() {
+  const svg = d3.select('#routes-svg'); svg.selectAll('*').remove();
+  const { W, sm, hm } = rt;
+  $('#route-reset').hidden = !state.route;
+  $('#routes-title').textContent = `Staircase for ${state.route ? 'ATL → ' + state.route : 'all routes'} · ${HOL[state.holiday].label}`;
+  const allData = holidayCurve(state.holiday), cur = curveFor(state.route, state.holiday);
+  const x = d3.scaleLinear().domain([60, 1]).range([sm.l, W - sm.r]);
+  const ext = d3.extent([...cur, ...allData], d => d.v);
+  const y = d3.scaleLinear().domain([ext[0] - 15, ext[1] + 15]).range([sm.h - sm.b, sm.t]);
+  const line = d3.line().x(d => x(d.d)).y(d => y(d.v)).curve(d3.curveStepAfter);
+  y.ticks(4).forEach(t => { svg.append('line').attr('x1', sm.l).attr('x2', W - sm.r).attr('y1', y(t)).attr('y2', y(t)).style('stroke', 'var(--line)'); svg.append('text').attr('x', sm.l - 8).attr('y', y(t) + 4).attr('text-anchor', 'end').text('$' + t).style('font-size', '11px').style('fill', 'var(--muted)'); });
+  [60, 50, 40, 30, 20, 10, 1].forEach(t => svg.append('text').attr('x', x(t)).attr('y', sm.h - 6).attr('text-anchor', 'middle').text(t).style('font-size', '11px').style('fill', 'var(--muted)'));
+  rt.path = svg.append('path').attr('d', line(cur)).style('fill', 'none').style('stroke', 'var(--ink)').style('stroke-width', 2.2);
+  const rows = [{ id: null, label: 'All routes' }, ...ROUTES.map(r => ({ id: r.id, label: 'ATL–' + r.id }))];
+  const cw = (W - hm.l - hm.r) / WINDOWS.length;
+  const color = d3.scaleLinear().domain([-0.2, 0, 0.2]).range([tok('--fell'), tok('--div-mid'), tok('--rose')]).interpolate(d3.interpolateLab).clamp(true);
+  WINDOWS.forEach(([a, b], j) => svg.append('text').attr('x', hm.l + j * cw + cw / 2).attr('y', hm.t - 8).attr('text-anchor', 'middle').text(`${a}–${b === 1 ? 0 : b}d`).style('font-size', '11px').style('fill', 'var(--muted)'));
+  rt.rows = rows.map((row, i) => {
+    const curve = curveFor(row.id, state.holiday), at = d => (curve.find(q => q.d === d) || {}).v;
+    const yy = hm.t + i * hm.rowH, sel = state.route === row.id;
+    const g = svg.append('g').style('cursor', 'pointer').on('click', () => pickRoute(row.id));
+    g.append('rect').attr('x', 0).attr('y', yy - 1).attr('width', W).attr('height', hm.rowH - hm.gap + 2).attr('rx', 3).style('fill', sel ? 'var(--land)' : 'transparent');
+    const label = g.append('text').attr('x', 8).attr('y', yy + hm.rowH / 2 + 2).text(row.label).style('font-size', '12px').style('fill', 'var(--ink)').style('font-weight', sel ? 600 : 400);
+    const cells = WINDOWS.map(([a, b], j) => {
+      const va = at(a), vb = at(b), v = va && vb ? vb / va - 1 : null, cx = hm.l + j * cw;
+      const cg = g.append('g');
+      cg.append('rect').attr('x', cx + 1.5).attr('y', yy).attr('width', cw - 3).attr('height', hm.rowH - hm.gap).attr('rx', 3)
+        .style('fill', v === null ? 'transparent' : color(v)).style('stroke', v === null ? 'var(--line-2)' : sel ? 'var(--ink)' : 'none').style('stroke-width', sel ? 1.5 : 1).style('stroke-dasharray', v === null ? '3 3' : null)
+        .on('mousemove', ev => showTip(ev, `<b>${row.label} · ${a} to ${b === 1 ? 0 : b} days out</b><br>${v === null ? 'No searches this early' : `${usd(va)} → ${usd(vb)} (${pct(v)})`}`)).on('mouseleave', hideTip);
+      if (v !== null) cg.append('text').attr('x', cx + cw / 2).attr('y', yy + hm.rowH / 2 + 2).attr('text-anchor', 'middle').text(pct(v)).style('font-size', '11px').style('pointer-events', 'none').style('fill', Math.abs(v) > 0.12 ? '#ffffff' : 'var(--ink)');
+      return { cg, v, j, cx: cx + cw / 2, cy: yy + (hm.rowH - hm.gap) / 2 };
+    });
+    return { g, label, cells };
+  });
+  // segments of the all-routes staircase that fly down into the first row
+  rt.segs = WINDOWS.map(([a, b], j) => {
+    const pts = allData.filter(d => d.d <= a && d.d >= b), cell = rt.rows[0].cells[j];
+    if (pts.length < 2) return null;
+    const bx = (x(a) + x(b)) / 2, by = d3.mean(pts, d => y(d.v));
+    const p = svg.append('path').attr('d', line(pts)).style('fill', 'none').style('stroke', cell.v === null ? 'var(--muted)' : color(cell.v)).style('stroke-width', 4).style('stroke-linecap', 'round').style('pointer-events', 'none');
+    return { p, bx, by, cell };
+  });
+  rt.svg = svg;
+}
+function pickRoute(id) {
+  if (!rt.live) return;
+  hideTip(); state.route = id;
+  const old = rt.path.attr('d');
+  buildRoutes(); S.routes.update(S.routes.p);
+  const next = rt.path.attr('d');
+  if (!REDUCED) rt.path.attr('d', old).transition().duration(700).ease(d3.easeCubicInOut).attr('d', next);
+}
+$('#route-reset').addEventListener('click', () => pickRoute(null));
+function updateRoutes(p) {
+  reveal($('#routes'), p);
+  rt.live = p > 0.85 || REDUCED;
+  rt.svg.style('pointer-events', rt.live ? 'auto' : 'none');
+  rt.path.style('opacity', p < 0.6 ? lerp(1, 0.25, seg(p, 0.06, 0.14)) : lerp(0.25, 1, seg(p, 0.6, 0.75)));
+  rt.segs.forEach((s, j) => {
+    if (!s) return;
+    const e = ease(seg(p, 0.1 + j * 0.045, 0.3 + j * 0.045));
+    const dx = s.cell.cx - s.bx, dy = s.cell.cy - s.by;
+    s.p.attr('transform', `translate(${s.bx + dx * e},${s.by + dy * e}) scale(${lerp(1, 0.25, e)},${lerp(1, 0.1, e)}) translate(${-s.bx},${-s.by})`)
+      .style('opacity', p < 0.06 || e >= 1 ? 0 : 1);
+  });
+  rt.rows.forEach((row, i) => {
+    if (i === 0) {
+      row.cells.forEach(c => { const e = ease(seg(p, 0.26 + c.j * 0.045, 0.34 + c.j * 0.045)); c.cg.attr('transform', `translate(${c.cx},${c.cy}) scale(${e}) translate(${-c.cx},${-c.cy})`); });
+      row.label.style('opacity', seg(p, 0.26, 0.32));
+    } else { const a = ease(seg(p, 0.52 + (i - 1) * 0.045, 0.62 + (i - 1) * 0.045)); row.g.attr('transform', `translate(${(1 - a) * 80},0)`).style('opacity', a); }
+    row.cells.at(-1).cg.classed('pulse', p > 0.86 && p < 0.97 && !REDUCED);
+  });
+}
+
+// ================= 5. THE BET =================
+const COLS = [60, 30, 21, 14, 7];
+const BANDS = [{ k: 'J', label: 'Jumped', col: '--rose' }, { k: 'M', label: 'Middle', col: '--flat-strong' }, { k: 'F', label: 'Floor', col: '--fell' }];
+const FLIGHTS = (() => {
+  const R = rng(42), T = [
+    { F: [.80, .15, .05], M: [.12, .76, .12], J: [.05, .15, .80] }, { F: [.75, .18, .07], M: [.10, .74, .16], J: [.04, .14, .82] },
+    { F: [.55, .28, .17], M: [.07, .60, .33], J: [.03, .10, .87] }, { F: [.40, .30, .30], M: [.05, .50, .45], J: [.02, .08, .90] }];
+  const pick = p => { const u = R(); return u < p[0] ? 'F' : u < p[0] + p[1] ? 'M' : 'J'; };
+  return d3.range(1000).map(() => { const s = [pick([.34, .42, .24])]; T.forEach(t => s.push(pick(t[s.at(-1)]))); return s; });
+})();
+const bet = { W: 1000, H: 440, m: { t: 40, b: 16, l: 110, r: 120 }, nw: 16, pad: 18 };
+(() => { // stable per-dot randomness, plus the 100 dots that become the odds grid
+  const R = rng(5); bet.rnd = FLIGHTS.map(() => R());
+  const idx = FLIGHTS.map((f, i) => i), take = (k, n, skip) => idx.filter(i => FLIGHTS[i][4] === k && !skip.has(i)).slice(0, n);
+  const red = take('J', 25, new Set()), blue = take('F', 16, new Set()), grey = take('M', 59, new Set());
+  bet.grid = new Map(); [...red.map(i => [i, 'rose']), ...blue.map(i => [i, 'fell']), ...grey.map(i => [i, 'flat'])].forEach(([i, c], n) => bet.grid.set(i, { n, c }));
+})();
+function buildBet() {
+  const svg = d3.select('#flow'); svg.selectAll('*').remove();
+  const { W, H, m, nw, pad } = bet, N = FLIGHTS.length, k = (H - m.t - m.b - pad * 2) / N;
+  const cx = d3.scalePoint().domain(COLS).range([m.l, W - m.r - nw]);
+  const inCohort = f => !state.cohort || f[state.cohort.c] === state.cohort.b;
+  const nodes = COLS.map((c, ci) => { let y = m.t; return BANDS.map(b => { const n = FLIGHTS.filter(f => f[ci] === b.k).length; const node = { ci, b: b.k, n, y, h: n * k, x: cx(c) }; y += n * k + pad; return node; }); });
+  const node = (ci, b) => nodes[ci].find(n => n.b === b);
+  const links = [], gaps = FLIGHTS.map(() => []);
+  for (let ci = 0; ci < COLS.length - 1; ci++) {
+    const so = {}, to = {}; BANDS.forEach(b => { so[b.k] = 0; to[b.k] = 0; });
+    BANDS.forEach(sb => BANDS.forEach(tb => {
+      const fl = FLIGHTS.map((f, i) => i).filter(i => FLIGHTS[i][ci] === sb.k && FLIGHTS[i][ci + 1] === tb.k); if (!fl.length) return;
+      links.push({ ci, s: sb.k, t: tb.k, n: fl.length, fl, c: fl.filter(i => inCohort(FLIGHTS[i])).length, sy: node(ci, sb.k).y + so[sb.k] });
+      so[sb.k] += fl.length * k;
+    }));
+    BANDS.forEach(tb => BANDS.forEach(sb => { const l = links.find(l => l.ci === ci && l.s === sb.k && l.t === tb.k); if (!l) return; l.ty = node(ci + 1, tb.k).y + to[tb.k]; to[tb.k] += l.n * k; }));
+  }
+  links.forEach(l => l.fl.forEach((f, j) => { gaps[f][l.ci] = [l.sy + (j + 0.5) * k, l.ty + (j + 0.5) * k]; }));
+  Object.assign(bet, { k, cx, nodes, links, gaps });
+  const ribbon = (x0, y0, x1, y1, h) => { const xm = (x0 + x1) / 2; return `M${x0},${y0}C${xm},${y0} ${xm},${y1} ${x1},${y1}L${x1},${y1 + h}C${xm},${y1 + h} ${xm},${y0 + h} ${x0},${y0 + h}Z`; };
+  const bandCol = b => `var(${BANDS.find(x => x.k === b).col})`;
+  bet.ribbons = svg.append('g').selectAll('path').data(links).join('path')
+    .attr('d', l => ribbon(cx(COLS[l.ci]) + nw, l.sy, cx(COLS[l.ci + 1]), l.ty, l.n * k)).style('fill', l => bandCol(l.t))
+    .on('mouseenter', function () { if (!state.cohort) d3.select(this).style('opacity', 0.6); })
+    .on('mousemove', (ev, l) => showTip(ev, `<b>${l.n} flights</b> went from ${BANDS.find(b => b.k === l.s).label} at ${COLS[l.ci]} days<br>to ${BANDS.find(b => b.k === l.t).label} at ${COLS[l.ci + 1]} days`))
+    .on('mouseleave', function () { hideTip(); if (!state.cohort) d3.select(this).style('opacity', 0.3); });
+  const overlay = svg.append('g').style('pointer-events', 'none');
+  if (state.cohort) overlay.selectAll('path').data(links.filter(l => l.c)).join('path').attr('d', l => ribbon(cx(COLS[l.ci]) + nw, l.sy, cx(COLS[l.ci + 1]), l.ty, l.c * k)).style('fill', l => bandCol(l.t)).style('opacity', 0.8);
+  nodes.flat().forEach(n => {
+    const sel = state.cohort && state.cohort.c === n.ci && state.cohort.b === n.b;
+    svg.append('rect').attr('x', n.x).attr('y', n.y).attr('width', nw).attr('height', Math.max(n.h, 1)).attr('rx', 2).style('fill', bandCol(n.b)).style('stroke', sel ? 'var(--ink)' : 'none').style('stroke-width', 2).style('cursor', 'pointer')
+      .on('mousemove', ev => showTip(ev, `<b>${BANDS.find(b => b.k === n.b).label} at ${COLS[n.ci]} days</b><br>${n.n} flights (${Math.round(n.n / N * 100)}%)<br>Click to follow these flights`))
+      .on('mouseleave', hideTip).on('click', () => { state.cohort = sel ? null : { c: n.ci, b: n.b }; buildBet(); S.bet.update(S.bet.p); });
+  });
+  COLS.forEach(c => svg.append('text').attr('x', cx(c) + nw / 2).attr('y', m.t - 12).attr('text-anchor', 'middle').text(c === 60 ? '60 days out' : c === 7 ? '7 days out' : `${c} days`).style('font-size', '12px').style('fill', 'var(--muted)'));
+  bet.labels = svg.append('g');
+  const side = (ci, anchor, dx) => nodes[ci].forEach(n => { const t = bet.labels.append('text').attr('x', n.x + dx).attr('y', n.y + n.h / 2 + 4).attr('text-anchor', anchor).style('font-size', '13px').style('fill', 'var(--ink)'); t.append('tspan').text(BANDS.find(b => b.k === n.b).label + ' ').style('font-weight', 600); t.append('tspan').text(Math.round(n.n / N * 100) + '%').style('fill', 'var(--ink-2)'); });
+  side(0, 'end', -10); side(COLS.length - 1, 'start', nw + 10);
+  // boarding gate at the 21-day cutoff
+  const gx = cx(21) - 18, top = m.t - 6, bot = H - m.b;
+  const gate = svg.append('g').style('pointer-events', 'none');
+  gate.append('line').attr('x1', gx + 4).attr('x2', gx + 4).attr('y1', top - 22).attr('y2', bot).style('stroke', 'var(--ink)').style('stroke-dasharray', '4 4').style('opacity', 0.45);
+  bet.doorT = gate.append('rect').attr('x', gx).attr('y', top).attr('width', 8).attr('rx', 2).style('fill', 'var(--ink)');
+  bet.doorB = gate.append('rect').attr('x', gx).attr('width', 8).attr('rx', 2).style('fill', 'var(--ink)');
+  bet.gateLabel = gate.append('text').attr('x', gx - 6).attr('y', top - 26).attr('text-anchor', 'end').text('21-day cutoff').style('font-size', '12px').style('fill', 'var(--ink-2)');
+  Object.assign(bet, { top, bot });
+  const j0 = node(0, 'J').n / N, j21 = node(2, 'J').n / N, j7 = node(4, 'J').n / N, fl = FLIGHTS.filter(f => f[2] === 'F'), stayed = fl.filter(f => f[4] === 'F').length / fl.length;
+  $('#flow-stat').textContent = `${Math.round(j0 * 100)}% of fares were in the jumped band at 60 days and ${Math.round(j21 * 100)}% at 21 days. By 7 days out it was ${Math.round(j7 * 100)}%. Of the flights at the floor on day 21, only ${Math.round(stayed * 100)}% were still there a week before departure.`;
+  $('#flow-reset').hidden = !state.cohort;
+  $('#flow-title').textContent = state.cohort ? `Following the ${FLIGHTS.filter(inCohort).length} flights in ${BANDS.find(b => b.k === state.cohort.b).label} at ${COLS[state.cohort.c]} days` : "Where 1,000 flights' fares went as departure got closer";
+  bet.col = { J: tok('--rose'), M: tok('--flat-strong'), F: tok('--fell'), rose: tok('--rose'), fell: tok('--fell'), flat: tok('--flat-strong') };
+  bet.svg = svg;
+}
+$('#flow-reset').addEventListener('click', () => { state.cohort = null; buildBet(); S.bet.update(S.bet.p); });
+function dotPos(f, T) {
+  const { cx, nw, gaps } = bet;
+  if (T >= 4) return [cx(COLS[4]) + nw / 2, gaps[f][3][1]];
+  const g = Math.floor(T), u = T - g, [ys, yt] = gaps[f][g];
+  if (g > 0 && u < 0.12) { const v = u / 0.12; return [cx(COLS[g]) + nw * v, lerp(gaps[f][g - 1][1], ys, v)]; }
+  const v = g > 0 ? (u - 0.12) / 0.88 : u, x0 = cx(COLS[g]) + nw, x1 = cx(COLS[g + 1]), xm = (x0 + x1) / 2;
+  return [cubic(x0, xm, xm, x1, v), cubic(ys, ys, yt, yt, v)];
+}
+function updateBet(p) {
+  reveal($('#bet'), p);
+  const live = p >= 0.97;
+  bet.svg.style('pointer-events', live ? 'auto' : 'none');
+  bet.ribbons.style('opacity', state.cohort ? 0.08 : lerp(0.07, 0.3, seg(p, 0.9, 0.97)));
+  bet.labels.style('opacity', seg(p, 0.86, 0.95));
+  const a = seg(p, 0.03, 0.2), T = 4 * seg(p, 0.22, 0.8), q = ease(seg(p, 0.82, 0.96));
+  const cl = ease(seg(T, 2.02, 2.4)), half = (bet.bot - bet.top) / 2;
+  bet.doorT.attr('height', cl * half); bet.doorB.attr('y', bet.bot - cl * half).attr('height', cl * half);
+  bet.gateLabel.text(cl >= 1 ? '21-day cutoff · gate closed' : '21-day cutoff');
+  // canvas dots, in stage coordinates
+  const stage = $('#bet .stage'), cv = $('#bet-canvas'), sr = stage.getBoundingClientRect(), fr = bet.svg.node().getBoundingClientRect();
+  const ctx = sizeCanvas(cv, sr.width, sr.height); ctx.clearRect(0, 0, sr.width, sr.height);
+  if (!fr.width) return;
+  const k = Math.min(fr.width / bet.W, fr.height / bet.H), ox = fr.left + (fr.width - bet.W * k) / 2 - sr.left, oy = fr.top + (fr.height - bet.H * k) / 2 - sr.top, toS = ([x, y]) => [ox + x * k, oy + y * k];
+  const or = $('#odds').getBoundingClientRect(), gc = or.width / 10, r0 = Math.max(1.3, 1.8 * k);
+  for (let f = 0; f < FLIGHTS.length; f++) {
+    let pos, col, rad = r0, alpha = 0.85;
+    if (p < 0.22) {
+      const block = toS([380 + (f % 40) * 6, 145 + Math.floor(f / 40) * 6]);
+      const e = ease(clamp(a * 1.4 - bet.rnd[f] * 0.4)), dst = toS(dotPos(f, 0));
+      pos = [lerp(block[0], dst[0], e), lerp(block[1], dst[1], e)];
+      col = e < 0.5 ? bet.col.rose : bet.col[FLIGHTS[f][0]];
+      alpha = 0.85 * seg(p, 0, 0.025);
+    } else {
+      const Tf = clamp(T * 1.3 - bet.rnd[f] * 1.2, 0, 4);
+      pos = toS(dotPos(f, Tf));
+      const g = Math.min(4, Math.floor(Tf)), u = Tf - g; col = bet.col[FLIGHTS[f][u > 0.5 && g < 4 ? g + 1 : g]];
+    }
+    const gi = bet.grid.get(f);
+    if (q > 0) {
+      if (gi) { const tx = or.left - sr.left + (gi.n % 10 + 0.5) * gc, ty = or.top - sr.top + (Math.floor(gi.n / 10) + 0.5) * gc; pos = [lerp(pos[0], tx, q), lerp(pos[1], ty, q)]; rad = lerp(rad, gc * 0.34, q); if (q > 0.5) col = bet.col[gi.c]; alpha = 1; }
+      else alpha *= 1 - q;
+    }
+    if (state.cohort && p >= 0.22 && q === 0 && FLIGHTS[f][state.cohort.c] !== state.cohort.b) alpha *= 0.2;
+    if (alpha <= 0.01) continue;
+    ctx.globalAlpha = alpha; ctx.fillStyle = col; ctx.beginPath(); ctx.arc(pos[0], pos[1], rad, 0, Math.PI * 2); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+}
+
+// ================= 6. BOOK =================
+const book = { b1: new Flap($('#b1'), 10), b2: new Flap($('#b2'), 10), last: null };
+const fmt = t => new Date(t).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' });
+function flyUTC() { const v = $('#fly-date').value || '2022-09-02', [Y, M, D] = v.split('-').map(Number); return Date.UTC(Y, M - 1, D); }
+function buildBook() {
+  const fly = flyUTC(), day = 864e5;
+  $('#milestones').innerHTML = [21, 14, 7].map(n => `<div><b>${fmt(fly - n * day)}</b>${n}-day mark: ${n === 21 ? 'fares start jumping after this' : 'another jump follows'}</div>`).join('');
+  book.last = null;
+}
+function updateBook(p) {
+  reveal($('#book'), p);
+  const fly = flyUTC(), day = 864e5, T = 60 - Math.round(seg(p, 0.05, 0.7) * 38), page = $('#cal-page');
+  if (T !== book.last) {
+    if (book.last !== null && !REDUCED && document.querySelectorAll('#cal .tear').length < 4) {
+      const old = page.cloneNode(true); old.removeAttribute('id'); old.classList.add('tear'); $('#cal').appendChild(old); old.addEventListener('animationend', () => old.remove());
+    }
+    page.querySelector('.t').textContent = `T–${T}`; page.querySelector('.d').textContent = fmt(fly - T * day); book.last = T;
+  }
+  const stamped = T <= 22 && p >= 0.72; $('#cal').classList.toggle('stamped', stamped);
+  if (stamped) { book.b1.set('BOOK BY'); book.b2.set(fmt(fly - 22 * day).replace(',', '')); }
+  else { book.b1.set(`T-${T} DAYS`, true); book.b2.set(T > 30 ? 'WAITING' : 'STILL SAFE', true); }
+}
+$('#fly-date').addEventListener('input', () => { buildBook(); S.book.update(S.book.p); });
+
+// ================= 6b. RACE =================
+const BARS = { mem: [312, 356], jul: [260, 425], lab: [248, 301], non: [296, 344] };
+function runRace() {
+  renderTabs($('#bar-tabs'), 'barHoliday', runRace);
+  const [ns, cn] = BARS[state.barHoliday], svg = d3.select('#race-svg'); svg.selectAll('*').remove();
+  const W = 640, m = { l: 100, r: 70 }, x = d3.scaleLinear().domain([0, 450]).range([m.l, W - m.r]);
+  [0, 100, 200, 300, 400].forEach(t => { svg.append('line').attr('x1', x(t)).attr('x2', x(t)).attr('y1', 10).attr('y2', 182).style('stroke', 'var(--line)'); svg.append('text').attr('x', x(t)).attr('y', 200).attr('text-anchor', 'middle').text('$' + t).style('font-size', '11px').style('fill', 'var(--muted)'); });
+  const lanes = [
+    { lab: 'Nonstop', v: ns, y: 56, col: 'var(--ink)', d: `M${x(0)},56 L${x(ns)},56` },
+    { lab: 'Connecting', v: cn, y: 138, col: 'var(--flat-strong)', d: `M${x(0)},138 C${x(cn * 0.25)},138 ${x(cn * 0.4)},100 ${x(cn * 0.5)},100 C${x(cn * 0.6)},100 ${x(cn * 0.75)},138 ${x(cn)},138` }];
+  lanes.forEach((ln, i) => {
+    svg.append('text').attr('x', 0).attr('y', ln.y + 5).text(ln.lab).style('font-size', '13px').style('fill', 'var(--ink)');
+    const bar = svg.append('rect').attr('x', x(0)).attr('y', ln.y - 15).attr('height', 30).attr('rx', 3).attr('width', 0).style('fill', ln.col).style('opacity', 0.9)
+      .on('mousemove', ev => showTip(ev, `<b>${ln.lab} · ${HOL[state.barHoliday].label}</b><br>Median fare ${usd(ln.v)}`)).on('mouseleave', hideTip);
+    if (i === 1) { svg.append('circle').attr('cx', x(cn * 0.5)).attr('cy', 100).attr('r', 5).style('fill', 'var(--surface)').style('stroke', 'var(--ink-2)').style('stroke-width', 2); svg.append('text').attr('x', x(cn * 0.5)).attr('y', 86).attr('text-anchor', 'middle').text('layover').style('font-size', '11px').style('fill', 'var(--muted)'); }
+    const c = contrail(svg.append('g'), ln.d, { s: 0.8, w: 2.4, op: 0.9, color: ln.col });
+    const label = svg.append('text').attr('x', x(ln.v) + 10).attr('y', ln.y + 5).text(usd(ln.v)).style('font-size', '14px').style('font-weight', 600).style('fill', 'var(--ink)').style('opacity', 0);
+    const run = t => c.update(i === 1 ? (t < 0.45 ? t / 0.45 * 0.5 : t < 0.6 ? 0.5 : 0.5 + (t - 0.6) / 0.4 * 0.5) : t);
+    c.update(0);
+    animate(i === 0 ? 1400 : 2300, run, () => { bar.transition().duration(REDUCED ? 0 : 500).attr('width', x(ln.v) - x(0)); c.plane.transition().duration(REDUCED ? 0 : 400).style('opacity', 0); label.transition().delay(REDUCED ? 0 : 300).style('opacity', 1); });
+  });
+}
+$('#race-again').addEventListener('click', runRace);
+let raced = false;
+new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && !raced) { raced = true; runRace(); } }), { threshold: 0.45 }).observe($('#race'));
+
+// ================= 7. TAKEOFF =================
+const fly = {};
+function buildFly() {
+  const svg = d3.select('#fly-svg'); svg.selectAll('*').remove();
+  svg.append('rect').attr('x', -500).attr('y', 470).attr('width', 2000).attr('height', 200).style('fill', 'var(--runway)');
+  for (let i = -10; i < 30; i++) svg.append('rect').attr('x', i * 70).attr('y', 498).attr('width', 36).attr('height', 5).style('fill', '#ffffff').style('opacity', 0.55);
+  [[200, 150, 0.9], [640, 110, 0.7], [860, 240, 1.1]].forEach(([x, y, s]) => { const c = svg.append('g').attr('transform', `translate(${x},${y}) scale(${s})`).style('opacity', 0.8); [[0, 0, 60, 24], [-44, 10, 40, 18], [44, 8, 44, 20]].forEach(([cx, cy, rx, ry]) => c.append('ellipse').attr('cx', cx).attr('cy', cy).attr('rx', rx).attr('ry', ry).style('fill', 'var(--cloud)')); });
+  fly.c = contrail(svg.append('g'), 'M60,486 L470,486 C640,486 760,360 1100,90', { s: 2, w: 3, op: 0.5 });
+}
+function updateFly(p) {
+  reveal($('#fly'), p);
+  fly.c.update(0.02 + 0.98 * ease(seg(p, 0.02, 0.38)), true);
+  const stage = $('#fly .stage'), track = $('#track'), W = stage.clientWidth, tw = track.scrollWidth;
+  const q = seg(p, 0.3, 0.98), end = Math.min(W / 2 - tw + 125, 16);
+  track.style.transform = `translateX(${lerp(W, end, q)}px)`;
+}
+
+// ================= scroll engine =================
+const dotsNav = $('#dots');
+document.querySelectorAll('[data-status]').forEach(el => { const a = document.createElement('a'); a.href = '#' + el.id; a.setAttribute('aria-label', el.dataset.status); a.innerHTML = '<span>' + el.dataset.status + '</span>'; dotsNav.appendChild(a); });
+function tick() {
+  const hh = 0;
+  for (const s of scenes) {
+    const r = s.el.getBoundingClientRect(), total = r.height - s.el.querySelector('.stage').offsetHeight;
+    const p = REDUCED || total <= 0 ? 1 : clamp((hh - r.top) / total);
+    if (p !== s.p) { s.p = p; s.update(p); }
+  }
+  const probe = hh + innerHeight * 0.35;
+  const cur = [...document.querySelectorAll('[data-status]')].find(el => { const r = el.getBoundingClientRect(); return r.top <= probe && r.bottom > probe; });
+  if (cur) dotsNav.querySelectorAll('a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + cur.id));
+}
+let ticking = false;
+const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { ticking = false; tick(); }); } };
+addEventListener('scroll', onScroll, { passive: true });
+addEventListener('resize', () => { scenes.forEach(s => s.p = -1); onScroll(); });
+
+// ================= boot =================
+if (REDUCED) document.body.classList.add('still');
+function buildAll() { buildTitle(); buildWhere(); renderPass(false); buildWatching(); updateQuiz(); buildSteps(); buildRoutes(); buildBet(); buildBook(); buildFly(); }
+initOrigin(); buildAll();
+S.title = scene('title', updateTitle); S.where = scene('where', updateWhere); S.watching = scene('watching', updateWatching);
+S.steps = scene('steps', updateSteps); S.routes = scene('routes', updateRoutes); S.bet = scene('bet', updateBet);
+S.book = scene('book', updateBook); S.fly = scene('fly', updateFly);
+title.f1.set('WHEN SHOULD'); setTimeout(() => title.f2.set('WE BOOK?'), REDUCED ? 0 : 500);
+tick(); requestAnimationFrame(orbitLoop);
+const rebuild = () => { buildAll(); if (raced) runRace(); scenes.forEach(s => s.p = -1); tick(); };
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', rebuild);
+new MutationObserver(rebuild).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+</script>
