@@ -1,0 +1,138 @@
+{
+  "sourceBytes": 3507187855,
+  "scannedRows": 82138753,
+  "retainedRows": 13066299,
+  "outsidePeriodRows": 69072454,
+  "invalidRowsInSelectedPeriods": 0,
+  "daysBeforeFlightMin": 1,
+  "daysBeforeFlightMax": 60,
+  "periods": {
+    "Memorial Day": [
+      [
+        "2022-05-26",
+        "2022-05-31"
+      ]
+    ],
+    "July 4": [
+      [
+        "2022-06-30",
+        "2022-07-05"
+      ]
+    ],
+    "Labor Day": [
+      [
+        "2022-09-01",
+        "2022-09-06"
+      ]
+    ],
+    "Non-holiday": [
+      [
+        "2022-06-09",
+        "2022-06-14"
+      ],
+      [
+        "2022-08-11",
+        "2022-08-16"
+      ]
+    ]
+  },
+  "summaryRows": [
+    {
+      "holiday": "Memorial Day",
+      "flightType": "Nonstop",
+      "medianFare": 258.6,
+      "quoteCount": 542721
+    },
+    {
+      "holiday": "Memorial Day",
+      "flightType": "Connecting",
+      "medianFare": 408.61,
+      "quoteCount": 1258757
+    },
+    {
+      "holiday": "July 4",
+      "flightType": "Nonstop",
+      "medianFare": 255.6,
+      "quoteCount": 693750
+    },
+    {
+      "holiday": "July 4",
+      "flightType": "Connecting",
+      "medianFare": 417.69,
+      "quoteCount": 1653047
+    },
+    {
+      "holiday": "Labor Day",
+      "flightType": "Nonstop",
+      "medianFare": 208.61,
+      "quoteCount": 895648
+    },
+    {
+      "holiday": "Labor Day",
+      "flightType": "Connecting",
+      "medianFare": 317.6,
+      "quoteCount": 2532420
+    },
+    {
+      "holiday": "Non-holiday",
+      "flightType": "Nonstop",
+      "medianFare": 238.6,
+      "quoteCount": 1573929
+    },
+    {
+      "holiday": "Non-holiday",
+      "flightType": "Connecting",
+      "medianFare": 392.7,
+      "quoteCount": 3916027
+    }
+  ],
+  "comparisons": [
+    {
+      "holiday": "Memorial Day",
+      "nonstopMedianFare": 258.6,
+      "connectingMedianFare": 408.61,
+      "nonstopPremiumUSD": -150.01,
+      "nonstopPremiumPct": -36.712268422211885
+    },
+    {
+      "holiday": "July 4",
+      "nonstopMedianFare": 255.6,
+      "connectingMedianFare": 417.69,
+      "nonstopPremiumUSD": -162.09,
+      "nonstopPremiumPct": -38.80629174746822
+    },
+    {
+      "holiday": "Labor Day",
+      "nonstopMedianFare": 208.61,
+      "connectingMedianFare": 317.6,
+      "nonstopPremiumUSD": -108.99,
+      "nonstopPremiumPct": -34.31675062972292
+    },
+    {
+      "holiday": "Non-holiday",
+      "nonstopMedianFare": 238.6,
+      "connectingMedianFare": 392.7,
+      "nonstopPremiumUSD": -154.1,
+      "nonstopPremiumPct": -39.24115100585689
+    }
+  ],
+  "routeSummaryRows": 1755,
+  "files": {
+    "Q7_route_comparison.csv": 92412,
+    "Q7_Tableau_chart.csv": 313,
+    "Q7_Tableau_quotes.csv": 971773382
+  },
+  "independentVerification": {
+    "verifiedExportedQuoteRows": 13066299,
+    "july4MediansUsingStatisticsMedian": {
+      "Nonstop": 255.6,
+      "Connecting": 417.69
+    },
+    "july4AtlBosMediansUsingStatisticsMedian": {
+      "Nonstop": 398.6,
+      "Connecting": 342.2
+    },
+    "allPeriodLabelsAndRouteIdentifiersVerified": true,
+    "routeGroupCountsAndAvailabilityVerified": true
+  }
+}

@@ -1,0 +1,1756 @@
+holiday,route,startingAirport,destinationAirport,flightType,medianFare,quoteCount,hasBothFlightTypes
+Memorial Day,ATL-BOS,ATL,BOS,Nonstop,408.6,3019,True
+Memorial Day,ATL-BOS,ATL,BOS,Connecting,368.6,7882,True
+Memorial Day,ATL-CLT,ATL,CLT,Nonstop,233.6,2999,True
+Memorial Day,ATL-CLT,ATL,CLT,Connecting,420.2,2693,True
+Memorial Day,ATL-DEN,ATL,DEN,Nonstop,378.61,2356,True
+Memorial Day,ATL-DEN,ATL,DEN,Connecting,447.19,4242,True
+Memorial Day,ATL-DFW,ATL,DFW,Nonstop,268.6,4040,True
+Memorial Day,ATL-DFW,ATL,DFW,Connecting,337.6,3069,True
+Memorial Day,ATL-DTW,ATL,DTW,Nonstop,278.6,2263,True
+Memorial Day,ATL-DTW,ATL,DTW,Connecting,393.21,5721,True
+Memorial Day,ATL-EWR,ATL,EWR,Nonstop,298.6,3592,True
+Memorial Day,ATL-EWR,ATL,EWR,Connecting,291.58,3543,True
+Memorial Day,ATL-IAD,ATL,IAD,Nonstop,298.6,1908,True
+Memorial Day,ATL-IAD,ATL,IAD,Connecting,336.1,1255,True
+Memorial Day,ATL-JFK,ATL,JFK,Nonstop,348.6,2937,True
+Memorial Day,ATL-JFK,ATL,JFK,Connecting,376.1,4260,True
+Memorial Day,ATL-LAX,ATL,LAX,Nonstop,458.6,3761,True
+Memorial Day,ATL-LAX,ATL,LAX,Connecting,507.205,9778,True
+Memorial Day,ATL-LGA,ATL,LGA,Nonstop,278.6,4939,True
+Memorial Day,ATL-LGA,ATL,LGA,Connecting,277.6,5596,True
+Memorial Day,ATL-MIA,ATL,MIA,Nonstop,244.6,3952,True
+Memorial Day,ATL-MIA,ATL,MIA,Connecting,411.6,3707,True
+Memorial Day,ATL-OAK,ATL,OAK,Connecting,707.2,5646,False
+Memorial Day,ATL-ORD,ATL,ORD,Nonstop,278.6,3228,True
+Memorial Day,ATL-ORD,ATL,ORD,Connecting,267.1,3935,True
+Memorial Day,ATL-PHL,ATL,PHL,Nonstop,268.6,2987,True
+Memorial Day,ATL-PHL,ATL,PHL,Connecting,346.11,4533,True
+Memorial Day,ATL-SFO,ATL,SFO,Nonstop,563.6,1466,True
+Memorial Day,ATL-SFO,ATL,SFO,Connecting,617.2,7313,True
+Memorial Day,BOS-ATL,BOS,ATL,Nonstop,293.61,3012,True
+Memorial Day,BOS-ATL,BOS,ATL,Connecting,253.6,8833,True
+Memorial Day,BOS-CLT,BOS,CLT,Nonstop,173.6,2775,True
+Memorial Day,BOS-CLT,BOS,CLT,Connecting,231.6,5268,True
+Memorial Day,BOS-DEN,BOS,DEN,Nonstop,359.6,1581,True
+Memorial Day,BOS-DEN,BOS,DEN,Connecting,387.2,8003,True
+Memorial Day,BOS-DFW,BOS,DFW,Nonstop,292.6,2011,True
+Memorial Day,BOS-DFW,BOS,DFW,Connecting,301.6,7862,True
+Memorial Day,BOS-DTW,BOS,DTW,Nonstop,273.6,1751,True
+Memorial Day,BOS-DTW,BOS,DTW,Connecting,298.6,7552,True
+Memorial Day,BOS-EWR,BOS,EWR,Nonstop,128.6,3821,True
+Memorial Day,BOS-EWR,BOS,EWR,Connecting,355.1,1551,True
+Memorial Day,BOS-IAD,BOS,IAD,Nonstop,198.6,844,True
+Memorial Day,BOS-IAD,BOS,IAD,Connecting,331.7,2837,True
+Memorial Day,BOS-JFK,BOS,JFK,Nonstop,143.6,5404,True
+Memorial Day,BOS-JFK,BOS,JFK,Connecting,467.2,863,True
+Memorial Day,BOS-LAX,BOS,LAX,Nonstop,468.61,4043,True
+Memorial Day,BOS-LAX,BOS,LAX,Connecting,451.6,10963,True
+Memorial Day,BOS-LGA,BOS,LGA,Nonstop,108.6,6843,True
+Memorial Day,BOS-LGA,BOS,LGA,Connecting,304.7,2865,True
+Memorial Day,BOS-MIA,BOS,MIA,Nonstop,228.6,4224,True
+Memorial Day,BOS-MIA,BOS,MIA,Connecting,237.6,6632,True
+Memorial Day,BOS-OAK,BOS,OAK,Connecting,662.69,3830,False
+Memorial Day,BOS-ORD,BOS,ORD,Nonstop,248.6,6570,True
+Memorial Day,BOS-ORD,BOS,ORD,Connecting,223.58,4798,True
+Memorial Day,BOS-PHL,BOS,PHL,Nonstop,143.6,2910,True
+Memorial Day,BOS-PHL,BOS,PHL,Connecting,337.6,2985,True
+Memorial Day,BOS-SFO,BOS,SFO,Nonstop,496.1,3692,True
+Memorial Day,BOS-SFO,BOS,SFO,Connecting,491.6,7097,True
+Memorial Day,CLT-ATL,CLT,ATL,Nonstop,227.1,2972,True
+Memorial Day,CLT-ATL,CLT,ATL,Connecting,376.1,3804,True
+Memorial Day,CLT-BOS,CLT,BOS,Nonstop,221.1,2803,True
+Memorial Day,CLT-BOS,CLT,BOS,Connecting,286.1,4891,True
+Memorial Day,CLT-DEN,CLT,DEN,Nonstop,357.1,1616,True
+Memorial Day,CLT-DEN,CLT,DEN,Connecting,400.69,4578,True
+Memorial Day,CLT-DFW,CLT,DFW,Nonstop,253.11,1852,True
+Memorial Day,CLT-DFW,CLT,DFW,Connecting,270.1,7956,True
+Memorial Day,CLT-DTW,CLT,DTW,Nonstop,252.11,1687,True
+Memorial Day,CLT-DTW,CLT,DTW,Connecting,366.1,4683,True
+Memorial Day,CLT-EWR,CLT,EWR,Nonstop,217.09,3927,True
+Memorial Day,CLT-EWR,CLT,EWR,Connecting,327.1,3612,True
+Memorial Day,CLT-IAD,CLT,IAD,Nonstop,190.1,1605,True
+Memorial Day,CLT-IAD,CLT,IAD,Connecting,307.1,1272,True
+Memorial Day,CLT-JFK,CLT,JFK,Nonstop,202.11,3119,True
+Memorial Day,CLT-JFK,CLT,JFK,Connecting,215.11,4267,True
+Memorial Day,CLT-LAX,CLT,LAX,Nonstop,442.1,1296,True
+Memorial Day,CLT-LAX,CLT,LAX,Connecting,487.1,10249,True
+Memorial Day,CLT-LGA,CLT,LGA,Nonstop,197.1,5176,True
+Memorial Day,CLT-LGA,CLT,LGA,Connecting,199.1,5541,True
+Memorial Day,CLT-MIA,CLT,MIA,Nonstop,307.1,1617,True
+Memorial Day,CLT-MIA,CLT,MIA,Connecting,215.11,7743,True
+Memorial Day,CLT-OAK,CLT,OAK,Connecting,747.1,2335,False
+Memorial Day,CLT-ORD,CLT,ORD,Nonstop,214.1,2405,True
+Memorial Day,CLT-ORD,CLT,ORD,Connecting,240.7,5578,True
+Memorial Day,CLT-PHL,CLT,PHL,Nonstop,237.1,1929,True
+Memorial Day,CLT-PHL,CLT,PHL,Connecting,307.1,5290,True
+Memorial Day,CLT-SFO,CLT,SFO,Nonstop,664.1,525,True
+Memorial Day,CLT-SFO,CLT,SFO,Connecting,615.7,8104,True
+Memorial Day,DEN-ATL,DEN,ATL,Nonstop,348.6,2353,True
+Memorial Day,DEN-ATL,DEN,ATL,Connecting,384.6,4733,True
+Memorial Day,DEN-BOS,DEN,BOS,Nonstop,428.6,1529,True
+Memorial Day,DEN-BOS,DEN,BOS,Connecting,487.6,6676,True
+Memorial Day,DEN-CLT,DEN,CLT,Nonstop,428.6,1617,True
+Memorial Day,DEN-CLT,DEN,CLT,Connecting,437.6,4281,True
+Memorial Day,DEN-DFW,DEN,DFW,Nonstop,202.6,2964,True
+Memorial Day,DEN-DFW,DEN,DFW,Connecting,254.61,2088,True
+Memorial Day,DEN-DTW,DEN,DTW,Nonstop,338.61,1302,True
+Memorial Day,DEN-DTW,DEN,DTW,Connecting,425.6,3889,True
+Memorial Day,DEN-EWR,DEN,EWR,Nonstop,418.6,1659,True
+Memorial Day,DEN-EWR,DEN,EWR,Connecting,437.6,4842,True
+Memorial Day,DEN-IAD,DEN,IAD,Nonstop,498.6,1263,True
+Memorial Day,DEN-IAD,DEN,IAD,Connecting,526.21,4669,True
+Memorial Day,DEN-JFK,DEN,JFK,Nonstop,313.6,1271,True
+Memorial Day,DEN-JFK,DEN,JFK,Connecting,585.6,6982,True
+Memorial Day,DEN-LAX,DEN,LAX,Nonstop,232.6,3888,True
+Memorial Day,DEN-LAX,DEN,LAX,Connecting,327.6,6106,True
+Memorial Day,DEN-LGA,DEN,LGA,Nonstop,303.6,2614,True
+Memorial Day,DEN-LGA,DEN,LGA,Connecting,380.1,4341,True
+Memorial Day,DEN-MIA,DEN,MIA,Nonstop,342.6,1045,True
+Memorial Day,DEN-MIA,DEN,MIA,Connecting,419.1,5646,True
+Memorial Day,DEN-OAK,DEN,OAK,Nonstop,123.98,148,True
+Memorial Day,DEN-OAK,DEN,OAK,Connecting,457.2,4390,True
+Memorial Day,DEN-ORD,DEN,ORD,Nonstop,342.6,2458,True
+Memorial Day,DEN-ORD,DEN,ORD,Connecting,417.6,3280,True
+Memorial Day,DEN-PHL,DEN,PHL,Nonstop,418.6,839,True
+Memorial Day,DEN-PHL,DEN,PHL,Connecting,499.61,6411,True
+Memorial Day,DEN-SFO,DEN,SFO,Nonstop,318.6,2342,True
+Memorial Day,DEN-SFO,DEN,SFO,Connecting,409.1,5234,True
+Memorial Day,DFW-ATL,DFW,ATL,Nonstop,259.6,4034,True
+Memorial Day,DFW-ATL,DFW,ATL,Connecting,318.6,3104,True
+Memorial Day,DFW-BOS,DFW,BOS,Nonstop,367.6,1995,True
+Memorial Day,DFW-BOS,DFW,BOS,Connecting,404.19,6933,True
+Memorial Day,DFW-CLT,DFW,CLT,Nonstop,333.6,1861,True
+Memorial Day,DFW-CLT,DFW,CLT,Connecting,351.6,6519,True
+Memorial Day,DFW-DEN,DFW,DEN,Nonstop,248.6,2937,True
+Memorial Day,DFW-DEN,DFW,DEN,Connecting,408.6,2717,True
+Memorial Day,DFW-DTW,DFW,DTW,Nonstop,378.61,1821,True
+Memorial Day,DFW-DTW,DFW,DTW,Connecting,413.1,4796,True
+Memorial Day,DFW-EWR,DFW,EWR,Nonstop,333.61,3118,True
+Memorial Day,DFW-EWR,DFW,EWR,Connecting,433.59,5872,True
+Memorial Day,DFW-IAD,DFW,IAD,Nonstop,377.61,843,True
+Memorial Day,DFW-IAD,DFW,IAD,Connecting,438.6,3079,True
+Memorial Day,DFW-JFK,DFW,JFK,Nonstop,336.6,2106,True
+Memorial Day,DFW-JFK,DFW,JFK,Connecting,504.71,3673,True
+Memorial Day,DFW-LAX,DFW,LAX,Nonstop,308.6,4901,True
+Memorial Day,DFW-LAX,DFW,LAX,Connecting,387.6,7432,True
+Memorial Day,DFW-LGA,DFW,LGA,Nonstop,278.6,6229,True
+Memorial Day,DFW-LGA,DFW,LGA,Connecting,367.6,5058,True
+Memorial Day,DFW-MIA,DFW,MIA,Nonstop,285.6,2781,True
+Memorial Day,DFW-MIA,DFW,MIA,Connecting,348.61,6440,True
+Memorial Day,DFW-OAK,DFW,OAK,Connecting,552.7,5049,False
+Memorial Day,DFW-ORD,DFW,ORD,Nonstop,318.6,3287,True
+Memorial Day,DFW-ORD,DFW,ORD,Connecting,367.6,5096,True
+Memorial Day,DFW-PHL,DFW,PHL,Nonstop,403.6,1666,True
+Memorial Day,DFW-PHL,DFW,PHL,Connecting,412.2,7196,True
+Memorial Day,DFW-SFO,DFW,SFO,Nonstop,448.6,1840,True
+Memorial Day,DFW-SFO,DFW,SFO,Connecting,471.6,6574,True
+Memorial Day,DTW-ATL,DTW,ATL,Nonstop,173.6,2268,True
+Memorial Day,DTW-ATL,DTW,ATL,Connecting,299.61,7358,True
+Memorial Day,DTW-BOS,DTW,BOS,Nonstop,258.6,1758,True
+Memorial Day,DTW-BOS,DTW,BOS,Connecting,320.58,6762,True
+Memorial Day,DTW-CLT,DTW,CLT,Nonstop,248.6,1689,True
+Memorial Day,DTW-CLT,DTW,CLT,Connecting,322.2,5456,True
+Memorial Day,DTW-DEN,DTW,DEN,Nonstop,285.6,1298,True
+Memorial Day,DTW-DEN,DTW,DEN,Connecting,340.21,4071,True
+Memorial Day,DTW-DFW,DTW,DFW,Nonstop,279.6,1821,True
+Memorial Day,DTW-DFW,DTW,DFW,Connecting,305.61,4742,True
+Memorial Day,DTW-EWR,DTW,EWR,Nonstop,238.6,2108,True
+Memorial Day,DTW-EWR,DTW,EWR,Connecting,267.6,4450,True
+Memorial Day,DTW-IAD,DTW,IAD,Nonstop,198.6,1546,True
+Memorial Day,DTW-IAD,DTW,IAD,Connecting,264.1,999,True
+Memorial Day,DTW-JFK,DTW,JFK,Nonstop,238.6,1719,True
+Memorial Day,DTW-JFK,DTW,JFK,Connecting,446.1,3019,True
+Memorial Day,DTW-LAX,DTW,LAX,Nonstop,328.6,1561,True
+Memorial Day,DTW-LAX,DTW,LAX,Connecting,456.6,10588,True
+Memorial Day,DTW-LGA,DTW,LGA,Nonstop,215.59,3297,True
+Memorial Day,DTW-LGA,DTW,LGA,Connecting,210.1,4508,True
+Memorial Day,DTW-MIA,DTW,MIA,Nonstop,188.6,1014,True
+Memorial Day,DTW-MIA,DTW,MIA,Connecting,294.6,5347,True
+Memorial Day,DTW-OAK,DTW,OAK,Connecting,617.1,5591,False
+Memorial Day,DTW-ORD,DTW,ORD,Nonstop,178.6,2983,True
+Memorial Day,DTW-ORD,DTW,ORD,Connecting,317.2,592,True
+Memorial Day,DTW-PHL,DTW,PHL,Nonstop,288.61,1267,True
+Memorial Day,DTW-PHL,DTW,PHL,Connecting,279.61,4684,True
+Memorial Day,DTW-SFO,DTW,SFO,Nonstop,568.6,738,True
+Memorial Day,DTW-SFO,DTW,SFO,Connecting,574.6,8579,True
+Memorial Day,EWR-ATL,EWR,ATL,Nonstop,179.6,3579,True
+Memorial Day,EWR-ATL,EWR,ATL,Connecting,191.58,3617,True
+Memorial Day,EWR-BOS,EWR,BOS,Nonstop,118.6,3842,True
+Memorial Day,EWR-BOS,EWR,BOS,Connecting,257.58,1220,True
+Memorial Day,EWR-CLT,EWR,CLT,Nonstop,207.6,3968,True
+Memorial Day,EWR-CLT,EWR,CLT,Connecting,317.6,4785,True
+Memorial Day,EWR-DEN,EWR,DEN,Nonstop,258.6,1652,True
+Memorial Day,EWR-DEN,EWR,DEN,Connecting,414.2,4350,True
+Memorial Day,EWR-DFW,EWR,DFW,Nonstop,218.6,3097,True
+Memorial Day,EWR-DFW,EWR,DFW,Connecting,318.6,5716,True
+Memorial Day,EWR-DTW,EWR,DTW,Nonstop,248.6,2108,True
+Memorial Day,EWR-DTW,EWR,DTW,Connecting,275.58,4190,True
+Memorial Day,EWR-IAD,EWR,IAD,Nonstop,238.6,1047,True
+Memorial Day,EWR-IAD,EWR,IAD,Connecting,358.6,3726,True
+Memorial Day,EWR-LAX,EWR,LAX,Nonstop,363.6,3845,True
+Memorial Day,EWR-LAX,EWR,LAX,Connecting,430.58,8230,True
+Memorial Day,EWR-MIA,EWR,MIA,Nonstop,183.6,3985,True
+Memorial Day,EWR-MIA,EWR,MIA,Connecting,355.58,2680,True
+Memorial Day,EWR-OAK,EWR,OAK,Connecting,586.61,2670,False
+Memorial Day,EWR-ORD,EWR,ORD,Nonstop,172.6,4832,True
+Memorial Day,EWR-ORD,EWR,ORD,Connecting,246.2,4679,True
+Memorial Day,EWR-PHL,EWR,PHL,Nonstop,193.6,598,True
+Memorial Day,EWR-PHL,EWR,PHL,Connecting,426.1,6266,True
+Memorial Day,EWR-SFO,EWR,SFO,Nonstop,408.6,3140,True
+Memorial Day,EWR-SFO,EWR,SFO,Connecting,509.6,4719,True
+Memorial Day,IAD-ATL,IAD,ATL,Nonstop,202.6,1890,True
+Memorial Day,IAD-ATL,IAD,ATL,Connecting,200.6,1665,True
+Memorial Day,IAD-BOS,IAD,BOS,Nonstop,188.6,836,True
+Memorial Day,IAD-BOS,IAD,BOS,Connecting,377.1,3894,True
+Memorial Day,IAD-CLT,IAD,CLT,Nonstop,179.59,1600,True
+Memorial Day,IAD-CLT,IAD,CLT,Connecting,276.6,1977,True
+Memorial Day,IAD-DEN,IAD,DEN,Nonstop,358.6,1253,True
+Memorial Day,IAD-DEN,IAD,DEN,Connecting,382.1,4692,True
+Memorial Day,IAD-DFW,IAD,DFW,Nonstop,285.6,823,True
+Memorial Day,IAD-DFW,IAD,DFW,Connecting,295.2,4040,True
+Memorial Day,IAD-DTW,IAD,DTW,Nonstop,208.61,1524,True
+Memorial Day,IAD-DTW,IAD,DTW,Connecting,346.11,954,True
+Memorial Day,IAD-EWR,IAD,EWR,Nonstop,218.6,1041,True
+Memorial Day,IAD-EWR,IAD,EWR,Connecting,351.09,3382,True
+Memorial Day,IAD-JFK,IAD,JFK,Nonstop,208.61,627,True
+Memorial Day,IAD-JFK,IAD,JFK,Connecting,400.6,4729,True
+Memorial Day,IAD-LAX,IAD,LAX,Nonstop,378.6,1387,True
+Memorial Day,IAD-LAX,IAD,LAX,Connecting,465.1,5770,True
+Memorial Day,IAD-LGA,IAD,LGA,Nonstop,148.6,1880,True
+Memorial Day,IAD-LGA,IAD,LGA,Connecting,461.6,9585,True
+Memorial Day,IAD-MIA,IAD,MIA,Nonstop,178.6,278,True
+Memorial Day,IAD-MIA,IAD,MIA,Connecting,316.1,4697,True
+Memorial Day,IAD-OAK,IAD,OAK,Connecting,701.6,3634,False
+Memorial Day,IAD-ORD,IAD,ORD,Nonstop,191.6,1058,True
+Memorial Day,IAD-ORD,IAD,ORD,Connecting,288.1,4167,True
+Memorial Day,IAD-PHL,IAD,PHL,Connecting,399.1,3753,False
+Memorial Day,IAD-SFO,IAD,SFO,Nonstop,508.6,1533,True
+Memorial Day,IAD-SFO,IAD,SFO,Connecting,561.2,4460,True
+Memorial Day,JFK-ATL,JFK,ATL,Nonstop,198.6,2954,True
+Memorial Day,JFK-ATL,JFK,ATL,Connecting,261.59,3974,True
+Memorial Day,JFK-BOS,JFK,BOS,Nonstop,168.61,5395,True
+Memorial Day,JFK-BOS,JFK,BOS,Connecting,467.2,974,True
+Memorial Day,JFK-CLT,JFK,CLT,Nonstop,198.6,3129,True
+Memorial Day,JFK-CLT,JFK,CLT,Connecting,211.6,4448,True
+Memorial Day,JFK-DEN,JFK,DEN,Nonstop,263.6,1266,True
+Memorial Day,JFK-DEN,JFK,DEN,Connecting,587.2,7880,True
+Memorial Day,JFK-DFW,JFK,DFW,Nonstop,194.6,2101,True
+Memorial Day,JFK-DFW,JFK,DFW,Connecting,530.9,4303,True
+Memorial Day,JFK-DTW,JFK,DTW,Nonstop,258.6,1684,True
+Memorial Day,JFK-DTW,JFK,DTW,Connecting,398.145,2680,True
+Memorial Day,JFK-IAD,JFK,IAD,Nonstop,188.6,633,True
+Memorial Day,JFK-IAD,JFK,IAD,Connecting,427.21,3686,True
+Memorial Day,JFK-LAX,JFK,LAX,Nonstop,408.6,8708,True
+Memorial Day,JFK-LAX,JFK,LAX,Connecting,441.6,5200,True
+Memorial Day,JFK-MIA,JFK,MIA,Nonstop,186.6,6041,True
+Memorial Day,JFK-MIA,JFK,MIA,Connecting,223.6,1314,True
+Memorial Day,JFK-OAK,JFK,OAK,Connecting,595.2,2615,False
+Memorial Day,JFK-ORD,JFK,ORD,Nonstop,196.6,2514,True
+Memorial Day,JFK-ORD,JFK,ORD,Connecting,501.6,8953,True
+Memorial Day,JFK-PHL,JFK,PHL,Connecting,374.3,3975,False
+Memorial Day,JFK-SFO,JFK,SFO,Nonstop,418.6,5823,True
+Memorial Day,JFK-SFO,JFK,SFO,Connecting,417.6,1665,True
+Memorial Day,LAX-ATL,LAX,ATL,Nonstop,408.6,3769,True
+Memorial Day,LAX-ATL,LAX,ATL,Connecting,429.6,11897,True
+Memorial Day,LAX-BOS,LAX,BOS,Nonstop,474.6,4157,True
+Memorial Day,LAX-BOS,LAX,BOS,Connecting,477.61,11279,True
+Memorial Day,LAX-CLT,LAX,CLT,Nonstop,459.6,1306,True
+Memorial Day,LAX-CLT,LAX,CLT,Connecting,497.2,11821,True
+Memorial Day,LAX-DEN,LAX,DEN,Nonstop,232.6,3887,True
+Memorial Day,LAX-DEN,LAX,DEN,Connecting,274.6,6854,True
+Memorial Day,LAX-DFW,LAX,DFW,Nonstop,258.6,4888,True
+Memorial Day,LAX-DFW,LAX,DFW,Connecting,294.6,7311,True
+Memorial Day,LAX-DTW,LAX,DTW,Nonstop,458.6,1574,True
+Memorial Day,LAX-DTW,LAX,DTW,Connecting,491.59,11269,True
+Memorial Day,LAX-EWR,LAX,EWR,Nonstop,398.6,3766,True
+Memorial Day,LAX-EWR,LAX,EWR,Connecting,491.6,10068,True
+Memorial Day,LAX-IAD,LAX,IAD,Nonstop,458.6,1398,True
+Memorial Day,LAX-IAD,LAX,IAD,Connecting,538.6,7076,True
+Memorial Day,LAX-JFK,LAX,JFK,Nonstop,423.61,8339,True
+Memorial Day,LAX-JFK,LAX,JFK,Connecting,501.6,5992,True
+Memorial Day,LAX-LGA,LAX,LGA,Nonstop,218.59,35,True
+Memorial Day,LAX-LGA,LAX,LGA,Connecting,461.2,15761,True
+Memorial Day,LAX-MIA,LAX,MIA,Nonstop,323.6,1897,True
+Memorial Day,LAX-MIA,LAX,MIA,Connecting,438.6,10192,True
+Memorial Day,LAX-OAK,LAX,OAK,Nonstop,168.61,772,True
+Memorial Day,LAX-OAK,LAX,OAK,Connecting,467.21,4864,True
+Memorial Day,LAX-ORD,LAX,ORD,Nonstop,342.6,3985,True
+Memorial Day,LAX-ORD,LAX,ORD,Connecting,428.6,9103,True
+Memorial Day,LAX-PHL,LAX,PHL,Nonstop,429.6,1192,True
+Memorial Day,LAX-PHL,LAX,PHL,Connecting,516.61,9950,True
+Memorial Day,LAX-SFO,LAX,SFO,Nonstop,168.61,7366,True
+Memorial Day,LAX-SFO,LAX,SFO,Connecting,299.6,710,True
+Memorial Day,LGA-ATL,LGA,ATL,Nonstop,198.6,4923,True
+Memorial Day,LGA-ATL,LGA,ATL,Connecting,202.6,5937,True
+Memorial Day,LGA-BOS,LGA,BOS,Nonstop,108.6,6799,True
+Memorial Day,LGA-BOS,LGA,BOS,Connecting,317.195,2586,True
+Memorial Day,LGA-CLT,LGA,CLT,Nonstop,198.6,5181,True
+Memorial Day,LGA-CLT,LGA,CLT,Connecting,192.6,6522,True
+Memorial Day,LGA-DEN,LGA,DEN,Nonstop,258.6,2590,True
+Memorial Day,LGA-DEN,LGA,DEN,Connecting,302.6,3532,True
+Memorial Day,LGA-DFW,LGA,DFW,Nonstop,193.6,6210,True
+Memorial Day,LGA-DFW,LGA,DFW,Connecting,227.6,4390,True
+Memorial Day,LGA-DTW,LGA,DTW,Nonstop,230.59,3263,True
+Memorial Day,LGA-DTW,LGA,DTW,Connecting,267.6,3551,True
+Memorial Day,LGA-IAD,LGA,IAD,Nonstop,148.6,1890,True
+Memorial Day,LGA-IAD,LGA,IAD,Connecting,478.61,9227,True
+Memorial Day,LGA-LAX,LGA,LAX,Nonstop,188.59,34,True
+Memorial Day,LGA-LAX,LGA,LAX,Connecting,425.61,15586,True
+Memorial Day,LGA-MIA,LGA,MIA,Nonstop,190.6,5286,True
+Memorial Day,LGA-MIA,LGA,MIA,Connecting,195.6,3764,True
+Memorial Day,LGA-OAK,LGA,OAK,Connecting,741.71,6760,False
+Memorial Day,LGA-ORD,LGA,ORD,Nonstop,186.6,9422,True
+Memorial Day,LGA-ORD,LGA,ORD,Connecting,177.61,3115,True
+Memorial Day,LGA-PHL,LGA,PHL,Connecting,365.6,10177,False
+Memorial Day,LGA-SFO,LGA,SFO,Connecting,584.305,11318,False
+Memorial Day,MIA-ATL,MIA,ATL,Nonstop,163.61,3983,True
+Memorial Day,MIA-ATL,MIA,ATL,Connecting,335.2,3630,True
+Memorial Day,MIA-BOS,MIA,BOS,Nonstop,273.6,4224,True
+Memorial Day,MIA-BOS,MIA,BOS,Connecting,287.6,7108,True
+Memorial Day,MIA-CLT,MIA,CLT,Nonstop,308.6,1598,True
+Memorial Day,MIA-CLT,MIA,CLT,Connecting,287.2,7446,True
+Memorial Day,MIA-DEN,MIA,DEN,Nonstop,268.6,1045,True
+Memorial Day,MIA-DEN,MIA,DEN,Connecting,351.6,6459,True
+Memorial Day,MIA-DFW,MIA,DFW,Nonstop,248.6,2795,True
+Memorial Day,MIA-DFW,MIA,DFW,Connecting,294.6,8078,True
+Memorial Day,MIA-DTW,MIA,DTW,Nonstop,208.61,1016,True
+Memorial Day,MIA-DTW,MIA,DTW,Connecting,337.2,5709,True
+Memorial Day,MIA-EWR,MIA,EWR,Nonstop,198.6,3925,True
+Memorial Day,MIA-EWR,MIA,EWR,Connecting,358.6,2802,True
+Memorial Day,MIA-IAD,MIA,IAD,Nonstop,242.1,282,True
+Memorial Day,MIA-IAD,MIA,IAD,Connecting,356.645,3838,True
+Memorial Day,MIA-JFK,MIA,JFK,Nonstop,198.6,5954,True
+Memorial Day,MIA-JFK,MIA,JFK,Connecting,336.2,1123,True
+Memorial Day,MIA-LAX,MIA,LAX,Nonstop,323.6,1890,True
+Memorial Day,MIA-LAX,MIA,LAX,Connecting,448.19,8952,True
+Memorial Day,MIA-LGA,MIA,LGA,Nonstop,192.6,5186,True
+Memorial Day,MIA-LGA,MIA,LGA,Connecting,223.6,4103,True
+Memorial Day,MIA-OAK,MIA,OAK,Connecting,701.1,2511,False
+Memorial Day,MIA-ORD,MIA,ORD,Nonstop,248.6,2305,True
+Memorial Day,MIA-ORD,MIA,ORD,Connecting,257.6,6347,True
+Memorial Day,MIA-PHL,MIA,PHL,Nonstop,203.6,2124,True
+Memorial Day,MIA-PHL,MIA,PHL,Connecting,348.61,5750,True
+Memorial Day,MIA-SFO,MIA,SFO,Nonstop,518.6,631,True
+Memorial Day,MIA-SFO,MIA,SFO,Connecting,544.69,9518,True
+Memorial Day,OAK-ATL,OAK,ATL,Connecting,574.01,6158,False
+Memorial Day,OAK-BOS,OAK,BOS,Connecting,697.11,6339,False
+Memorial Day,OAK-CLT,OAK,CLT,Connecting,702.69,3221,False
+Memorial Day,OAK-DEN,OAK,DEN,Nonstop,93.99,146,True
+Memorial Day,OAK-DEN,OAK,DEN,Connecting,457.2,5310,True
+Memorial Day,OAK-DFW,OAK,DFW,Connecting,517.21,6201,False
+Memorial Day,OAK-DTW,OAK,DTW,Connecting,677.6,5385,False
+Memorial Day,OAK-EWR,OAK,EWR,Connecting,599.855,3528,False
+Memorial Day,OAK-IAD,OAK,IAD,Connecting,657.2,2865,False
+Memorial Day,OAK-JFK,OAK,JFK,Connecting,588.6,3169,False
+Memorial Day,OAK-LAX,OAK,LAX,Nonstop,138.6,763,True
+Memorial Day,OAK-LAX,OAK,LAX,Connecting,447.1,4162,True
+Memorial Day,OAK-LGA,OAK,LGA,Connecting,727.1,7563,False
+Memorial Day,OAK-MIA,OAK,MIA,Connecting,676.71,3441,False
+Memorial Day,OAK-ORD,OAK,ORD,Connecting,554.71,5019,False
+Memorial Day,OAK-PHL,OAK,PHL,Nonstop,225.59,206,True
+Memorial Day,OAK-PHL,OAK,PHL,Connecting,652.71,3784,True
+Memorial Day,OAK-SFO,OAK,SFO,Connecting,417.21,4534,False
+Memorial Day,ORD-ATL,ORD,ATL,Nonstop,228.6,3229,True
+Memorial Day,ORD-ATL,ORD,ATL,Connecting,200.6,4530,True
+Memorial Day,ORD-BOS,ORD,BOS,Nonstop,295.61,6636,True
+Memorial Day,ORD-BOS,ORD,BOS,Connecting,277.6,3779,True
+Memorial Day,ORD-CLT,ORD,CLT,Nonstop,250.61,2421,True
+Memorial Day,ORD-CLT,ORD,CLT,Connecting,224.6,5954,True
+Memorial Day,ORD-DEN,ORD,DEN,Nonstop,294.61,2457,True
+Memorial Day,ORD-DEN,ORD,DEN,Connecting,381.61,2918,True
+Memorial Day,ORD-DFW,ORD,DFW,Nonstop,232.6,3312,True
+Memorial Day,ORD-DFW,ORD,DFW,Connecting,264.6,5700,True
+Memorial Day,ORD-DTW,ORD,DTW,Nonstop,202.6,2979,True
+Memorial Day,ORD-DTW,ORD,DTW,Connecting,377.7,523,True
+Memorial Day,ORD-EWR,ORD,EWR,Nonstop,228.6,4854,True
+Memorial Day,ORD-EWR,ORD,EWR,Connecting,268.58,3154,True
+Memorial Day,ORD-IAD,ORD,IAD,Nonstop,238.6,1073,True
+Memorial Day,ORD-IAD,ORD,IAD,Connecting,306.2,3604,True
+Memorial Day,ORD-JFK,ORD,JFK,Nonstop,199.6,2544,True
+Memorial Day,ORD-JFK,ORD,JFK,Connecting,501.6,7600,True
+Memorial Day,ORD-LAX,ORD,LAX,Nonstop,342.6,3978,True
+Memorial Day,ORD-LAX,ORD,LAX,Connecting,428.6,7809,True
+Memorial Day,ORD-LGA,ORD,LGA,Nonstop,196.6,9595,True
+Memorial Day,ORD-LGA,ORD,LGA,Connecting,194.1,2528,True
+Memorial Day,ORD-MIA,ORD,MIA,Nonstop,248.6,2316,True
+Memorial Day,ORD-MIA,ORD,MIA,Connecting,249.6,7215,True
+Memorial Day,ORD-OAK,ORD,OAK,Connecting,591.2,4682,False
+Memorial Day,ORD-PHL,ORD,PHL,Nonstop,221.6,2693,True
+Memorial Day,ORD-PHL,ORD,PHL,Connecting,296.58,3441,True
+Memorial Day,ORD-SFO,ORD,SFO,Nonstop,457.6,2618,True
+Memorial Day,ORD-SFO,ORD,SFO,Connecting,487.6,4635,True
+Memorial Day,PHL-ATL,PHL,ATL,Nonstop,202.6,2994,True
+Memorial Day,PHL-ATL,PHL,ATL,Connecting,210.1,5841,True
+Memorial Day,PHL-BOS,PHL,BOS,Nonstop,178.6,2911,True
+Memorial Day,PHL-BOS,PHL,BOS,Connecting,356.59,2525,True
+Memorial Day,PHL-CLT,PHL,CLT,Nonstop,238.6,1919,True
+Memorial Day,PHL-CLT,PHL,CLT,Connecting,252.2,6573,True
+Memorial Day,PHL-DEN,PHL,DEN,Nonstop,342.6,844,True
+Memorial Day,PHL-DEN,PHL,DEN,Connecting,370.6,6097,True
+Memorial Day,PHL-DFW,PHL,DFW,Nonstop,403.6,1688,True
+Memorial Day,PHL-DFW,PHL,DFW,Connecting,294.6,8976,True
+Memorial Day,PHL-DTW,PHL,DTW,Nonstop,308.6,1270,True
+Memorial Day,PHL-DTW,PHL,DTW,Connecting,307.58,4986,True
+Memorial Day,PHL-EWR,PHL,EWR,Nonstop,213.6,595,True
+Memorial Day,PHL-EWR,PHL,EWR,Connecting,401.6,6924,True
+Memorial Day,PHL-IAD,PHL,IAD,Connecting,385.71,3334,False
+Memorial Day,PHL-JFK,PHL,JFK,Connecting,366.9,4270,False
+Memorial Day,PHL-LAX,PHL,LAX,Nonstop,429.6,1194,True
+Memorial Day,PHL-LAX,PHL,LAX,Connecting,438.6,8479,True
+Memorial Day,PHL-LGA,PHL,LGA,Connecting,356.19,9868,False
+Memorial Day,PHL-MIA,PHL,MIA,Nonstop,203.6,2123,True
+Memorial Day,PHL-MIA,PHL,MIA,Connecting,268.6,7174,True
+Memorial Day,PHL-OAK,PHL,OAK,Nonstop,195.59,207,True
+Memorial Day,PHL-OAK,PHL,OAK,Connecting,652.71,3104,True
+Memorial Day,PHL-ORD,PHL,ORD,Nonstop,207.61,2688,True
+Memorial Day,PHL-ORD,PHL,ORD,Connecting,288.6,4505,True
+Memorial Day,PHL-SFO,PHL,SFO,Nonstop,568.6,630,True
+Memorial Day,PHL-SFO,PHL,SFO,Connecting,571.6,6871,True
+Memorial Day,SFO-ATL,SFO,ATL,Nonstop,528.6,1511,True
+Memorial Day,SFO-ATL,SFO,ATL,Connecting,546.6,8104,True
+Memorial Day,SFO-BOS,SFO,BOS,Nonstop,434.6,3592,True
+Memorial Day,SFO-BOS,SFO,BOS,Connecting,577.6,4929,True
+Memorial Day,SFO-CLT,SFO,CLT,Nonstop,665.6,526,True
+Memorial Day,SFO-CLT,SFO,CLT,Connecting,612.21,9561,True
+Memorial Day,SFO-DEN,SFO,DEN,Nonstop,232.6,2335,True
+Memorial Day,SFO-DEN,SFO,DEN,Connecting,351.6,5195,True
+Memorial Day,SFO-DFW,SFO,DFW,Nonstop,358.6,1839,True
+Memorial Day,SFO-DFW,SFO,DFW,Connecting,368.6,4923,True
+Memorial Day,SFO-DTW,SFO,DTW,Nonstop,598.61,736,True
+Memorial Day,SFO-DTW,SFO,DTW,Connecting,607.21,8266,True
+Memorial Day,SFO-EWR,SFO,EWR,Nonstop,448.6,3081,True
+Memorial Day,SFO-EWR,SFO,EWR,Connecting,551.61,6067,True
+Memorial Day,SFO-IAD,SFO,IAD,Nonstop,528.6,1483,True
+Memorial Day,SFO-IAD,SFO,IAD,Connecting,597.61,4909,True
+Memorial Day,SFO-JFK,SFO,JFK,Nonstop,458.6,5800,True
+Memorial Day,SFO-JFK,SFO,JFK,Connecting,472.41,1840,True
+Memorial Day,SFO-LAX,SFO,LAX,Nonstop,178.6,7291,True
+Memorial Day,SFO-LAX,SFO,LAX,Connecting,367.2,829,True
+Memorial Day,SFO-LGA,SFO,LGA,Connecting,575.6,11681,False
+Memorial Day,SFO-MIA,SFO,MIA,Nonstop,498.6,633,True
+Memorial Day,SFO-MIA,SFO,MIA,Connecting,541.6,8622,True
+Memorial Day,SFO-OAK,SFO,OAK,Connecting,425.61,4449,False
+Memorial Day,SFO-ORD,SFO,ORD,Nonstop,457.6,2585,True
+Memorial Day,SFO-ORD,SFO,ORD,Connecting,519.59,4965,True
+Memorial Day,SFO-PHL,SFO,PHL,Nonstop,568.6,633,True
+Memorial Day,SFO-PHL,SFO,PHL,Connecting,591.6,7372,True
+July 4,ATL-BOS,ATL,BOS,Nonstop,398.6,3545,True
+July 4,ATL-BOS,ATL,BOS,Connecting,342.2,9650,True
+July 4,ATL-CLT,ATL,CLT,Nonstop,253.61,3579,True
+July 4,ATL-CLT,ATL,CLT,Connecting,392.21,3165,True
+July 4,ATL-DEN,ATL,DEN,Nonstop,348.59,3507,True
+July 4,ATL-DEN,ATL,DEN,Connecting,422.2,6330,True
+July 4,ATL-DFW,ATL,DFW,Nonstop,244.6,5132,True
+July 4,ATL-DFW,ATL,DFW,Connecting,318.6,2826,True
+July 4,ATL-DTW,ATL,DTW,Nonstop,278.6,3432,True
+July 4,ATL-DTW,ATL,DTW,Connecting,320.2,6947,True
+July 4,ATL-EWR,ATL,EWR,Nonstop,258.6,4334,True
+July 4,ATL-EWR,ATL,EWR,Connecting,231.58,5007,True
+July 4,ATL-IAD,ATL,IAD,Nonstop,191.6,2554,True
+July 4,ATL-IAD,ATL,IAD,Connecting,356.09,1831,True
+July 4,ATL-JFK,ATL,JFK,Nonstop,269.6,3673,True
+July 4,ATL-JFK,ATL,JFK,Connecting,377.6,6308,True
+July 4,ATL-LAX,ATL,LAX,Nonstop,488.6,4610,True
+July 4,ATL-LAX,ATL,LAX,Connecting,448.6,15725,True
+July 4,ATL-LGA,ATL,LGA,Nonstop,258.6,6244,True
+July 4,ATL-LGA,ATL,LGA,Connecting,237.58,8154,True
+July 4,ATL-MIA,ATL,MIA,Nonstop,223.6,4106,True
+July 4,ATL-MIA,ATL,MIA,Connecting,410.6,3633,True
+July 4,ATL-OAK,ATL,OAK,Connecting,586.1,8857,False
+July 4,ATL-ORD,ATL,ORD,Nonstop,268.6,3726,True
+July 4,ATL-ORD,ATL,ORD,Connecting,247.6,3826,True
+July 4,ATL-PHL,ATL,PHL,Nonstop,244.6,3637,True
+July 4,ATL-PHL,ATL,PHL,Connecting,307.6,4494,True
+July 4,ATL-SFO,ATL,SFO,Nonstop,498.6,1970,True
+July 4,ATL-SFO,ATL,SFO,Connecting,537.19,9600,True
+July 4,BOS-ATL,BOS,ATL,Nonstop,358.6,3472,True
+July 4,BOS-ATL,BOS,ATL,Connecting,318.6,10570,True
+July 4,BOS-CLT,BOS,CLT,Nonstop,198.61,3383,True
+July 4,BOS-CLT,BOS,CLT,Connecting,238.6,6895,True
+July 4,BOS-DEN,BOS,DEN,Nonstop,348.6,2166,True
+July 4,BOS-DEN,BOS,DEN,Connecting,407.6,10195,True
+July 4,BOS-DFW,BOS,DFW,Nonstop,292.6,2468,True
+July 4,BOS-DFW,BOS,DFW,Connecting,307.6,8736,True
+July 4,BOS-DTW,BOS,DTW,Nonstop,244.35,2306,True
+July 4,BOS-DTW,BOS,DTW,Connecting,268.6,8009,True
+July 4,BOS-EWR,BOS,EWR,Nonstop,108.6,4488,True
+July 4,BOS-EWR,BOS,EWR,Connecting,260.7,2239,True
+July 4,BOS-IAD,BOS,IAD,Nonstop,151.6,1080,True
+July 4,BOS-IAD,BOS,IAD,Connecting,357.6,4635,True
+July 4,BOS-JFK,BOS,JFK,Nonstop,143.6,9065,True
+July 4,BOS-JFK,BOS,JFK,Connecting,487.2,1056,True
+July 4,BOS-LAX,BOS,LAX,Nonstop,504.6,5546,True
+July 4,BOS-LAX,BOS,LAX,Connecting,467.6,14558,True
+July 4,BOS-LGA,BOS,LGA,Nonstop,94.6,8815,True
+July 4,BOS-LGA,BOS,LGA,Connecting,182.6,3761,True
+July 4,BOS-MIA,BOS,MIA,Nonstop,273.6,4547,True
+July 4,BOS-MIA,BOS,MIA,Connecting,277.58,7819,True
+July 4,BOS-OAK,BOS,OAK,Connecting,682.7,7630,False
+July 4,BOS-ORD,BOS,ORD,Nonstop,258.6,7976,True
+July 4,BOS-ORD,BOS,ORD,Connecting,217.6,4949,True
+July 4,BOS-PHL,BOS,PHL,Nonstop,138.6,3424,True
+July 4,BOS-PHL,BOS,PHL,Connecting,296.58,2548,True
+July 4,BOS-SFO,BOS,SFO,Nonstop,548.6,4071,True
+July 4,BOS-SFO,BOS,SFO,Connecting,497.6,11531,True
+July 4,CLT-ATL,CLT,ATL,Nonstop,307.1,3563,True
+July 4,CLT-ATL,CLT,ATL,Connecting,390.71,3961,True
+July 4,CLT-BOS,CLT,BOS,Nonstop,217.1,3409,True
+July 4,CLT-BOS,CLT,BOS,Connecting,256.1,6763,True
+July 4,CLT-DEN,CLT,DEN,Nonstop,397.1,2046,True
+July 4,CLT-DEN,CLT,DEN,Connecting,407.1,6102,True
+July 4,CLT-DFW,CLT,DFW,Nonstop,254.1,2592,True
+July 4,CLT-DFW,CLT,DFW,Connecting,303.11,9351,True
+July 4,CLT-DTW,CLT,DTW,Nonstop,247.1,2192,True
+July 4,CLT-DTW,CLT,DTW,Connecting,326.1,6333,True
+July 4,CLT-EWR,CLT,EWR,Nonstop,208.11,5266,True
+July 4,CLT-EWR,CLT,EWR,Connecting,297.1,4147,True
+July 4,CLT-IAD,CLT,IAD,Nonstop,180.1,2325,True
+July 4,CLT-IAD,CLT,IAD,Connecting,239.1,1615,True
+July 4,CLT-JFK,CLT,JFK,Nonstop,197.11,4002,True
+July 4,CLT-JFK,CLT,JFK,Connecting,216.11,4588,True
+July 4,CLT-LAX,CLT,LAX,Nonstop,447.1,2092,True
+July 4,CLT-LAX,CLT,LAX,Connecting,521.6,14915,True
+July 4,CLT-LGA,CLT,LGA,Nonstop,187.1,6429,True
+July 4,CLT-LGA,CLT,LGA,Connecting,191.1,7527,True
+July 4,CLT-MIA,CLT,MIA,Nonstop,307.1,1894,True
+July 4,CLT-MIA,CLT,MIA,Connecting,220.1,10650,True
+July 4,CLT-OAK,CLT,OAK,Connecting,705.79,4563,False
+July 4,CLT-ORD,CLT,ORD,Nonstop,214.1,3056,True
+July 4,CLT-ORD,CLT,ORD,Connecting,221.1,6557,True
+July 4,CLT-PHL,CLT,PHL,Nonstop,237.1,2314,True
+July 4,CLT-PHL,CLT,PHL,Connecting,323.1,6753,True
+July 4,CLT-SFO,CLT,SFO,Nonstop,564.1,1229,True
+July 4,CLT-SFO,CLT,SFO,Connecting,581.2,11030,True
+July 4,DEN-ATL,DEN,ATL,Nonstop,368.6,3505,True
+July 4,DEN-ATL,DEN,ATL,Connecting,407.6,6202,True
+July 4,DEN-BOS,DEN,BOS,Nonstop,446.6,2190,True
+July 4,DEN-BOS,DEN,BOS,Connecting,467.6,9797,True
+July 4,DEN-CLT,DEN,CLT,Nonstop,428.6,2054,True
+July 4,DEN-CLT,DEN,CLT,Connecting,434.01,7042,True
+July 4,DEN-DFW,DEN,DFW,Nonstop,202.6,4293,True
+July 4,DEN-DFW,DEN,DFW,Connecting,232.6,2881,True
+July 4,DEN-DTW,DEN,DTW,Nonstop,368.6,1690,True
+July 4,DEN-DTW,DEN,DTW,Connecting,427.19,6851,True
+July 4,DEN-EWR,DEN,EWR,Nonstop,358.6,2464,True
+July 4,DEN-EWR,DEN,EWR,Connecting,428.6,7122,True
+July 4,DEN-IAD,DEN,IAD,Nonstop,358.6,1915,True
+July 4,DEN-IAD,DEN,IAD,Connecting,454.6,4841,True
+July 4,DEN-JFK,DEN,JFK,Nonstop,270.1,1642,True
+July 4,DEN-JFK,DEN,JFK,Connecting,591.2,12355,True
+July 4,DEN-LAX,DEN,LAX,Nonstop,232.6,5293,True
+July 4,DEN-LAX,DEN,LAX,Connecting,268.6,7358,True
+July 4,DEN-LGA,DEN,LGA,Nonstop,298.6,3106,True
+July 4,DEN-LGA,DEN,LGA,Connecting,367.6,6591,True
+July 4,DEN-MIA,DEN,MIA,Nonstop,312.6,1274,True
+July 4,DEN-MIA,DEN,MIA,Connecting,440.59,7773,True
+July 4,DEN-OAK,DEN,OAK,Nonstop,130.98,138,True
+July 4,DEN-OAK,DEN,OAK,Connecting,481.6,5997,True
+July 4,DEN-ORD,DEN,ORD,Nonstop,298.6,3464,True
+July 4,DEN-ORD,DEN,ORD,Connecting,400.2,4841,True
+July 4,DEN-PHL,DEN,PHL,Nonstop,418.6,1319,True
+July 4,DEN-PHL,DEN,PHL,Connecting,436.6,8455,True
+July 4,DEN-SFO,DEN,SFO,Nonstop,205.6,3054,True
+July 4,DEN-SFO,DEN,SFO,Connecting,375.6,6149,True
+July 4,DFW-ATL,DFW,ATL,Nonstop,242.6,5128,True
+July 4,DFW-ATL,DFW,ATL,Connecting,327.21,3243,True
+July 4,DFW-BOS,DFW,BOS,Nonstop,327.6,2495,True
+July 4,DFW-BOS,DFW,BOS,Connecting,335.2,9299,True
+July 4,DFW-CLT,DFW,CLT,Nonstop,297.105,2594,True
+July 4,DFW-CLT,DFW,CLT,Connecting,328.6,8748,True
+July 4,DFW-DEN,DFW,DEN,Nonstop,232.6,4288,True
+July 4,DFW-DEN,DFW,DEN,Connecting,291.6,3217,True
+July 4,DFW-DTW,DFW,DTW,Nonstop,329.6,2500,True
+July 4,DFW-DTW,DFW,DTW,Connecting,344.61,6155,True
+July 4,DFW-EWR,DFW,EWR,Nonstop,298.6,3877,True
+July 4,DFW-EWR,DFW,EWR,Connecting,357.85,6516,True
+July 4,DFW-IAD,DFW,IAD,Nonstop,338.61,1093,True
+July 4,DFW-IAD,DFW,IAD,Connecting,357.6,5298,True
+July 4,DFW-JFK,DFW,JFK,Nonstop,258.6,2659,True
+July 4,DFW-JFK,DFW,JFK,Connecting,388.2,3579,True
+July 4,DFW-LAX,DFW,LAX,Nonstop,288.61,6683,True
+July 4,DFW-LAX,DFW,LAX,Connecting,368.6,11205,True
+July 4,DFW-LGA,DFW,LGA,Nonstop,228.6,7878,True
+July 4,DFW-LGA,DFW,LGA,Connecting,268.6,7045,True
+July 4,DFW-MIA,DFW,MIA,Nonstop,245.6,3440,True
+July 4,DFW-MIA,DFW,MIA,Connecting,294.6,9228,True
+July 4,DFW-OAK,DFW,OAK,Connecting,530.1,10055,False
+July 4,DFW-ORD,DFW,ORD,Nonstop,259.6,4013,True
+July 4,DFW-ORD,DFW,ORD,Connecting,317.59,6324,True
+July 4,DFW-PHL,DFW,PHL,Nonstop,372.6,2371,True
+July 4,DFW-PHL,DFW,PHL,Connecting,333.2,8489,True
+July 4,DFW-SFO,DFW,SFO,Nonstop,322.6,3135,True
+July 4,DFW-SFO,DFW,SFO,Connecting,384.2,4690,True
+July 4,DTW-ATL,DTW,ATL,Nonstop,233.6,3366,True
+July 4,DTW-ATL,DTW,ATL,Connecting,336.1,7125,True
+July 4,DTW-BOS,DTW,BOS,Nonstop,245.1,2310,True
+July 4,DTW-BOS,DTW,BOS,Connecting,268.6,8243,True
+July 4,DTW-CLT,DTW,CLT,Nonstop,248.6,2180,True
+July 4,DTW-CLT,DTW,CLT,Connecting,317.6,5954,True
+July 4,DTW-DEN,DTW,DEN,Nonstop,308.6,1671,True
+July 4,DTW-DEN,DTW,DEN,Connecting,406.1,6076,True
+July 4,DTW-DFW,DTW,DFW,Nonstop,258.6,2521,True
+July 4,DTW-DFW,DTW,DFW,Connecting,338.6,5725,True
+July 4,DTW-EWR,DTW,EWR,Nonstop,198.6,2592,True
+July 4,DTW-EWR,DTW,EWR,Connecting,241.1,4899,True
+July 4,DTW-IAD,DTW,IAD,Nonstop,178.6,1942,True
+July 4,DTW-IAD,DTW,IAD,Connecting,251.1,1587,True
+July 4,DTW-JFK,DTW,JFK,Nonstop,209.61,2162,True
+July 4,DTW-JFK,DTW,JFK,Connecting,431.61,5182,True
+July 4,DTW-LAX,DTW,LAX,Nonstop,398.6,2212,True
+July 4,DTW-LAX,DTW,LAX,Connecting,476.61,14571,True
+July 4,DTW-LGA,DTW,LGA,Nonstop,198.6,4309,True
+July 4,DTW-LGA,DTW,LGA,Connecting,195.1,5582,True
+July 4,DTW-MIA,DTW,MIA,Nonstop,208.61,1285,True
+July 4,DTW-MIA,DTW,MIA,Connecting,296.11,6894,True
+July 4,DTW-OAK,DTW,OAK,Nonstop,378.61,104,True
+July 4,DTW-OAK,DTW,OAK,Connecting,607.205,6792,True
+July 4,DTW-ORD,DTW,ORD,Nonstop,202.6,3381,True
+July 4,DTW-ORD,DTW,ORD,Connecting,296.1,1587,True
+July 4,DTW-PHL,DTW,PHL,Nonstop,248.6,1880,True
+July 4,DTW-PHL,DTW,PHL,Connecting,328.6,4379,True
+July 4,DTW-SFO,DTW,SFO,Nonstop,498.6,915,True
+July 4,DTW-SFO,DTW,SFO,Connecting,527.6,10974,True
+July 4,EWR-ATL,EWR,ATL,Nonstop,248.6,4301,True
+July 4,EWR-ATL,EWR,ATL,Connecting,291.58,4721,True
+July 4,EWR-BOS,EWR,BOS,Nonstop,128.6,4517,True
+July 4,EWR-BOS,EWR,BOS,Connecting,257.58,1369,True
+July 4,EWR-CLT,EWR,CLT,Nonstop,213.6,5326,True
+July 4,EWR-CLT,EWR,CLT,Connecting,278.6,4071,True
+July 4,EWR-DEN,EWR,DEN,Nonstop,308.6,2439,True
+July 4,EWR-DEN,EWR,DEN,Connecting,437.6,7029,True
+July 4,EWR-DFW,EWR,DFW,Nonstop,256.6,3811,True
+July 4,EWR-DFW,EWR,DFW,Connecting,357.6,5557,True
+July 4,EWR-DTW,EWR,DTW,Nonstop,213.6,2560,True
+July 4,EWR-DTW,EWR,DTW,Connecting,276.1,4745,True
+July 4,EWR-IAD,EWR,IAD,Nonstop,218.6,1814,True
+July 4,EWR-IAD,EWR,IAD,Connecting,371.1,4845,True
+July 4,EWR-LAX,EWR,LAX,Nonstop,384.35,4932,True
+July 4,EWR-LAX,EWR,LAX,Connecting,462.2,11421,True
+July 4,EWR-MIA,EWR,MIA,Nonstop,246.6,3856,True
+July 4,EWR-MIA,EWR,MIA,Connecting,295.6,4541,True
+July 4,EWR-OAK,EWR,OAK,Connecting,619.6,4995,False
+July 4,EWR-ORD,EWR,ORD,Nonstop,192.6,6103,True
+July 4,EWR-ORD,EWR,ORD,Connecting,301.58,4950,True
+July 4,EWR-PHL,EWR,PHL,Nonstop,193.6,713,True
+July 4,EWR-PHL,EWR,PHL,Connecting,437.2,7562,True
+July 4,EWR-SFO,EWR,SFO,Nonstop,408.6,3747,True
+July 4,EWR-SFO,EWR,SFO,Connecting,508.6,7638,True
+July 4,IAD-ATL,IAD,ATL,Nonstop,191.6,2527,True
+July 4,IAD-ATL,IAD,ATL,Connecting,346.11,1830,True
+July 4,IAD-BOS,IAD,BOS,Nonstop,161.6,1084,True
+July 4,IAD-BOS,IAD,BOS,Connecting,391.61,5535,True
+July 4,IAD-CLT,IAD,CLT,Nonstop,181.6,2306,True
+July 4,IAD-CLT,IAD,CLT,Connecting,288.6,2257,True
+July 4,IAD-DEN,IAD,DEN,Nonstop,358.6,1894,True
+July 4,IAD-DEN,IAD,DEN,Connecting,436.1,5512,True
+July 4,IAD-DFW,IAD,DFW,Nonstop,326.6,1082,True
+July 4,IAD-DFW,IAD,DFW,Connecting,333.65,5170,True
+July 4,IAD-DTW,IAD,DTW,Nonstop,181.6,1939,True
+July 4,IAD-DTW,IAD,DTW,Connecting,282.1,1309,True
+July 4,IAD-EWR,IAD,EWR,Nonstop,197.6,1820,True
+July 4,IAD-EWR,IAD,EWR,Connecting,371.1,4947,True
+July 4,IAD-JFK,IAD,JFK,Nonstop,198.6,813,True
+July 4,IAD-JFK,IAD,JFK,Connecting,423.11,5008,True
+July 4,IAD-LAX,IAD,LAX,Nonstop,428.6,1463,True
+July 4,IAD-LAX,IAD,LAX,Connecting,531.6,9988,True
+July 4,IAD-LGA,IAD,LGA,Nonstop,148.6,2485,True
+July 4,IAD-LGA,IAD,LGA,Connecting,451.6,13633,True
+July 4,IAD-MIA,IAD,MIA,Nonstop,244.6,271,True
+July 4,IAD-MIA,IAD,MIA,Connecting,356.1,5605,True
+July 4,IAD-OAK,IAD,OAK,Connecting,724.0,4814,False
+July 4,IAD-ORD,IAD,ORD,Nonstop,238.6,1309,True
+July 4,IAD-ORD,IAD,ORD,Connecting,320.69,6007,True
+July 4,IAD-PHL,IAD,PHL,Connecting,378.6,5984,False
+July 4,IAD-SFO,IAD,SFO,Nonstop,528.6,1986,True
+July 4,IAD-SFO,IAD,SFO,Connecting,541.6,8541,True
+July 4,JFK-ATL,JFK,ATL,Nonstop,279.6,3716,True
+July 4,JFK-ATL,JFK,ATL,Connecting,451.6,5116,True
+July 4,JFK-BOS,JFK,BOS,Nonstop,188.6,9290,True
+July 4,JFK-BOS,JFK,BOS,Connecting,501.6,1386,True
+July 4,JFK-CLT,JFK,CLT,Nonstop,218.6,3958,True
+July 4,JFK-CLT,JFK,CLT,Connecting,387.4,3542,True
+July 4,JFK-DEN,JFK,DEN,Nonstop,269.35,1629,True
+July 4,JFK-DEN,JFK,DEN,Connecting,591.2,9219,True
+July 4,JFK-DFW,JFK,DFW,Nonstop,258.6,2637,True
+July 4,JFK-DFW,JFK,DFW,Connecting,602.7,6668,True
+July 4,JFK-DTW,JFK,DTW,Nonstop,255.6,2145,True
+July 4,JFK-DTW,JFK,DTW,Connecting,448.19,4785,True
+July 4,JFK-IAD,JFK,IAD,Nonstop,198.6,815,True
+July 4,JFK-IAD,JFK,IAD,Connecting,437.08,4097,True
+July 4,JFK-LAX,JFK,LAX,Nonstop,488.6,10803,True
+July 4,JFK-LAX,JFK,LAX,Connecting,497.19,7779,True
+July 4,JFK-MIA,JFK,MIA,Nonstop,213.6,7546,True
+July 4,JFK-MIA,JFK,MIA,Connecting,577.2,1472,True
+July 4,JFK-OAK,JFK,OAK,Connecting,628.6,3567,False
+July 4,JFK-ORD,JFK,ORD,Nonstop,233.6,3237,True
+July 4,JFK-ORD,JFK,ORD,Connecting,527.19,12312,True
+July 4,JFK-PHL,JFK,PHL,Connecting,371.35,4534,False
+July 4,JFK-SFO,JFK,SFO,Nonstop,438.6,8192,True
+July 4,JFK-SFO,JFK,SFO,Connecting,512.1,2277,True
+July 4,LAX-ATL,LAX,ATL,Nonstop,498.6,4603,True
+July 4,LAX-ATL,LAX,ATL,Connecting,491.6,14894,True
+July 4,LAX-BOS,LAX,BOS,Nonstop,584.6,5100,True
+July 4,LAX-BOS,LAX,BOS,Connecting,504.6,16911,True
+July 4,LAX-CLT,LAX,CLT,Nonstop,555.61,2099,True
+July 4,LAX-CLT,LAX,CLT,Connecting,530.09,15901,True
+July 4,LAX-DEN,LAX,DEN,Nonstop,218.6,5292,True
+July 4,LAX-DEN,LAX,DEN,Connecting,310.59,7521,True
+July 4,LAX-DFW,LAX,DFW,Nonstop,285.6,6758,True
+July 4,LAX-DFW,LAX,DFW,Connecting,309.58,11392,True
+July 4,LAX-DTW,LAX,DTW,Nonstop,498.6,2226,True
+July 4,LAX-DTW,LAX,DTW,Connecting,528.6,15129,True
+July 4,LAX-EWR,LAX,EWR,Nonstop,386.6,4910,True
+July 4,LAX-EWR,LAX,EWR,Connecting,480.59,12112,True
+July 4,LAX-IAD,LAX,IAD,Nonstop,468.61,1480,True
+July 4,LAX-IAD,LAX,IAD,Connecting,546.6,11473,True
+July 4,LAX-JFK,LAX,JFK,Nonstop,448.6,9736,True
+July 4,LAX-JFK,LAX,JFK,Connecting,468.6,9457,True
+July 4,LAX-LGA,LAX,LGA,Connecting,467.6,20384,False
+July 4,LAX-MIA,LAX,MIA,Nonstop,403.6,2176,True
+July 4,LAX-MIA,LAX,MIA,Connecting,463.92,13010,True
+July 4,LAX-OAK,LAX,OAK,Nonstop,148.6,1181,True
+July 4,LAX-OAK,LAX,OAK,Connecting,475.1,4752,True
+July 4,LAX-ORD,LAX,ORD,Nonstop,342.6,5510,True
+July 4,LAX-ORD,LAX,ORD,Connecting,395.59,12173,True
+July 4,LAX-PHL,LAX,PHL,Nonstop,469.61,1823,True
+July 4,LAX-PHL,LAX,PHL,Connecting,521.61,14396,True
+July 4,LAX-SFO,LAX,SFO,Nonstop,158.6,8862,True
+July 4,LAX-SFO,LAX,SFO,Connecting,339.61,2159,True
+July 4,LGA-ATL,LGA,ATL,Nonstop,243.98,6167,True
+July 4,LGA-ATL,LGA,ATL,Connecting,237.6,6163,True
+July 4,LGA-BOS,LGA,BOS,Nonstop,108.6,8756,True
+July 4,LGA-BOS,LGA,BOS,Connecting,217.61,3328,True
+July 4,LGA-CLT,LGA,CLT,Nonstop,198.6,6387,True
+July 4,LGA-CLT,LGA,CLT,Connecting,192.6,7089,True
+July 4,LGA-DEN,LGA,DEN,Nonstop,288.6,3069,True
+July 4,LGA-DEN,LGA,DEN,Connecting,372.61,5650,True
+July 4,LGA-DFW,LGA,DFW,Nonstop,228.6,7763,True
+July 4,LGA-DFW,LGA,DFW,Connecting,268.58,6013,True
+July 4,LGA-DTW,LGA,DTW,Nonstop,223.6,4311,True
+July 4,LGA-DTW,LGA,DTW,Connecting,226.59,5038,True
+July 4,LGA-IAD,LGA,IAD,Nonstop,148.6,2483,True
+July 4,LGA-IAD,LGA,IAD,Connecting,450.695,12564,True
+July 4,LGA-LAX,LGA,LAX,Connecting,472.61,20893,False
+July 4,LGA-MIA,LGA,MIA,Nonstop,214.6,6331,True
+July 4,LGA-MIA,LGA,MIA,Connecting,247.6,4733,True
+July 4,LGA-OAK,LGA,OAK,Connecting,766.11,8499,False
+July 4,LGA-ORD,LGA,ORD,Nonstop,193.6,11578,True
+July 4,LGA-ORD,LGA,ORD,Connecting,182.6,3818,True
+July 4,LGA-PHL,LGA,PHL,Connecting,376.11,12656,False
+July 4,LGA-SFO,LGA,SFO,Connecting,548.4,15024,False
+July 4,MIA-ATL,MIA,ATL,Nonstop,208.61,4130,True
+July 4,MIA-ATL,MIA,ATL,Connecting,421.2,3753,True
+July 4,MIA-BOS,MIA,BOS,Nonstop,273.6,4595,True
+July 4,MIA-BOS,MIA,BOS,Connecting,293.2,8104,True
+July 4,MIA-CLT,MIA,CLT,Nonstop,308.6,1887,True
+July 4,MIA-CLT,MIA,CLT,Connecting,308.59,9074,True
+July 4,MIA-DEN,MIA,DEN,Nonstop,312.6,1271,True
+July 4,MIA-DEN,MIA,DEN,Connecting,420.6,7663,True
+July 4,MIA-DFW,MIA,DFW,Nonstop,245.6,3495,True
+July 4,MIA-DFW,MIA,DFW,Connecting,287.6,10463,True
+July 4,MIA-DTW,MIA,DTW,Nonstop,226.59,1287,True
+July 4,MIA-DTW,MIA,DTW,Connecting,317.6,6326,True
+July 4,MIA-EWR,MIA,EWR,Nonstop,226.6,3798,True
+July 4,MIA-EWR,MIA,EWR,Connecting,387.2,4508,True
+July 4,MIA-IAD,MIA,IAD,Nonstop,308.6,271,True
+July 4,MIA-IAD,MIA,IAD,Connecting,380.2,4929,True
+July 4,MIA-JFK,MIA,JFK,Nonstop,198.6,7484,True
+July 4,MIA-JFK,MIA,JFK,Connecting,601.6,901,True
+July 4,MIA-LAX,MIA,LAX,Nonstop,348.6,2173,True
+July 4,MIA-LAX,MIA,LAX,Connecting,408.6,11176,True
+July 4,MIA-LGA,MIA,LGA,Nonstop,198.6,6323,True
+July 4,MIA-LGA,MIA,LGA,Connecting,247.6,4391,True
+July 4,MIA-OAK,MIA,OAK,Connecting,721.71,3510,False
+July 4,MIA-ORD,MIA,ORD,Nonstop,245.6,2699,True
+July 4,MIA-ORD,MIA,ORD,Connecting,278.6,7738,True
+July 4,MIA-PHL,MIA,PHL,Nonstop,212.6,2348,True
+July 4,MIA-PHL,MIA,PHL,Connecting,355.71,7328,True
+July 4,MIA-SFO,MIA,SFO,Nonstop,447.6,768,True
+July 4,MIA-SFO,MIA,SFO,Connecting,518.61,9718,True
+July 4,OAK-ATL,OAK,ATL,Connecting,614.7,8381,False
+July 4,OAK-BOS,OAK,BOS,Connecting,727.2,7298,False
+July 4,OAK-CLT,OAK,CLT,Connecting,736.71,4291,False
+July 4,OAK-DEN,OAK,DEN,Nonstop,130.98,135,True
+July 4,OAK-DEN,OAK,DEN,Connecting,461.6,7438,True
+July 4,OAK-DFW,OAK,DFW,Connecting,418.6,10367,False
+July 4,OAK-DTW,OAK,DTW,Nonstop,498.6,104,True
+July 4,OAK-DTW,OAK,DTW,Connecting,657.09,6121,True
+July 4,OAK-EWR,OAK,EWR,Connecting,609.6,5116,False
+July 4,OAK-IAD,OAK,IAD,Connecting,711.6,5122,False
+July 4,OAK-JFK,OAK,JFK,Connecting,608.6,4143,False
+July 4,OAK-LAX,OAK,LAX,Nonstop,154.59,1170,True
+July 4,OAK-LAX,OAK,LAX,Connecting,481.6,5206,True
+July 4,OAK-LGA,OAK,LGA,Connecting,736.11,9851,False
+July 4,OAK-MIA,OAK,MIA,Connecting,761.9,3712,False
+July 4,OAK-ORD,OAK,ORD,Nonstop,248.59,269,True
+July 4,OAK-ORD,OAK,ORD,Connecting,528.6,7634,True
+July 4,OAK-PHL,OAK,PHL,Nonstop,228.59,270,True
+July 4,OAK-PHL,OAK,PHL,Connecting,726.1,5956,True
+July 4,OAK-SFO,OAK,SFO,Connecting,427.21,6468,False
+July 4,ORD-ATL,ORD,ATL,Nonstop,238.6,3747,True
+July 4,ORD-ATL,ORD,ATL,Connecting,241.58,4262,True
+July 4,ORD-BOS,ORD,BOS,Nonstop,268.6,8081,True
+July 4,ORD-BOS,ORD,BOS,Connecting,246.6,4929,True
+July 4,ORD-CLT,ORD,CLT,Nonstop,212.6,3097,True
+July 4,ORD-CLT,ORD,CLT,Connecting,224.6,5880,True
+July 4,ORD-DEN,ORD,DEN,Nonstop,244.6,3467,True
+July 4,ORD-DEN,ORD,DEN,Connecting,338.61,3469,True
+July 4,ORD-DFW,ORD,DFW,Nonstop,232.6,4017,True
+July 4,ORD-DFW,ORD,DFW,Connecting,264.6,7908,True
+July 4,ORD-DTW,ORD,DTW,Nonstop,202.6,3427,True
+July 4,ORD-DTW,ORD,DTW,Connecting,272.2,935,True
+July 4,ORD-EWR,ORD,EWR,Nonstop,182.6,6175,True
+July 4,ORD-EWR,ORD,EWR,Connecting,268.58,4673,True
+July 4,ORD-IAD,ORD,IAD,Nonstop,278.6,1325,True
+July 4,ORD-IAD,ORD,IAD,Connecting,301.21,5906,True
+July 4,ORD-JFK,ORD,JFK,Nonstop,203.6,3263,True
+July 4,ORD-JFK,ORD,JFK,Connecting,517.2,12168,True
+July 4,ORD-LAX,ORD,LAX,Nonstop,342.6,5474,True
+July 4,ORD-LAX,ORD,LAX,Connecting,359.58,11488,True
+July 4,ORD-LGA,ORD,LGA,Nonstop,178.6,11760,True
+July 4,ORD-LGA,ORD,LGA,Connecting,182.6,4299,True
+July 4,ORD-MIA,ORD,MIA,Nonstop,230.6,2722,True
+July 4,ORD-MIA,ORD,MIA,Connecting,244.6,7075,True
+July 4,ORD-OAK,ORD,OAK,Nonstop,220.59,274,True
+July 4,ORD-OAK,ORD,OAK,Connecting,547.2,6261,True
+July 4,ORD-PHL,ORD,PHL,Nonstop,202.6,3472,True
+July 4,ORD-PHL,ORD,PHL,Connecting,287.6,3405,True
+July 4,ORD-SFO,ORD,SFO,Nonstop,428.6,3799,True
+July 4,ORD-SFO,ORD,SFO,Connecting,421.2,7710,True
+July 4,PHL-ATL,PHL,ATL,Nonstop,228.6,3620,True
+July 4,PHL-ATL,PHL,ATL,Connecting,258.6,4668,True
+July 4,PHL-BOS,PHL,BOS,Nonstop,143.6,3435,True
+July 4,PHL-BOS,PHL,BOS,Connecting,322.2,2234,True
+July 4,PHL-CLT,PHL,CLT,Nonstop,238.6,2348,True
+July 4,PHL-CLT,PHL,CLT,Connecting,298.6,7038,True
+July 4,PHL-DEN,PHL,DEN,Nonstop,391.6,1310,True
+July 4,PHL-DEN,PHL,DEN,Connecting,407.61,6951,True
+July 4,PHL-DFW,PHL,DFW,Nonstop,285.6,2347,True
+July 4,PHL-DFW,PHL,DFW,Connecting,294.6,9807,True
+July 4,PHL-DTW,PHL,DTW,Nonstop,248.6,1880,True
+July 4,PHL-DTW,PHL,DTW,Connecting,321.6,4438,True
+July 4,PHL-EWR,PHL,EWR,Nonstop,193.6,712,True
+July 4,PHL-EWR,PHL,EWR,Connecting,416.11,8424,True
+July 4,PHL-IAD,PHL,IAD,Connecting,382.1,5224,False
+July 4,PHL-JFK,PHL,JFK,Connecting,327.2,4597,False
+July 4,PHL-LAX,PHL,LAX,Nonstop,429.6,1762,True
+July 4,PHL-LAX,PHL,LAX,Connecting,460.6,13143,True
+July 4,PHL-LGA,PHL,LGA,Connecting,356.2,13043,False
+July 4,PHL-MIA,PHL,MIA,Nonstop,205.6,2337,True
+July 4,PHL-MIA,PHL,MIA,Connecting,246.58,7481,True
+July 4,PHL-OAK,PHL,OAK,Nonstop,225.59,268,True
+July 4,PHL-OAK,PHL,OAK,Connecting,745.69,4840,True
+July 4,PHL-ORD,PHL,ORD,Nonstop,192.6,3433,True
+July 4,PHL-ORD,PHL,ORD,Connecting,264.58,3411,True
+July 4,PHL-SFO,PHL,SFO,Nonstop,528.59,768,True
+July 4,PHL-SFO,PHL,SFO,Connecting,568.6,9587,True
+July 4,SFO-ATL,SFO,ATL,Nonstop,528.59,1955,True
+July 4,SFO-ATL,SFO,ATL,Connecting,548.61,9685,True
+July 4,SFO-BOS,SFO,BOS,Nonstop,708.6,3621,True
+July 4,SFO-BOS,SFO,BOS,Connecting,596.6,14668,True
+July 4,SFO-CLT,SFO,CLT,Nonstop,665.6,1177,True
+July 4,SFO-CLT,SFO,CLT,Connecting,628.6,10883,True
+July 4,SFO-DEN,SFO,DEN,Nonstop,268.6,3046,True
+July 4,SFO-DEN,SFO,DEN,Connecting,395.6,8004,True
+July 4,SFO-DFW,SFO,DFW,Nonstop,357.6,3108,True
+July 4,SFO-DFW,SFO,DFW,Connecting,402.59,4747,True
+July 4,SFO-DTW,SFO,DTW,Nonstop,618.6,934,True
+July 4,SFO-DTW,SFO,DTW,Connecting,610.21,10450,True
+July 4,SFO-EWR,SFO,EWR,Nonstop,528.6,3670,True
+July 4,SFO-EWR,SFO,EWR,Connecting,549.6,8999,True
+July 4,SFO-IAD,SFO,IAD,Nonstop,538.6,1957,True
+July 4,SFO-IAD,SFO,IAD,Connecting,605.7,8627,True
+July 4,SFO-JFK,SFO,JFK,Nonstop,498.6,8193,True
+July 4,SFO-JFK,SFO,JFK,Connecting,517.61,2641,True
+July 4,SFO-LAX,SFO,LAX,Nonstop,181.6,8747,True
+July 4,SFO-LAX,SFO,LAX,Connecting,374.61,2365,True
+July 4,SFO-LGA,SFO,LGA,Connecting,620.045,16122,False
+July 4,SFO-MIA,SFO,MIA,Nonstop,447.6,740,True
+July 4,SFO-MIA,SFO,MIA,Connecting,604.2,10987,True
+July 4,SFO-OAK,SFO,OAK,Connecting,417.2,5781,False
+July 4,SFO-ORD,SFO,ORD,Nonstop,428.6,3720,True
+July 4,SFO-ORD,SFO,ORD,Connecting,527.6,8494,True
+July 4,SFO-PHL,SFO,PHL,Nonstop,548.6,768,True
+July 4,SFO-PHL,SFO,PHL,Connecting,637.1,9929,True
+Labor Day,ATL-BOS,ATL,BOS,Nonstop,298.6,4431,True
+Labor Day,ATL-BOS,ATL,BOS,Connecting,253.6,14377,True
+Labor Day,ATL-CLT,ATL,CLT,Nonstop,183.6,4268,True
+Labor Day,ATL-CLT,ATL,CLT,Connecting,334.7,2829,True
+Labor Day,ATL-DEN,ATL,DEN,Nonstop,218.6,4580,True
+Labor Day,ATL-DEN,ATL,DEN,Connecting,271.6,8213,True
+Labor Day,ATL-DFW,ATL,DFW,Nonstop,178.6,6400,True
+Labor Day,ATL-DFW,ATL,DFW,Connecting,238.58,4725,True
+Labor Day,ATL-DTW,ATL,DTW,Nonstop,228.6,4514,True
+Labor Day,ATL-DTW,ATL,DTW,Connecting,286.58,10093,True
+Labor Day,ATL-EWR,ATL,EWR,Nonstop,238.6,5460,True
+Labor Day,ATL-EWR,ATL,EWR,Connecting,236.58,5712,True
+Labor Day,ATL-IAD,ATL,IAD,Nonstop,151.6,3066,True
+Labor Day,ATL-IAD,ATL,IAD,Connecting,236.1,1792,True
+Labor Day,ATL-JFK,ATL,JFK,Nonstop,238.6,5643,True
+Labor Day,ATL-JFK,ATL,JFK,Connecting,312.21,8344,True
+Labor Day,ATL-LAX,ATL,LAX,Nonstop,378.6,5809,True
+Labor Day,ATL-LAX,ATL,LAX,Connecting,327.6,25376,True
+Labor Day,ATL-LGA,ATL,LGA,Nonstop,243.61,7713,True
+Labor Day,ATL-LGA,ATL,LGA,Connecting,222.6,12070,True
+Labor Day,ATL-MIA,ATL,MIA,Nonstop,168.61,4701,True
+Labor Day,ATL-MIA,ATL,MIA,Connecting,308.21,5885,True
+Labor Day,ATL-OAK,ATL,OAK,Connecting,549.1,15013,False
+Labor Day,ATL-ORD,ATL,ORD,Nonstop,202.6,5190,True
+Labor Day,ATL-ORD,ATL,ORD,Connecting,207.6,7372,True
+Labor Day,ATL-PHL,ATL,PHL,Nonstop,195.61,4833,True
+Labor Day,ATL-PHL,ATL,PHL,Connecting,253.6,5958,True
+Labor Day,ATL-SFO,ATL,SFO,Nonstop,378.6,2588,True
+Labor Day,ATL-SFO,ATL,SFO,Connecting,418.2,17969,True
+Labor Day,BOS-ATL,BOS,ATL,Nonstop,248.6,4420,True
+Labor Day,BOS-ATL,BOS,ATL,Connecting,221.1,17289,True
+Labor Day,BOS-CLT,BOS,CLT,Nonstop,282.29,4205,True
+Labor Day,BOS-CLT,BOS,CLT,Connecting,192.6,15590,True
+Labor Day,BOS-DEN,BOS,DEN,Nonstop,264.6,3142,True
+Labor Day,BOS-DEN,BOS,DEN,Connecting,262.61,13798,True
+Labor Day,BOS-DFW,BOS,DFW,Nonstop,318.6,3097,True
+Labor Day,BOS-DFW,BOS,DFW,Connecting,236.6,19687,True
+Labor Day,BOS-DTW,BOS,DTW,Nonstop,198.6,3051,True
+Labor Day,BOS-DTW,BOS,DTW,Connecting,203.2,12006,True
+Labor Day,BOS-EWR,BOS,EWR,Nonstop,96.6,5236,True
+Labor Day,BOS-EWR,BOS,EWR,Connecting,212.21,1832,True
+Labor Day,BOS-IAD,BOS,IAD,Nonstop,98.6,1412,True
+Labor Day,BOS-IAD,BOS,IAD,Connecting,178.1,5243,True
+Labor Day,BOS-JFK,BOS,JFK,Nonstop,128.6,11874,True
+Labor Day,BOS-JFK,BOS,JFK,Connecting,450.19,2332,True
+Labor Day,BOS-LAX,BOS,LAX,Nonstop,274.6,6773,True
+Labor Day,BOS-LAX,BOS,LAX,Connecting,266.6,21158,True
+Labor Day,BOS-LGA,BOS,LGA,Nonstop,98.6,13318,True
+Labor Day,BOS-LGA,BOS,LGA,Connecting,210.95,7520,True
+Labor Day,BOS-MIA,BOS,MIA,Nonstop,138.6,5607,True
+Labor Day,BOS-MIA,BOS,MIA,Connecting,177.61,15276,True
+Labor Day,BOS-OAK,BOS,OAK,Connecting,571.7,12177,False
+Labor Day,BOS-ORD,BOS,ORD,Nonstop,183.6,10607,True
+Labor Day,BOS-ORD,BOS,ORD,Connecting,137.58,11414,True
+Labor Day,BOS-PHL,BOS,PHL,Nonstop,113.6,4839,True
+Labor Day,BOS-PHL,BOS,PHL,Connecting,156.1,2670,True
+Labor Day,BOS-SFO,BOS,SFO,Nonstop,264.6,6023,True
+Labor Day,BOS-SFO,BOS,SFO,Connecting,267.61,16836,True
+Labor Day,CLT-ATL,CLT,ATL,Nonstop,172.1,4247,True
+Labor Day,CLT-ATL,CLT,ATL,Connecting,329.1,3674,True
+Labor Day,CLT-BOS,CLT,BOS,Nonstop,327.1,4200,True
+Labor Day,CLT-BOS,CLT,BOS,Connecting,296.7,12144,True
+Labor Day,CLT-DEN,CLT,DEN,Nonstop,347.1,2251,True
+Labor Day,CLT-DEN,CLT,DEN,Connecting,304.11,8116,True
+Labor Day,CLT-DFW,CLT,DFW,Nonstop,302.1,3048,True
+Labor Day,CLT-DFW,CLT,DFW,Connecting,311.1,20320,True
+Labor Day,CLT-DTW,CLT,DTW,Nonstop,217.1,2787,True
+Labor Day,CLT-DTW,CLT,DTW,Connecting,335.81,9371,True
+Labor Day,CLT-EWR,CLT,EWR,Nonstop,197.1,6795,True
+Labor Day,CLT-EWR,CLT,EWR,Connecting,287.1,5074,True
+Labor Day,CLT-IAD,CLT,IAD,Nonstop,150.1,2134,True
+Labor Day,CLT-IAD,CLT,IAD,Connecting,210.1,2366,True
+Labor Day,CLT-JFK,CLT,JFK,Nonstop,207.11,5276,True
+Labor Day,CLT-JFK,CLT,JFK,Connecting,271.1,8592,True
+Labor Day,CLT-LAX,CLT,LAX,Nonstop,407.1,2583,True
+Labor Day,CLT-LAX,CLT,LAX,Connecting,381.71,19917,True
+Labor Day,CLT-LGA,CLT,LGA,Nonstop,192.1,7853,True
+Labor Day,CLT-LGA,CLT,LGA,Connecting,191.1,12239,True
+Labor Day,CLT-MIA,CLT,MIA,Nonstop,307.1,2704,True
+Labor Day,CLT-MIA,CLT,MIA,Connecting,262.71,15158,True
+Labor Day,CLT-OAK,CLT,OAK,Connecting,611.6,9261,False
+Labor Day,CLT-ORD,CLT,ORD,Nonstop,348.1,4027,True
+Labor Day,CLT-ORD,CLT,ORD,Connecting,357.1,17345,True
+Labor Day,CLT-PHL,CLT,PHL,Nonstop,237.1,3133,True
+Labor Day,CLT-PHL,CLT,PHL,Connecting,266.71,10489,True
+Labor Day,CLT-SFO,CLT,SFO,Nonstop,428.1,1089,True
+Labor Day,CLT-SFO,CLT,SFO,Connecting,437.1,19554,True
+Labor Day,DEN-ATL,DEN,ATL,Nonstop,218.6,4638,True
+Labor Day,DEN-ATL,DEN,ATL,Connecting,281.6,7444,True
+Labor Day,DEN-BOS,DEN,BOS,Nonstop,324.6,3161,True
+Labor Day,DEN-BOS,DEN,BOS,Connecting,311.71,12444,True
+Labor Day,DEN-CLT,DEN,CLT,Nonstop,348.6,2407,True
+Labor Day,DEN-CLT,DEN,CLT,Connecting,274.61,8001,True
+Labor Day,DEN-DFW,DEN,DFW,Nonstop,183.6,5542,True
+Labor Day,DEN-DFW,DEN,DFW,Connecting,211.6,5410,True
+Labor Day,DEN-DTW,DEN,DTW,Nonstop,283.98,2466,True
+Labor Day,DEN-DTW,DEN,DTW,Connecting,312.19,9007,True
+Labor Day,DEN-EWR,DEN,EWR,Nonstop,308.6,3154,True
+Labor Day,DEN-EWR,DEN,EWR,Connecting,361.19,10098,True
+Labor Day,DEN-IAD,DEN,IAD,Nonstop,285.6,2373,True
+Labor Day,DEN-IAD,DEN,IAD,Connecting,308.6,5978,True
+Labor Day,DEN-JFK,DEN,JFK,Nonstop,233.6,2117,True
+Labor Day,DEN-JFK,DEN,JFK,Connecting,575.2,18642,True
+Labor Day,DEN-LAX,DEN,LAX,Nonstop,158.6,6459,True
+Labor Day,DEN-LAX,DEN,LAX,Connecting,246.2,10755,True
+Labor Day,DEN-LGA,DEN,LGA,Nonstop,263.6,3996,True
+Labor Day,DEN-LGA,DEN,LGA,Connecting,296.11,10715,True
+Labor Day,DEN-MIA,DEN,MIA,Nonstop,194.6,1928,True
+Labor Day,DEN-MIA,DEN,MIA,Connecting,336.6,9891,True
+Labor Day,DEN-OAK,DEN,OAK,Nonstop,73.98,175,True
+Labor Day,DEN-OAK,DEN,OAK,Connecting,427.2,8935,True
+Labor Day,DEN-ORD,DEN,ORD,Nonstop,217.6,4606,True
+Labor Day,DEN-ORD,DEN,ORD,Connecting,292.2,5913,True
+Labor Day,DEN-PHL,DEN,PHL,Nonstop,253.98,2094,True
+Labor Day,DEN-PHL,DEN,PHL,Connecting,327.2,9953,True
+Labor Day,DEN-SFO,DEN,SFO,Nonstop,138.6,3993,True
+Labor Day,DEN-SFO,DEN,SFO,Connecting,274.6,9425,True
+Labor Day,DFW-ATL,DFW,ATL,Nonstop,191.6,6369,True
+Labor Day,DFW-ATL,DFW,ATL,Connecting,238.58,5514,True
+Labor Day,DFW-BOS,DFW,BOS,Nonstop,377.49,3093,True
+Labor Day,DFW-BOS,DFW,BOS,Connecting,297.6,15785,True
+Labor Day,DFW-CLT,DFW,CLT,Nonstop,303.6,2956,True
+Labor Day,DFW-CLT,DFW,CLT,Connecting,312.6,18567,True
+Labor Day,DFW-DEN,DFW,DEN,Nonstop,153.6,5563,True
+Labor Day,DFW-DEN,DFW,DEN,Connecting,238.6,5744,True
+Labor Day,DFW-DTW,DFW,DTW,Nonstop,222.6,3226,True
+Labor Day,DFW-DTW,DFW,DTW,Connecting,288.6,7734,True
+Labor Day,DFW-EWR,DFW,EWR,Nonstop,258.6,5127,True
+Labor Day,DFW-EWR,DFW,EWR,Connecting,357.1,8303,True
+Labor Day,DFW-IAD,DFW,IAD,Nonstop,228.6,1692,True
+Labor Day,DFW-IAD,DFW,IAD,Connecting,294.2,4791,True
+Labor Day,DFW-JFK,DFW,JFK,Nonstop,245.61,3463,True
+Labor Day,DFW-JFK,DFW,JFK,Connecting,423.21,8471,True
+Labor Day,DFW-LAX,DFW,LAX,Nonstop,232.6,8259,True
+Labor Day,DFW-LAX,DFW,LAX,Connecting,258.6,16653,True
+Labor Day,DFW-LGA,DFW,LGA,Nonstop,228.6,10316,True
+Labor Day,DFW-LGA,DFW,LGA,Connecting,225.6,10230,True
+Labor Day,DFW-MIA,DFW,MIA,Nonstop,212.6,3817,True
+Labor Day,DFW-MIA,DFW,MIA,Connecting,246.6,15375,True
+Labor Day,DFW-OAK,DFW,OAK,Connecting,527.1,17258,False
+Labor Day,DFW-ORD,DFW,ORD,Nonstop,221.72,5148,True
+Labor Day,DFW-ORD,DFW,ORD,Connecting,253.6,8895,True
+Labor Day,DFW-PHL,DFW,PHL,Nonstop,285.6,3129,True
+Labor Day,DFW-PHL,DFW,PHL,Connecting,305.61,12749,True
+Labor Day,DFW-SFO,DFW,SFO,Nonstop,233.61,3998,True
+Labor Day,DFW-SFO,DFW,SFO,Connecting,277.6,7354,True
+Labor Day,DTW-ATL,DTW,ATL,Nonstop,168.61,4590,True
+Labor Day,DTW-ATL,DTW,ATL,Connecting,258.6,8680,True
+Labor Day,DTW-BOS,DTW,BOS,Nonstop,228.6,3042,True
+Labor Day,DTW-BOS,DTW,BOS,Connecting,211.6,12145,True
+Labor Day,DTW-CLT,DTW,CLT,Nonstop,223.6,2829,True
+Labor Day,DTW-CLT,DTW,CLT,Connecting,292.6,9877,True
+Labor Day,DTW-DEN,DTW,DEN,Nonstop,258.6,2467,True
+Labor Day,DTW-DEN,DTW,DEN,Connecting,292.6,9192,True
+Labor Day,DTW-DFW,DTW,DFW,Nonstop,198.6,3222,True
+Labor Day,DTW-DFW,DTW,DFW,Connecting,288.58,7763,True
+Labor Day,DTW-EWR,DTW,EWR,Nonstop,215.6,3107,True
+Labor Day,DTW-EWR,DTW,EWR,Connecting,241.1,5503,True
+Labor Day,DTW-IAD,DTW,IAD,Nonstop,138.6,2570,True
+Labor Day,DTW-IAD,DTW,IAD,Connecting,183.1,1693,True
+Labor Day,DTW-JFK,DTW,JFK,Nonstop,247.6,2819,True
+Labor Day,DTW-JFK,DTW,JFK,Connecting,477.11,13583,True
+Labor Day,DTW-LAX,DTW,LAX,Nonstop,318.6,2684,True
+Labor Day,DTW-LAX,DTW,LAX,Connecting,346.61,22379,True
+Labor Day,DTW-LGA,DTW,LGA,Nonstop,218.6,5209,True
+Labor Day,DTW-LGA,DTW,LGA,Connecting,200.6,9212,True
+Labor Day,DTW-MIA,DTW,MIA,Nonstop,148.6,1744,True
+Labor Day,DTW-MIA,DTW,MIA,Connecting,257.6,10219,True
+Labor Day,DTW-OAK,DTW,OAK,Connecting,554.7,12379,False
+Labor Day,DTW-ORD,DTW,ORD,Nonstop,181.6,4430,True
+Labor Day,DTW-ORD,DTW,ORD,Connecting,207.2,2989,True
+Labor Day,DTW-PHL,DTW,PHL,Nonstop,218.6,2395,True
+Labor Day,DTW-PHL,DTW,PHL,Connecting,306.61,6368,True
+Labor Day,DTW-SFO,DTW,SFO,Nonstop,428.6,1177,True
+Labor Day,DTW-SFO,DTW,SFO,Connecting,417.6,17026,True
+Labor Day,EWR-ATL,EWR,ATL,Nonstop,148.6,5441,True
+Labor Day,EWR-ATL,EWR,ATL,Connecting,176.11,6494,True
+Labor Day,EWR-BOS,EWR,BOS,Nonstop,96.6,5446,True
+Labor Day,EWR-BOS,EWR,BOS,Connecting,202.21,4131,True
+Labor Day,EWR-CLT,EWR,CLT,Nonstop,163.6,6793,True
+Labor Day,EWR-CLT,EWR,CLT,Connecting,207.6,7924,True
+Labor Day,EWR-DEN,EWR,DEN,Nonstop,193.6,3177,True
+Labor Day,EWR-DEN,EWR,DEN,Connecting,268.6,10494,True
+Labor Day,EWR-DFW,EWR,DFW,Nonstop,196.6,5123,True
+Labor Day,EWR-DFW,EWR,DFW,Connecting,238.6,8690,True
+Labor Day,EWR-DTW,EWR,DTW,Nonstop,173.6,3121,True
+Labor Day,EWR-DTW,EWR,DTW,Connecting,196.1,8084,True
+Labor Day,EWR-IAD,EWR,IAD,Nonstop,123.61,2121,True
+Labor Day,EWR-IAD,EWR,IAD,Connecting,337.6,6014,True
+Labor Day,EWR-LAX,EWR,LAX,Nonstop,228.6,6204,True
+Labor Day,EWR-LAX,EWR,LAX,Connecting,267.6,16177,True
+Labor Day,EWR-MIA,EWR,MIA,Nonstop,143.6,4953,True
+Labor Day,EWR-MIA,EWR,MIA,Connecting,186.1,6162,True
+Labor Day,EWR-OAK,EWR,OAK,Nonstop,119.59,348,True
+Labor Day,EWR-OAK,EWR,OAK,Connecting,559.1,8577,True
+Labor Day,EWR-ORD,EWR,ORD,Nonstop,172.6,7917,True
+Labor Day,EWR-ORD,EWR,ORD,Connecting,187.6,8700,True
+Labor Day,EWR-PHL,EWR,PHL,Nonstop,203.6,649,True
+Labor Day,EWR-PHL,EWR,PHL,Connecting,366.71,11714,True
+Labor Day,EWR-SFO,EWR,SFO,Nonstop,238.6,4611,True
+Labor Day,EWR-SFO,EWR,SFO,Connecting,277.19,11801,True
+Labor Day,IAD-ATL,IAD,ATL,Nonstop,151.6,3092,True
+Labor Day,IAD-ATL,IAD,ATL,Connecting,237.6,2261,True
+Labor Day,IAD-BOS,IAD,BOS,Nonstop,148.6,1411,True
+Labor Day,IAD-BOS,IAD,BOS,Connecting,401.1,7111,True
+Labor Day,IAD-CLT,IAD,CLT,Nonstop,138.6,2136,True
+Labor Day,IAD-CLT,IAD,CLT,Connecting,211.6,2744,True
+Labor Day,IAD-DEN,IAD,DEN,Nonstop,258.6,2373,True
+Labor Day,IAD-DEN,IAD,DEN,Connecting,305.61,6532,True
+Labor Day,IAD-DFW,IAD,DFW,Nonstop,228.6,1692,True
+Labor Day,IAD-DFW,IAD,DFW,Connecting,288.6,6015,True
+Labor Day,IAD-DTW,IAD,DTW,Nonstop,175.6,2547,True
+Labor Day,IAD-DTW,IAD,DTW,Connecting,251.1,1449,True
+Labor Day,IAD-EWR,IAD,EWR,Nonstop,197.6,2110,True
+Labor Day,IAD-EWR,IAD,EWR,Connecting,351.09,6411,True
+Labor Day,IAD-JFK,IAD,JFK,Nonstop,168.61,1059,True
+Labor Day,IAD-JFK,IAD,JFK,Connecting,446.6,6819,True
+Labor Day,IAD-LAX,IAD,LAX,Nonstop,330.6,1851,True
+Labor Day,IAD-LAX,IAD,LAX,Connecting,339.6,14866,True
+Labor Day,IAD-LGA,IAD,LGA,Nonstop,128.6,3178,True
+Labor Day,IAD-LGA,IAD,LGA,Connecting,447.2,14634,True
+Labor Day,IAD-MIA,IAD,MIA,Nonstop,218.6,353,True
+Labor Day,IAD-MIA,IAD,MIA,Connecting,252.1,5889,True
+Labor Day,IAD-OAK,IAD,OAK,Connecting,580.2,6269,False
+Labor Day,IAD-ORD,IAD,ORD,Nonstop,183.6,1706,True
+Labor Day,IAD-ORD,IAD,ORD,Connecting,246.11,6321,True
+Labor Day,IAD-PHL,IAD,PHL,Connecting,297.1,6927,False
+Labor Day,IAD-SFO,IAD,SFO,Nonstop,348.6,2461,True
+Labor Day,IAD-SFO,IAD,SFO,Connecting,409.6,10420,True
+Labor Day,JFK-ATL,JFK,ATL,Nonstop,138.6,5698,True
+Labor Day,JFK-ATL,JFK,ATL,Connecting,238.6,5417,True
+Labor Day,JFK-BOS,JFK,BOS,Nonstop,138.6,11982,True
+Labor Day,JFK-BOS,JFK,BOS,Connecting,462.21,2034,True
+Labor Day,JFK-CLT,JFK,CLT,Nonstop,178.6,5270,True
+Labor Day,JFK-CLT,JFK,CLT,Connecting,247.6,10004,True
+Labor Day,JFK-DEN,JFK,DEN,Nonstop,148.6,2106,True
+Labor Day,JFK-DEN,JFK,DEN,Connecting,565.6,17089,True
+Labor Day,JFK-DFW,JFK,DFW,Nonstop,143.6,3471,True
+Labor Day,JFK-DFW,JFK,DFW,Connecting,552.71,15909,True
+Labor Day,JFK-DTW,JFK,DTW,Nonstop,157.6,2821,True
+Labor Day,JFK-DTW,JFK,DTW,Connecting,427.15,6976,True
+Labor Day,JFK-IAD,JFK,IAD,Nonstop,128.6,1059,True
+Labor Day,JFK-IAD,JFK,IAD,Connecting,426.6,6028,True
+Labor Day,JFK-LAX,JFK,LAX,Nonstop,268.6,13155,True
+Labor Day,JFK-LAX,JFK,LAX,Connecting,281.1,12542,True
+Labor Day,JFK-MIA,JFK,MIA,Nonstop,128.6,9994,True
+Labor Day,JFK-MIA,JFK,MIA,Connecting,572.71,3217,True
+Labor Day,JFK-OAK,JFK,OAK,Connecting,514.21,6115,False
+Labor Day,JFK-ORD,JFK,ORD,Nonstop,163.6,3950,True
+Labor Day,JFK-ORD,JFK,ORD,Connecting,497.2,23017,True
+Labor Day,JFK-PHL,JFK,PHL,Connecting,382.6,13395,False
+Labor Day,JFK-SFO,JFK,SFO,Nonstop,238.6,10689,True
+Labor Day,JFK-SFO,JFK,SFO,Connecting,267.6,3891,True
+Labor Day,LAX-ATL,LAX,ATL,Nonstop,378.6,5872,True
+Labor Day,LAX-ATL,LAX,ATL,Connecting,350.1,21831,True
+Labor Day,LAX-BOS,LAX,BOS,Nonstop,359.6,6611,True
+Labor Day,LAX-BOS,LAX,BOS,Connecting,338.6,21621,True
+Labor Day,LAX-CLT,LAX,CLT,Nonstop,408.6,2588,True
+Labor Day,LAX-CLT,LAX,CLT,Connecting,398.6,19589,True
+Labor Day,LAX-DEN,LAX,DEN,Nonstop,158.6,6516,True
+Labor Day,LAX-DEN,LAX,DEN,Connecting,271.1,11844,True
+Labor Day,LAX-DFW,LAX,DFW,Nonstop,235.6,8168,True
+Labor Day,LAX-DFW,LAX,DFW,Connecting,268.6,17499,True
+Labor Day,LAX-DTW,LAX,DTW,Nonstop,378.6,2684,True
+Labor Day,LAX-DTW,LAX,DTW,Connecting,379.6,22019,True
+Labor Day,LAX-EWR,LAX,EWR,Nonstop,322.6,6076,True
+Labor Day,LAX-EWR,LAX,EWR,Connecting,370.6,18710,True
+Labor Day,LAX-IAD,LAX,IAD,Nonstop,330.6,1962,True
+Labor Day,LAX-IAD,LAX,IAD,Connecting,389.61,14467,True
+Labor Day,LAX-JFK,LAX,JFK,Nonstop,378.6,11576,True
+Labor Day,LAX-JFK,LAX,JFK,Connecting,380.6,15370,True
+Labor Day,LAX-LGA,LAX,LGA,Connecting,368.6,26368,False
+Labor Day,LAX-MIA,LAX,MIA,Nonstop,208.61,2822,True
+Labor Day,LAX-MIA,LAX,MIA,Connecting,302.6,16227,True
+Labor Day,LAX-OAK,LAX,OAK,Nonstop,98.6,1283,True
+Labor Day,LAX-OAK,LAX,OAK,Connecting,372.0,9015,True
+Labor Day,LAX-ORD,LAX,ORD,Nonstop,270.6,6824,True
+Labor Day,LAX-ORD,LAX,ORD,Connecting,328.6,21296,True
+Labor Day,LAX-PHL,LAX,PHL,Nonstop,429.6,2641,True
+Labor Day,LAX-PHL,LAX,PHL,Connecting,370.6,21391,True
+Labor Day,LAX-SFO,LAX,SFO,Nonstop,127.6,10946,True
+Labor Day,LAX-SFO,LAX,SFO,Connecting,237.6,2835,True
+Labor Day,LGA-ATL,LGA,ATL,Nonstop,197.61,7684,True
+Labor Day,LGA-ATL,LGA,ATL,Connecting,182.6,11150,True
+Labor Day,LGA-BOS,LGA,BOS,Nonstop,98.6,13322,True
+Labor Day,LGA-BOS,LGA,BOS,Connecting,195.2,4892,True
+Labor Day,LGA-CLT,LGA,CLT,Nonstop,178.6,7835,True
+Labor Day,LGA-CLT,LGA,CLT,Connecting,192.6,15235,True
+Labor Day,LGA-DEN,LGA,DEN,Nonstop,168.61,3990,True
+Labor Day,LGA-DEN,LGA,DEN,Connecting,221.1,9026,True
+Labor Day,LGA-DFW,LGA,DFW,Nonstop,178.6,10328,True
+Labor Day,LGA-DFW,LGA,DFW,Connecting,192.6,12750,True
+Labor Day,LGA-DTW,LGA,DTW,Nonstop,193.61,5216,True
+Labor Day,LGA-DTW,LGA,DTW,Connecting,192.6,8818,True
+Labor Day,LGA-IAD,LGA,IAD,Nonstop,128.6,3182,True
+Labor Day,LGA-IAD,LGA,IAD,Connecting,442.1,12259,True
+Labor Day,LGA-LAX,LGA,LAX,Connecting,276.6,26881,False
+Labor Day,LGA-MIA,LGA,MIA,Nonstop,148.6,8436,True
+Labor Day,LGA-MIA,LGA,MIA,Connecting,232.2,4305,True
+Labor Day,LGA-OAK,LGA,OAK,Connecting,601.7,19498,False
+Labor Day,LGA-ORD,LGA,ORD,Nonstop,168.61,16317,True
+Labor Day,LGA-ORD,LGA,ORD,Connecting,147.6,8531,True
+Labor Day,LGA-PHL,LGA,PHL,Connecting,311.6,20702,False
+Labor Day,LGA-SFO,LGA,SFO,Connecting,327.6,19844,False
+Labor Day,MIA-ATL,MIA,ATL,Nonstop,168.61,4750,True
+Labor Day,MIA-ATL,MIA,ATL,Connecting,311.6,5541,True
+Labor Day,MIA-BOS,MIA,BOS,Nonstop,233.61,5688,True
+Labor Day,MIA-BOS,MIA,BOS,Connecting,242.61,11181,True
+Labor Day,MIA-CLT,MIA,CLT,Nonstop,308.6,2700,True
+Labor Day,MIA-CLT,MIA,CLT,Connecting,308.6,12935,True
+Labor Day,MIA-DEN,MIA,DEN,Nonstop,194.6,1923,True
+Labor Day,MIA-DEN,MIA,DEN,Connecting,337.655,8870,True
+Labor Day,MIA-DFW,MIA,DFW,Nonstop,224.6,3723,True
+Labor Day,MIA-DFW,MIA,DFW,Connecting,246.6,15990,True
+Labor Day,MIA-DTW,MIA,DTW,Nonstop,168.61,1746,True
+Labor Day,MIA-DTW,MIA,DTW,Connecting,281.19,8505,True
+Labor Day,MIA-EWR,MIA,EWR,Nonstop,261.6,4925,True
+Labor Day,MIA-EWR,MIA,EWR,Connecting,357.2,8533,True
+Labor Day,MIA-IAD,MIA,IAD,Nonstop,377.6,351,True
+Labor Day,MIA-IAD,MIA,IAD,Connecting,320.6,6030,True
+Labor Day,MIA-JFK,MIA,JFK,Nonstop,226.6,9909,True
+Labor Day,MIA-JFK,MIA,JFK,Connecting,581.6,2313,True
+Labor Day,MIA-LAX,MIA,LAX,Nonstop,213.6,2823,True
+Labor Day,MIA-LAX,MIA,LAX,Connecting,313.59,17854,True
+Labor Day,MIA-LGA,MIA,LGA,Nonstop,208.61,8336,True
+Labor Day,MIA-LGA,MIA,LGA,Connecting,278.2,7443,True
+Labor Day,MIA-OAK,MIA,OAK,Connecting,637.1,6763,False
+Labor Day,MIA-ORD,MIA,ORD,Nonstop,205.6,3845,True
+Labor Day,MIA-ORD,MIA,ORD,Connecting,217.61,11221,True
+Labor Day,MIA-PHL,MIA,PHL,Nonstop,202.6,3006,True
+Labor Day,MIA-PHL,MIA,PHL,Connecting,288.6,10529,True
+Labor Day,MIA-SFO,MIA,SFO,Nonstop,288.6,1059,True
+Labor Day,MIA-SFO,MIA,SFO,Connecting,368.6,13007,True
+Labor Day,OAK-ATL,OAK,ATL,Connecting,529.1,11722,False
+Labor Day,OAK-BOS,OAK,BOS,Connecting,585.71,11311,False
+Labor Day,OAK-CLT,OAK,CLT,Nonstop,123.59,24,True
+Labor Day,OAK-CLT,OAK,CLT,Connecting,606.1,8001,True
+Labor Day,OAK-DEN,OAK,DEN,Nonstop,81.98,174,True
+Labor Day,OAK-DEN,OAK,DEN,Connecting,465.7,11573,True
+Labor Day,OAK-DFW,OAK,DFW,Connecting,495.1,17556,False
+Labor Day,OAK-DTW,OAK,DTW,Connecting,549.1,9806,False
+Labor Day,OAK-EWR,OAK,EWR,Nonstop,199.59,348,True
+Labor Day,OAK-EWR,OAK,EWR,Connecting,564.21,7691,True
+Labor Day,OAK-IAD,OAK,IAD,Connecting,572.195,5730,False
+Labor Day,OAK-JFK,OAK,JFK,Connecting,537.2,6235,False
+Labor Day,OAK-LAX,OAK,LAX,Nonstop,78.6,1286,True
+Labor Day,OAK-LAX,OAK,LAX,Connecting,421.61,10260,True
+Labor Day,OAK-LGA,OAK,LGA,Connecting,621.1,14310,False
+Labor Day,OAK-MIA,OAK,MIA,Connecting,633.1,7187,False
+Labor Day,OAK-ORD,OAK,ORD,Nonstop,138.59,348,True
+Labor Day,OAK-ORD,OAK,ORD,Connecting,515.61,11733,True
+Labor Day,OAK-PHL,OAK,PHL,Nonstop,138.59,286,True
+Labor Day,OAK-PHL,OAK,PHL,Connecting,604.7,9713,True
+Labor Day,OAK-SFO,OAK,SFO,Connecting,407.2,8910,False
+Labor Day,ORD-ATL,ORD,ATL,Nonstop,197.6,5225,True
+Labor Day,ORD-ATL,ORD,ATL,Connecting,201.61,8180,True
+Labor Day,ORD-BOS,ORD,BOS,Nonstop,208.61,10361,True
+Labor Day,ORD-BOS,ORD,BOS,Connecting,187.61,8256,True
+Labor Day,ORD-CLT,ORD,CLT,Nonstop,349.6,3937,True
+Labor Day,ORD-CLT,ORD,CLT,Connecting,358.6,15261,True
+Labor Day,ORD-DEN,ORD,DEN,Nonstop,198.6,4616,True
+Labor Day,ORD-DEN,ORD,DEN,Connecting,253.6,4993,True
+Labor Day,ORD-DFW,ORD,DFW,Nonstop,194.6,5136,True
+Labor Day,ORD-DFW,ORD,DFW,Connecting,232.2,11754,True
+Labor Day,ORD-DTW,ORD,DTW,Nonstop,178.6,4406,True
+Labor Day,ORD-DTW,ORD,DTW,Connecting,184.6,1754,True
+Labor Day,ORD-EWR,ORD,EWR,Nonstop,188.73,7936,True
+Labor Day,ORD-EWR,ORD,EWR,Connecting,238.6,5606,True
+Labor Day,ORD-IAD,ORD,IAD,Nonstop,151.6,1693,True
+Labor Day,ORD-IAD,ORD,IAD,Connecting,271.71,4699,True
+Labor Day,ORD-JFK,ORD,JFK,Nonstop,215.6,4225,True
+Labor Day,ORD-JFK,ORD,JFK,Connecting,487.19,17520,True
+Labor Day,ORD-LAX,ORD,LAX,Nonstop,235.6,6912,True
+Labor Day,ORD-LAX,ORD,LAX,Connecting,279.6,19893,True
+Labor Day,ORD-LGA,ORD,LGA,Nonstop,194.73,16228,True
+Labor Day,ORD-LGA,ORD,LGA,Connecting,181.6,6332,True
+Labor Day,ORD-MIA,ORD,MIA,Nonstop,194.6,3867,True
+Labor Day,ORD-MIA,ORD,MIA,Connecting,216.11,13548,True
+Labor Day,ORD-OAK,ORD,OAK,Nonstop,138.59,345,True
+Labor Day,ORD-OAK,ORD,OAK,Connecting,515.61,9723,True
+Labor Day,ORD-PHL,ORD,PHL,Nonstop,181.6,4317,True
+Labor Day,ORD-PHL,ORD,PHL,Connecting,223.1,5776,True
+Labor Day,ORD-SFO,ORD,SFO,Nonstop,278.6,4599,True
+Labor Day,ORD-SFO,ORD,SFO,Connecting,287.6,10201,True
+Labor Day,PHL-ATL,PHL,ATL,Nonstop,188.6,4861,True
+Labor Day,PHL-ATL,PHL,ATL,Connecting,200.6,7241,True
+Labor Day,PHL-BOS,PHL,BOS,Nonstop,123.61,4842,True
+Labor Day,PHL-BOS,PHL,BOS,Connecting,277.6,2968,True
+Labor Day,PHL-CLT,PHL,CLT,Nonstop,238.6,3084,True
+Labor Day,PHL-CLT,PHL,CLT,Connecting,247.6,13411,True
+Labor Day,PHL-DEN,PHL,DEN,Nonstop,205.98,2272,True
+Labor Day,PHL-DEN,PHL,DEN,Connecting,294.2,10337,True
+Labor Day,PHL-DFW,PHL,DFW,Nonstop,278.6,3132,True
+Labor Day,PHL-DFW,PHL,DFW,Connecting,294.6,16880,True
+Labor Day,PHL-DTW,PHL,DTW,Nonstop,203.6,2396,True
+Labor Day,PHL-DTW,PHL,DTW,Connecting,269.58,7377,True
+Labor Day,PHL-EWR,PHL,EWR,Nonstop,213.6,648,True
+Labor Day,PHL-EWR,PHL,EWR,Connecting,369.6,11913,True
+Labor Day,PHL-IAD,PHL,IAD,Connecting,281.1,7464,False
+Labor Day,PHL-JFK,PHL,JFK,Connecting,342.2,12995,False
+Labor Day,PHL-LAX,PHL,LAX,Nonstop,429.6,2637,True
+Labor Day,PHL-LAX,PHL,LAX,Connecting,293.11,20975,True
+Labor Day,PHL-LGA,PHL,LGA,Connecting,287.11,20033,False
+Labor Day,PHL-MIA,PHL,MIA,Nonstop,202.6,2868,True
+Labor Day,PHL-MIA,PHL,MIA,Connecting,224.6,14205,True
+Labor Day,PHL-OAK,PHL,OAK,Nonstop,118.59,345,True
+Labor Day,PHL-OAK,PHL,OAK,Connecting,587.1,11808,True
+Labor Day,PHL-ORD,PHL,ORD,Nonstop,178.6,4326,True
+Labor Day,PHL-ORD,PHL,ORD,Connecting,216.61,6353,True
+Labor Day,PHL-SFO,PHL,SFO,Nonstop,343.6,1345,True
+Labor Day,PHL-SFO,PHL,SFO,Connecting,352.76,13293,True
+Labor Day,SFO-ATL,SFO,ATL,Nonstop,398.6,2582,True
+Labor Day,SFO-ATL,SFO,ATL,Connecting,436.6,18353,True
+Labor Day,SFO-BOS,SFO,BOS,Nonstop,381.61,5956,True
+Labor Day,SFO-BOS,SFO,BOS,Connecting,378.6,17136,True
+Labor Day,SFO-CLT,SFO,CLT,Nonstop,432.1,1138,True
+Labor Day,SFO-CLT,SFO,CLT,Connecting,449.6,17526,True
+Labor Day,SFO-DEN,SFO,DEN,Nonstop,169.6,3944,True
+Labor Day,SFO-DEN,SFO,DEN,Connecting,348.61,11058,True
+Labor Day,SFO-DFW,SFO,DFW,Nonstop,252.61,3884,True
+Labor Day,SFO-DFW,SFO,DFW,Connecting,288.6,8294,True
+Labor Day,SFO-DTW,SFO,DTW,Nonstop,408.6,1177,True
+Labor Day,SFO-DTW,SFO,DTW,Connecting,453.6,17018,True
+Labor Day,SFO-EWR,SFO,EWR,Nonstop,348.6,4584,True
+Labor Day,SFO-EWR,SFO,EWR,Connecting,430.61,12871,True
+Labor Day,SFO-IAD,SFO,IAD,Nonstop,398.6,2486,True
+Labor Day,SFO-IAD,SFO,IAD,Connecting,449.6,10409,True
+Labor Day,SFO-JFK,SFO,JFK,Nonstop,358.6,10723,True
+Labor Day,SFO-JFK,SFO,JFK,Connecting,367.6,3588,True
+Labor Day,SFO-LAX,SFO,LAX,Nonstop,128.6,10967,True
+Labor Day,SFO-LAX,SFO,LAX,Connecting,248.2,3325,True
+Labor Day,SFO-LGA,SFO,LGA,Connecting,446.1,20275,False
+Labor Day,SFO-MIA,SFO,MIA,Nonstop,298.6,1058,True
+Labor Day,SFO-MIA,SFO,MIA,Connecting,385.7,13237,True
+Labor Day,SFO-OAK,SFO,OAK,Connecting,382.2,9239,False
+Labor Day,SFO-ORD,SFO,ORD,Nonstop,340.1,4563,True
+Labor Day,SFO-ORD,SFO,ORD,Connecting,360.6,10361,True
+Labor Day,SFO-PHL,SFO,PHL,Nonstop,343.6,1353,True
+Labor Day,SFO-PHL,SFO,PHL,Connecting,447.6,12073,True
+Non-holiday,ATL-BOS,ATL,BOS,Nonstop,308.59,7720,True
+Non-holiday,ATL-BOS,ATL,BOS,Connecting,253.6,23944,True
+Non-holiday,ATL-CLT,ATL,CLT,Nonstop,223.6,8503,True
+Non-holiday,ATL-CLT,ATL,CLT,Connecting,382.6,7757,True
+Non-holiday,ATL-DEN,ATL,DEN,Nonstop,338.61,7763,True
+Non-holiday,ATL-DEN,ATL,DEN,Connecting,376.1,12652,True
+Non-holiday,ATL-DFW,ATL,DFW,Nonstop,227.6,12157,True
+Non-holiday,ATL-DFW,ATL,DFW,Connecting,305.6,6896,True
+Non-holiday,ATL-DTW,ATL,DTW,Nonstop,188.6,7879,True
+Non-holiday,ATL-DTW,ATL,DTW,Connecting,298.6,15891,True
+Non-holiday,ATL-EWR,ATL,EWR,Nonstop,223.6,10267,True
+Non-holiday,ATL-EWR,ATL,EWR,Connecting,201.1,11389,True
+Non-holiday,ATL-IAD,ATL,IAD,Nonstop,183.6,5690,True
+Non-holiday,ATL-IAD,ATL,IAD,Connecting,286.1,3740,True
+Non-holiday,ATL-JFK,ATL,JFK,Nonstop,203.6,8717,True
+Non-holiday,ATL-JFK,ATL,JFK,Connecting,331.11,10874,True
+Non-holiday,ATL-LAX,ATL,LAX,Nonstop,398.6,10321,True
+Non-holiday,ATL-LAX,ATL,LAX,Connecting,387.6,37696,True
+Non-holiday,ATL-LGA,ATL,LGA,Nonstop,198.6,13693,True
+Non-holiday,ATL-LGA,ATL,LGA,Connecting,203.58,18036,True
+Non-holiday,ATL-MIA,ATL,MIA,Nonstop,178.6,8929,True
+Non-holiday,ATL-MIA,ATL,MIA,Connecting,371.6,9870,True
+Non-holiday,ATL-OAK,ATL,OAK,Connecting,554.7,20888,False
+Non-holiday,ATL-ORD,ATL,ORD,Nonstop,238.6,9010,True
+Non-holiday,ATL-ORD,ATL,ORD,Connecting,211.6,11311,True
+Non-holiday,ATL-PHL,ATL,PHL,Nonstop,202.6,8665,True
+Non-holiday,ATL-PHL,ATL,PHL,Connecting,246.1,10387,True
+Non-holiday,ATL-SFO,ATL,SFO,Nonstop,468.61,4598,True
+Non-holiday,ATL-SFO,ATL,SFO,Connecting,521.59,22339,True
+Non-holiday,BOS-ATL,BOS,ATL,Nonstop,328.6,7688,True
+Non-holiday,BOS-ATL,BOS,ATL,Connecting,297.1,25713,True
+Non-holiday,BOS-CLT,BOS,CLT,Nonstop,198.6,8175,True
+Non-holiday,BOS-CLT,BOS,CLT,Connecting,227.6,16317,True
+Non-holiday,BOS-DEN,BOS,DEN,Nonstop,428.6,5286,True
+Non-holiday,BOS-DEN,BOS,DEN,Connecting,417.61,22922,True
+Non-holiday,BOS-DFW,BOS,DFW,Nonstop,318.6,5808,True
+Non-holiday,BOS-DFW,BOS,DFW,Connecting,318.6,23972,True
+Non-holiday,BOS-DTW,BOS,DTW,Nonstop,248.6,5201,True
+Non-holiday,BOS-DTW,BOS,DTW,Connecting,268.6,19401,True
+Non-holiday,BOS-EWR,BOS,EWR,Nonstop,108.6,10098,True
+Non-holiday,BOS-EWR,BOS,EWR,Connecting,370.1,3724,True
+Non-holiday,BOS-IAD,BOS,IAD,Nonstop,151.6,2414,True
+Non-holiday,BOS-IAD,BOS,IAD,Connecting,332.6,9771,True
+Non-holiday,BOS-JFK,BOS,JFK,Nonstop,143.6,20227,True
+Non-holiday,BOS-JFK,BOS,JFK,Connecting,456.61,2759,True
+Non-holiday,BOS-LAX,BOS,LAX,Nonstop,479.0,11608,True
+Non-holiday,BOS-LAX,BOS,LAX,Connecting,438.6,34287,True
+Non-holiday,BOS-LGA,BOS,LGA,Nonstop,98.6,21094,True
+Non-holiday,BOS-LGA,BOS,LGA,Connecting,226.6,8767,True
+Non-holiday,BOS-MIA,BOS,MIA,Nonstop,218.6,10154,True
+Non-holiday,BOS-MIA,BOS,MIA,Connecting,241.6,19376,True
+Non-holiday,BOS-OAK,BOS,OAK,Connecting,657.71,16908,False
+Non-holiday,BOS-ORD,BOS,ORD,Nonstop,215.6,18569,True
+Non-holiday,BOS-ORD,BOS,ORD,Connecting,214.6,11520,True
+Non-holiday,BOS-PHL,BOS,PHL,Nonstop,114.6,8560,True
+Non-holiday,BOS-PHL,BOS,PHL,Connecting,326.895,5250,True
+Non-holiday,BOS-SFO,BOS,SFO,Nonstop,558.6,9765,True
+Non-holiday,BOS-SFO,BOS,SFO,Connecting,506.1,28351,True
+Non-holiday,CLT-ATL,CLT,ATL,Nonstop,227.1,8457,True
+Non-holiday,CLT-ATL,CLT,ATL,Connecting,387.1,8677,True
+Non-holiday,CLT-BOS,CLT,BOS,Nonstop,177.1,8236,True
+Non-holiday,CLT-BOS,CLT,BOS,Connecting,216.11,14542,True
+Non-holiday,CLT-DEN,CLT,DEN,Nonstop,347.1,4814,True
+Non-holiday,CLT-DEN,CLT,DEN,Connecting,445.1,12234,True
+Non-holiday,CLT-DFW,CLT,DFW,Nonstop,308.1,5910,True
+Non-holiday,CLT-DFW,CLT,DFW,Connecting,311.1,29783,True
+Non-holiday,CLT-DTW,CLT,DTW,Nonstop,237.1,5289,True
+Non-holiday,CLT-DTW,CLT,DTW,Connecting,294.08,14068,True
+Non-holiday,CLT-EWR,CLT,EWR,Nonstop,206.1,12589,True
+Non-holiday,CLT-EWR,CLT,EWR,Connecting,276.1,10305,True
+Non-holiday,CLT-IAD,CLT,IAD,Nonstop,180.1,4858,True
+Non-holiday,CLT-IAD,CLT,IAD,Connecting,247.1,4423,True
+Non-holiday,CLT-JFK,CLT,JFK,Nonstop,207.11,8859,True
+Non-holiday,CLT-JFK,CLT,JFK,Connecting,210.1,12692,True
+Non-holiday,CLT-LAX,CLT,LAX,Nonstop,407.1,4766,True
+Non-holiday,CLT-LAX,CLT,LAX,Connecting,462.11,33885,True
+Non-holiday,CLT-LGA,CLT,LGA,Nonstop,187.1,13759,True
+Non-holiday,CLT-LGA,CLT,LGA,Connecting,191.1,18653,True
+Non-holiday,CLT-MIA,CLT,MIA,Nonstop,307.1,4275,True
+Non-holiday,CLT-MIA,CLT,MIA,Connecting,210.1,24565,True
+Non-holiday,CLT-OAK,CLT,OAK,Connecting,698.6,10937,False
+Non-holiday,CLT-ORD,CLT,ORD,Nonstop,237.1,7107,True
+Non-holiday,CLT-ORD,CLT,ORD,Connecting,315.09,18693,True
+Non-holiday,CLT-PHL,CLT,PHL,Nonstop,237.1,5593,True
+Non-holiday,CLT-PHL,CLT,PHL,Connecting,270.69,16193,True
+Non-holiday,CLT-SFO,CLT,SFO,Nonstop,428.1,2640,True
+Non-holiday,CLT-SFO,CLT,SFO,Connecting,555.61,26419,True
+Non-holiday,DEN-ATL,DEN,ATL,Nonstop,326.61,7786,True
+Non-holiday,DEN-ATL,DEN,ATL,Connecting,364.2,13752,True
+Non-holiday,DEN-BOS,DEN,BOS,Nonstop,428.6,5352,True
+Non-holiday,DEN-BOS,DEN,BOS,Connecting,377.6,22010,True
+Non-holiday,DEN-CLT,DEN,CLT,Nonstop,348.6,4795,True
+Non-holiday,DEN-CLT,DEN,CLT,Connecting,391.59,14549,True
+Non-holiday,DEN-DFW,DEN,DFW,Nonstop,191.6,9766,True
+Non-holiday,DEN-DFW,DEN,DFW,Connecting,238.6,7596,True
+Non-holiday,DEN-DTW,DEN,DTW,Nonstop,313.6,4116,True
+Non-holiday,DEN-DTW,DEN,DTW,Connecting,357.19,13150,True
+Non-holiday,DEN-EWR,DEN,EWR,Nonstop,358.6,5442,True
+Non-holiday,DEN-EWR,DEN,EWR,Connecting,367.6,16180,True
+Non-holiday,DEN-IAD,DEN,IAD,Nonstop,358.6,4227,True
+Non-holiday,DEN-IAD,DEN,IAD,Connecting,416.6,11380,True
+Non-holiday,DEN-JFK,DEN,JFK,Nonstop,258.6,3633,True
+Non-holiday,DEN-JFK,DEN,JFK,Connecting,571.6,29688,True
+Non-holiday,DEN-LAX,DEN,LAX,Nonstop,178.6,11566,True
+Non-holiday,DEN-LAX,DEN,LAX,Connecting,253.6,18998,True
+Non-holiday,DEN-LGA,DEN,LGA,Nonstop,303.6,7137,True
+Non-holiday,DEN-LGA,DEN,LGA,Connecting,307.6,17354,True
+Non-holiday,DEN-MIA,DEN,MIA,Nonstop,253.98,2878,True
+Non-holiday,DEN-MIA,DEN,MIA,Connecting,391.61,19213,True
+Non-holiday,DEN-OAK,DEN,OAK,Nonstop,113.98,304,True
+Non-holiday,DEN-OAK,DEN,OAK,Connecting,457.2,14072,True
+Non-holiday,DEN-ORD,DEN,ORD,Nonstop,266.1,7728,True
+Non-holiday,DEN-ORD,DEN,ORD,Connecting,369.6,9822,True
+Non-holiday,DEN-PHL,DEN,PHL,Nonstop,342.6,3597,True
+Non-holiday,DEN-PHL,DEN,PHL,Connecting,370.6,17100,True
+Non-holiday,DEN-SFO,DEN,SFO,Nonstop,205.6,7086,True
+Non-holiday,DEN-SFO,DEN,SFO,Connecting,341.98,14305,True
+Non-holiday,DFW-ATL,DFW,ATL,Nonstop,202.61,12146,True
+Non-holiday,DFW-ATL,DFW,ATL,Connecting,278.6,7666,True
+Non-holiday,DFW-BOS,DFW,BOS,Nonstop,292.6,5824,True
+Non-holiday,DFW-BOS,DFW,BOS,Connecting,301.6,21914,True
+Non-holiday,DFW-CLT,DFW,CLT,Nonstop,303.6,5946,True
+Non-holiday,DFW-CLT,DFW,CLT,Connecting,312.6,24745,True
+Non-holiday,DFW-DEN,DFW,DEN,Nonstop,202.6,9742,True
+Non-holiday,DFW-DEN,DFW,DEN,Connecting,253.6,7924,True
+Non-holiday,DFW-DTW,DFW,DTW,Nonstop,263.6,5949,True
+Non-holiday,DFW-DTW,DFW,DTW,Connecting,338.6,15583,True
+Non-holiday,DFW-EWR,DFW,EWR,Nonstop,248.6,8696,True
+Non-holiday,DFW-EWR,DFW,EWR,Connecting,322.1,14465,True
+Non-holiday,DFW-IAD,DFW,IAD,Nonstop,285.6,2683,True
+Non-holiday,DFW-IAD,DFW,IAD,Connecting,311.71,11375,True
+Non-holiday,DFW-JFK,DFW,JFK,Nonstop,213.6,5872,True
+Non-holiday,DFW-JFK,DFW,JFK,Connecting,357.6,10959,True
+Non-holiday,DFW-LAX,DFW,LAX,Nonstop,259.6,15156,True
+Non-holiday,DFW-LAX,DFW,LAX,Connecting,305.61,28302,True
+Non-holiday,DFW-LGA,DFW,LGA,Nonstop,194.6,17609,True
+Non-holiday,DFW-LGA,DFW,LGA,Connecting,244.6,15192,True
+Non-holiday,DFW-MIA,DFW,MIA,Nonstop,215.6,7331,True
+Non-holiday,DFW-MIA,DFW,MIA,Connecting,294.6,25362,True
+Non-holiday,DFW-OAK,DFW,OAK,Connecting,527.1,26384,False
+Non-holiday,DFW-ORD,DFW,ORD,Nonstop,244.6,8979,True
+Non-holiday,DFW-ORD,DFW,ORD,Connecting,304.6,14640,True
+Non-holiday,DFW-PHL,DFW,PHL,Nonstop,315.6,5374,True
+Non-holiday,DFW-PHL,DFW,PHL,Connecting,305.61,21156,True
+Non-holiday,DFW-SFO,DFW,SFO,Nonstop,318.6,7158,True
+Non-holiday,DFW-SFO,DFW,SFO,Connecting,327.6,11010,True
+Non-holiday,DTW-ATL,DTW,ATL,Nonstop,233.6,7843,True
+Non-holiday,DTW-ATL,DTW,ATL,Connecting,298.6,15971,True
+Non-holiday,DTW-BOS,DTW,BOS,Nonstop,209.35,5315,True
+Non-holiday,DTW-BOS,DTW,BOS,Connecting,236.6,19261,True
+Non-holiday,DTW-CLT,DTW,CLT,Nonstop,228.6,5260,True
+Non-holiday,DTW-CLT,DTW,CLT,Connecting,278.6,12999,True
+Non-holiday,DTW-DEN,DTW,DEN,Nonstop,338.61,4103,True
+Non-holiday,DTW-DEN,DTW,DEN,Connecting,406.1,12967,True
+Non-holiday,DTW-DFW,DTW,DFW,Nonstop,268.6,5925,True
+Non-holiday,DTW-DFW,DTW,DFW,Connecting,343.6,13484,True
+Non-holiday,DTW-EWR,DTW,EWR,Nonstop,213.6,6005,True
+Non-holiday,DTW-EWR,DTW,EWR,Connecting,236.1,11011,True
+Non-holiday,DTW-IAD,DTW,IAD,Nonstop,178.6,4489,True
+Non-holiday,DTW-IAD,DTW,IAD,Connecting,251.1,3865,True
+Non-holiday,DTW-JFK,DTW,JFK,Nonstop,223.6,4797,True
+Non-holiday,DTW-JFK,DTW,JFK,Connecting,470.1,16560,True
+Non-holiday,DTW-LAX,DTW,LAX,Nonstop,388.6,4844,True
+Non-holiday,DTW-LAX,DTW,LAX,Connecting,450.6,35686,True
+Non-holiday,DTW-LGA,DTW,LGA,Nonstop,180.6,9412,True
+Non-holiday,DTW-LGA,DTW,LGA,Connecting,189.6,14041,True
+Non-holiday,DTW-MIA,DTW,MIA,Nonstop,193.6,2957,True
+Non-holiday,DTW-MIA,DTW,MIA,Connecting,284.73,15952,True
+Non-holiday,DTW-OAK,DTW,OAK,Nonstop,478.59,129,True
+Non-holiday,DTW-OAK,DTW,OAK,Connecting,622.7,16517,True
+Non-holiday,DTW-ORD,DTW,ORD,Nonstop,202.6,7994,True
+Non-holiday,DTW-ORD,DTW,ORD,Connecting,294.4,3630,True
+Non-holiday,DTW-PHL,DTW,PHL,Nonstop,248.6,4476,True
+Non-holiday,DTW-PHL,DTW,PHL,Connecting,328.6,10524,True
+Non-holiday,DTW-SFO,DTW,SFO,Nonstop,498.6,2203,True
+Non-holiday,DTW-SFO,DTW,SFO,Connecting,537.1,25809,True
+Non-holiday,EWR-ATL,EWR,ATL,Nonstop,223.6,10227,True
+Non-holiday,EWR-ATL,EWR,ATL,Connecting,227.6,9989,True
+Non-holiday,EWR-BOS,EWR,BOS,Nonstop,118.6,10087,True
+Non-holiday,EWR-BOS,EWR,BOS,Connecting,287.2,6077,True
+Non-holiday,EWR-CLT,EWR,CLT,Nonstop,218.59,12610,True
+Non-holiday,EWR-CLT,EWR,CLT,Connecting,270.1,10058,True
+Non-holiday,EWR-DEN,EWR,DEN,Nonstop,358.6,5401,True
+Non-holiday,EWR-DEN,EWR,DEN,Connecting,426.1,16588,True
+Non-holiday,EWR-DFW,EWR,DFW,Nonstop,248.6,8771,True
+Non-holiday,EWR-DFW,EWR,DFW,Connecting,341.1,12290,True
+Non-holiday,EWR-DTW,EWR,DTW,Nonstop,228.6,5987,True
+Non-holiday,EWR-DTW,EWR,DTW,Connecting,243.2,13066,True
+Non-holiday,EWR-IAD,EWR,IAD,Nonstop,238.6,3927,True
+Non-holiday,EWR-IAD,EWR,IAD,Connecting,358.6,11113,True
+Non-holiday,EWR-LAX,EWR,LAX,Nonstop,354.35,10370,True
+Non-holiday,EWR-LAX,EWR,LAX,Connecting,408.6,27166,True
+Non-holiday,EWR-MIA,EWR,MIA,Nonstop,226.6,8627,True
+Non-holiday,EWR-MIA,EWR,MIA,Connecting,245.58,8688,True
+Non-holiday,EWR-OAK,EWR,OAK,Nonstop,215.59,341,True
+Non-holiday,EWR-OAK,EWR,OAK,Connecting,571.6,10830,True
+Non-holiday,EWR-ORD,EWR,ORD,Nonstop,194.73,14052,True
+Non-holiday,EWR-ORD,EWR,ORD,Connecting,272.19,13710,True
+Non-holiday,EWR-PHL,EWR,PHL,Nonstop,248.6,1404,True
+Non-holiday,EWR-PHL,EWR,PHL,Connecting,431.61,18578,True
+Non-holiday,EWR-SFO,EWR,SFO,Nonstop,408.6,8377,True
+Non-holiday,EWR-SFO,EWR,SFO,Connecting,477.61,17027,True
+Non-holiday,IAD-ATL,IAD,ATL,Nonstop,191.6,5647,True
+Non-holiday,IAD-ATL,IAD,ATL,Connecting,286.1,4159,True
+Non-holiday,IAD-BOS,IAD,BOS,Nonstop,148.6,2414,True
+Non-holiday,IAD-BOS,IAD,BOS,Connecting,381.1,14132,True
+Non-holiday,IAD-CLT,IAD,CLT,Nonstop,181.6,4883,True
+Non-holiday,IAD-CLT,IAD,CLT,Connecting,302.6,5330,True
+Non-holiday,IAD-DEN,IAD,DEN,Nonstop,358.6,4212,True
+Non-holiday,IAD-DEN,IAD,DEN,Connecting,445.59,11781,True
+Non-holiday,IAD-DFW,IAD,DFW,Nonstop,285.6,2669,True
+Non-holiday,IAD-DFW,IAD,DFW,Connecting,337.6,12367,True
+Non-holiday,IAD-DTW,IAD,DTW,Nonstop,181.6,4475,True
+Non-holiday,IAD-DTW,IAD,DTW,Connecting,298.6,2999,True
+Non-holiday,IAD-EWR,IAD,EWR,Nonstop,197.6,3872,True
+Non-holiday,IAD-EWR,IAD,EWR,Connecting,351.09,12407,True
+Non-holiday,IAD-JFK,IAD,JFK,Nonstop,198.61,1809,True
+Non-holiday,IAD-JFK,IAD,JFK,Connecting,432.21,11569,True
+Non-holiday,IAD-LAX,IAD,LAX,Nonstop,428.6,3423,True
+Non-holiday,IAD-LAX,IAD,LAX,Connecting,491.65,26600,True
+Non-holiday,IAD-LGA,IAD,LGA,Nonstop,148.6,5274,True
+Non-holiday,IAD-LGA,IAD,LGA,Connecting,447.19,31068,True
+Non-holiday,IAD-MIA,IAD,MIA,Nonstop,328.6,598,True
+Non-holiday,IAD-MIA,IAD,MIA,Connecting,341.11,12075,True
+Non-holiday,IAD-OAK,IAD,OAK,Connecting,697.11,13513,False
+Non-holiday,IAD-ORD,IAD,ORD,Nonstop,202.6,2956,True
+Non-holiday,IAD-ORD,IAD,ORD,Connecting,325.6,11440,True
+Non-holiday,IAD-PHL,IAD,PHL,Connecting,399.1,13347,False
+Non-holiday,IAD-SFO,IAD,SFO,Nonstop,528.6,4616,True
+Non-holiday,IAD-SFO,IAD,SFO,Connecting,536.1,19115,True
+Non-holiday,JFK-ATL,JFK,ATL,Nonstop,213.6,8652,True
+Non-holiday,JFK-ATL,JFK,ATL,Connecting,377.6,10359,True
+Non-holiday,JFK-BOS,JFK,BOS,Nonstop,153.6,20245,True
+Non-holiday,JFK-BOS,JFK,BOS,Connecting,466.61,3108,True
+Non-holiday,JFK-CLT,JFK,CLT,Nonstop,213.6,8855,True
+Non-holiday,JFK-CLT,JFK,CLT,Connecting,267.19,10288,True
+Non-holiday,JFK-DEN,JFK,DEN,Nonstop,313.6,3630,True
+Non-holiday,JFK-DEN,JFK,DEN,Connecting,581.6,23164,True
+Non-holiday,JFK-DFW,JFK,DFW,Nonstop,242.35,5959,True
+Non-holiday,JFK-DFW,JFK,DFW,Connecting,561.7,15931,True
+Non-holiday,JFK-DTW,JFK,DTW,Nonstop,215.6,4820,True
+Non-holiday,JFK-DTW,JFK,DTW,Connecting,348.2,9717,True
+Non-holiday,JFK-IAD,JFK,IAD,Nonstop,158.6,1812,True
+Non-holiday,JFK-IAD,JFK,IAD,Connecting,423.71,10531,True
+Non-holiday,JFK-LAX,JFK,LAX,Nonstop,408.6,23572,True
+Non-holiday,JFK-LAX,JFK,LAX,Connecting,437.6,18609,True
+Non-holiday,JFK-MIA,JFK,MIA,Nonstop,198.6,16982,True
+Non-holiday,JFK-MIA,JFK,MIA,Connecting,497.6,5042,True
+Non-holiday,JFK-OAK,JFK,OAK,Connecting,598.6,8664,False
+Non-holiday,JFK-ORD,JFK,ORD,Nonstop,215.6,7149,True
+Non-holiday,JFK-ORD,JFK,ORD,Connecting,517.2,29351,True
+Non-holiday,JFK-PHL,JFK,PHL,Connecting,405.2,15335,False
+Non-holiday,JFK-SFO,JFK,SFO,Nonstop,428.6,18111,True
+Non-holiday,JFK-SFO,JFK,SFO,Connecting,447.6,7062,True
+Non-holiday,LAX-ATL,LAX,ATL,Nonstop,458.6,10274,True
+Non-holiday,LAX-ATL,LAX,ATL,Connecting,448.6,32353,True
+Non-holiday,LAX-BOS,LAX,BOS,Nonstop,498.6,11218,True
+Non-holiday,LAX-BOS,LAX,BOS,Connecting,471.61,37253,True
+Non-holiday,LAX-CLT,LAX,CLT,Nonstop,433.6,4755,True
+Non-holiday,LAX-CLT,LAX,CLT,Connecting,493.6,34662,True
+Non-holiday,LAX-DEN,LAX,DEN,Nonstop,228.6,11539,True
+Non-holiday,LAX-DEN,LAX,DEN,Connecting,315.6,17840,True
+Non-holiday,LAX-DFW,LAX,DFW,Nonstop,285.6,15392,True
+Non-holiday,LAX-DFW,LAX,DFW,Connecting,305.61,27343,True
+Non-holiday,LAX-DTW,LAX,DTW,Nonstop,468.61,4848,True
+Non-holiday,LAX-DTW,LAX,DTW,Connecting,494.2,36366,True
+Non-holiday,LAX-EWR,LAX,EWR,Nonstop,386.6,10399,True
+Non-holiday,LAX-EWR,LAX,EWR,Connecting,442.6,30684,True
+Non-holiday,LAX-IAD,LAX,IAD,Nonstop,528.6,3392,True
+Non-holiday,LAX-IAD,LAX,IAD,Connecting,528.59,28882,True
+Non-holiday,LAX-JFK,LAX,JFK,Nonstop,433.6,20671,True
+Non-holiday,LAX-JFK,LAX,JFK,Connecting,437.6,22586,True
+Non-holiday,LAX-LGA,LAX,LGA,Nonstop,334.59,1,True
+Non-holiday,LAX-LGA,LAX,LGA,Connecting,452.6,46488,True
+Non-holiday,LAX-MIA,LAX,MIA,Nonstop,348.6,4707,True
+Non-holiday,LAX-MIA,LAX,MIA,Connecting,423.11,30010,True
+Non-holiday,LAX-OAK,LAX,OAK,Nonstop,148.6,2579,True
+Non-holiday,LAX-OAK,LAX,OAK,Connecting,407.2,12727,True
+Non-holiday,LAX-ORD,LAX,ORD,Nonstop,342.6,12519,True
+Non-holiday,LAX-ORD,LAX,ORD,Connecting,370.6,27747,True
+Non-holiday,LAX-PHL,LAX,PHL,Nonstop,429.6,4187,True
+Non-holiday,LAX-PHL,LAX,PHL,Connecting,493.6,33016,True
+Non-holiday,LAX-SFO,LAX,SFO,Nonstop,168.61,19944,True
+Non-holiday,LAX-SFO,LAX,SFO,Connecting,327.6,5670,True
+Non-holiday,LGA-ATL,LGA,ATL,Nonstop,198.6,13609,True
+Non-holiday,LGA-ATL,LGA,ATL,Connecting,206.61,14199,True
+Non-holiday,LGA-BOS,LGA,BOS,Nonstop,103.6,21000,True
+Non-holiday,LGA-BOS,LGA,BOS,Connecting,226.6,7439,True
+Non-holiday,LGA-CLT,LGA,CLT,Nonstop,193.61,13921,True
+Non-holiday,LGA-CLT,LGA,CLT,Connecting,200.6,17996,True
+Non-holiday,LGA-DEN,LGA,DEN,Nonstop,308.6,7092,True
+Non-holiday,LGA-DEN,LGA,DEN,Connecting,369.1,15908,True
+Non-holiday,LGA-DFW,LGA,DFW,Nonstop,208.61,17642,True
+Non-holiday,LGA-DFW,LGA,DFW,Connecting,257.6,15072,True
+Non-holiday,LGA-DTW,LGA,DTW,Nonstop,218.59,9388,True
+Non-holiday,LGA-DTW,LGA,DTW,Connecting,212.96,13482,True
+Non-holiday,LGA-IAD,LGA,IAD,Nonstop,158.6,5255,True
+Non-holiday,LGA-IAD,LGA,IAD,Connecting,448.1,27627,True
+Non-holiday,LGA-LAX,LGA,LAX,Nonstop,168.59,1,True
+Non-holiday,LGA-LAX,LGA,LAX,Connecting,434.61,48147,True
+Non-holiday,LGA-MIA,LGA,MIA,Nonstop,198.6,14362,True
+Non-holiday,LGA-MIA,LGA,MIA,Connecting,237.6,12803,True
+Non-holiday,LGA-OAK,LGA,OAK,Connecting,687.7,24248,False
+Non-holiday,LGA-ORD,LGA,ORD,Nonstop,172.6,27137,True
+Non-holiday,LGA-ORD,LGA,ORD,Connecting,177.61,8467,True
+Non-holiday,LGA-PHL,LGA,PHL,Connecting,372.6,33387,False
+Non-holiday,LGA-SFO,LGA,SFO,Connecting,527.21,34891,False
+Non-holiday,MIA-ATL,MIA,ATL,Nonstop,188.6,9071,True
+Non-holiday,MIA-ATL,MIA,ATL,Connecting,367.6,9351,True
+Non-holiday,MIA-BOS,MIA,BOS,Nonstop,213.6,10232,True
+Non-holiday,MIA-BOS,MIA,BOS,Connecting,237.6,17009,True
+Non-holiday,MIA-CLT,MIA,CLT,Nonstop,308.6,4265,True
+Non-holiday,MIA-CLT,MIA,CLT,Connecting,238.6,20917,True
+Non-holiday,MIA-DEN,MIA,DEN,Nonstop,263.98,2822,True
+Non-holiday,MIA-DEN,MIA,DEN,Connecting,419.1,16640,True
+Non-holiday,MIA-DFW,MIA,DFW,Nonstop,233.59,7274,True
+Non-holiday,MIA-DFW,MIA,DFW,Connecting,284.58,24796,True
+Non-holiday,MIA-DTW,MIA,DTW,Nonstop,195.095,2952,True
+Non-holiday,MIA-DTW,MIA,DTW,Connecting,305.61,15502,True
+Non-holiday,MIA-EWR,MIA,EWR,Nonstop,208.61,8373,True
+Non-holiday,MIA-EWR,MIA,EWR,Connecting,328.6,9771,True
+Non-holiday,MIA-IAD,MIA,IAD,Nonstop,428.59,605,True
+Non-holiday,MIA-IAD,MIA,IAD,Connecting,375.7,12480,True
+Non-holiday,MIA-JFK,MIA,JFK,Nonstop,172.6,16751,True
+Non-holiday,MIA-JFK,MIA,JFK,Connecting,597.2,2691,True
+Non-holiday,MIA-LAX,MIA,LAX,Nonstop,293.6,4839,True
+Non-holiday,MIA-LAX,MIA,LAX,Connecting,361.58,27381,True
+Non-holiday,MIA-LGA,MIA,LGA,Nonstop,174.6,14232,True
+Non-holiday,MIA-LGA,MIA,LGA,Connecting,236.1,10704,True
+Non-holiday,MIA-OAK,MIA,OAK,Connecting,657.1,8218,False
+Non-holiday,MIA-ORD,MIA,ORD,Nonstop,226.1,6340,True
+Non-holiday,MIA-ORD,MIA,ORD,Connecting,269.21,19552,True
+Non-holiday,MIA-PHL,MIA,PHL,Nonstop,203.6,5074,True
+Non-holiday,MIA-PHL,MIA,PHL,Connecting,268.6,18860,True
+Non-holiday,MIA-SFO,MIA,SFO,Nonstop,499.6,1762,True
+Non-holiday,MIA-SFO,MIA,SFO,Connecting,506.6,21832,True
+Non-holiday,OAK-ATL,OAK,ATL,Connecting,552.21,19081,False
+Non-holiday,OAK-BOS,OAK,BOS,Connecting,691.61,14445,False
+Non-holiday,OAK-CLT,OAK,CLT,Connecting,700.1,9958,False
+Non-holiday,OAK-DEN,OAK,DEN,Nonstop,115.98,302,True
+Non-holiday,OAK-DEN,OAK,DEN,Connecting,467.2,17978,True
+Non-holiday,OAK-DFW,OAK,DFW,Connecting,501.7,25449,False
+Non-holiday,OAK-DTW,OAK,DTW,Nonstop,478.59,129,True
+Non-holiday,OAK-DTW,OAK,DTW,Connecting,622.7,14149,True
+Non-holiday,OAK-EWR,OAK,EWR,Nonstop,165.59,340,True
+Non-holiday,OAK-EWR,OAK,EWR,Connecting,579.2,10641,True
+Non-holiday,OAK-IAD,OAK,IAD,Connecting,666.7,11239,False
+Non-holiday,OAK-JFK,OAK,JFK,Connecting,568.59,8742,False
+Non-holiday,OAK-LAX,OAK,LAX,Nonstop,113.6,2511,True
+Non-holiday,OAK-LAX,OAK,LAX,Connecting,421.61,13617,True
+Non-holiday,OAK-LGA,OAK,LGA,Connecting,692.7,21803,False
+Non-holiday,OAK-MIA,OAK,MIA,Connecting,735.7,9062,False
+Non-holiday,OAK-ORD,OAK,ORD,Nonstop,228.59,592,True
+Non-holiday,OAK-ORD,OAK,ORD,Connecting,531.6,16931,True
+Non-holiday,OAK-PHL,OAK,PHL,Nonstop,198.59,602,True
+Non-holiday,OAK-PHL,OAK,PHL,Connecting,657.1,12797,True
+Non-holiday,OAK-SFO,OAK,SFO,Connecting,401.6,14404,False
+Non-holiday,ORD-ATL,ORD,ATL,Nonstop,228.6,8910,True
+Non-holiday,ORD-ATL,ORD,ATL,Connecting,225.6,12569,True
+Non-holiday,ORD-BOS,ORD,BOS,Nonstop,208.61,18564,True
+Non-holiday,ORD-BOS,ORD,BOS,Connecting,191.6,10152,True
+Non-holiday,ORD-CLT,ORD,CLT,Nonstop,229.6,7113,True
+Non-holiday,ORD-CLT,ORD,CLT,Connecting,308.6,16945,True
+Non-holiday,ORD-DEN,ORD,DEN,Nonstop,244.6,7719,True
+Non-holiday,ORD-DEN,ORD,DEN,Connecting,351.6,9029,True
+Non-holiday,ORD-DFW,ORD,DFW,Nonstop,232.6,9066,True
+Non-holiday,ORD-DFW,ORD,DFW,Connecting,283.6,19251,True
+Non-holiday,ORD-DTW,ORD,DTW,Nonstop,186.6,8060,True
+Non-holiday,ORD-DTW,ORD,DTW,Connecting,240.1,1927,True
+Non-holiday,ORD-EWR,ORD,EWR,Nonstop,178.6,14119,True
+Non-holiday,ORD-EWR,ORD,EWR,Connecting,261.61,10006,True
+Non-holiday,ORD-IAD,ORD,IAD,Nonstop,238.6,2951,True
+Non-holiday,ORD-IAD,ORD,IAD,Connecting,322.7,11705,True
+Non-holiday,ORD-JFK,ORD,JFK,Nonstop,196.6,7108,True
+Non-holiday,ORD-JFK,ORD,JFK,Connecting,507.2,26489,True
+Non-holiday,ORD-LAX,ORD,LAX,Nonstop,342.6,12539,True
+Non-holiday,ORD-LAX,ORD,LAX,Connecting,351.6,27043,True
+Non-holiday,ORD-LGA,ORD,LGA,Nonstop,172.6,27357,True
+Non-holiday,ORD-LGA,ORD,LGA,Connecting,176.11,8675,True
+Non-holiday,ORD-MIA,ORD,MIA,Nonstop,224.6,6281,True
+Non-holiday,ORD-MIA,ORD,MIA,Connecting,239.6,18612,True
+Non-holiday,ORD-OAK,ORD,OAK,Nonstop,188.59,599,True
+Non-holiday,ORD-OAK,ORD,OAK,Connecting,528.6,13862,True
+Non-holiday,ORD-PHL,ORD,PHL,Nonstop,202.6,7520,True
+Non-holiday,ORD-PHL,ORD,PHL,Connecting,273.395,9026,True
+Non-holiday,ORD-SFO,ORD,SFO,Nonstop,408.6,8342,True
+Non-holiday,ORD-SFO,ORD,SFO,Connecting,398.19,14042,True
+Non-holiday,PHL-ATL,PHL,ATL,Nonstop,229.595,8628,True
+Non-holiday,PHL-ATL,PHL,ATL,Connecting,282.1,10489,True
+Non-holiday,PHL-BOS,PHL,BOS,Nonstop,114.6,8589,True
+Non-holiday,PHL-BOS,PHL,BOS,Connecting,372.2,4746,True
+Non-holiday,PHL-CLT,PHL,CLT,Nonstop,238.6,5420,True
+Non-holiday,PHL-CLT,PHL,CLT,Connecting,252.6,16810,True
+Non-holiday,PHL-DEN,PHL,DEN,Nonstop,361.6,3670,True
+Non-holiday,PHL-DEN,PHL,DEN,Connecting,427.6,16717,True
+Non-holiday,PHL-DFW,PHL,DFW,Nonstop,315.6,5348,True
+Non-holiday,PHL-DFW,PHL,DFW,Connecting,317.6,21839,True
+Non-holiday,PHL-DTW,PHL,DTW,Nonstop,248.6,4414,True
+Non-holiday,PHL-DTW,PHL,DTW,Connecting,323.58,10889,True
+Non-holiday,PHL-EWR,PHL,EWR,Nonstop,258.6,1401,True
+Non-holiday,PHL-EWR,PHL,EWR,Connecting,416.11,20065,True
+Non-holiday,PHL-IAD,PHL,IAD,Connecting,427.1,12931,False
+Non-holiday,PHL-JFK,PHL,JFK,Connecting,341.61,14753,False
+Non-holiday,PHL-LAX,PHL,LAX,Nonstop,429.6,4123,True
+Non-holiday,PHL-LAX,PHL,LAX,Connecting,448.6,33394,True
+Non-holiday,PHL-LGA,PHL,LGA,Connecting,351.6,32698,False
+Non-holiday,PHL-MIA,PHL,MIA,Nonstop,203.6,5031,True
+Non-holiday,PHL-MIA,PHL,MIA,Connecting,245.61,18025,True
+Non-holiday,PHL-OAK,PHL,OAK,Nonstop,198.59,602,True
+Non-holiday,PHL-OAK,PHL,OAK,Connecting,691.7,12554,True
+Non-holiday,PHL-ORD,PHL,ORD,Nonstop,202.6,7446,True
+Non-holiday,PHL-ORD,PHL,ORD,Connecting,296.58,8316,True
+Non-holiday,PHL-SFO,PHL,SFO,Nonstop,548.6,1841,True
+Non-holiday,PHL-SFO,PHL,SFO,Connecting,557.6,24114,True
+Non-holiday,SFO-ATL,SFO,ATL,Nonstop,528.6,4571,True
+Non-holiday,SFO-ATL,SFO,ATL,Connecting,546.6,23664,True
+Non-holiday,SFO-BOS,SFO,BOS,Nonstop,478.6,9273,True
+Non-holiday,SFO-BOS,SFO,BOS,Connecting,506.61,25992,True
+Non-holiday,SFO-CLT,SFO,CLT,Nonstop,450.6,2679,True
+Non-holiday,SFO-CLT,SFO,CLT,Connecting,574.6,25712,True
+Non-holiday,SFO-DEN,SFO,DEN,Nonstop,268.6,7061,True
+Non-holiday,SFO-DEN,SFO,DEN,Connecting,378.6,20496,True
+Non-holiday,SFO-DFW,SFO,DFW,Nonstop,332.6,7067,True
+Non-holiday,SFO-DFW,SFO,DFW,Connecting,383.1,12075,True
+Non-holiday,SFO-DTW,SFO,DTW,Nonstop,538.6,2197,True
+Non-holiday,SFO-DTW,SFO,DTW,Connecting,557.61,25194,True
+Non-holiday,SFO-EWR,SFO,EWR,Nonstop,448.6,8126,True
+Non-holiday,SFO-EWR,SFO,EWR,Connecting,496.6,20001,True
+Non-holiday,SFO-IAD,SFO,IAD,Nonstop,538.6,4510,True
+Non-holiday,SFO-IAD,SFO,IAD,Connecting,545.6,18057,True
+Non-holiday,SFO-JFK,SFO,JFK,Nonstop,422.6,17163,True
+Non-holiday,SFO-JFK,SFO,JFK,Connecting,556.61,6988,True
+Non-holiday,SFO-LAX,SFO,LAX,Nonstop,151.6,19866,True
+Non-holiday,SFO-LAX,SFO,LAX,Connecting,327.6,5550,True
+Non-holiday,SFO-LGA,SFO,LGA,Connecting,552.6,34415,False
+Non-holiday,SFO-MIA,SFO,MIA,Nonstop,411.1,1668,True
+Non-holiday,SFO-MIA,SFO,MIA,Connecting,551.6,24115,True
+Non-holiday,SFO-OAK,SFO,OAK,Connecting,397.21,14898,False
+Non-holiday,SFO-ORD,SFO,ORD,Nonstop,421.6,8161,True
+Non-holiday,SFO-ORD,SFO,ORD,Connecting,492.6,19003,True
+Non-holiday,SFO-PHL,SFO,PHL,Nonstop,508.6,1769,True
+Non-holiday,SFO-PHL,SFO,PHL,Connecting,579.19,21758,True

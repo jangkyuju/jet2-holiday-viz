@@ -1,0 +1,9 @@
+holiday,flightType,medianFare,quoteCount
+Memorial Day,Nonstop,258.6,542721
+Memorial Day,Connecting,408.61,1258757
+July 4,Nonstop,255.6,693750
+July 4,Connecting,417.69,1653047
+Labor Day,Nonstop,208.61,895648
+Labor Day,Connecting,317.6,2532420
+Non-holiday,Nonstop,238.6,1573929
+Non-holiday,Connecting,392.7,3916027
