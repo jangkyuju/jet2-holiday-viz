@@ -1,0 +1,58 @@
+{
+  "exploration_figures_reproduced": true,
+  "checks": [
+    {
+      "check": "Labor Day median lowest fare, 60 days out",
+      "expected": 290,
+      "got": 290.11,
+      "pass": true
+    },
+    {
+      "check": "Labor Day median lowest fare, 14 days out (the floor)",
+      "expected": 258,
+      "got": 257.6,
+      "pass": true
+    },
+    {
+      "check": "Labor Day median lowest fare, 13 days out (after the jump)",
+      "expected": 284,
+      "got": 283.6,
+      "pass": true
+    },
+    {
+      "check": "Labor Day median lowest fare, 1 day out",
+      "expected": 371,
+      "got": 370.6,
+      "pass": true
+    },
+    {
+      "check": "July 4 median lowest fare, 60 days out",
+      "expected": 379,
+      "got": 378.6,
+      "pass": true
+    }
+  ],
+  "team_site_copy": {
+    "text_on_site": "bottoms out at $258 fourteen days before departure, then jumps $26 overnight",
+    "real_floor": {
+      "days_before": 14,
+      "fare": 258
+    },
+    "real_next_day": {
+      "days_before": 13,
+      "fare": 284,
+      "jump_dollars": 26
+    },
+    "matches": true
+  },
+  "counts": {
+    "staircase_rows": 224,
+    "changes_rows": 218,
+    "same_flight_checks": 11318332,
+    "diary_flights": 48,
+    "diary_rows": 2393,
+    "site_diary_routes": 234,
+    "site_diary_flights": 1872,
+    "site_diary_routes_with_4plus_flights": 234
+  }
+}
