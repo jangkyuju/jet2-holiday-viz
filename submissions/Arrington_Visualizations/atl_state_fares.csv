@@ -1,0 +1,13 @@
+state,country,avg_fare,min_fare,cheapest_airport,cheapest_airport_avg_fare,itinerary_count,airport_count
+California,United States,433.01,50.58,LAX,369.2,1477042,3
+Colorado,United States,307.08,53.99,DEN,307.08,309087,1
+District of Columbia,United States,237.26,78.6,IAD,237.26,143368,1
+Florida,United States,245.34,23.97,MIA,245.34,267257,1
+Illinois,United States,230.57,19.59,ORD,230.57,346153,1
+Massachusetts,United States,275.42,55.78,BOS,275.42,493277,1
+Michigan,United States,288.83,19.59,DTW,288.83,369510,1
+New Jersey,United States,210.76,19.59,EWR,210.76,307997,1
+New York,United States,234.87,31.97,LGA,199.74,782323,2
+North Carolina,United States,303.55,96.6,CLT,303.55,233173,1
+Pennsylvania,United States,239.86,19.59,PHL,239.86,292479,1
+Texas,United States,232.81,19.59,DFW,232.81,290362,1
