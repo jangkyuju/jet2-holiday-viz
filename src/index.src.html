@@ -418,14 +418,13 @@ body.still .cue, body.still .pulse { animation: none; }
     <div class="copy">
       <span class="sign">One more check</span>
       <h2>Price the nonstop before you assume the connection is cheaper.</h2>
-      <p class="muted">Two planes, same trip. The length of each contrail is the median fare. Across all routes, nonstop came out cheaper in every travel period. Within the same route it still held in 714 of 819 route-and-period comparisons.</p>
-      <p class="hint">Switch to your route to compare within one route. A few routes flip the pattern: from Atlanta to Boston, connecting was cheaper.</p>
+      <p class="muted" id="race-copy"></p>
+      <p class="hint" id="race-hint"></p>
     </div>
     <div class="panel">
       <div class="panel-head"><span class="panel-title" id="race-title">Median fare, nonstop vs. connecting</span><div class="tabs" id="race-scope" role="group" aria-label="Routes compared"></div></div>
-      <div class="tabs" id="bar-tabs" role="group" aria-label="Travel period" style="justify-self:start"></div>
       <svg id="race-svg" viewBox="0 0 640 210" role="img" aria-label="Median fare, nonstop versus connecting"></svg>
-      <div class="panel-foot"><span class="mono" id="race-foot">Sketch YH-02 · answers Q7 · data: Yuhan Hu</span><button class="btn small" id="race-again" type="button">Race again</button></div>
+      <div class="panel-foot"><span class="mono" id="race-foot">Sketch YH-02 · answers Q7 · all flight dates, Apr–Nov 2022 · method: Yuhan Hu</span><button class="btn small" id="race-again" type="button">Race again</button></div>
     </div>
   </div>
 </section>
@@ -1148,21 +1147,28 @@ function updateBook(p) {
 $('#fly-date').addEventListener('input', () => { buildBook(); S.book.update(S.book.p); });
 
 // ================= 6b. RACE =================
-const BARS = Object.fromEntries(Object.entries(SITE_DATA.bars).map(([k, v]) => [k, [v.Nonstop.fare, v.Connecting.fare]]));
+const NSF = SITE_DATA.nonstopFull;   // every flight date in the dataset, not only the holiday windows
 state.raceScope = 'all';
+function raceCopy() {
+  const atl = Object.values(NSF.routes), cheaper = atl.filter(r => r.ns < r.cn).length;
+  const flips = Object.entries(NSF.routes).filter(([, r]) => r.ns >= r.cn).map(([d]) => d);
+  $('#race-copy').textContent = `Two planes, same trip. The length of each contrail is the median fare across every search in the dataset (April to October 2022, all flight dates). Over all routes, nonstop came in at ${usd(NSF.all.ns)} against ${usd(NSF.all.cn)} for a connection. Within the same route, nonstop was still cheaper on ${NSF.sameRoute.nonstopCheaper} of ${NSF.sameRoute.routes} routes.`;
+  $('#race-hint').textContent = `Side by side (same route, same flight date, same search day), nonstop was cheaper ${Math.round(NSF.sameChoice.pctNonstopCheaper)}% of the time, by about ${Math.abs(Math.round(NSF.sameChoice.medianPct))}%. From Atlanta it held on ${cheaper} of ${atl.length} routes; ${flips.join(', ')} flip it. Switch to your route to check yours.`;
+}
+raceCopy();
 function renderScope() {
   const el = $('#race-scope'); el.innerHTML = '';
   [['all', 'All routes'], ['trip', `${state.origin} → ${state.dest}`]].forEach(([k, label]) => {
     const b = document.createElement('button'); b.type = 'button'; b.textContent = label; b.setAttribute('aria-pressed', state.raceScope === k);
-    b.disabled = k === 'trip' && !SITE_DATA.byRoute[state.dest];
+    b.disabled = k === 'trip' && !NSF.routes[state.dest];
     b.addEventListener('click', () => { state.raceScope = k; runRace(); }); el.appendChild(b);
   });
 }
 function runRace() {
-  renderTabs($('#bar-tabs'), 'barHoliday', runRace); renderScope();
-  const rt2 = state.raceScope === 'trip' && SITE_DATA.byRoute[state.dest] && SITE_DATA.byRoute[state.dest][state.barHoliday];
-  const [ns, cn] = rt2 ? [rt2.Nonstop.fare, rt2.Connecting.fare] : BARS[state.barHoliday], svg = d3.select('#race-svg'); svg.selectAll('*').remove();
-  $('#race-title').textContent = rt2 ? `Median fare, ${state.origin} → ${state.dest}` : 'Median fare, all routes';
+  renderScope();
+  const rt2 = state.raceScope === 'trip' && NSF.routes[state.dest];
+  const { ns, cn } = rt2 || NSF.all, svg = d3.select('#race-svg'); svg.selectAll('*').remove();
+  $('#race-title').textContent = rt2 ? `Median fare, ${state.origin} → ${state.dest} · all dates` : 'Median fare, all routes · all dates';
   const W = 640, m = { l: 100, r: 70 }, top = Math.max(450, Math.ceil(Math.max(ns, cn) / 100) * 100 + 50), x = d3.scaleLinear().domain([0, top]).range([m.l, W - m.r]);
   x.ticks(5).forEach(t => { svg.append('line').attr('x1', x(t)).attr('x2', x(t)).attr('y1', 10).attr('y2', 182).style('stroke', 'var(--line)'); svg.append('text').attr('x', x(t)).attr('y', 200).attr('text-anchor', 'middle').text('$' + t).style('font-size', '11px').style('fill', 'var(--muted)'); });
   const lanes = [
@@ -1171,7 +1177,7 @@ function runRace() {
   lanes.forEach((ln, i) => {
     svg.append('text').attr('x', 0).attr('y', ln.y + 5).text(ln.lab).style('font-size', '13px').style('fill', 'var(--ink)');
     const bar = svg.append('rect').attr('x', x(0)).attr('y', ln.y - 15).attr('height', 30).attr('rx', 3).attr('width', 0).style('fill', ln.col).style('opacity', 0.9)
-      .on('mousemove', ev => showTip(ev, `<b>${ln.lab} · ${HOL[state.barHoliday].label}</b><br>Median fare ${usd(ln.v)}${rt2 ? `<br>${state.origin} → ${state.dest} only` : '<br>All routes'}`)).on('mouseleave', hideTip);
+      .on('mousemove', ev => { const q = (rt2 || NSF.all)[i === 0 ? 'nNs' : 'nCn']; showTip(ev, `<b>${ln.lab} · ${rt2 ? state.origin + ' → ' + state.dest : 'all routes'}</b><br>Median fare ${usd(ln.v)}<br>${q.toLocaleString('en-US')} quotes in the full dataset`); }).on('mouseleave', hideTip);
     if (i === 1) { svg.append('circle').attr('cx', x(cn * 0.5)).attr('cy', 100).attr('r', 5).style('fill', 'var(--surface)').style('stroke', 'var(--ink-2)').style('stroke-width', 2); svg.append('text').attr('x', x(cn * 0.5)).attr('y', 86).attr('text-anchor', 'middle').text('layover').style('font-size', '11px').style('fill', 'var(--muted)'); }
     const c = contrail(svg.append('g'), ln.d, { s: 0.8, w: 2.4, op: 0.9, color: ln.col });
     const label = svg.append('text').attr('x', x(ln.v) + 10).attr('y', ln.y + 5).text(usd(ln.v)).style('font-size', '14px').style('font-weight', 600).style('fill', 'var(--ink)').style('opacity', 0);
