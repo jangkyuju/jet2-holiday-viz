@@ -13,47 +13,37 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
 /* Layout: airport-wayfinding scrollytelling. Each scene is a tall track with a sticky full-screen stage; scroll progress drives the animation. One yellow "sign" accent, split-flap departure-board type. */
+/* Single committed dark look: every viewer sees the same navy-night palette, whatever their OS theme. */
 :root {
   --hh: 0px;
   --navy: #003a70;
   --navy-2: #00234a;
-  --accent: #c8102e;
+  --accent: #e3354d;
   --accent-ink: #ffffff;
-  --bg: #f4f6f9;
-  --surface: #ffffff;
-  --land: #e6ebf2;
-  --ink: #0a1f3c;
-  --ink-2: #44546c;
-  --muted: #6f7c90;
-  --line: #dce2eb;
-  --line-2: #c0cad8;
-  --rose: #d0263c;
-  --fell: #2a6fd0;
-  --flat-strong: #a3adbd;
-  --div-mid: #eceff3;
-  --seq-lo: #fbd9d3;
-  --seq-hi: #8f1424;
+  --bg: #06111f;
+  --surface: #0d1d35;
+  --land: #13284a;
+  --ink: #e9eef6;
+  --ink-2: #b3bfd2;
+  --muted: #7d8aa2;
+  --line: #1c2d48;
+  --line-2: #2d4266;
+  --rose: #ec5a68;
+  --fell: #4d8fe8;
+  --flat-strong: #5d6a82;
+  --div-mid: #22324d;
+  --seq-lo: #3a2230;
+  --seq-hi: #ff7f86;
   --cloud: rgba(255, 255, 255, 0.14);
   --runway: #0d1b30;
-  --tile: #0b2a5b;
+  --tile: #021228;
   --tile-ink: #ffffff;
   --plane: #ffffff;
-  --plane-line: #003a70;
+  --plane-line: #00234a;
   --font-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
   --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #06111f; --surface: #0d1d35; --land: #13284a; --ink: #e9eef6; --ink-2: #b3bfd2; --muted: #7d8aa2;
-    --line: #1c2d48; --line-2: #2d4266; --accent: #e3354d; --rose: #ec5a68; --fell: #4d8fe8; --flat-strong: #5d6a82; --div-mid: #22324d;
-    --seq-lo: #3a2230; --seq-hi: #ff7f86; --tile: #021228; --plane-line: #00234a; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #06111f; --surface: #0d1d35; --land: #13284a; --ink: #e9eef6; --ink-2: #b3bfd2; --muted: #7d8aa2;
-  --line: #1c2d48; --line-2: #2d4266; --accent: #e3354d; --rose: #ec5a68; --fell: #4d8fe8; --flat-strong: #5d6a82; --div-mid: #22324d;
-  --seq-lo: #3a2230; --seq-hi: #ff7f86; --tile: #021228; --plane-line: #00234a; color-scheme: dark;
+  color-scheme: dark;
 }
 /* navy brand scenes (title, takeoff): tokens re-scoped so type and drawings read light-on-navy */
 .navy {
@@ -1219,8 +1209,6 @@ S.book = scene('book', updateBook); S.fly = scene('fly', updateFly);
 title.f1.set('WHEN SHOULD'); setTimeout(() => title.f2.set('WE BOOK?'), REDUCED ? 0 : 500);
 tick(); requestAnimationFrame(orbitLoop);
 const rebuild = () => { buildAll(); if (raced) runRace(); scenes.forEach(s => s.p = -1); tick(); };
-matchMedia('(prefers-color-scheme: dark)').addEventListener('change', rebuild);
-new MutationObserver(rebuild).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 </script>
 
 </body>
