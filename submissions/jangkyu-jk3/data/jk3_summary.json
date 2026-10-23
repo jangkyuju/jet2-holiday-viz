@@ -1,0 +1,51 @@
+{
+  "routes": 234,
+  "pairs": 64543691,
+  "pct_rising_by_window": {
+    "w60_45": 43.2,
+    "w45_30": 73.9,
+    "w30_21": 73.1,
+    "w21_14": 83.8,
+    "w14_7": 98.3,
+    "w7_1": 99.1
+  },
+  "median_change_by_window": {
+    "w60_45": -0.47,
+    "w45_30": 0.8,
+    "w30_21": 0.89,
+    "w21_14": 2.41,
+    "w14_7": 9.53,
+    "w7_1": 17.16
+  },
+  "pct_low_before_21": 91.5,
+  "low_day_quartiles": [
+    2.0,
+    30.0,
+    45.0,
+    57.0,
+    60.0
+  ],
+  "pct_rising_last_14": 98.3,
+  "pct_up_14_to_1": 99.1,
+  "split_half": {
+    "routes": 234,
+    "spearman_low_day": 0.657,
+    "pct_low_day_within_7": 71.8,
+    "pct_both_halves_rise_7_1": 99.1,
+    "spearman_rise_7_1": 0.989
+  },
+  "traits": {
+    "spearman_low_day_vs_nonstop": -0.35,
+    "spearman_low_day_vs_distance": 0.242,
+    "spearman_last7_vs_nonstop": 0.417,
+    "spearman_last7_vs_distance": -0.381
+  },
+  "low_day_hist": {
+    "1-7": 4,
+    "8-14": 9,
+    "15-21": 7,
+    "22-30": 43,
+    "31-45": 55,
+    "46-60": 116
+  }
+}

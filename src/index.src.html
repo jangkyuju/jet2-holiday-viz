@@ -349,15 +349,20 @@ body.still .cue, body.still .pulse { animation: none; }
     <div class="wrap gutter">
       <div class="copy">
         <span class="sign">Rising insight 2</span>
-        <h2>Every route bottoms out at a different time. Every route ends in red.</h2>
-        <p class="muted more">The staircase breaks into 10-day stretches. Each stretch flips into a tile: blue if the fare fell, red if it rose. Then every other route from Atlanta lines up beneath it.</p>
-        <p class="callout" data-at="0.88">There is no single best day to book. But the last ten days are red on every route.</p>
-        <p class="hint" data-at="0.9">Click a route row to redraw the staircase for that route.</p>
+        <h2>Every route bottoms out at a different time. Almost every route ends in red.</h2>
+        <p class="muted more" id="routes-copy">The staircase breaks into stretches between the cutoffs. Each stretch flips into a tile: blue if fares fell, red if they rose. Then every route from Atlanta lines up beneath it, sorted by when it was cheapest.</p>
+        <div class="bigstat" data-at="0.8"><span class="num" id="routes-num">99%</span><span class="lbl" id="routes-lbl">of routes get pricier in the last week. Only the cheapest day moves around.</span></div>
+        <p class="callout" data-at="0.88" id="routes-callout"></p>
+        <p class="hint" data-at="0.9">Click a route to redraw the staircase for it. Switch to all routes to see the whole network.</p>
       </div>
       <div class="panel">
-        <div class="panel-head"><span class="panel-title" id="routes-title"></span><button class="btn small" id="route-reset" type="button" hidden>Show all routes</button></div>
-        <svg id="routes-svg" class="cap" viewBox="0 0 640 480" role="img" aria-label="Staircase linked to a heatmap of fare change by route"></svg>
-        <div class="panel-foot"><span class="mono">Sketch JK3 · linked view · route rows are placeholders</span><div class="legend"><span><i class="sw" style="background:var(--fell)"></i>Fell</span><span><i class="sw" style="background:var(--rose)"></i>Rose</span></div></div>
+        <div class="panel-head">
+          <div class="tabs" id="routes-mode" role="group" aria-label="Routes shown"><button type="button" data-mode="atl" aria-pressed="true">From ATL</button><button type="button" data-mode="all" aria-pressed="false">All routes</button></div>
+          <button class="btn small" id="route-reset" type="button" hidden>Show all flights</button>
+        </div>
+        <span class="panel-title" id="routes-title"></span>
+        <svg id="routes-svg" class="cap" viewBox="0 0 640 480" role="img" aria-label="Fare index staircase linked to a heatmap of fare change by route and window"></svg>
+        <div class="panel-foot"><span class="mono">Sketch JK3 · answers Q13, Q2 · linked view · full dataset</span><div class="legend"><span><i class="sw" style="background:var(--fell)"></i>Fell</span><span><i class="sw" style="background:var(--div-mid);outline:1px solid var(--line-2)"></i>Flat</span><span><i class="sw" style="background:var(--rose)"></i>Rose</span></div></div>
       </div>
     </div>
   </div>
@@ -891,81 +896,128 @@ function updateSteps(p) {
 }
 
 // ================= 4. ROUTES (linked) =================
-const rt = { W: 640, sm: { t: 22, r: 18, b: 24, l: 50, h: 190 }, hm: { t: 228, l: 92, r: 4, rowH: 32, gap: 3 } };
-function syncRouteFromTrip() { if (state.origin === 'ATL' && ROUTES.some(r => r.id === state.dest)) { state.route = state.dest; buildRoutes(); S.routes.update(S.routes.p); } }
+const rt = { W: 640, sm: { t: 22, r: 40, b: 24, l: 50, h: 196 }, hm: { t: 236, l: 108, r: 4 }, mode: 'atl' };
+const RWIN = SITE_DATA.routeWindows;
+const allIdx = SITE_DATA.allFlights.map(r => r.index);                 // days 60..1
+const routeKeys = () => Object.keys(SITE_DATA.routes).filter(k => rt.mode === 'all' || k.startsWith('ATL-'))
+  .sort((a, b) => SITE_DATA.routes[b].low - SITE_DATA.routes[a].low || a.localeCompare(b));
+function syncRouteFromTrip() { const k = `${state.origin}-${state.dest}`; if (SITE_DATA.routes[k]) { state.route = k; buildRoutes(); S.routes.update(S.routes.p); } }
+function routeSeries(key) { const idx = key ? SITE_DATA.routes[key].idx : allIdx; return idx.map((v, i) => ({ d: 60 - i, v })); }
+function lowOf(series) { let m = series[0]; series.forEach(p => { if (p.v < m.v) m = p; }); return m; }
 function buildRoutes() {
   const svg = d3.select('#routes-svg'); svg.selectAll('*').remove();
-  const { W, sm, hm } = rt;
+  const { W, sm, hm } = rt, keys = routeKeys(), R = SITE_DATA.routes;
+  const many = keys.length > 30, rowH = many ? 1.9 : 15, H = hm.t + (keys.length + 1) * rowH + (many ? 12 : 6) + 10;
+  svg.attr('viewBox', `0 0 ${W} ${Math.max(480, H)}`);
   $('#route-reset').hidden = !state.route;
-  $('#routes-title').textContent = `Staircase for ${state.route ? 'ATL → ' + state.route : 'all routes'} · ${HOL[state.holiday].label}`;
-  const allData = holidayCurve(state.holiday), cur = curveFor(state.route, state.holiday);
+  const name = k => k.replace('-', ' → ');
+  $('#routes-title').textContent = state.route ? `Fare index · ${name(state.route)} (60 days out = 100) · dashed: all flights` : 'Fare index · all flights (60 days out = 100)';
+  // ---- linked staircase ----
+  const all = routeSeries(null), cur = routeSeries(state.route), low = lowOf(cur);
   const x = d3.scaleLinear().domain([60, 1]).range([sm.l, W - sm.r]);
-  const ext = d3.extent([...cur, ...allData], d => d.v);
-  const y = d3.scaleLinear().domain([ext[0] - 15, ext[1] + 15]).range([sm.h - sm.b, sm.t]);
+  const ext = d3.extent([...cur, ...all], d => d.v);
+  const y = d3.scaleLinear().domain([Math.min(95, ext[0] - 2), ext[1] + 4]).range([sm.h - sm.b, sm.t]);
   const line = d3.line().x(d => x(d.d)).y(d => y(d.v)).curve(d3.curveStepAfter);
-  y.ticks(4).forEach(t => { svg.append('line').attr('x1', sm.l).attr('x2', W - sm.r).attr('y1', y(t)).attr('y2', y(t)).style('stroke', 'var(--line)'); svg.append('text').attr('x', sm.l - 8).attr('y', y(t) + 4).attr('text-anchor', 'end').text('$' + t).style('font-size', '11px').style('fill', 'var(--muted)'); });
-  [60, 50, 40, 30, 20, 10, 1].forEach(t => svg.append('text').attr('x', x(t)).attr('y', sm.h - 6).attr('text-anchor', 'middle').text(t).style('font-size', '11px').style('fill', 'var(--muted)'));
-  rt.path = svg.append('path').attr('d', line(cur)).style('fill', 'none').style('stroke', 'var(--ink)').style('stroke-width', 2.2);
-  const rows = [{ id: null, label: 'All routes' }, ...ROUTES.map(r => ({ id: r.id, label: 'ATL–' + r.id }))];
-  const cw = (W - hm.l - hm.r) / WINDOWS.length;
-  const color = d3.scaleLinear().domain([-0.2, 0, 0.2]).range([tok('--fell'), tok('--div-mid'), tok('--rose')]).interpolate(d3.interpolateLab).clamp(true);
-  WINDOWS.forEach(([a, b], j) => svg.append('text').attr('x', hm.l + j * cw + cw / 2).attr('y', hm.t - 8).attr('text-anchor', 'middle').text(`${a}–${b === 1 ? 0 : b}d`).style('font-size', '11px').style('fill', 'var(--muted)'));
+  y.ticks(4).forEach(t => { svg.append('line').attr('x1', sm.l).attr('x2', W - sm.r).attr('y1', y(t)).attr('y2', y(t)).style('stroke', t === 100 ? 'var(--line-2)' : 'var(--line)'); svg.append('text').attr('x', sm.l - 8).attr('y', y(t) + 4).attr('text-anchor', 'end').text(t).style('font-size', '11px').style('fill', 'var(--muted)'); });
+  [60, 45, 30, 21, 14, 7, 1].forEach(t => svg.append('text').attr('x', x(t)).attr('y', sm.h - 6).attr('text-anchor', 'middle').text(t).style('font-size', '11px').style('fill', 'var(--muted)'));
+  [21, 14, 7].forEach(t => svg.append('line').attr('x1', x(t)).attr('x2', x(t)).attr('y1', sm.t).attr('y2', sm.h - sm.b).style('stroke', 'var(--line-2)').style('stroke-dasharray', '3 3'));
+  if (state.route) svg.append('path').attr('d', line(all)).style('fill', 'none').style('stroke', 'var(--muted)').style('stroke-width', 1.4).style('stroke-dasharray', '4 3');
+  rt.path = svg.append('path').attr('d', line(cur)).style('fill', 'none').style('stroke', 'var(--ink)').style('stroke-width', 2.4);
+  rt.lowG = svg.append('g');
+  rt.lowG.append('circle').attr('cx', x(low.d)).attr('cy', y(low.v)).attr('r', 5).style('fill', 'var(--fell)').style('stroke', 'var(--surface)').style('stroke-width', 2);
+  rt.lowG.append('text').attr('x', x(low.d)).attr('y', y(low.v) + 18).attr('text-anchor', low.d > 50 ? 'start' : 'middle').text(`cheapest ${low.d} days out`)
+    .style('font-size', '11.5px').style('font-weight', 600).style('fill', 'var(--fell)').style('paint-order', 'stroke').style('stroke', 'var(--surface)').style('stroke-width', 4);
+  const end = cur.at(-1);
+  rt.lowG.append('text').attr('x', x(1) + 6).attr('y', y(end.v) + 4).text(Math.round(end.v)).style('font-size', '11.5px').style('font-weight', 600).style('fill', 'var(--rose)');
+  // ---- heatmap ----
+  const cw = (W - hm.l - hm.r) / RWIN.length;
+  const color = d3.scaleLinear().domain([-0.15, 0, 0.15]).range([tok('--fell'), tok('--div-mid'), tok('--rose')]).interpolate(d3.interpolateLab).clamp(true);
+  RWIN.forEach(([a, b], j) => svg.append('text').attr('x', hm.l + j * cw + cw / 2).attr('y', hm.t - 10).attr('text-anchor', 'middle').text(`${a}–${b === 1 ? 1 : b}d`).style('font-size', '11px').style('fill', 'var(--muted)'));
+  const at60 = d => allIdx[60 - d];
+  const allWin = RWIN.map(([a, b]) => 100 * (at60(b) / at60(a) - 1));
+  const rows = [{ key: null, label: 'All flights', win: allWin, low: lowOf(all).d }, ...keys.map(k => ({ key: k, label: rt.mode === 'atl' ? 'ATL–' + k.slice(4) : k, win: R[k].win, low: R[k].low }))];
   rt.rows = rows.map((row, i) => {
-    const curve = curveFor(row.id, state.holiday), at = d => (curve.find(q => q.d === d) || {}).v;
-    const yy = hm.t + i * hm.rowH, sel = state.route === row.id;
-    const g = svg.append('g').style('cursor', 'pointer').on('click', () => pickRoute(row.id));
-    g.append('rect').attr('x', 0).attr('y', yy - 1).attr('width', W).attr('height', hm.rowH - hm.gap + 2).attr('rx', 3).style('fill', sel ? 'var(--land)' : 'transparent');
-    const label = g.append('text').attr('x', 8).attr('y', yy + hm.rowH / 2 + 2).text(row.label).style('font-size', '12px').style('fill', 'var(--ink)').style('font-weight', sel ? 600 : 400);
-    const cells = WINDOWS.map(([a, b], j) => {
-      const va = at(a), vb = at(b), v = va && vb ? vb / va - 1 : null, cx = hm.l + j * cw;
-      const cg = g.append('g');
-      cg.append('rect').attr('x', cx + 1.5).attr('y', yy).attr('width', cw - 3).attr('height', hm.rowH - hm.gap).attr('rx', 3)
-        .style('fill', v === null ? 'transparent' : color(v)).style('stroke', v === null ? 'var(--line-2)' : sel ? 'var(--ink)' : 'none').style('stroke-width', sel ? 1.5 : 1).style('stroke-dasharray', v === null ? '3 3' : null)
-        .on('mousemove', ev => showTip(ev, `<b>${row.label} · ${a} to ${b === 1 ? 0 : b} days out</b><br>${v === null ? 'No searches this early' : `${usd(va)} → ${usd(vb)} (${pct(v)})`}`)).on('mouseleave', hideTip);
-      if (v !== null) cg.append('text').attr('x', cx + cw / 2).attr('y', yy + hm.rowH / 2 + 2).attr('text-anchor', 'middle').text(pct(v)).style('font-size', '11px').style('pointer-events', 'none').style('fill', Math.abs(v) > 0.12 ? '#ffffff' : 'var(--ink)');
-      return { cg, v, j, cx: cx + cw / 2, cy: yy + (hm.rowH - hm.gap) / 2 };
+    const h = i === 0 ? 18 : rowH, yy = i === 0 ? hm.t : hm.t + 22 + (i - 1) * rowH, sel = state.route === row.key;
+    const g = svg.append('g').style('cursor', 'pointer').on('click', () => pickRoute(row.key));
+    g.append('rect').attr('x', 0).attr('y', yy - 0.5).attr('width', W).attr('height', h).style('fill', sel ? 'var(--land)' : 'transparent');
+    let label = null;
+    if (!many || i === 0) {
+      label = g.append('text').attr('x', 4).attr('y', yy + h / 2 + 4).text(row.label).style('font-size', i === 0 ? '12px' : '11px').style('fill', 'var(--ink)').style('font-weight', sel || i === 0 ? 600 : 400);
+      if (i > 0) g.append('text').attr('x', hm.l - 6).attr('y', yy + h / 2 + 4).attr('text-anchor', 'end').text(`${row.low}d`).style('font-size', '10px').style('fill', 'var(--fell)');
+    }
+    const tipFor = (j, v) => `<b>${row.key ? name(row.key) : 'All flights'} · ${RWIN[j][0]} to ${RWIN[j][1]} days out</b><br>Fare index ${pct(v / 100)} in this stretch<br>Cheapest ${row.low} days out${row.key ? `<br>${R[row.key].n.toLocaleString('en-US')} same-flight comparisons` : ''}`;
+    const cells = row.win.map((v, j) => {
+      const cx = hm.l + j * cw, cg = g.append('g');
+      cg.append('rect').attr('x', cx + (many && i ? 0.5 : 1.5)).attr('y', yy).attr('width', cw - (many && i ? 1 : 3)).attr('height', Math.max(1, h - (many && i ? 0.3 : 2))).attr('rx', many && i ? 0 : 2)
+        .style('fill', color(v / 100)).style('stroke', sel ? 'var(--ink)' : 'none').style('stroke-width', 1.2)
+        .on('mousemove', ev => showTip(ev, tipFor(j, v))).on('mouseleave', hideTip);
+      if (!many || i === 0) cg.append('text').attr('x', cx + cw / 2).attr('y', yy + h / 2 + 3.5).attr('text-anchor', 'middle').text(pct(v / 100)).style('font-size', i === 0 ? '11px' : '9.5px').style('pointer-events', 'none').style('fill', Math.abs(v) > 9 ? '#ffffff' : 'var(--ink)');
+      return { cg, v, j, cx: cx + cw / 2, cy: yy + h / 2 };
     });
     return { g, label, cells };
   });
-  // segments of the all-routes staircase that fly down into the first row
-  rt.segs = WINDOWS.map(([a, b], j) => {
-    const pts = allData.filter(d => d.d <= a && d.d >= b), cell = rt.rows[0].cells[j];
-    if (pts.length < 2) return null;
+  if (many) {
+    const y0 = hm.t + 22, y1 = y0 + keys.length * rowH;
+    svg.append('text').attr('x', hm.l - 8).attr('y', y0 + 8).attr('text-anchor', 'end').text('cheapest 60d out').style('font-size', '10px').style('fill', 'var(--fell)');
+    svg.append('text').attr('x', hm.l - 8).attr('y', y1).attr('text-anchor', 'end').text('cheapest 2d out').style('font-size', '10px').style('fill', 'var(--fell)');
+    svg.append('line').attr('x1', hm.l - 50).attr('x2', hm.l - 50).attr('y1', y0 + 14).attr('y2', y1 - 12).style('stroke', 'var(--line-2)');
+    svg.append('text').attr('x', 6).attr('y', (y0 + y1) / 2).text(`${keys.length} routes`).style('font-size', '11px').style('fill', 'var(--ink-2)');
+  }
+  // segments of the all-flights staircase that fly down into the first row
+  rt.segs = RWIN.map(([a, b], j) => {
+    const pts = all.filter(d => d.d <= a && d.d >= b), cell = rt.rows[0].cells[j];
     const bx = (x(a) + x(b)) / 2, by = d3.mean(pts, d => y(d.v));
-    const p = svg.append('path').attr('d', line(pts)).style('fill', 'none').style('stroke', cell.v === null ? 'var(--muted)' : color(cell.v)).style('stroke-width', 4).style('stroke-linecap', 'round').style('pointer-events', 'none');
+    const p = svg.append('path').attr('d', line(pts)).style('fill', 'none').style('stroke', color(cell.v / 100)).style('stroke-width', 4).style('stroke-linecap', 'round').style('pointer-events', 'none');
     return { p, bx, by, cell };
   });
   rt.svg = svg;
 }
-function pickRoute(id) {
+function pickRoute(key) {
   if (!rt.live) return;
-  hideTip(); state.route = id;
+  hideTip(); state.route = key;
   const old = rt.path.attr('d');
   buildRoutes(); S.routes.update(S.routes.p);
   const next = rt.path.attr('d');
   if (!REDUCED) rt.path.attr('d', old).transition().duration(700).ease(d3.easeCubicInOut).attr('d', next);
 }
 $('#route-reset').addEventListener('click', () => pickRoute(null));
+document.querySelectorAll('#routes-mode button').forEach(b => b.addEventListener('click', () => {
+  if (rt.mode === b.dataset.mode) return;
+  rt.mode = b.dataset.mode;
+  document.querySelectorAll('#routes-mode button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  buildRoutes(); routesCopy(); S.routes.update(S.routes.p);
+}));
+function routesCopy() {
+  const keys = routeKeys(), R = SITE_DATA.routes, n = keys.length;
+  const last = keys.filter(k => R[k].win.at(-1) > 0).length, early = keys.filter(k => R[k].low > 21).length;
+  const lows = keys.map(k => R[k].low).sort((a, b) => a - b), q = p => lows[Math.floor(p * (n - 1))];
+  const scope = rt.mode === 'atl' ? 'routes from Atlanta' : 'routes in the dataset';
+  $('#routes-num').textContent = `${Math.round(100 * last / n)}%`;
+  $('#routes-lbl').textContent = `of ${n} ${scope} get pricier in the last week. Only the cheapest day moves around.`;
+  $('#routes-callout').textContent = `The cheapest day ranges from ${lows.at(-1)} to ${lows[0]} days out (middle half: ${q(0.25)}–${q(0.75)}). There is no single best day, but ${early} of ${n} routes were cheapest before day 21.`;
+}
 function updateRoutes(p) {
   reveal($('#routes'), p);
   rt.live = p > 0.85 || REDUCED;
   rt.svg.style('pointer-events', rt.live ? 'auto' : 'none');
   rt.path.style('opacity', p < 0.6 ? lerp(1, 0.25, seg(p, 0.06, 0.14)) : lerp(0.25, 1, seg(p, 0.6, 0.75)));
+  rt.lowG.style('opacity', seg(p, 0.6, 0.75));
   rt.segs.forEach((s, j) => {
-    if (!s) return;
     const e = ease(seg(p, 0.1 + j * 0.045, 0.3 + j * 0.045));
     const dx = s.cell.cx - s.bx, dy = s.cell.cy - s.by;
     s.p.attr('transform', `translate(${s.bx + dx * e},${s.by + dy * e}) scale(${lerp(1, 0.25, e)},${lerp(1, 0.1, e)}) translate(${-s.bx},${-s.by})`)
       .style('opacity', p < 0.06 || e >= 1 ? 0 : 1);
   });
+  const n = rt.rows.length;
   rt.rows.forEach((row, i) => {
     if (i === 0) {
       row.cells.forEach(c => { const e = ease(seg(p, 0.26 + c.j * 0.045, 0.34 + c.j * 0.045)); c.cg.attr('transform', `translate(${c.cx},${c.cy}) scale(${e}) translate(${-c.cx},${-c.cy})`); });
       row.label.style('opacity', seg(p, 0.26, 0.32));
-    } else { const a = ease(seg(p, 0.52 + (i - 1) * 0.045, 0.62 + (i - 1) * 0.045)); row.g.attr('transform', `translate(${(1 - a) * 80},0)`).style('opacity', a); }
+    } else { const st = 0.52 + 0.25 * (i - 1) / Math.max(1, n - 2), a = ease(seg(p, st, st + 0.08)); row.g.attr('transform', `translate(${(1 - a) * 80},0)`).style('opacity', a); }
     row.cells.at(-1).cg.classed('pulse', p > 0.86 && p < 0.97 && !REDUCED);
   });
 }
+routesCopy();
 
 // ================= 5. THE BET =================
 const COLS = [60, 30, 21, 14, 7];
