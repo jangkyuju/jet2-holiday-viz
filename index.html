@@ -649,8 +649,14 @@ function buildWhere() {
   const width = d3.scaleLinear().domain(ext).range([3, 18]);
   Object.assign(where, { color, width, hovered: null, live: false });
   $('#map-title').textContent = `Average one-way fare from ${state.origin}`;
-  const sw = (w, f) => `<svg width="34" height="20" aria-hidden="true"><line x1="3" x2="31" y1="10" y2="10" stroke="${color(f)}" stroke-width="${w}" stroke-linecap="round"/></svg>`;
-  $('#map-legend').innerHTML = `<span>${sw(width(ext[0]), ext[0])}${usd(ext[0])}</span><span>${sw(width((ext[0] + ext[1]) / 2), (ext[0] + ext[1]) / 2)}${usd((ext[0] + ext[1]) / 2)}</span><span>${sw(width(ext[1]), ext[1])}${usd(ext[1])}</span>`;
+  // legend: one tapered spectrum bar, thin and light at the cheapest fare, thick and dark at the priciest
+  const LW = 220, x0 = 8, x1 = LW - 8, cy = 12, mid = (ext[0] + ext[1]) / 2;
+  const stops = d3.range(0, 1.0001, 0.125).map(t => `<stop offset="${t}" stop-color="${color(ext[0] + t * (ext[1] - ext[0]))}"/>`).join('');
+  const tick = (f, anchor) => { const tx = x0 + (f - ext[0]) / (ext[1] - ext[0]) * (x1 - x0); return `<line x1="${tx}" x2="${tx}" y1="${cy + width(f) / 2 + 1}" y2="${cy + 12}" stroke="var(--line-2)"/><text x="${tx}" y="${cy + 24}" text-anchor="${anchor}" font-size="11" fill="var(--ink-2)">${usd(f)}</text>`; };
+  $('#map-legend').innerHTML = `<svg width="${LW}" height="40" viewBox="0 0 ${LW} 40" role="img" aria-label="Line width and color: ${usd(ext[0])} thin and light to ${usd(ext[1])} thick and dark" style="overflow:visible">
+    <defs><linearGradient id="fare-spectrum" x1="0" x2="1">${stops}</linearGradient></defs>
+    <path d="M${x0},${cy - width(ext[0]) / 2} L${x1},${cy - width(ext[1]) / 2} A${width(ext[1]) / 2},${width(ext[1]) / 2} 0 0 1 ${x1},${cy + width(ext[1]) / 2} L${x0},${cy + width(ext[0]) / 2} Z" fill="url(#fare-spectrum)"/>
+    ${tick(ext[0], 'start')}${tick(mid, 'middle')}${tick(ext[1], 'end')}</svg>`;
   svg.append('path').attr('d', US_NATION).style('fill', 'var(--land)').style('stroke', 'var(--line-2)');
   svg.append('path').attr('d', US_STATES).style('fill', 'none').style('stroke', 'var(--line-2)').style('stroke-width', 0.6);
   const o = XY[state.origin];
