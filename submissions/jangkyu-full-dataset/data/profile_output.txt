@@ -1,0 +1,89 @@
+Converting CSV to Parquet (one time)...
+  done in 74s, 3.4 GB
+
+== Size and coverage ==
+    rows  unique_flights first_search last_search  search_days first_flight last_flight  origins  destinations  routes
+82138753         5999739   2022-04-16  2022-10-05          171   2022-04-17  2022-11-19       16            16     235
+
+== Days between search and flight ==
+ min_days  p25  median  p75  max_days
+        1 13.0    26.0 40.0        60
+
+== Total fare (USD) ==
+  min    p1   p25  median   mean    p75   p99     max     sd  avg_taxes_fees
+19.59 70.58 197.1   305.2 340.39 452.09 900.7 8260.61 196.03           47.72
+
+== Flight attributes (share of rows, %) ==
+ nonstop  basic_economy  refundable  arrives_next_day  seats_zero  median_seats_left  median_distance_mi
+    26.9           14.4         0.0              15.0         6.5                7.0              1468.0
+
+== Missing values (rows) ==
+ distance_missing  airline_missing  cabin_missing  duration_missing
+          6094532                0              0                 0
+
+== Rows by origin airport ==
+airport    rows  median_fare  pct_nonstop
+    LAX 8073281       367.60         23.7
+    LGA 5919323       237.60         31.2
+    BOS 5883876       242.60         34.9
+    SFO 5706482       417.60         23.2
+    DFW 5674959       272.59         29.1
+    ORD 5503476       238.60         37.4
+    CLT 5494510       296.10         24.1
+    ATL 5312028       264.60         33.0
+    MIA 4930213       257.60         27.5
+    PHL 4726187       307.58         16.6
+    DEN 4697143       308.60         25.1
+    DTW 4547052       294.60         23.0
+    JFK 4425164       356.10         38.3
+    EWR 3970797       267.19         34.7
+    OAK 3809884       537.20          1.6
+    IAD 3464378       357.60         18.6
+
+== Top 10 airlines (itinerary as listed; '||' joins segments) ==
+                             airline     rows  median_fare
+American Airlines||American Airlines 16296340       287.60
+                        Delta||Delta 11351669       357.60
+                      United||United 10217320       321.60
+                   American Airlines  7453245       233.61
+                               Delta  4855169       228.60
+                              United  4531426       224.60
+    Spirit Airlines||Spirit Airlines  4215514       193.58
+                     JetBlue Airways  3578393       198.60
+    JetBlue Airways||JetBlue Airways  3129646       276.61
+    Alaska Airlines||Alaska Airlines  1777996       427.21
+
+== Number of segments ==
+ segments     rows  median_fare
+        1 22066888       215.60
+        2 52285467       318.61
+        3  7586488       540.70
+        4   199812       613.54
+        5       98       891.30
+
+== Cabin (first segment) ==
+        cabin     rows  median_fare
+        coach 81996532       304.11
+        first    63720      1597.10
+premium coach    61473       758.60
+     business    17028      1998.60
+
+== Rows by flight month ==
+  month     rows  median_fare
+2022-04   918956       317.58
+2022-05  7440297       337.60
+2022-06 11774933       368.60
+2022-07 13492890       351.60
+2022-08 17678497       297.61
+2022-09 17285217       259.58
+2022-10 11044671       265.60
+2022-11  2503292       208.61
+
+== Our holiday windows (flight dates) ==
+      period    rows  flights  median_fare
+ Non-holiday 5489956   415650       348.59
+   Labor Day 3428068   187484       284.60
+      July 4 2346797   189213       363.61
+Memorial Day 1801478   153756       361.60
+
+Total time 112s

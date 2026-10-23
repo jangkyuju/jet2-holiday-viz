@@ -1,0 +1,6 @@
+period,mean_fare_Connecting,mean_fare_Nonstop,median_fare_Connecting,median_fare_Nonstop,quotes_Connecting,quotes_Nonstop,nonstop_minus_connecting,nonstop_pct
+All flights,373.17,251.15,348.62,215.6,60071865.0,22066888.0,-133.02,-38.2
+July 4,439.92,301.0,417.69,255.6,1653047.0,693750.0,-162.09,-38.8
+Labor Day,354.11,228.76,317.6,208.61,2532420.0,895648.0,-108.99,-34.3
+Memorial Day,433.29,292.16,408.61,258.6,1258757.0,542721.0,-150.01,-36.7
+Non-holiday,416.49,280.75,392.7,238.6,3916027.0,1573929.0,-154.1,-39.2

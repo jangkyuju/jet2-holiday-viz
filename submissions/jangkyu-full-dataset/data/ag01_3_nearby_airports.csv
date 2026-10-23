@@ -1,0 +1,111 @@
+period,orig,metro,EWR,JFK,LGA,OAK,SFO,cheapest,priciest,saving_usd
+All flights,ATL,Bay Area,,,,539.1,457.19,SFO,OAK,81.91
+All flights,ATL,New York,196.58,240.1,187.6,,,LGA,JFK,52.5
+All flights,BOS,Bay Area,,,,578.1,390.62,SFO,OAK,187.48
+All flights,BOS,New York,135.58,144.2,117.6,,,LGA,JFK,26.6
+All flights,CLT,Bay Area,,,,578.11,475.11,SFO,OAK,103.0
+All flights,CLT,New York,222.1,217.1,180.1,,,LGA,EWR,42.0
+All flights,DEN,Bay Area,,,,426.1,253.6,SFO,OAK,172.5
+All flights,DEN,New York,318.6,565.6,262.61,,,LGA,JFK,302.99
+All flights,DFW,Bay Area,,,,522.71,288.6,SFO,OAK,234.11
+All flights,DFW,New York,256.1,267.6,197.6,,,LGA,JFK,70.0
+All flights,DTW,Bay Area,,,,549.1,491.6,SFO,OAK,57.5
+All flights,DTW,New York,211.61,446.69,179.62,,,LGA,JFK,267.07
+All flights,IAD,Bay Area,,,,613.1,487.6,SFO,OAK,125.5
+All flights,IAD,New York,315.69,407.2,410.1,,,EWR,LGA,94.41
+All flights,LAX,Bay Area,,,,302.96,148.6,SFO,OAK,154.36
+All flights,LAX,New York,370.6,377.6,382.6,,,EWR,LGA,12.0
+All flights,MIA,Bay Area,,,,592.7,447.6,SFO,OAK,145.1
+All flights,MIA,New York,226.6,171.6,177.61,,,JFK,EWR,55.0
+All flights,ORD,Bay Area,,,,511.21,360.6,SFO,OAK,150.61
+All flights,ORD,New York,187.6,487.19,160.58,,,LGA,JFK,326.61
+All flights,PHL,Bay Area,,,,599.1,488.1,SFO,OAK,111.0
+All flights,PHL,New York,368.6,302.2,298.2,,,LGA,EWR,70.4
+July 4,ATL,Bay Area,,,,586.1,523.2,SFO,OAK,62.9
+July 4,ATL,New York,241.1,338.6,247.6,,,EWR,JFK,97.5
+July 4,BOS,Bay Area,,,,682.7,507.2,SFO,OAK,175.5
+July 4,BOS,New York,148.6,153.6,108.6,,,LGA,JFK,45.0
+July 4,CLT,Bay Area,,,,705.79,575.69,SFO,OAK,130.1
+July 4,CLT,New York,217.1,207.11,191.1,,,LGA,EWR,26.0
+July 4,DEN,Bay Area,,,,481.59,271.2,SFO,OAK,210.39
+July 4,DEN,New York,418.6,581.2,318.6,,,LGA,JFK,262.6
+July 4,DFW,Bay Area,,,,530.1,362.6,SFO,OAK,167.5
+July 4,DFW,New York,333.1,323.2,245.6,,,LGA,EWR,87.5
+July 4,DTW,Bay Area,,,,607.11,527.6,SFO,OAK,79.51
+July 4,DTW,New York,228.6,327.2,195.6,,,LGA,JFK,131.6
+July 4,IAD,Bay Area,,,,724.0,537.2,SFO,OAK,186.8
+July 4,IAD,New York,351.09,407.2,423.65999999999997,,,EWR,LGA,72.57
+July 4,LAX,Bay Area,,,,437.21,181.6,SFO,OAK,255.61
+July 4,LAX,New York,458.6,458.6,467.6,,,JFK,LGA,9.0
+July 4,MIA,Bay Area,,,,721.71,517.2,SFO,OAK,204.51
+July 4,MIA,New York,286.6,206.6,223.58,,,JFK,EWR,80.0
+July 4,ORD,Bay Area,,,,545.61,421.2,SFO,OAK,124.41
+July 4,ORD,New York,211.58,504.93,181.6,,,LGA,JFK,323.33
+July 4,PHL,Bay Area,,,,737.1,557.6,SFO,OAK,179.5
+July 4,PHL,New York,401.11,327.2,356.2,,,JFK,EWR,73.91
+Labor Day,ATL,Bay Area,,,,549.1,406.1,SFO,OAK,143.0
+Labor Day,ATL,New York,238.6,279.2,228.6,,,LGA,JFK,50.6
+Labor Day,BOS,Bay Area,,,,571.7,267.6,SFO,OAK,304.1
+Labor Day,BOS,New York,110.6,153.6,128.6,,,EWR,JFK,43.0
+Labor Day,CLT,Bay Area,,,,611.6,437.1,SFO,OAK,174.5
+Labor Day,CLT,New York,237.1,236.1,191.1,,,LGA,EWR,46.0
+Labor Day,DEN,Bay Area,,,,426.47,238.6,SFO,OAK,187.87
+Labor Day,DEN,New York,342.6,565.6,291.7,,,LGA,JFK,273.9
+Labor Day,DFW,Bay Area,,,,527.1,247.6,SFO,OAK,279.5
+Labor Day,DFW,New York,299.58,299.105,228.6,,,LGA,EWR,70.98
+Labor Day,DTW,Bay Area,,,,554.7,417.6,SFO,OAK,137.1
+Labor Day,DTW,New York,231.35,460.1,214.59,,,LGA,JFK,245.51
+Labor Day,IAD,Bay Area,,,,580.2,401.1,SFO,OAK,179.1
+Labor Day,IAD,New York,329.6,427.7,429.6,,,EWR,LGA,100.0
+Labor Day,LAX,Bay Area,,,,341.61,138.6,SFO,OAK,203.01
+Labor Day,LAX,New York,348.61,378.6,368.6,,,EWR,JFK,29.99
+Labor Day,MIA,Bay Area,,,,637.1,358.6,SFO,OAK,278.5
+Labor Day,MIA,New York,296.6,248.6,249.61,,,JFK,EWR,48.0
+Labor Day,ORD,Bay Area,,,,515.61,286.1,SFO,OAK,229.51
+Labor Day,ORD,New York,197.61,481.59,182.6,,,LGA,JFK,298.99
+Labor Day,PHL,Bay Area,,,,587.1,351.6,SFO,OAK,235.5
+Labor Day,PHL,New York,366.71,342.2,287.11,,,LGA,EWR,79.6
+Memorial Day,ATL,Bay Area,,,,707.2,612.6,SFO,OAK,94.6
+Memorial Day,ATL,New York,298.6,357.2,277.61,,,LGA,JFK,79.59
+Memorial Day,BOS,Bay Area,,,,662.69,493.2,SFO,OAK,169.49
+Memorial Day,BOS,New York,167.58,158.6,133.6,,,LGA,EWR,33.98
+Memorial Day,CLT,Bay Area,,,,747.1,617.1,SFO,OAK,130.0
+Memorial Day,CLT,New York,286.1,215.11,197.1,,,LGA,EWR,89.0
+Memorial Day,DEN,Bay Area,,,,457.2,369.6,SFO,OAK,87.6
+Memorial Day,DEN,New York,427.6,565.6,359.01,,,LGA,JFK,206.59
+Memorial Day,DFW,Bay Area,,,,552.7,464.155,SFO,OAK,88.55
+Memorial Day,DFW,New York,378.6,428.6,326.6,,,LGA,JFK,102.0
+Memorial Day,DTW,Bay Area,,,,617.1,574.6,SFO,OAK,42.5
+Memorial Day,DTW,New York,251.11,317.2,210.1,,,LGA,JFK,107.1
+Memorial Day,IAD,Bay Area,,,,701.6,540.6,SFO,OAK,161.0
+Memorial Day,IAD,New York,346.09,395.59,438.08,,,EWR,LGA,91.99
+Memorial Day,LAX,Bay Area,,,,441.6,178.6,SFO,OAK,263.0
+Memorial Day,LAX,New York,457.6,462.2,459.6,,,EWR,JFK,4.6
+Memorial Day,MIA,Bay Area,,,,701.1,542.7,SFO,OAK,158.4
+Memorial Day,MIA,New York,248.6,198.61,207.6,,,JFK,EWR,49.99
+Memorial Day,ORD,Bay Area,,,,591.2,472.71,SFO,OAK,118.49
+Memorial Day,ORD,New York,228.6,481.59,196.6,,,LGA,JFK,284.99
+Memorial Day,PHL,Bay Area,,,,647.11,571.6,SFO,OAK,75.51
+Memorial Day,PHL,New York,400.1,366.9,356.19,,,LGA,EWR,43.91
+Non-holiday,ATL,Bay Area,,,,554.7,508.6,SFO,OAK,46.1
+Non-holiday,ATL,New York,208.6,253.6,202.6,,,LGA,JFK,51.0
+Non-holiday,BOS,Bay Area,,,,657.71,507.6,SFO,OAK,150.11
+Non-holiday,BOS,New York,135.58,153.61,123.61,,,LGA,JFK,30.0
+Non-holiday,CLT,Bay Area,,,,698.6,546.6,SFO,OAK,152.0
+Non-holiday,CLT,New York,237.1,210.1,191.1,,,LGA,EWR,46.0
+Non-holiday,DEN,Bay Area,,,,451.6,268.6,SFO,OAK,183.0
+Non-holiday,DEN,New York,358.6,565.6,307.6,,,LGA,JFK,258.0
+Non-holiday,DFW,Bay Area,,,,527.1,318.6,SFO,OAK,208.5
+Non-holiday,DFW,New York,288.6,289.61,208.61,,,LGA,JFK,81.0
+Non-holiday,DTW,Bay Area,,,,622.1,535.59,SFO,OAK,86.51
+Non-holiday,DTW,New York,227.6,431.61,186.1,,,LGA,JFK,245.51
+Non-holiday,IAD,Bay Area,,,,697.11,528.6,SFO,OAK,168.51
+Non-holiday,IAD,New York,348.61,416.61,423.71,,,EWR,LGA,75.1
+Non-holiday,LAX,Bay Area,,,,347.21,188.6,SFO,OAK,158.61
+Non-holiday,LAX,New York,428.6,437.6,452.6,,,EWR,LGA,24.0
+Non-holiday,MIA,Bay Area,,,,657.1,505.2,SFO,OAK,151.9
+Non-holiday,MIA,New York,235.58,189.6,207.6,,,JFK,EWR,45.98
+Non-holiday,ORD,Bay Area,,,,525.6,407.1,SFO,OAK,118.5
+Non-holiday,ORD,New York,207.6,491.6,172.6,,,LGA,JFK,319.0
+Non-holiday,PHL,Bay Area,,,,669.585,557.6,SFO,OAK,111.99
+Non-holiday,PHL,New York,411.11,341.61,351.6,,,JFK,EWR,69.5

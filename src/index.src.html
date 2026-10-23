@@ -136,6 +136,17 @@ label.field { display: inline-flex; align-items: center; gap: 10px; font-size: 0
 .pass .stub { border-left: 2px dashed var(--line-2); padding: 12px 16px; display: grid; gap: 4px; align-content: center; justify-items: end; }
 .pass .flap { font-size: clamp(1.5rem, 2vw, 2.3rem); }
 .pass.print { animation: print 0.9s steps(12) both; }
+.nudge { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; border: 2px dashed var(--accent); border-radius: 8px; padding: 12px 14px; background: color-mix(in srgb, var(--accent) 6%, var(--surface)); }
+.nudge-icon { font-size: 1.6rem; color: var(--accent); animation: bob 1.4s ease-in-out infinite; }
+.nudge.blocked { animation: shake 0.45s ease-in-out; border-style: solid; }
+.ping { animation: ping 1.8s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes ping { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(2.8); opacity: 0; } }
+body.still .ping, body.still .nudge-icon { animation: none; }
+/* Watching: big stat */
+.bigstat { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 16px; align-items: center; }
+.bigstat .num { font-family: var(--font-display); font-weight: 700; font-size: clamp(3.6rem, 7vw, 7rem); line-height: 0.9; color: var(--accent); }
+.bigstat .lbl { font-weight: 500; }
+.caption { font-size: 0.88rem; color: var(--ink-2); max-width: none; }
 @keyframes print { from { clip-path: inset(0 0 100% 0); transform: translateY(-10px); } to { clip-path: inset(0 0 0 0); transform: none; } }
 
 /* Steps / shake */
@@ -267,14 +278,15 @@ body.still .cue, body.still .pulse { animation: none; }
       <div class="copy">
         <span class="sign" data-at="0.05">Hook · Where to?</span>
         <h2 data-at="0.08">A long weekend is coming. You want to go somewhere. But where?</h2>
-        <p class="muted more" data-at="0.4">Every dot is a destination, shaded by the average one-way fare from Atlanta across all searches. Click one to make it your trip.</p>
+        <p class="muted more" data-at="0.4">Every route is drawn as thick as its average one-way fare from Atlanta: the wider and darker the line, the more it costs. The board on the map ranks them.</p>
         <label class="field" for="origin" data-at="0.6">Flying from <select id="origin"></select></label>
-        <div class="pass" id="pass" data-at="0.82"></div>
+        <div class="nudge" id="nudge" data-at="0.7"><span class="nudge-icon" aria-hidden="true">↗</span><span><b>Pick a destination</b> on the map or the board to print your ticket and continue.</span><button class="btn small" id="pick-for-me" type="button">Pick the cheapest for me</button></div>
+        <div class="pass" id="pass" data-at="0.7" hidden></div>
       </div>
       <div class="panel">
         <div class="panel-head"><span class="panel-title" id="map-title"></span><div class="legend" id="map-legend"></div></div>
         <svg id="map" class="cap" viewBox="0 0 975 610" role="img" aria-label="Map of destinations shaded by fare"></svg>
-        <div class="panel-foot"><span class="mono">Sketch AG01 · answers Q5 · data: Arrington Goss</span><span class="hint">Hover for fares · click a dot to fly there</span></div>
+        <div class="panel-foot"><span class="mono">Sketch AG01 · answers Q5 · data: Arrington Goss</span><span class="hint">Hover a route for its fare · click a destination to fly there</span></div>
       </div>
     </div>
   </div>
@@ -286,12 +298,12 @@ body.still .cue, body.still .pulse { animation: none; }
     <div class="wrap gutter">
       <div class="copy">
         <span class="sign">Hook · Watching the fare</span>
-        <h2>So you start checking the price every day.</h2>
+        <h2>Checking every day? Most days, nothing happens.</h2>
+        <div class="bigstat" data-at="0.3"><span class="num" id="barely-num">82%</span><span class="lbl">of daily checks, the fare moved less than 10%. You don't need to keep checking every day.</span></div>
         <div class="pass">
           <div class="main"><span class="mono muted">YOUR TRIP · LABOR DAY</span><span class="route" id="w-route"></span><span class="mono muted" id="w-sub">Flight 1 · checked daily</span></div>
           <div class="stub"><span class="mono muted">FARE TODAY</span><span id="w-fare"></span><span id="w-t"></span></div>
         </div>
-        <p class="muted more">Each square is one day's check: red if the fare rose 10% or more since the day before, blue if it fell 10% or more, empty if it barely moved.</p>
         <p class="callout" id="diary-stat" data-at="0.9"></p>
       </div>
       <div class="panel">
@@ -300,7 +312,8 @@ body.still .cue, body.still .pulse { animation: none; }
           <div class="legend"><span><i class="sw" style="background:var(--rose)"></i>Rose 10%+</span><span><i class="sw" style="background:var(--fell)"></i>Fell 10%+</span><span><i class="sw out"></i>Barely moved</span></div>
         </div>
         <svg id="diary" viewBox="0 0 1000 170" role="img" aria-label="Daily fare changes for four flights"></svg>
-        <div class="panel-foot"><span class="mono">Sketch CZ-01 · Labor Day flights · data: Cynthia Zhou</span><button class="btn small" id="diary-redo" type="button">Follow four other flights</button></div>
+        <p class="caption">Each square is one day's check on a real flight: red if the fare rose 10% or more since the day before, blue if it fell 10% or more, empty if it barely moved.</p>
+        <div class="panel-foot"><span class="mono">Sketch CZ-01 · diary: Cynthia Zhou · 82%: full dataset</span><button class="btn small" id="diary-redo" type="button">Follow four other flights</button></div>
       </div>
     </div>
   </div>
@@ -323,18 +336,18 @@ body.still .cue, body.still .pulse { animation: none; }
       <div class="copy">
         <span class="sign">Rising insight 1</span>
         <h2>Zoom out, and fares don't creep up. They jump.</h2>
-        <p class="muted more">Thousands of daily checks collapse into one line: the median lowest fare. It drifts down for six weeks, bottoms out at $258 fourteen days before departure, then jumps $26 overnight.</p>
-        <div class="counter"><span class="mono muted">MEDIAN<br>FARE</span><span id="stair-fare"></span></div>
-        <p class="callout" data-at="0.92">A traveler waiting for a gradual climb never sees the jump coming.</p>
+        <p class="muted more">Every flight in the dataset, compared with its own price the day before: 64.5 million comparisons, not just holidays. For six weeks a typical fare barely moves. Then it jumps right after the 21-, 14- and 7-day marks, and once more the day before departure.</p>
+        <div class="counter"><span class="mono muted">AVERAGE<br>FARE</span><span id="stair-fare"></span><span class="mono muted" style="margin-left:14px">FARE<br>INDEX</span><span id="stair-index"></span></div>
+        <p class="callout" data-at="0.92">Fares end 37% higher than 60 days out, and about 80% of that rise happens on just four nights.</p>
       </div>
       <div class="panel" id="stair-panel">
-        <div class="panel-head"><div class="tabs" id="hol-tabs" role="group" aria-label="Travel period"></div><span class="hint">Hover the line once it lands</span></div>
+        <div class="panel-head"><div class="tabs" id="stair-mode" role="group" aria-label="Measure"><button type="button" data-mode="index" aria-pressed="true">Same flights (index)</button><button type="button" data-mode="mean" aria-pressed="false">Average fare</button></div><span class="hint">All flights · 82.1M quotes · 64.5M same-flight comparisons</span></div>
         <span class="panel-title" id="stair-title"></span>
         <div style="position:relative">
-          <svg id="stair" class="cap" viewBox="0 0 640 290" role="img" aria-label="Median lowest fare by days before departure"></svg>
+          <svg id="stair" class="cap" viewBox="0 0 640 290" role="img" aria-label="Fare index for all flights by days before departure"></svg>
           <canvas id="stair-canvas" class="overlay" style="left:0;top:0"></canvas>
         </div>
-        <div class="panel-foot"><span class="mono">Sketch CZ-03 · answers Q1, Q2 · data: Cynthia Zhou</span></div>
+        <div class="panel-foot"><span class="mono">Sketch CZ-03 · answers Q1, Q2 · full dataset</span><span class="hint">The 7-day jump shows up 5 days out.</span></div>
       </div>
     </div>
   </div>
@@ -629,25 +642,43 @@ function initOrigin() {
 }
 function buildWhere() {
   const svg = d3.select('#map'); svg.selectAll('*').remove();
-  const fares = destFares(), ext = d3.extent(fares, d => d.fare);
+  const fares = destFares().sort((a, b) => b.fare - a.fare), ext = d3.extent(fares, d => d.fare);
+  [...fares].sort((a, b) => a.fare - b.fare).forEach((d, i) => { d.rank = i + 1; });
   const color = d3.scaleLinear().domain(ext).range([tok('--seq-lo'), tok('--seq-hi')]).interpolate(d3.interpolateLab);
-  where.color = color;
+  const width = d3.scaleLinear().domain(ext).range([3, 18]);
+  Object.assign(where, { color, width, hovered: null, live: false });
   $('#map-title').textContent = `Average one-way fare from ${state.origin}`;
-  $('#map-legend').innerHTML = `<span>${usd(ext[0])}</span><i style="display:inline-block;width:80px;height:10px;border-radius:2px;background:linear-gradient(90deg,${tok('--seq-lo')},${tok('--seq-hi')})"></i><span>${usd(ext[1])}</span>`;
+  const sw = (w, f) => `<svg width="34" height="20" aria-hidden="true"><line x1="3" x2="31" y1="10" y2="10" stroke="${color(f)}" stroke-width="${w}" stroke-linecap="round"/></svg>`;
+  $('#map-legend').innerHTML = `<span>${sw(width(ext[0]), ext[0])}${usd(ext[0])}</span><span>${sw(width((ext[0] + ext[1]) / 2), (ext[0] + ext[1]) / 2)}${usd((ext[0] + ext[1]) / 2)}</span><span>${sw(width(ext[1]), ext[1])}${usd(ext[1])}</span>`;
   svg.append('path').attr('d', US_NATION).style('fill', 'var(--land)').style('stroke', 'var(--line-2)');
   svg.append('path').attr('d', US_STATES).style('fill', 'none').style('stroke', 'var(--line-2)').style('stroke-width', 0.6);
   const o = XY[state.origin];
   const arcD = code => { const t = XY[code], mx = (o[0] + t[0]) / 2, my = (o[1] + t[1]) / 2, dx = t[0] - o[0], dy = t[1] - o[1], len = Math.hypot(dx, dy) || 1, k = len * 0.18; return `M${o[0]},${o[1]} Q${mx + dy / len * k},${my - dx / len * k} ${t[0]},${t[1]}`; };
   where.arcD = arcD;
-  where.arcs = svg.append('g').selectAll('path').data(fares).join('path').attr('d', d => arcD(d.code)).style('fill', 'none').style('stroke-width', 1.3)
-    .each(function (d) { d.len = this.getTotalLength(); });
-  const live = svg.append('g');
-  where.dots = live.selectAll('g').data(fares).join('g').style('cursor', 'pointer')
-    .on('mousemove', (ev, d) => { const r = SITE_DATA.map[d.code]; showTip(ev, `<b>${state.origin} → ${d.code}</b><br>${NAMES[d.code]}<br>Average fare ${usd(d.fare)} · lowest seen ${usd(r.min)}<br>${r.n.toLocaleString('en-US')} itineraries`); })
-    .on('mouseleave', hideTip).on('click', (ev, d) => flyTo(d.code));
+  const tipHtml = d => { const r = SITE_DATA.map[d.code]; return `<b>${state.origin} → ${d.code}</b> · ${NAMES[d.code]}<br>Average fare <b>${usd(d.fare)}</b> · ${d.rank === 1 ? 'cheapest' : d.rank === fares.length ? 'priciest' : 'rank ' + d.rank + ' of ' + fares.length}<br>Lowest seen ${usd(r.min)} · ${r.n.toLocaleString('en-US')} itineraries<br><i>Click to fly there</i>`; };
+  const pick = (ev, d) => flyTo(d.code), over = (ev, d) => { showTip(ev, tipHtml(d)); hover(d.code); }, out = () => { hideTip(); hover(null); };
+  // routes: widest (priciest) drawn first so thin ones stay visible on top
+  where.arcs = svg.append('g').selectAll('path').data(fares).join('path').attr('d', d => arcD(d.code))
+    .style('fill', 'none').style('stroke', d => color(d.fare)).style('stroke-width', d => width(d.fare)).style('stroke-linecap', 'round').style('cursor', 'pointer')
+    .each(function (d) { d.len = this.getTotalLength(); })
+    .on('mousemove', over).on('mouseleave', out).on('click', pick);
+  where.dots = svg.append('g').selectAll('g').data(fares).join('g').style('cursor', 'pointer').on('mousemove', over).on('mouseleave', out).on('click', pick);
+  where.dots.append('circle').attr('class', 'ping').attr('r', 11).style('fill', 'none').style('stroke', 'var(--accent)').style('stroke-width', 3);
   where.dots.append('circle').attr('r', 20).style('fill', 'transparent');
   where.dots.append('circle').attr('class', 'dot').attr('r', 9).style('stroke', 'var(--surface)').style('stroke-width', 2);
-  where.dots.append('text').text(d => d.code).attr('x', 14).attr('y', 5).style('font-size', '15px').style('fill', 'var(--ink)').style('paint-order', 'stroke').style('stroke', 'var(--land)').style('stroke-width', 3);
+  const lbl = (sel, txt, y, size, weight) => sel.append('text').text(txt).attr('x', 14).attr('y', y).style('font-size', size).style('font-weight', weight).style('fill', 'var(--ink)').style('paint-order', 'stroke').style('stroke', 'var(--land)').style('stroke-width', 3.5);
+  lbl(where.dots, d => d.code, 2, '15px', 700); lbl(where.dots, d => usd(d.fare), 18, '13px', 400);
+  // ranked fare board over the empty lower-left corner (covers the Alaska/Hawaii insets, which have no airports here)
+  const asc = [...fares].sort((a, b) => a.fare - b.fare), bx = 18, by = 432, rowH = 11.2, bar = d3.scaleLinear().domain([0, ext[1]]).range([0, 150]);
+  where.boardG = svg.append('g');
+  where.boardG.append('rect').attr('x', bx - 10).attr('y', by - 30).attr('width', 262).attr('height', asc.length * rowH + 40).attr('rx', 8).style('fill', 'var(--surface)').style('stroke', 'var(--line)').style('opacity', 0.96);
+  where.boardG.append('text').attr('x', bx).attr('y', by - 12).text(`CHEAPEST → PRICIEST FROM ${state.origin}`).style('font-size', '11px').style('font-weight', 600).style('letter-spacing', '0.06em').style('fill', 'var(--muted)');
+  where.board = where.boardG.selectAll('g.row').data(asc).join('g').attr('class', 'row').attr('transform', (d, i) => `translate(${bx},${by + i * rowH})`).style('cursor', 'pointer')
+    .on('mousemove', over).on('mouseleave', out).on('click', pick);
+  where.board.append('rect').attr('x', -4).attr('y', -1).attr('width', 246).attr('height', rowH).style('fill', 'transparent');
+  where.board.append('text').attr('class', 'code').attr('x', 0).attr('y', 8.5).text(d => d.code).style('font-size', '10px').style('fill', 'var(--ink)');
+  where.board.append('rect').attr('class', 'bar').attr('x', 36).attr('y', 1.5).attr('height', rowH - 4).attr('rx', 2).attr('width', d => bar(d.fare)).style('fill', d => color(d.fare));
+  where.board.append('text').attr('x', d => 40 + bar(d.fare)).attr('y', 8.5).text(d => usd(d.fare)).style('font-size', '10px').style('fill', 'var(--ink-2)');
   const og = svg.append('g').attr('transform', `translate(${o})`);
   og.append('circle').attr('r', 10).style('fill', 'var(--accent)').style('stroke', 'var(--ink)').style('stroke-width', 2.5);
   og.append('text').text(`${state.origin} · you`).attr('x', 15).attr('y', -12).style('font-size', '15px').style('font-weight', 600).style('fill', 'var(--ink)').style('paint-order', 'stroke').style('stroke', 'var(--land)').style('stroke-width', 3);
@@ -655,36 +686,59 @@ function buildWhere() {
   where.flight = svg.append('g');
   where.svg = svg;
 }
+function hover(code) { where.hovered = code; styleSelection(); }
 function styleSelection() {
-  where.arcs.style('stroke', d => d.code === state.dest && state.flown ? 'var(--ink)' : where.color(d.fare)).style('stroke-width', d => d.code === state.dest && state.flown ? 2.4 : 1.3);
-  where.dots.select('.dot').attr('r', d => d.code === state.dest && state.flown ? 11 : 9).style('stroke', d => d.code === state.dest && state.flown ? 'var(--ink)' : 'var(--surface)');
+  const sel = state.flown ? state.dest : null, focus = where.hovered || sel;
+  where.arcs.style('opacity', d => !focus ? 0.85 : d.code === focus ? 1 : 0.22).style('stroke', d => d.code === sel ? 'var(--ink)' : where.color(d.fare));
+  if (focus) where.arcs.filter(d => d.code === focus).raise();
+  where.dots.select('.dot').attr('r', d => d.code === sel ? 12 : 9).style('stroke', d => d.code === sel ? 'var(--ink)' : 'var(--surface)').style('stroke-width', d => d.code === sel ? 3 : 2);
+  where.dots.select('.ping').style('display', state.flown || !where.live || REDUCED ? 'none' : null);
+  where.board.select('.code').style('font-weight', d => d.code === focus ? 700 : 400);
+  where.board.select('.bar').style('stroke', d => d.code === focus ? 'var(--ink)' : 'none').style('stroke-width', 1.5);
 }
 function updateWhere(p) {
   reveal($('#where'), p);
   where.entry.update(seg(p, 0.02, 0.35), !state.flown);
   where.dots.attr('transform', (d, i) => `translate(${XY[d.code]}) scale(${ease(seg(p, 0.36 + i * 0.012, 0.43 + i * 0.012))})`);
   where.arcs.each(function (d, i) {
-    const t = seg(p, 0.55 + i * 0.01, 0.68 + i * 0.01);
-    d3.select(this).style('stroke-dasharray', `${t * d.len} ${d.len + 1}`).style('opacity', 0.65);
+    const t = seg(p, 0.5 + i * 0.012, 0.64 + i * 0.012);
+    d3.select(this).style('stroke-dasharray', `${t * d.len} ${d.len + 1}`);
     where.dots.filter(x => x.code === d.code).select('.dot').style('fill', t >= 1 ? where.color(d.fare) : 'var(--line-2)');
   });
+  where.boardG.style('opacity', seg(p, 0.6, 0.72));
+  where.live = p > 0.72 || REDUCED;
   styleSelection();
-  where.svg.style('pointer-events', p > 0.75 ? 'auto' : 'none');
+  where.svg.style('pointer-events', where.live ? 'auto' : 'none');
 }
 function flyTo(code) {
-  hideTip();
+  hideTip(); where.hovered = null;
   where.flight.selectAll('*').remove();
   const c = contrail(where.flight, where.arcD(code), { w: 2.4, s: 1.1, op: 0.9 });
-  state.flown = true; where.entry.update(1, false);
+  state.flown = true; state.dest = code; where.entry.update(1, false); styleSelection();
   animate(1300, t => c.update(t), () => {
-    state.dest = code; styleSelection(); renderPass(true); if (raced) runRace();
+    styleSelection(); renderPass(true); if (raced) runRace();
     buildWatching(); S.watching.update(S.watching.p); updateQuiz(); syncRouteFromTrip();
   });
 }
 function renderPass(print) {
-  const fare = mapFare(state.origin, state.dest), el = $('#pass');
+  const el = $('#pass');
+  el.hidden = !state.flown; $('#nudge').hidden = state.flown;
+  if (!state.flown) return;
+  const fare = mapFare(state.origin, state.dest);
   el.innerHTML = `<div class="main"><span class="mono muted">YOUR TRIP · LABOR DAY · ONE WAY</span><span class="route">${state.origin} → ${state.dest}</span><span class="muted" style="font-size:0.88rem">${NAMES[state.origin]} to ${NAMES[state.dest]} · Fri, Sep 2</span></div><div class="stub"><span class="mono muted">FARE TODAY</span><span class="route">${usd(fare)}</span><span class="mono muted">T–60 days</span></div>`;
   if (print) { el.classList.remove('print'); void el.offsetWidth; el.classList.add('print'); }
+}
+$('#pick-for-me').addEventListener('click', () => flyTo(destFares().sort((a, b) => a.fare - b.fare)[0].code));
+// the story continues only after a destination is picked
+function gateWhere() {
+  if (state.flown || !S.where) return;
+  const el = S.where.el, total = el.offsetHeight - el.querySelector('.stage').offsetHeight;
+  const lockY = Math.max(el.offsetTop + total * 0.9, el.offsetTop + el.offsetHeight - innerHeight);
+  if (scrollY > lockY + 4) {
+    scrollTo(0, lockY);
+    const n = $('#nudge');
+    if (!n.classList.contains('blocked')) { n.classList.add('blocked'); setTimeout(() => n.classList.remove('blocked'), 600); }
+  }
 }
 
 // ================= 2. WATCHING =================
@@ -721,7 +775,9 @@ function buildWatching() {
       .on('mouseleave', hideTip);
   });
   const all = watch.flights.flatMap(f => f.days.slice(1)).filter(d => d.cls !== 'none'), c = k => all.filter(d => d.cls === k).length, n = all.length;
-  $('#diary-stat').textContent = `Out of ${n} daily checks, ${Math.round(c('rose') / n * 100)}% rose 10%+, ${Math.round(c('fell') / n * 100)}% fell 10%+, and ${Math.round(c('flat') / n * 100)}% barely moved. Nothing here tells you when to buy.`;
+  const D = SITE_DATA.diaryShares;
+  $('#barely-num').textContent = `${Math.round(D.barely)}%`;
+  $('#diary-stat').textContent = `Across ${D.flights.toLocaleString('en-US')} flights tracked every day for 60 days (${(D.checks / 1e6).toFixed(2)}M checks), ${Math.round(D.barely)}% of checks barely moved, ${D.rose10}% rose 10%+ and ${D.fell10}% fell 10%+. These four flights: ${Math.round(c('flat') / n * 100)}% barely moved.`;
 }
 function updateWatching(p) {
   reveal($('#watching'), p);
@@ -747,38 +803,56 @@ document.querySelectorAll('#quiz [data-a]').forEach(b => b.addEventListener('cli
 }));
 
 // ================= 3. STEPS =================
-const stair = { W: 640, H: 290, m: { t: 26, r: 18, b: 34, l: 50 }, fare: new Flap($('#stair-fare'), 4), shaken: false };
+const stair = { W: 640, H: 290, m: { t: 30, r: 34, b: 34, l: 50 }, fare: new Flap($('#stair-fare'), 4), idx: new Flap($('#stair-index'), 3), crossed: 0, mode: 'index' };
+document.querySelectorAll('#stair-mode button').forEach(b => b.addEventListener('click', () => {
+  if (stair.mode === b.dataset.mode) return;
+  stair.mode = b.dataset.mode;
+  document.querySelectorAll('#stair-mode button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  const old = stair.line.attr('d');
+  buildSteps(); stair.crossed = 4; S.steps.update(S.steps.p);
+  if (!REDUCED) { const next = stair.line.attr('d'); stair.line.attr('d', old).transition().duration(650).ease(d3.easeCubicInOut).attr('d', next); }
+}));
+const JUMPS = [20, 13, 5, 1];
 function renderTabs(el, key, onPick) {
   el.innerHTML = '';
   Object.entries(HOL).forEach(([k, h]) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = h.short; b.setAttribute('aria-pressed', state[key] === k); b.addEventListener('click', () => { state[key] = k; onPick(); }); el.appendChild(b); });
 }
-function onHoliday() { buildSteps(); S.steps.update(S.steps.p); buildRoutes(); S.routes.update(S.routes.p); }
 function buildSteps() {
-  renderTabs($('#hol-tabs'), 'holiday', onHoliday);
-  const { W, H, m } = stair, data = holidayCurve(state.holiday);
-  $('#stair-title').textContent = `Median lowest fare · all routes · ${HOL[state.holiday].label}`;
+  const { W, H, m } = stair;
+  const IDX = stair.mode === 'index';
+  const data = SITE_DATA.allFlights.map(r => ({ d: r.d, v: IDX ? r.index : r.mean, index: r.index, mean: r.mean, median: r.median, rose10: r.rose10 }));
+  $('#stair-title').textContent = IDX
+    ? 'Fare index, all flights · each flight compared with its own price the day before (60 days out = 100)'
+    : 'Average fare, all flights · every quote on each day before departure (USD)';
   const x = d3.scaleLinear().domain([60, 1]).range([m.l, W - m.r]);
-  const [lo, hi] = d3.extent(data, d => d.v);
-  const y = d3.scaleLinear().domain([Math.floor(lo / 25) * 25 - 10, Math.ceil(hi / 25) * 25 + 15]).range([H - m.b, m.t]);
-  Object.assign(stair, { data, x, y, ann: annotate(data) });
+  const y = d3.scaleLinear().domain(IDX ? [95, 142] : [300, 400]).range([H - m.b, m.t]);
+  const fmt = v => IDX ? String(v) : '$' + v;
+  Object.assign(stair, { data, x, y });
   const svg = d3.select('#stair'); svg.selectAll('*').remove();
-  y.ticks(5).forEach(t => { svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(t)).attr('y2', y(t)).style('stroke', 'var(--line)'); svg.append('text').attr('x', m.l - 8).attr('y', y(t) + 4).attr('text-anchor', 'end').text('$' + t).style('font-size', '11px').style('fill', 'var(--muted)'); });
+  (IDX ? [100, 110, 120, 130, 140] : [300, 325, 350, 375, 400]).forEach(t => { svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(t)).attr('y2', y(t)).style('stroke', IDX && t === 100 ? 'var(--line-2)' : 'var(--line)'); svg.append('text').attr('x', m.l - 8).attr('y', y(t) + 4).attr('text-anchor', 'end').text(fmt(t)).style('font-size', '11px').style('fill', 'var(--muted)'); });
   [60, 50, 40, 30, 21, 14, 7, 1].forEach(t => svg.append('text').attr('x', x(t)).attr('y', H - m.b + 18).attr('text-anchor', 'middle').text(t).style('font-size', '11px').style('fill', 'var(--muted)'));
   svg.append('text').attr('x', W - m.r).attr('y', H - 2).attr('text-anchor', 'end').text('days before departure').style('font-size', '11px').style('fill', 'var(--muted)');
   [21, 14, 7].forEach(t => { svg.append('line').attr('x1', x(t)).attr('x2', x(t)).attr('y1', m.t - 8).attr('y2', H - m.b).style('stroke', 'var(--line-2)').style('stroke-dasharray', '3 3'); svg.append('text').attr('x', x(t)).attr('y', m.t - 12).attr('text-anchor', 'middle').text(`${t}-day`).style('font-size', '10.5px').style('fill', 'var(--muted)'); });
-  if (data[0].d < 60) svg.append('text').attr('x', x(60)).attr('y', m.t + 14).text(`No searches before ${data[0].d} days out`).style('font-size', '11px').style('fill', 'var(--muted)');
   stair.clip = svg.append('clipPath').attr('id', 'stairclip').append('rect').attr('x', 0).attr('y', 0).attr('height', H).attr('width', 0);
-  stair.line = svg.append('path').datum(data).attr('clip-path', 'url(#stairclip)').attr('d', d3.line().x(d => x(d.d)).y(d => y(d.v)).curve(d3.curveStepAfter)).style('fill', 'none').style('stroke', 'var(--ink)').style('stroke-width', 2.4);
-  const note = (g, px, py, txt, anchor) => g.append('text').attr('x', px).attr('y', py).attr('text-anchor', anchor).text(txt).style('font-size', '12px').style('font-weight', 500).style('fill', 'var(--ink)').style('paint-order', 'stroke').style('stroke', 'var(--surface)').style('stroke-width', 4);
-  const dot = (g, d, col) => g.append('circle').attr('cx', x(d.d)).attr('cy', y(d.v)).attr('r', 5).style('fill', col).style('stroke', 'var(--surface)').style('stroke-width', 2);
-  const { floor, jump, end } = stair.ann;
-  stair.gFloor = svg.append('g'); dot(stair.gFloor, floor, 'var(--fell)'); note(stair.gFloor, x(floor.d), y(floor.v) + 20, `Floor ${usd(floor.v)} · ${floor.d} days out`, 'middle');
-  stair.gJump = svg.append('g'); if (jump) { dot(stair.gJump, jump, 'var(--rose)'); note(stair.gJump, x(jump.d) + 8, y(jump.v) - 10, `+${usd(jump.by)} overnight`, 'start'); }
-  stair.gEnd = svg.append('g'); dot(stair.gEnd, end, 'var(--rose)'); note(stair.gEnd, x(end.d), y(end.v) - 12, `${usd(end.v)} · ${pct(end.v / floor.v - 1)} over the floor`, 'end');
+  stair.line = svg.append('path').datum(data).attr('clip-path', 'url(#stairclip)').attr('d', d3.line().x(d => x(d.d)).y(d => y(d.v)).curve(d3.curveStepAfter)).style('fill', 'none').style('stroke', 'var(--ink)').style('stroke-width', 2.6);
+  const note = (g, px, py, txt, anchor, col) => g.append('text').attr('x', px).attr('y', py).attr('text-anchor', anchor).text(txt).style('font-size', '12px').style('font-weight', 600).style('fill', col || 'var(--ink)').style('paint-order', 'stroke').style('stroke', 'var(--surface)').style('stroke-width', 4);
+  const at = d => data.find(q => q.d === d);
+  stair.gFlat = svg.append('g');
+  note(stair.gFlat, IDX ? x(40) : x(48), IDX ? y(at(21).v) - 12 : y(at(21).v) - 34, IDX ? `60 → 21 days out: +${(at(21).v - 100).toFixed(1)}% in 39 days` : `60 → 21 days out: ${usd(at(60).v)} → ${usd(at(21).v)}`, 'middle', 'var(--ink-2)');
+  stair.jumps = JUMPS.map(d => {
+    const a = at(d + 1), b = at(d), g = svg.append('g');
+    g.append('line').attr('x1', x(d)).attr('x2', x(d)).attr('y1', y(a.v)).attr('y2', y(b.v)).style('stroke', 'var(--rose)').style('stroke-width', 5).style('stroke-linecap', 'round');
+    note(g, x(d) - 8, y(b.v) - 9, IDX ? `+${((b.v / a.v - 1) * 100).toFixed(1)}% overnight` : `+${usd(b.v - a.v)} overnight`, 'end', 'var(--rose)');
+    return { d, g };
+  });
+  const end = at(1);
+  stair.gEnd = svg.append('g');
+  stair.gEnd.append('circle').attr('cx', x(1)).attr('cy', y(end.v)).attr('r', 5).style('fill', 'var(--rose)').style('stroke', 'var(--surface)').style('stroke-width', 2);
+  note(stair.gEnd, x(1) + 8, y(end.v) + 4, IDX ? Math.round(end.v) : usd(end.v), 'start');
   stair.rider = svg.append('g').style('pointer-events', 'none'); stair.rider.append('use').attr('href', '#plane-sym').attr('x', -24).attr('y', -24).attr('width', 48).attr('height', 48);
   const cross = svg.append('line').attr('y1', m.t).attr('y2', H - m.b).style('stroke', 'var(--muted)').style('opacity', 0);
   svg.append('rect').attr('x', m.l).attr('y', m.t).attr('width', W - m.l - m.r).attr('height', H - m.t - m.b).style('fill', 'transparent')
-    .on('mousemove', ev => { if (stair.r < 1) return; const day = Math.round(x.invert(d3.pointer(ev)[0])), d = data.find(q => q.d === day); if (!d) { hideTip(); return; } cross.attr('x1', x(d.d)).attr('x2', x(d.d)).style('opacity', 1); showTip(ev, `<b>${d.d} days out</b><br>Median lowest fare ${usd(d.v)}`); })
+    .on('mousemove', ev => { if (stair.r < 1) return; const day = Math.round(x.invert(d3.pointer(ev)[0])), d = at(day); if (!d) { hideTip(); return; } cross.attr('x1', x(d.d)).attr('x2', x(d.d)).style('opacity', 1); showTip(ev, `<b>${d.d} days out</b><br>Fare index ${d.index.toFixed(1)} (60 days out = 100)<br>Average fare ${usd(d.mean)} · median ${usd(d.median)}${d.rose10 != null ? `<br>${d.rose10}% of flights jumped 10%+ overnight` : ''}`); })
     .on('mouseleave', () => { cross.style('opacity', 0); hideTip(); });
   // diary cells that will collapse into the line
   const cw = (W - m.l - m.r) / 60, rows = Math.floor((H - m.t - m.b) / cw);
@@ -792,7 +866,7 @@ function updateSteps(p) {
   const { W, m, x, y, data, cw, rows } = stair;
   const z = ease(seg(p, 0.02, 0.24)), c = seg(p, 0.24, 0.46), r = seg(p, 0.46, 0.9);
   stair.r = r;
-  // canvas: zoom out over many diaries, then collapse them onto the median line
+  // canvas: zoom out over many diaries, then collapse them onto the index line
   const svgEl = $('#stair'), cv = $('#stair-canvas'), rect = svgEl.getBoundingClientRect();
   const ctx = sizeCanvas(cv, rect.width, rect.height), k = Math.min(rect.width / W, rect.height / stair.H), offX = (rect.width - W * k) / 2, offY = (rect.height - stair.H * k) / 2;
   ctx.clearRect(0, 0, rect.width, rect.height);
@@ -804,7 +878,6 @@ function updateSteps(p) {
       const day = 60 - cell.ci, pt = data.find(q => q.d === day);
       const gx = m.l + (cell.ci * cw + cw / 2) * s, gy = m.t + (cell.ri * cw + cw / 2) * s;
       const e = ease(clamp(c * 1.5 - (cell.ri / rows) * 0.35 - cell.j * 0.15));
-      if (!pt && e > 0.5) continue;
       const tx = pt ? x(day) : gx, ty = pt ? y(pt.v) : gy;
       const px = lerp(gx, tx, e), py = lerp(gy, ty, e), size = lerp((cw - 1.6) * s, 3, e);
       ctx.globalAlpha = alpha * (cell.cls === 'flat' && e < 0.6 ? 0.55 : 1);
@@ -813,17 +886,18 @@ function updateSteps(p) {
     }
     ctx.restore();
   }
-  // svg line draws while a plane rides its leading edge
+  // the line draws while a plane rides its leading edge; each jump is annotated as it is crossed
   const lead = Math.round(lerp(60, 1, r)), cur = data.find(q => q.d === lead) || data[0];
   stair.clip.attr('width', r > 0 ? x(lead) + 2 : 0);
   stair.rider.attr('transform', `translate(${x(cur.d)},${y(cur.v) - 2}) scale(0.75)`).style('opacity', r > 0 && r < 1 ? 1 : 0);
-  const { floor, jump } = stair.ann;
-  stair.gFloor.style('opacity', r > 0 && lead <= floor.d ? 1 : 0);
-  stair.gJump.style('opacity', jump && r > 0 && lead <= jump.d ? 1 : 0);
+  stair.gFlat.style('opacity', r > 0 && lead <= 21 ? 1 : 0);
+  stair.jumps.forEach(j => j.g.style('opacity', r > 0 && lead <= j.d ? 1 : 0));
   stair.gEnd.style('opacity', r >= 1 ? 1 : 0);
-  if (jump && r > 0 && lead <= jump.d && !stair.shaken && !REDUCED) { const pnl = $('#stair-panel'); pnl.classList.remove('shake'); void pnl.offsetWidth; pnl.classList.add('shake'); stair.shaken = true; }
-  if (!jump || lead > jump.d) stair.shaken = false;
-  stair.fare.set(usd(r > 0 ? cur.v : data[0].v), true);
+  const crossed = stair.jumps.filter(j => r > 0 && lead <= j.d).length;
+  if (crossed > stair.crossed && stair.crossed >= 0 && !REDUCED) { const pnl = $('#stair-panel'); pnl.classList.remove('shake'); void pnl.offsetWidth; pnl.classList.add('shake'); }
+  stair.crossed = crossed;
+  stair.fare.set(usd(r > 0 ? cur.mean : data[0].mean), true);
+  stair.idx.set(String(Math.round(r > 0 ? cur.index : 100)), true);
 }
 
 // ================= 4. ROUTES (linked) =================
@@ -1106,6 +1180,7 @@ const dotsNav = $('#dots');
 document.querySelectorAll('[data-status]').forEach(el => { const a = document.createElement('a'); a.href = '#' + el.id; a.setAttribute('aria-label', el.dataset.status); a.innerHTML = '<span>' + el.dataset.status + '</span>'; dotsNav.appendChild(a); });
 function tick() {
   const hh = 0;
+  gateWhere();
   for (const s of scenes) {
     const r = s.el.getBoundingClientRect(), total = r.height - s.el.querySelector('.stage').offsetHeight;
     const p = REDUCED || total <= 0 ? 1 : clamp((hh - r.top) / total);
