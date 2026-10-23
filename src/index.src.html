@@ -126,6 +126,7 @@ label.field { display: inline-flex; align-items: center; gap: 10px; font-size: 0
 .pass .stub { border-left: 2px dashed var(--line-2); padding: 12px 16px; display: grid; gap: 4px; align-content: center; justify-items: end; }
 .pass .flap { font-size: clamp(1.5rem, 2vw, 2.3rem); }
 .pass.print { animation: print 0.9s steps(12) both; }
+.origin-fixed { color: var(--ink); font-weight: 600; letter-spacing: 0.02em; }
 .nudge { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; border: 2px dashed var(--accent); border-radius: 8px; padding: 12px 14px; background: color-mix(in srgb, var(--accent) 6%, var(--surface)); }
 .nudge-icon { font-size: 1.6rem; color: var(--accent); animation: bob 1.4s ease-in-out infinite; }
 .nudge.blocked { animation: shake 0.45s ease-in-out; border-style: solid; }
@@ -268,9 +269,9 @@ body.still .cue, body.still .pulse { animation: none; }
       <div class="copy">
         <span class="sign" data-at="0.05">Hook · Where to?</span>
         <h2 data-at="0.08">A long weekend is coming. You want to go somewhere. But where?</h2>
-        <p class="muted more" data-at="0.4">Every route is drawn as thick as its average one-way fare from Atlanta: the wider and darker the line, the more it costs. The board on the map ranks them.</p>
-        <label class="field" for="origin" data-at="0.6">Flying from <select id="origin"></select></label>
-        <div class="nudge" id="nudge" data-at="0.7"><span class="nudge-icon" aria-hidden="true">↗</span><span><b>Pick a destination</b> on the map or the board to print your ticket and continue.</span><button class="btn small" id="pick-for-me" type="button">Pick the cheapest for me</button></div>
+        <p class="muted more" data-at="0.4">Every route is drawn as thick as its average one-way fare from Atlanta: the wider and darker the line, the more it costs.</p>
+        <p class="field" data-at="0.6">Flying from <b class="origin-fixed">ATL · Atlanta</b></p>
+        <div class="nudge" id="nudge" data-at="0.7"><span class="nudge-icon" aria-hidden="true">↗</span><span><b>Pick a destination</b> on the map to print your ticket and continue.</span><button class="btn small" id="pick-for-me" type="button">Pick one for me</button></div>
         <div class="pass" id="pass" data-at="0.7" hidden></div>
       </div>
       <div class="panel">
@@ -350,7 +351,7 @@ body.still .cue, body.still .pulse { animation: none; }
       <div class="copy">
         <span class="sign">Rising insight 2</span>
         <h2>Every route bottoms out at a different time. Almost every route ends in red.</h2>
-        <p class="muted more" id="routes-copy">The staircase breaks into stretches between the cutoffs. Each stretch flips into a tile: blue if fares fell, red if they rose. Then every route from Atlanta lines up beneath it, sorted by when it was cheapest.</p>
+        <p class="muted more" id="routes-copy">Now look at each route on its own. Read every row from left to right, from two months out to the day you fly. Blue boxes are stretches where the price dropped; red boxes are where it climbed. The blue shows up at different times on different routes, but on the right, almost everything turns red.</p>
         <div class="bigstat" data-at="0.8"><span class="num" id="routes-num">99%</span><span class="lbl" id="routes-lbl">of routes get pricier in the last week. Only the cheapest day moves around.</span></div>
         <p class="callout" data-at="0.88" id="routes-callout"></p>
         <p class="hint" data-at="0.9">Click a route to redraw the staircase for it. Switch to all routes to see the whole network.</p>
@@ -554,7 +555,7 @@ const HOL = { mem: { label: 'Memorial Day', short: 'Memorial' }, jul: { label: '
 const NAMES = { ATL: 'Atlanta', BOS: 'Boston', CLT: 'Charlotte', DEN: 'Denver', DFW: 'Dallas/Fort Worth', DTW: 'Detroit', EWR: 'Newark', IAD: 'Washington Dulles', JFK: 'New York JFK', LAX: 'Los Angeles', LGA: 'New York LaGuardia', MIA: 'Miami', OAK: 'Oakland', ORD: "Chicago O'Hare", PHL: 'Philadelphia', SFO: 'San Francisco' };
 const NUDGE = { LGA: [6, -16], JFK: [18, 10], EWR: [-12, 12], SFO: [4, 18], OAK: [10, -12] };
 const XY = Object.fromEntries(Object.entries(AIRPORT_XY).map(([k, v]) => [k, NUDGE[k] ? [v[0] + NUDGE[k][0], v[1] + NUDGE[k][1]] : v]));
-const state = { origin: 'ATL', dest: 'BOS', flown: false, holiday: 'lab', route: null, cohort: null, diarySeed: 1, barHoliday: 'jul' };
+const state = { origin: 'ATL', dest: 'LAX', flown: false, holiday: 'lab', route: null, cohort: null, diarySeed: 1, barHoliday: 'jul' };
 
 function mapFare(o, d) { const r = o === 'ATL' && SITE_DATA.map[d]; return r ? Math.round(r.avg) : null; }
 const KP = SITE_DATA.KP;
@@ -625,16 +626,7 @@ function orbitLoop(now) {
 // ================= 1. WHERE =================
 const where = {};
 function destFares() { return Object.keys(NAMES).map(code => ({ code, fare: mapFare(state.origin, code) })).filter(d => d.fare !== null); }
-function initOrigin() {
-  const sel = $('#origin');
-  ['ATL'].forEach(k => { const o = document.createElement('option'); o.value = k; o.textContent = `${k} · ${NAMES[k]}`; sel.appendChild(o); });
-  sel.value = state.origin; sel.disabled = true; sel.title = 'Fare data currently covers flights from Atlanta';
-  sel.addEventListener('change', () => {
-    state.origin = sel.value; state.flown = false;
-    const f = destFares(); if (!f.find(d => d.code === state.dest)) state.dest = f[Math.floor(f.length / 2)].code;
-    buildWhere(); S.where.update(S.where.p); renderPass(false); buildWatching(); S.watching.update(S.watching.p); updateQuiz();
-  });
-}
+function initOrigin() {}  // origin is fixed to ATL: the fare data covers flights from Atlanta
 function buildWhere() {
   const svg = d3.select('#map'); svg.selectAll('*').remove();
   const fares = destFares().sort((a, b) => b.fare - a.fare), ext = d3.extent(fares, d => d.fare);
@@ -663,17 +655,6 @@ function buildWhere() {
   where.dots.append('circle').attr('class', 'dot').attr('r', 9).style('stroke', 'var(--surface)').style('stroke-width', 2);
   const lbl = (sel, txt, y, size, weight) => sel.append('text').text(txt).attr('x', 14).attr('y', y).style('font-size', size).style('font-weight', weight).style('fill', 'var(--ink)').style('paint-order', 'stroke').style('stroke', 'var(--land)').style('stroke-width', 3.5);
   lbl(where.dots, d => d.code, 2, '15px', 700); lbl(where.dots, d => usd(d.fare), 18, '13px', 400);
-  // ranked fare board over the empty lower-left corner (covers the Alaska/Hawaii insets, which have no airports here)
-  const asc = [...fares].sort((a, b) => a.fare - b.fare), bx = 18, by = 432, rowH = 11.2, bar = d3.scaleLinear().domain([0, ext[1]]).range([0, 150]);
-  where.boardG = svg.append('g');
-  where.boardG.append('rect').attr('x', bx - 10).attr('y', by - 30).attr('width', 262).attr('height', asc.length * rowH + 40).attr('rx', 8).style('fill', 'var(--surface)').style('stroke', 'var(--line)').style('opacity', 0.96);
-  where.boardG.append('text').attr('x', bx).attr('y', by - 12).text(`CHEAPEST → PRICIEST FROM ${state.origin}`).style('font-size', '11px').style('font-weight', 600).style('letter-spacing', '0.06em').style('fill', 'var(--muted)');
-  where.board = where.boardG.selectAll('g.row').data(asc).join('g').attr('class', 'row').attr('transform', (d, i) => `translate(${bx},${by + i * rowH})`).style('cursor', 'pointer')
-    .on('mousemove', over).on('mouseleave', out).on('click', pick);
-  where.board.append('rect').attr('x', -4).attr('y', -1).attr('width', 246).attr('height', rowH).style('fill', 'transparent');
-  where.board.append('text').attr('class', 'code').attr('x', 0).attr('y', 8.5).text(d => d.code).style('font-size', '10px').style('fill', 'var(--ink)');
-  where.board.append('rect').attr('class', 'bar').attr('x', 36).attr('y', 1.5).attr('height', rowH - 4).attr('rx', 2).attr('width', d => bar(d.fare)).style('fill', d => color(d.fare));
-  where.board.append('text').attr('x', d => 40 + bar(d.fare)).attr('y', 8.5).text(d => usd(d.fare)).style('font-size', '10px').style('fill', 'var(--ink-2)');
   const og = svg.append('g').attr('transform', `translate(${o})`);
   og.append('circle').attr('r', 10).style('fill', 'var(--accent)').style('stroke', 'var(--ink)').style('stroke-width', 2.5);
   og.append('text').text(`${state.origin} · you`).attr('x', 15).attr('y', -12).style('font-size', '15px').style('font-weight', 600).style('fill', 'var(--ink)').style('paint-order', 'stroke').style('stroke', 'var(--land)').style('stroke-width', 3);
@@ -688,8 +669,6 @@ function styleSelection() {
   if (focus) where.arcs.filter(d => d.code === focus).raise();
   where.dots.select('.dot').attr('r', d => d.code === sel ? 12 : 9).style('stroke', d => d.code === sel ? 'var(--ink)' : 'var(--surface)').style('stroke-width', d => d.code === sel ? 3 : 2);
   where.dots.select('.ping').style('display', state.flown || !where.live || REDUCED ? 'none' : null);
-  where.board.select('.code').style('font-weight', d => d.code === focus ? 700 : 400);
-  where.board.select('.bar').style('stroke', d => d.code === focus ? 'var(--ink)' : 'none').style('stroke-width', 1.5);
 }
 function updateWhere(p) {
   reveal($('#where'), p);
@@ -700,7 +679,6 @@ function updateWhere(p) {
     d3.select(this).style('stroke-dasharray', `${t * d.len} ${d.len + 1}`);
     where.dots.filter(x => x.code === d.code).select('.dot').style('fill', t >= 1 ? where.color(d.fare) : 'var(--line-2)');
   });
-  where.boardG.style('opacity', seg(p, 0.6, 0.72));
   where.live = p > 0.72 || REDUCED;
   styleSelection();
   where.svg.style('pointer-events', where.live ? 'auto' : 'none');
@@ -723,7 +701,7 @@ function renderPass(print) {
   el.innerHTML = `<div class="main"><span class="mono muted">YOUR TRIP · LABOR DAY · ONE WAY</span><span class="route">${state.origin} → ${state.dest}</span><span class="muted" style="font-size:0.88rem">${NAMES[state.origin]} to ${NAMES[state.dest]} · Fri, Sep 2</span></div><div class="stub"><span class="mono muted">FARE TODAY</span><span class="route">${usd(fare)}</span><span class="mono muted">T–60 days</span></div>`;
   if (print) { el.classList.remove('print'); void el.offsetWidth; el.classList.add('print'); }
 }
-$('#pick-for-me').addEventListener('click', () => flyTo(destFares().sort((a, b) => a.fare - b.fare)[0].code));
+$('#pick-for-me').addEventListener('click', () => flyTo(Math.random() < 0.5 ? 'LAX' : 'SFO'));
 // the story continues only after a destination is picked
 function gateWhere() {
   if (state.flown || !S.where) return;
