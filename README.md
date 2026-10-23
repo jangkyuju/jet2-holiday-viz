@@ -32,16 +32,32 @@ Every scene is a sticky full-screen stage; scroll progress drives its animation.
 - `index.html` — the built site (single file; this is what GitHub Pages serves)
 - `src/index.src.html` — page source (HTML, CSS, and D3 code)
 - `src/map-data.js` — pre-projected U.S. outline and airport positions (from `us-atlas`)
-- `src/build.mjs` — inlines the map data into the page:
-  `node src/build.mjs src/index.src.html src/map-data.js /tmp/artifact.html index.html`
+- `src/prepare_data.mjs` — collects the team's `submissions/` into `src/site-data.js`
+- `src/build.mjs` — inlines the map and site data into the page
+- `submissions/` — each member's analysis, data, and code
+
+To rebuild after a submission changes (run from the repo root):
+
+```bash
+node src/prepare_data.mjs
+node src/build.mjs src/index.src.html /tmp/artifact.html index.html src/map-data.js src/site-data.js
+```
 
 ## Data
 
 Expedia Flight Prices (Kaggle, `dilwong/flightprices`): one-way fares searched
 Apr 16 – Oct 5, 2022 for Memorial Day, July 4, Labor Day, and a non-holiday baseline.
 
-**This prototype uses placeholder numbers shaped to our exploration findings.** Swap in the
-real aggregates at `KP`, `ROUTES`, `FLIGHTS`, `BARS`, and `mapFare` in `src/index.src.html`.
+| View | Status | Source |
+|---|---|---|
+| AG01 map | Real: average fare from ATL to 15 airports | `submissions/Arrington_Visualizations/atl_airport_fares.csv` |
+| CZ-01 diary | Real: Labor Day flights, 15 ATL routes | `submissions/cynthia-cz01-cz03/website_data.json` (`SITE_DIARY`) |
+| CZ-03 staircase | Real: median lowest fare by day, 4 periods | same file (`KP`) |
+| YH-02 nonstop race | Real: overall and same-route medians | `submissions/yuhan-q7/Q7_website_data.json` |
+| JK3 route rows | Placeholder (All-routes row is real) | `ROUTES` in `src/index.src.html` |
+| SS5 fare-band flows | Placeholder | `FLIGHTS` in `src/index.src.html` |
+
+The map currently covers flights from Atlanta only, so the origin is fixed to ATL.
 
 ## Team
 
