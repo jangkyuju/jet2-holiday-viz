@@ -256,7 +256,7 @@ body.still .cue, body.still .pulse { animation: none; }
     <div class="wrap gutter title-copy" id="title-copy">
       <div class="rows"><div id="t1"></div><div id="t2"></div></div>
       <p class="lede">A visual story about holiday airfares: where to go, when to buy, and why waiting for a better price usually costs you.</p>
-      <div class="meta"><span class="chip"><i></i>Real Expedia data in the map, diary, staircase and nonstop views · route grid and the bet still use placeholders</span><span>Jangkyu Ju, Sagarika Srinivasan, Cynthia Zhou, Arrington Goss, Yuhan Hu</span></div>
+      <div class="meta"><span>Jangkyu Ju, Sagarika Srinivasan, Cynthia Zhou, Arrington Goss, Yuhan Hu</span></div>
       <p class="cue">Scroll to board ↓</p>
     </div>
   </div>
@@ -277,7 +277,7 @@ body.still .cue, body.still .pulse { animation: none; }
       <div class="panel">
         <div class="panel-head"><span class="panel-title" id="map-title"></span><div class="legend" id="map-legend"></div></div>
         <svg id="map" class="cap" viewBox="0 0 975 610" role="img" aria-label="Map of destinations shaded by fare"></svg>
-        <div class="panel-foot"><span class="mono">Sketch AG01 · answers Q5 · data: Arrington Goss</span><span class="hint">Hover a route for its fare · click a destination to fly there</span></div>
+        <div class="panel-foot"><span class="mono">Arrington Goss</span><span class="hint">Hover a route for its fare · click a destination to fly there</span></div>
       </div>
     </div>
   </div>
@@ -304,7 +304,7 @@ body.still .cue, body.still .pulse { animation: none; }
         </div>
         <svg id="diary" viewBox="0 0 1000 170" role="img" aria-label="Daily fare changes for four flights"></svg>
         <p class="caption">Each square is one day's check on a real flight: red if the fare rose 10% or more since the day before, blue if it fell 10% or more, empty if it barely moved.</p>
-        <div class="panel-foot"><span class="mono">Sketch CZ-01 · diary: Cynthia Zhou · 82%: full dataset</span><button class="btn small" id="diary-redo" type="button">Follow four other flights</button></div>
+        <div class="panel-foot"><span class="mono">Cynthia Zhou</span><button class="btn small" id="diary-redo" type="button">Follow four other flights</button></div>
       </div>
     </div>
   </div>
@@ -338,7 +338,7 @@ body.still .cue, body.still .pulse { animation: none; }
           <svg id="stair" class="cap" viewBox="0 0 640 290" role="img" aria-label="Fare index for all flights by days before departure"></svg>
           <canvas id="stair-canvas" class="overlay" style="left:0;top:0"></canvas>
         </div>
-        <div class="panel-foot"><span class="mono">Sketch CZ-03 · answers Q1, Q2 · full dataset</span><span class="hint">The 7-day jump shows up 5 days out.</span></div>
+        <div class="panel-foot"><span class="mono">Cynthia Zhou</span><span class="hint">The 7-day jump shows up 5 days out.</span></div>
       </div>
     </div>
   </div>
@@ -363,7 +363,7 @@ body.still .cue, body.still .pulse { animation: none; }
         </div>
         <span class="panel-title" id="routes-title"></span>
         <svg id="routes-svg" class="cap" viewBox="0 0 640 480" role="img" aria-label="Fare index staircase linked to a heatmap of fare change by route and window"></svg>
-        <div class="panel-foot"><span class="mono">Sketch JK3 · answers Q13, Q2 · linked view · full dataset</span><div class="legend"><span><i class="sw" style="background:var(--fell)"></i>Fell</span><span><i class="sw" style="background:var(--div-mid);outline:1px solid var(--line-2)"></i>Flat</span><span><i class="sw" style="background:var(--rose)"></i>Rose</span></div></div>
+        <div class="panel-foot"><span class="mono">Jangkyu Ju</span><div class="legend"><span><i class="sw" style="background:var(--fell)"></i>Fell</span><span><i class="sw" style="background:var(--div-mid);outline:1px solid var(--line-2)"></i>Flat</span><span><i class="sw" style="background:var(--rose)"></i>Rose</span></div></div>
       </div>
     </div>
   </div>
@@ -376,7 +376,7 @@ body.still .cue, body.still .pulse { animation: none; }
     <div class="wrap gutter">
       <div class="bet-top">
         <div class="copy"><span class="sign">Main message</span><h2>Waiting is a bet you usually lose.</h2></div>
-        <p class="muted more">Each dot is one flight. Watch 1,000 flights move between three fare bands, the floor, the middle and the jumped, from 60 days out to one week out.</p>
+        <p class="muted more" id="bet-copy">Each dot is one real flight. At each checkpoint it sits at its <b>Floor</b> (within 5% of the lowest of its five prices), in the <b>Middle</b> (5–10% above) or <b>Jumped</b> (10% or more above).</p>
       </div>
       <div class="bet-main">
         <div class="panel">
@@ -384,11 +384,11 @@ body.still .cue, body.still .pulse { animation: none; }
             <div class="legend"><span><i class="sw" style="background:var(--rose)"></i>Jumped</span><span><i class="sw" style="background:var(--flat-strong)"></i>Middle</span><span><i class="sw" style="background:var(--fell)"></i>Floor</span><button class="btn small" id="flow-reset" type="button" hidden>Show all flights</button></div>
           </div>
           <svg id="flow" class="cap" viewBox="0 0 1000 440" role="img" aria-label="Alluvial chart of flights moving between fare bands"></svg>
-          <div class="panel-foot"><span class="mono">Sketch SS5 · innovative view · placeholder data</span><span class="hint" data-at="0.97">Hover a ribbon · click a band to follow it</span></div>
+          <div class="panel-foot"><span class="mono">Sagarika Srinivasan</span><span class="hint" data-at="0.97">Hover a ribbon · click a band to follow it</span></div>
         </div>
         <div class="odds-col">
-          <div id="odds" aria-label="100 flights near a cutoff: 25 jump, 16 drop, 59 barely move"></div>
-          <p class="callout" data-at="0.95">Near a cutoff, 25 in 100 fares jump 10%+ by the next check. Only 16 in 100 drop that much.</p>
+          <div id="odds"></div>
+          <p class="callout" data-at="0.95" id="odds-copy"></p>
         </div>
       </div>
       <p class="callout" id="flow-stat" data-at="0.97"></p>
@@ -424,7 +424,7 @@ body.still .cue, body.still .pulse { animation: none; }
     <div class="panel">
       <div class="panel-head"><span class="panel-title" id="race-title">Median fare, nonstop vs. connecting</span><div class="tabs" id="race-scope" role="group" aria-label="Routes compared"></div></div>
       <svg id="race-svg" viewBox="0 0 640 210" role="img" aria-label="Median fare, nonstop versus connecting"></svg>
-      <div class="panel-foot"><span class="mono" id="race-foot">Sketch YH-02 · answers Q7 · all flight dates, Apr–Nov 2022 · method: Yuhan Hu</span><button class="btn small" id="race-again" type="button">Race again</button></div>
+      <div class="panel-foot"><span class="mono" id="race-foot">Yuhan Hu</span><button class="btn small" id="race-again" type="button">Race again</button></div>
     </div>
   </div>
 </section>
@@ -456,15 +456,7 @@ body.still .cue, body.still .pulse { animation: none; }
   </div>
 </section>
 
-<section class="plain gutter about" id="about" data-status="Data">
-  <div class="wrap">
-    <div><h3>Data</h3><p>Expedia Flight Prices (Kaggle, <span class="mono">dilwong/flightprices</span>): one-way fares from 16 U.S. airports, searched April 16 to October 5, 2022. Map: average fare from Atlanta (Arrington Goss). Diary and staircase: daily lowest fares and medians (Cynthia Zhou). Nonstop vs. connecting: median fares, overall and within route (Yuhan Hu). The route grid rows and the fare-band flows are still placeholders.</p></div>
-    <div><h3>Travel periods</h3><ul><li>Memorial Day: flights May 26–31</li><li>July 4: flights Jun 30 – Jul 5</li><li>Labor Day: flights Sep 1–6</li><li>Non-holiday: Jun 9–14 and Aug 11–16</li></ul></div>
-    <div><h3>Limits</h3><ul><li>Memorial Day searches only reach 44 days out.</li><li>One-way fares only; no round trips or award tickets.</li><li>Seat counts of 0 are treated as missing.</li><li>Each check is compared with the same flight's previous check.</li></ul></div>
-  </div>
-</section>
-
-<footer class="gutter"><div class="wrap mono">Jet 2 Holiday · Georgia Tech · Final project prototype · Process book and clean-data link go here</div></footer>
+<footer class="gutter"><div class="wrap mono">Jet 2 Holiday · Georgia Tech · Final project prototype · Data: Expedia Flight Prices (Kaggle, dilwong/flightprices), one-way fares from 16 U.S. airports, searched April 16 to October 5, 2022</div></footer>
 <div id="tip" hidden></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
@@ -1005,18 +997,16 @@ routesCopy();
 // ================= 5. THE BET =================
 const COLS = [60, 30, 21, 14, 7];
 const BANDS = [{ k: 'J', label: 'Jumped', col: '--rose' }, { k: 'M', label: 'Middle', col: '--flat-strong' }, { k: 'F', label: 'Floor', col: '--fell' }];
-const FLIGHTS = (() => {
-  const R = rng(42), T = [
-    { F: [.80, .15, .05], M: [.12, .76, .12], J: [.05, .15, .80] }, { F: [.75, .18, .07], M: [.10, .74, .16], J: [.04, .14, .82] },
-    { F: [.55, .28, .17], M: [.07, .60, .33], J: [.03, .10, .87] }, { F: [.40, .30, .30], M: [.05, .50, .45], J: [.02, .08, .90] }];
-  const pick = p => { const u = R(); return u < p[0] ? 'F' : u < p[0] + p[1] ? 'M' : 'J'; };
-  return d3.range(1000).map(() => { const s = [pick([.34, .42, .24])]; T.forEach(t => s.push(pick(t[s.at(-1)]))); return s; });
-})();
+// 1,000 real flights drawn at random from every flight priced near all five checkpoints (see submissions/jangkyu-ss5-full)
+const SS5 = SITE_DATA.ss5, FLIGHTS = SS5.sample.map(p => p.split(''));
+const SS5_LINK = Object.fromEntries(SS5.links.map(([a, s, b, t, n]) => [`${a}${s}${t}`, n]));
+const SS5_SHARE = (ci, b) => SS5.summary.shares[`${{ F: 'floor', M: 'middle', J: 'jumped' }[b]}_${COLS[ci]}`];
+const ODDS = (() => { const d = SITE_DATA.allFlights.find(r => r.d === 13), up = Math.round(d.rose10), down = Math.round(d.fell10); return { up, down, flat: 100 - up - down }; })();
 const bet = { W: 1000, H: 440, m: { t: 40, b: 16, l: 110, r: 120 }, nw: 16, pad: 18 };
 (() => { // stable per-dot randomness, plus the 100 dots that become the odds grid
   const R = rng(5); bet.rnd = FLIGHTS.map(() => R());
   const idx = FLIGHTS.map((f, i) => i), take = (k, n, skip) => idx.filter(i => FLIGHTS[i][4] === k && !skip.has(i)).slice(0, n);
-  const red = take('J', 25, new Set()), blue = take('F', 16, new Set()), grey = take('M', 59, new Set());
+  const red = take('J', ODDS.up, new Set()), blue = take('F', ODDS.down, new Set()), grey = idx.filter(i => FLIGHTS[i][4] !== 'J' && FLIGHTS[i][4] !== 'F').concat(idx.filter(i => FLIGHTS[i][4] === 'J').slice(ODDS.up)).slice(0, ODDS.flat);
   bet.grid = new Map(); [...red.map(i => [i, 'rose']), ...blue.map(i => [i, 'fell']), ...grey.map(i => [i, 'flat'])].forEach(([i, c], n) => bet.grid.set(i, { n, c }));
 })();
 function buildBet() {
@@ -1043,19 +1033,19 @@ function buildBet() {
   bet.ribbons = svg.append('g').selectAll('path').data(links).join('path')
     .attr('d', l => ribbon(cx(COLS[l.ci]) + nw, l.sy, cx(COLS[l.ci + 1]), l.ty, l.n * k)).style('fill', l => bandCol(l.t))
     .on('mouseenter', function () { if (!state.cohort) d3.select(this).style('opacity', 0.6); })
-    .on('mousemove', (ev, l) => showTip(ev, `<b>${l.n} flights</b> went from ${BANDS.find(b => b.k === l.s).label} at ${COLS[l.ci]} days<br>to ${BANDS.find(b => b.k === l.t).label} at ${COLS[l.ci + 1]} days`))
+    .on('mousemove', (ev, l) => { const n = SS5_LINK[`${COLS[l.ci]}${l.s}${l.t}`] || 0; showTip(ev, `<b>${(100 * n / SS5.flights).toFixed(1)}% of flights</b> (${n.toLocaleString('en-US')} of ${SS5.flights.toLocaleString('en-US')})<br>went from ${BANDS.find(b => b.k === l.s).label} at ${COLS[l.ci]} days to ${BANDS.find(b => b.k === l.t).label} at ${COLS[l.ci + 1]} days`); })
     .on('mouseleave', function () { hideTip(); if (!state.cohort) d3.select(this).style('opacity', 0.3); });
   const overlay = svg.append('g').style('pointer-events', 'none');
   if (state.cohort) overlay.selectAll('path').data(links.filter(l => l.c)).join('path').attr('d', l => ribbon(cx(COLS[l.ci]) + nw, l.sy, cx(COLS[l.ci + 1]), l.ty, l.c * k)).style('fill', l => bandCol(l.t)).style('opacity', 0.8);
   nodes.flat().forEach(n => {
     const sel = state.cohort && state.cohort.c === n.ci && state.cohort.b === n.b;
     svg.append('rect').attr('x', n.x).attr('y', n.y).attr('width', nw).attr('height', Math.max(n.h, 1)).attr('rx', 2).style('fill', bandCol(n.b)).style('stroke', sel ? 'var(--ink)' : 'none').style('stroke-width', 2).style('cursor', 'pointer')
-      .on('mousemove', ev => showTip(ev, `<b>${BANDS.find(b => b.k === n.b).label} at ${COLS[n.ci]} days</b><br>${n.n} flights (${Math.round(n.n / N * 100)}%)<br>Click to follow these flights`))
+      .on('mousemove', ev => showTip(ev, `<b>${BANDS.find(b => b.k === n.b).label} at ${COLS[n.ci]} days</b><br>${SS5_SHARE(n.ci, n.b)}% of ${SS5.flights.toLocaleString('en-US')} flights<br>Click to follow these flights`))
       .on('mouseleave', hideTip).on('click', () => { state.cohort = sel ? null : { c: n.ci, b: n.b }; buildBet(); S.bet.update(S.bet.p); });
   });
   COLS.forEach(c => svg.append('text').attr('x', cx(c) + nw / 2).attr('y', m.t - 12).attr('text-anchor', 'middle').text(c === 60 ? '60 days out' : c === 7 ? '7 days out' : `${c} days`).style('font-size', '12px').style('fill', 'var(--muted)'));
   bet.labels = svg.append('g');
-  const side = (ci, anchor, dx) => nodes[ci].forEach(n => { const t = bet.labels.append('text').attr('x', n.x + dx).attr('y', n.y + n.h / 2 + 4).attr('text-anchor', anchor).style('font-size', '13px').style('fill', 'var(--ink)'); t.append('tspan').text(BANDS.find(b => b.k === n.b).label + ' ').style('font-weight', 600); t.append('tspan').text(Math.round(n.n / N * 100) + '%').style('fill', 'var(--ink-2)'); });
+  const side = (ci, anchor, dx) => nodes[ci].forEach(n => { const t = bet.labels.append('text').attr('x', n.x + dx).attr('y', n.y + n.h / 2 + 4).attr('text-anchor', anchor).style('font-size', '13px').style('fill', 'var(--ink)'); t.append('tspan').text(BANDS.find(b => b.k === n.b).label + ' ').style('font-weight', 600); t.append('tspan').text(Math.round(SS5_SHARE(n.ci, n.b)) + '%').style('fill', 'var(--ink-2)'); });
   side(0, 'end', -10); side(COLS.length - 1, 'start', nw + 10);
   // boarding gate at the 21-day cutoff
   const gx = cx(21) - 18, top = m.t - 6, bot = H - m.b;
@@ -1065,10 +1055,12 @@ function buildBet() {
   bet.doorB = gate.append('rect').attr('x', gx).attr('width', 8).attr('rx', 2).style('fill', 'var(--ink)');
   bet.gateLabel = gate.append('text').attr('x', gx - 6).attr('y', top - 26).attr('text-anchor', 'end').text('21-day cutoff').style('font-size', '12px').style('fill', 'var(--ink-2)');
   Object.assign(bet, { top, bot });
-  const j0 = node(0, 'J').n / N, j21 = node(2, 'J').n / N, j7 = node(4, 'J').n / N, fl = FLIGHTS.filter(f => f[2] === 'F'), stayed = fl.filter(f => f[4] === 'F').length / fl.length;
-  $('#flow-stat').textContent = `${Math.round(j0 * 100)}% of fares were in the jumped band at 60 days and ${Math.round(j21 * 100)}% at 21 days. By 7 days out it was ${Math.round(j7 * 100)}%. Of the flights at the floor on day 21, only ${Math.round(stayed * 100)}% were still there a week before departure.`;
+  const sm = SS5.summary, sh = sm.shares;
+  $('#flow-stat').textContent = `Across ${SS5.flights.toLocaleString('en-US')} flights priced near all five checkpoints, the most were at their floor on day 21 (${Math.round(sh.floor_21)}%). A week later the jumped band had grown to ${Math.round(sh.jumped_7)}%, and ${Math.round(sm.floor21_jumped7)}% of the flights that were at their floor on day 21 had jumped 10% or more by day 7.`;
+  $('#odds-copy').textContent = `Right after the 14-day mark, ${ODDS.up} in 100 fares jump 10% or more overnight. Only ${ODDS.down} in 100 drop that much.`;
+  $('#odds').setAttribute('aria-label', `100 flights after the 14-day mark: ${ODDS.up} jump, ${ODDS.down} drop, ${ODDS.flat} barely move`);
   $('#flow-reset').hidden = !state.cohort;
-  $('#flow-title').textContent = state.cohort ? `Following the ${FLIGHTS.filter(inCohort).length} flights in ${BANDS.find(b => b.k === state.cohort.b).label} at ${COLS[state.cohort.c]} days` : "Where 1,000 flights' fares went as departure got closer";
+  $('#flow-title').textContent = state.cohort ? `Following the ${FLIGHTS.filter(inCohort).length} flights in ${BANDS.find(b => b.k === state.cohort.b).label} at ${COLS[state.cohort.c]} days` : "Where flights' fares stood at five checkpoints";
   bet.col = { J: tok('--rose'), M: tok('--flat-strong'), F: tok('--fell'), rose: tok('--rose'), fell: tok('--fell'), flat: tok('--flat-strong') };
   bet.svg = svg;
 }

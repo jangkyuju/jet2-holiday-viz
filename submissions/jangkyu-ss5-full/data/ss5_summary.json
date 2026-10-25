@@ -1,0 +1,101 @@
+{
+  "definition": "Floor <5%, Middle 5-10%, Jumped >=10% above the flight's own lowest fare across the five checkpoints (60, 30, 21, 14, 7 days out, +/-2 days)",
+  "periods": {
+    "All flights": {
+      "flights": 482975,
+      "shares": {
+        "floor_60": 34.5,
+        "middle_60": 6.0,
+        "jumped_60": 59.5,
+        "floor_30": 37.0,
+        "middle_30": 6.4,
+        "jumped_30": 56.5,
+        "floor_21": 39.8,
+        "middle_21": 6.8,
+        "jumped_21": 53.4,
+        "floor_14": 34.3,
+        "middle_14": 8.1,
+        "jumped_14": 57.6,
+        "floor_7": 27.0,
+        "middle_7": 5.3,
+        "jumped_7": 67.8
+      },
+      "floor21_still_floor7": 21.1,
+      "floor21_jumped7": 72.5,
+      "floor_at_60": 34.5,
+      "jumped_at_7": 67.8
+    },
+    "July 4": {
+      "flights": 28297,
+      "shares": {
+        "floor_60": 26.9,
+        "middle_60": 6.1,
+        "jumped_60": 66.9,
+        "floor_30": 18.9,
+        "middle_30": 5.9,
+        "jumped_30": 75.3,
+        "floor_21": 31.2,
+        "middle_21": 6.8,
+        "jumped_21": 62.0,
+        "floor_14": 36.0,
+        "middle_14": 7.4,
+        "jumped_14": 56.6,
+        "floor_7": 39.1,
+        "middle_7": 6.2,
+        "jumped_7": 54.7
+      },
+      "floor21_still_floor7": 25.2,
+      "floor21_jumped7": 66.1,
+      "floor_at_60": 26.9,
+      "jumped_at_7": 54.7
+    },
+    "Labor Day": {
+      "flights": 34259,
+      "shares": {
+        "floor_60": 23.3,
+        "middle_60": 6.0,
+        "jumped_60": 70.6,
+        "floor_30": 46.1,
+        "middle_30": 6.4,
+        "jumped_30": 47.5,
+        "floor_21": 48.3,
+        "middle_21": 5.8,
+        "jumped_21": 45.9,
+        "floor_14": 34.0,
+        "middle_14": 7.7,
+        "jumped_14": 58.4,
+        "floor_7": 20.0,
+        "middle_7": 4.0,
+        "jumped_7": 76.0
+      },
+      "floor21_still_floor7": 16.6,
+      "floor21_jumped7": 78.8,
+      "floor_at_60": 23.3,
+      "jumped_at_7": 76.0
+    },
+    "Non-holiday": {
+      "flights": 30890,
+      "shares": {
+        "floor_60": 32.3,
+        "middle_60": 5.3,
+        "jumped_60": 62.4,
+        "floor_30": 37.6,
+        "middle_30": 6.6,
+        "jumped_30": 55.8,
+        "floor_21": 36.0,
+        "middle_21": 6.5,
+        "jumped_21": 57.4,
+        "floor_14": 36.2,
+        "middle_14": 7.3,
+        "jumped_14": 56.5,
+        "floor_7": 31.8,
+        "middle_7": 5.2,
+        "jumped_7": 63.0
+      },
+      "floor21_still_floor7": 27.9,
+      "floor21_jumped7": 65.5,
+      "floor_at_60": 32.3,
+      "jumped_at_7": 63.0
+    }
+  }
+}
