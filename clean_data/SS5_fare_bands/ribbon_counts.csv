@@ -1,0 +1,145 @@
+period,from_days_out,from_state,to_days_out,to_state,flights
+All flights,60,Floor,30,Floor,65792
+All flights,60,Floor,30,Jumped,87009
+All flights,60,Floor,30,Middle,13948
+All flights,60,Jumped,30,Floor,98850
+All flights,60,Jumped,30,Jumped,176400
+All flights,60,Jumped,30,Middle,12237
+All flights,60,Middle,30,Floor,14296
+All flights,60,Middle,30,Jumped,9677
+All flights,60,Middle,30,Middle,4766
+All flights,30,Floor,21,Floor,101891
+All flights,30,Floor,21,Jumped,65140
+All flights,30,Floor,21,Middle,11907
+All flights,30,Jumped,21,Floor,78264
+All flights,30,Jumped,21,Jumped,184388
+All flights,30,Jumped,21,Middle,10434
+All flights,30,Middle,21,Floor,12040
+All flights,30,Middle,21,Jumped,8494
+All flights,30,Middle,21,Middle,10417
+All flights,21,Floor,14,Floor,73677
+All flights,21,Floor,14,Jumped,97974
+All flights,21,Floor,14,Middle,20544
+All flights,21,Jumped,14,Floor,80576
+All flights,21,Jumped,14,Jumped,167331
+All flights,21,Jumped,14,Middle,10115
+All flights,21,Middle,14,Floor,11400
+All flights,21,Middle,14,Jumped,13095
+All flights,21,Middle,14,Middle,8263
+All flights,14,Floor,7,Floor,56578
+All flights,14,Floor,7,Jumped,95717
+All flights,14,Floor,7,Middle,13358
+All flights,14,Jumped,7,Floor,64457
+All flights,14,Jumped,7,Jumped,207711
+All flights,14,Jumped,7,Middle,6232
+All flights,14,Middle,7,Floor,9159
+All flights,14,Middle,7,Jumped,23888
+All flights,14,Middle,7,Middle,5875
+July 4,60,Floor,30,Floor,1664
+July 4,60,Floor,30,Jumped,5266
+July 4,60,Floor,30,Middle,693
+July 4,60,Jumped,30,Floor,3099
+July 4,60,Jumped,30,Jumped,15154
+July 4,60,Jumped,30,Middle,688
+July 4,60,Middle,30,Floor,576
+July 4,60,Middle,30,Jumped,882
+July 4,60,Middle,30,Middle,275
+July 4,30,Floor,21,Floor,2409
+July 4,30,Floor,21,Jumped,2416
+July 4,30,Floor,21,Middle,514
+July 4,30,Jumped,21,Floor,5774
+July 4,30,Jumped,21,Jumped,14576
+July 4,30,Jumped,21,Middle,952
+July 4,30,Middle,21,Floor,638
+July 4,30,Middle,21,Jumped,546
+July 4,30,Middle,21,Middle,472
+July 4,21,Floor,14,Floor,3320
+July 4,21,Floor,14,Jumped,4608
+July 4,21,Floor,14,Middle,893
+July 4,21,Jumped,14,Floor,6092
+July 4,21,Jumped,14,Jumped,10678
+July 4,21,Jumped,14,Middle,768
+July 4,21,Middle,14,Floor,785
+July 4,21,Middle,14,Jumped,728
+July 4,21,Middle,14,Middle,425
+July 4,14,Floor,7,Floor,3660
+July 4,14,Floor,7,Jumped,5789
+July 4,14,Floor,7,Middle,748
+July 4,14,Jumped,7,Floor,6624
+July 4,14,Jumped,7,Jumped,8829
+July 4,14,Jumped,7,Middle,561
+July 4,14,Middle,7,Floor,774
+July 4,14,Middle,7,Jumped,864
+July 4,14,Middle,7,Middle,448
+Labor Day,60,Floor,30,Floor,3412
+Labor Day,60,Floor,30,Jumped,3849
+Labor Day,60,Floor,30,Middle,738
+Labor Day,60,Jumped,30,Floor,10988
+Labor Day,60,Jumped,30,Jumped,11970
+Labor Day,60,Jumped,30,Middle,1234
+Labor Day,60,Middle,30,Floor,1403
+Labor Day,60,Middle,30,Jumped,455
+Labor Day,60,Middle,30,Middle,210
+Labor Day,30,Floor,21,Floor,8872
+Labor Day,30,Floor,21,Jumped,6066
+Labor Day,30,Floor,21,Middle,865
+Labor Day,30,Jumped,21,Floor,6664
+Labor Day,30,Jumped,21,Jumped,9107
+Labor Day,30,Jumped,21,Middle,503
+Labor Day,30,Middle,21,Floor,1005
+Labor Day,30,Middle,21,Jumped,562
+Labor Day,30,Middle,21,Middle,615
+Labor Day,21,Floor,14,Floor,6063
+Labor Day,21,Floor,14,Jumped,8834
+Labor Day,21,Floor,14,Middle,1644
+Labor Day,21,Jumped,14,Floor,4855
+Labor Day,21,Jumped,14,Jumped,10375
+Labor Day,21,Jumped,14,Middle,505
+Labor Day,21,Middle,14,Floor,726
+Labor Day,21,Middle,14,Jumped,782
+Labor Day,21,Middle,14,Middle,475
+Labor Day,14,Floor,7,Floor,3342
+Labor Day,14,Floor,7,Jumped,7547
+Labor Day,14,Floor,7,Middle,755
+Labor Day,14,Jumped,7,Floor,3016
+Labor Day,14,Jumped,7,Jumped,16637
+Labor Day,14,Jumped,7,Middle,338
+Labor Day,14,Middle,7,Floor,487
+Labor Day,14,Middle,7,Jumped,1850
+Labor Day,14,Middle,7,Middle,287
+Non-holiday,60,Floor,30,Floor,4451
+Non-holiday,60,Floor,30,Jumped,4751
+Non-holiday,60,Floor,30,Middle,766
+Non-holiday,60,Jumped,30,Floor,6304
+Non-holiday,60,Jumped,30,Jumped,12031
+Non-holiday,60,Jumped,30,Middle,951
+Non-holiday,60,Middle,30,Floor,874
+Non-holiday,60,Middle,30,Jumped,445
+Non-holiday,60,Middle,30,Middle,317
+Non-holiday,30,Floor,21,Floor,5763
+Non-holiday,30,Floor,21,Jumped,4904
+Non-holiday,30,Floor,21,Middle,962
+Non-holiday,30,Jumped,21,Floor,4446
+Non-holiday,30,Jumped,21,Jumped,12198
+Non-holiday,30,Jumped,21,Middle,583
+Non-holiday,30,Middle,21,Floor,916
+Non-holiday,30,Middle,21,Jumped,641
+Non-holiday,30,Middle,21,Middle,477
+Non-holiday,21,Floor,14,Floor,4729
+Non-holiday,21,Floor,14,Jumped,5344
+Non-holiday,21,Floor,14,Middle,1052
+Non-holiday,21,Jumped,14,Floor,5667
+Non-holiday,21,Jumped,14,Jumped,11386
+Non-holiday,21,Jumped,14,Middle,690
+Non-holiday,21,Middle,14,Floor,785
+Non-holiday,21,Middle,14,Jumped,728
+Non-holiday,21,Middle,14,Middle,509
+Non-holiday,14,Floor,7,Floor,4520
+Non-holiday,14,Floor,7,Jumped,5706
+Non-holiday,14,Floor,7,Middle,955
+Non-holiday,14,Jumped,7,Floor,4626
+Non-holiday,14,Jumped,7,Jumped,12484
+Non-holiday,14,Jumped,7,Middle,348
+Non-holiday,14,Middle,7,Floor,691
+Non-holiday,14,Middle,7,Jumped,1257
+Non-holiday,14,Middle,7,Middle,303

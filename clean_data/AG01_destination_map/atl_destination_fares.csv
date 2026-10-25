@@ -1,0 +1,16 @@
+origin,destination,destination_state,quotes,avg_fare,min_fare
+ATL,LGA,New York,480689,199.74,31.97
+ATL,EWR,New Jersey,307997,210.76,19.59
+ATL,ORD,Illinois,346153,230.57,19.59
+ATL,DFW,Texas,290362,232.81,19.59
+ATL,IAD,District of Columbia,143368,237.26,78.6
+ATL,PHL,Pennsylvania,292479,239.86,19.59
+ATL,MIA,Florida,267257,245.34,23.97
+ATL,BOS,Massachusetts,493277,275.42,55.78
+ATL,DTW,Michigan,369510,288.83,19.59
+ATL,JFK,New York,301634,290.85,53.6
+ATL,CLT,North Carolina,233173,303.55,96.6
+ATL,DEN,Colorado,309087,307.08,53.99
+ATL,LAX,California,709809,369.2,50.58
+ATL,SFO,California,421322,455.89,64.6
+ATL,OAK,California,345911,536.08,52.58

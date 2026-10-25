@@ -1,0 +1,16 @@
+scope,origin,destination,nonstop_median_fare,connecting_median_fare,nonstop_quotes,connecting_quotes
+all routes (pooled),,,215.6,348.62,22066888,60071865
+same route,ATL,BOS,268.6,241.6,114860,378417
+same route,ATL,CLT,198.6,361.6,115659,117514
+same route,ATL,DEN,285.6,305.61,107999,201088
+same route,ATL,DFW,202.6,223.1,171281,119081
+same route,ATL,DTW,218.6,276.58,108584,260926
+same route,ATL,EWR,199.6,191.58,142281,165716
+same route,ATL,IAD,183.6,224.6,79179,64189
+same route,ATL,JFK,188.6,307.6,129760,171874
+same route,ATL,LAX,398.6,349.58,147829,561980
+same route,ATL,LGA,198.6,181.6,192573,288116
+same route,ATL,MIA,168.61,298.61,130814,136443
+same route,ATL,ORD,215.6,200.6,128278,217875
+same route,ATL,PHL,202.6,221.6,121242,171237
+same route,ATL,SFO,428.6,462.2,64550,356772
