@@ -184,6 +184,9 @@ body.still .ping, body.still .nudge-icon { animation: none; }
 .quiz h2 { font-size: clamp(2.4rem, 6vw, 5.6rem); max-width: 18ch; }
 .quiz .choices { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 .quiz p { margin: 0 auto; }
+.rbrush .overlay { pointer-events: all; cursor: crosshair; }
+.rbrush .selection { fill: var(--accent); fill-opacity: 0.14; stroke: var(--accent); stroke-width: 1.5; }
+.rbrush .handle { fill: var(--accent); fill-opacity: 0.7; }
 .quiz-nudge { justify-content: center; text-align: left; }
 .quiz .quiz-when { font-family: var(--font-mono, ui-monospace, monospace); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-size: clamp(0.95rem, 1.4vw, 1.2rem); margin: 0 auto -6px; }
 .quiz:not(.answered) .choices .btn { animation: ring 1.8s ease-out infinite; }
@@ -373,7 +376,7 @@ body.still .cue, body.still .pulse { animation: none; }
         <p class="muted more" id="routes-copy">Now look at each route on its own. Blue boxes are stretches where the price dropped; red boxes are where it climbed. The blue shows up at different times on different routes, but on the right, almost everything turns red.</p>
         <div class="bigstat" data-at="0.8"><span class="num" id="routes-num">99%</span><span class="lbl" id="routes-lbl">of routes get pricier in the last week.</span></div>
         <p class="callout" data-at="0.88" id="routes-callout"></p>
-        <p class="hint" data-at="0.9">Click a route to redraw the staircase for it. Switch to all routes to see the whole network.</p>
+        <p class="hint" data-at="0.9"><b>Drag across the staircase</b> to pick any stretch of days: the last heatmap column shows how every route changed in it. Click a route to redraw the staircase.</p>
       </div>
       <div class="panel">
         <div class="panel-head">
@@ -949,9 +952,11 @@ function buildRoutes() {
   const end = cur.at(-1);
   rt.lowG.append('text').attr('x', x(1) + 6).attr('y', y(end.v) + 4).text(Math.round(end.v)).style('font-size', '11.5px').style('font-weight', 600).style('fill', 'var(--rose)');
   // ---- heatmap ----
-  const cw = (W - hm.l - hm.r) / RWIN.length;
+  const cw = (W - hm.l - hm.r - 10) / (RWIN.length + 1), bx0 = hm.l + RWIN.length * cw + 10;
   const color = d3.scaleLinear().domain([-0.15, 0, 0.15]).range([tok('--fell'), tok('--div-mid'), tok('--rose')]).interpolate(d3.interpolateLab).clamp(true);
   RWIN.forEach(([a, b], j) => svg.append('text').attr('x', hm.l + j * cw + cw / 2).attr('y', hm.t - 10).attr('text-anchor', 'middle').text(`${a}–${b === 1 ? 1 : b}d`).style('font-size', '11px').style('fill', 'var(--muted)'));
+  rt.color = color;
+  rt.bHead = svg.append('text').attr('x', bx0 + cw / 2).attr('y', hm.t - 10).attr('text-anchor', 'middle').style('font-size', '11px').style('font-weight', 600).style('fill', 'var(--accent)');
   const at60 = d => allIdx[60 - d];
   const allWin = RWIN.map(([a, b]) => 100 * (at60(b) / at60(a) - 1));
   const rows = [{ key: null, label: 'All flights', win: allWin, low: lowOf(all).d }, ...keys.map(k => ({ key: k, label: rt.mode === 'atl' ? 'ATL–' + k.slice(4) : k, win: R[k].win, low: R[k].low }))];
@@ -973,7 +978,14 @@ function buildRoutes() {
       if (!many || i === 0) cg.append('text').attr('x', cx + cw / 2).attr('y', yy + h / 2 + 3.5).attr('text-anchor', 'middle').text(pct(v / 100)).style('font-size', i === 0 ? '11px' : '9.5px').style('pointer-events', 'none').style('fill', Math.abs(v) > 9 ? '#ffffff' : 'var(--ink)');
       return { cg, v, j, cx: cx + cw / 2, cy: yy + h / 2 };
     });
-    return { g, label, cells };
+    const bRect = g.append('rect').attr('x', bx0 + (many && i ? 0.5 : 1.5)).attr('y', yy).attr('width', cw - (many && i ? 1 : 3)).attr('height', Math.max(1, h - (many && i ? 0.3 : 2))).attr('rx', many && i ? 0 : 2)
+      .style('fill', 'transparent').style('stroke', many && i ? 'none' : 'var(--line-2)').style('stroke-dasharray', '3 2')
+      .on('mousemove', ev => { if (rt.win) showTip(ev, `<b>${row.key ? name(row.key) : 'All flights'} · ${rt.win[0]} to ${rt.win[1]} days out</b><br>Fare index ${pct(bv)} in your brushed stretch`); }).on('mouseleave', hideTip);
+    const bText = !many || i === 0 ? g.append('text').attr('x', bx0 + cw / 2).attr('y', yy + h / 2 + 3.5).attr('text-anchor', 'middle').style('font-size', i === 0 ? '11px' : '9.5px').style('font-weight', 600).style('pointer-events', 'none') : null;
+    let bv = 0;
+    const idx = row.key ? R[row.key].idx : allIdx;
+    const setWin = w => { if (!w) { bRect.style('fill', 'transparent'); bText && bText.text(''); return null; } bv = idx[60 - w[1]] / idx[60 - w[0]] - 1; bRect.style('fill', color(bv)); bText && bText.text(pct(bv)).style('fill', Math.abs(bv) > 0.09 ? '#ffffff' : 'var(--ink)'); return bv; };
+    return { g, label, cells, setWin };
   });
   if (many) {
     const y0 = hm.t + 22, y1 = y0 + keys.length * rowH;
@@ -989,7 +1001,28 @@ function buildRoutes() {
     const p = svg.append('path').attr('d', line(pts)).style('fill', 'none').style('stroke', color(cell.v / 100)).style('stroke-width', 4).style('stroke-linecap', 'round').style('pointer-events', 'none');
     return { p, bx, by, cell };
   });
+  rt.bHint = svg.append('text').attr('x', W - sm.r).attr('y', sm.t + 2).attr('text-anchor', 'end').text('↔ drag across the days to compare routes').style('font-size', '11.5px').style('font-weight', 600).style('fill', 'var(--accent)').style('pointer-events', 'none');
+  rt.brushG = svg.append('g').attr('class', 'rbrush');
+  const brush = d3.brushX().extent([[sm.l, sm.t], [W - sm.r, sm.h - sm.b]]).on('brush end', ev => {
+    let w = null;
+    if (ev.selection) { const [a, b] = ev.selection.map(v => Math.round(x.invert(v))); if (a - b >= 1) w = [a, b]; }
+    rt.win = w; applyBrush();
+    if (ev.type === 'end' && ev.sourceEvent) rt.brushG.call(brush.move, w ? [x(w[0]), x(w[1])] : null);   // snap to whole days
+  });
+  rt.brushG.call(brush);
+  if (rt.win) rt.brushG.call(brush.move, [x(rt.win[0]), x(rt.win[1])]); else applyBrush();
   rt.svg = svg;
+}
+// linking: the brushed stretch recolors the heatmap's last column, dims the windows outside it, and rewrites the big number
+function applyBrush() {
+  const w = rt.win;
+  rt.rows.forEach(r => {
+    r.cells.forEach(c => c.cg.style('opacity', !w || (RWIN[c.j][0] > w[1] && RWIN[c.j][1] < w[0]) ? 1 : 0.3));
+    r.bv = r.setWin(w);
+  });
+  rt.bHead.text(w ? `${w[0]}–${w[1]}d` : 'your pick');
+  rt.bHint.style('opacity', w ? 0 : 1);
+  routesCopy();
 }
 function pickRoute(key) {
   if (!rt.live) return;
@@ -1008,6 +1041,12 @@ document.querySelectorAll('#routes-mode button').forEach(b => b.addEventListener
 }));
 function routesCopy() {
   const keys = routeKeys(), R = SITE_DATA.routes, n = keys.length;
+  if (rt.win && rt.rows) {
+    const rs = rt.rows.slice(1), up = rs.filter(r => r.bv > 0).length, scopeB = rt.mode === 'atl' ? 'routes from Atlanta' : 'routes in the dataset';
+    $('#routes-num').textContent = `${Math.round(100 * up / rs.length)}%`;
+    $('#routes-lbl').textContent = `of ${rs.length} ${scopeB} got pricier between ${rt.win[0]} and ${rt.win[1]} days out.`;
+    return;
+  }
   const last = keys.filter(k => R[k].win.at(-1) > 0).length, early = keys.filter(k => R[k].low > 21).length;
     const scope = rt.mode === 'atl' ? 'routes from Atlanta' : 'routes in the dataset';
   $('#routes-num').textContent = `${Math.round(100 * last / n)}%`;
