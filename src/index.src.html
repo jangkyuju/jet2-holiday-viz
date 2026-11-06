@@ -143,19 +143,22 @@ body.still .ping, body.still .nudge-icon { animation: none; }
 /* Steps / shake */
 .shake { animation: shake 0.45s ease-in-out; }
 @keyframes shake { 20% { transform: translate(-3px, 2px) rotate(-0.4deg); } 40% { transform: translate(3px, -2px) rotate(0.4deg); } 60% { transform: translate(-2px, 1px); } 80% { transform: translate(2px, -1px); } }
-.counter { display: flex; align-items: center; gap: 10px; }
-.counter .flap { font-size: clamp(2rem, 3.2vw, 3.6rem); }
 .overlay { position: absolute; pointer-events: none; }
 .pulse { animation: pulse 1s ease-in-out infinite; }
 @keyframes pulse { 50% { opacity: 0.45; } }
 
 /* Bet */
-#bet .stage > .wrap { grid-template-columns: minmax(0, 1fr); gap: 12px; }
-#bet .cap { max-height: calc(100svh - 260px); }
-.bet-top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px 40px; align-items: end; }
-.bet-main { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 1fr); gap: 18px; align-items: start; }
-.odds-col { display: grid; gap: 12px; align-content: start; }
-#odds { width: 100%; aspect-ratio: 1; max-width: 300px; border: 1px dashed var(--line-2); border-radius: 6px; }
+#bet .copy { gap: 12px; }
+#bet .copy h2 { font-size: clamp(1.8rem, 2.6vw, 2.6rem); }
+#bet .cap { max-height: calc(100svh - 150px); }
+.legend.bands { gap: 3px; align-items: center; }
+.legend.bands .muted { margin: 0 6px; font-size: 0.8rem; }
+.bet-story { display: grid; gap: 12px; margin-top: 4px; }
+.bet-story .st { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: baseline; padding-left: 14px; border-left: 3px solid var(--line-2); opacity: 0.22; transition: opacity 0.35s, border-color 0.35s; }
+.bet-story .st.on { opacity: 1; border-left-color: var(--accent); }
+.bet-story .st p { margin: 0; font-size: 0.98rem; line-height: 1.4; }
+.bet-story .st.big { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+.bet-story .num { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.6rem, 4vw, 4rem); line-height: 0.9; color: var(--accent); }
 
 /* Book */
 #book .stage > .wrap { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
@@ -172,9 +175,6 @@ body.still .ping, body.still .nudge-icon { animation: none; }
 .cal.stamped .stamp { transform: translate(-50%, -50%) rotate(-12deg) scale(1); opacity: 1; }
 .boardbox { display: grid; gap: 6px; }
 .boardbox .flap { font-size: clamp(1.3rem, 3vw, 3.2rem); }
-.milestones { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-.milestones div { border-top: 3px solid var(--accent); padding-top: 6px; font-size: 0.86rem; color: var(--ink-2); }
-.milestones b { display: block; color: var(--ink); font-weight: 600; }
 
 /* Plain sections */
 .plain { padding-block: clamp(56px, 8vw, 100px); border-top: 1px solid var(--line); min-height: 100svh; display: grid; align-items: center; }
@@ -184,6 +184,14 @@ body.still .ping, body.still .nudge-icon { animation: none; }
 .quiz h2 { font-size: clamp(2.4rem, 6vw, 5.6rem); max-width: 18ch; }
 .quiz .choices { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 .quiz p { margin: 0 auto; }
+.quiz-nudge { justify-content: center; text-align: left; }
+.quiz .quiz-when { font-family: var(--font-mono, ui-monospace, monospace); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-size: clamp(0.95rem, 1.4vw, 1.2rem); margin: 0 auto -6px; }
+.quiz:not(.answered) .choices .btn { animation: ring 1.8s ease-out infinite; }
+.quiz:not(.answered) .choices .btn + .btn { animation-delay: 0.9s; }
+.quiz.answered .quiz-nudge { border-style: solid; border-color: var(--line-2); background: var(--surface); }
+.quiz.answered .quiz-nudge .nudge-icon { animation: none; }
+@keyframes ring { 0% { box-shadow: 0 0 0 0 rgba(227, 53, 77, 0.55); } 70%, 100% { box-shadow: 0 0 0 16px rgba(227, 53, 77, 0); } }
+body.still .quiz .choices .btn { animation: none; }
 .modal { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 16px; background: rgba(2, 8, 20, 0.72); backdrop-filter: blur(3px); text-align: left; }
 .modal-card { width: min(560px, 100%); background: var(--surface); border: 1px solid var(--line-2); border-top: 4px solid var(--accent); border-radius: 10px; padding: clamp(20px, 3vw, 32px); display: grid; gap: 14px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45); animation: pop 0.22s ease-out; }
 .modal-card h3 { font-size: clamp(1.8rem, 3vw, 2.6rem); }
@@ -224,7 +232,7 @@ body.still [data-at] { opacity: 1; transform: none; transition: none; }
 body.still .cue, body.still .pulse { animation: none; }
 
 @media (max-width: 900px) {
-  .stage > .wrap, .plain .wrap, .about .wrap, .bet-top, .bet-main { grid-template-columns: minmax(0, 1fr); }
+  .stage > .wrap, .plain .wrap, .about .wrap { grid-template-columns: minmax(0, 1fr); }
   .stage > .wrap { gap: 12px; align-content: center; }
   .copy { gap: 10px; }
   .copy .more { display: none; }
@@ -232,8 +240,9 @@ body.still .cue, body.still .pulse { animation: none; }
   .dots { display: none; }
   .stage > .wrap, .plain .wrap { padding-right: 0; }
   .passes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .odds-col { grid-template-columns: 120px minmax(0, 1fr); align-items: center; }
-  #odds { max-width: 120px; }
+  .bet-story { gap: 8px; }
+  .bet-story .st:not(.on) { display: none; }
+  .bet-story .num { font-size: 2.6rem; }
   .cap { max-height: 46svh; }
   .cal { width: min(260px, 60vw); }
 }
@@ -241,7 +250,6 @@ body.still .cue, body.still .pulse { animation: none; }
   .brand span { display: none; }
   .pass { grid-template-columns: minmax(0, 1fr); }
   .pass .stub { border-left: 0; border-top: 2px dashed var(--line-2); justify-items: start; }
-  .milestones { grid-template-columns: minmax(0, 1fr); }
   .tag { width: 250px; height: 190px; }
   .tag b { font-size: 1.6rem; }
 }
@@ -262,7 +270,7 @@ body.still .cue, body.still .pulse { animation: none; }
     <svg id="title-svg" class="fill" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
     <div class="wrap gutter title-copy" id="title-copy">
       <div class="rows"><div id="t1"></div><div id="t2"></div></div>
-      <p class="lede">A visual story about holiday airfares: where to go, when to buy, and why waiting for a better price usually costs you.</p>
+      <p class="lede">A visual story about airfares: where to go, when to buy, and why waiting for a better price usually costs you.</p>
       <div class="meta"><span>Jangkyu Ju, Sagarika Srinivasan, Cynthia Zhou, Arrington Goss, Yuhan Hu</span></div>
       <p class="cue">Scroll to board ↓</p>
     </div>
@@ -298,10 +306,6 @@ body.still .cue, body.still .pulse { animation: none; }
         <span class="sign">Hook · Watching the fare</span>
         <h2>Checking every day? Most days, nothing happens.</h2>
         <div class="bigstat" data-at="0.3"><span class="num" id="barely-num">82%</span><span class="lbl">of daily checks, the fare moved less than 10%. You don't need to keep checking every day.</span></div>
-        <div class="pass">
-          <div class="main"><span class="mono muted">YOUR TRIP · LABOR DAY</span><span class="route" id="w-route"></span><span class="mono muted" id="w-sub">Flight 1 · checked daily</span></div>
-          <div class="stub"><span class="mono muted">FARE TODAY</span><span id="w-fare"></span><span id="w-t"></span></div>
-        </div>
         <p class="callout" id="diary-stat" data-at="0.9"></p>
       </div>
       <div class="panel">
@@ -321,9 +325,10 @@ body.still .cue, body.still .pulse { animation: none; }
 <section class="plain quiz gutter" id="quiz" data-status="Your call">
   <div class="wrap">
     <span class="sign">Your call</span>
+    <p class="quiz-when" id="quiz-when">Fast-forward: you fly in 21 days.</p>
     <h2 id="quiz-q">The fare is $258 today. Buy now, or wait for a better price?</h2>
     <div class="choices"><button class="btn big yes" type="button" data-a="buy">Buy now</button><button class="btn big" type="button" data-a="wait">Wait</button></div>
-    <p class="muted" id="quiz-a" aria-live="polite">Pick one. Then scroll on to see how thousands of travelers' bets turned out.</p>
+    <div class="nudge quiz-nudge" id="quiz-a" aria-live="polite"><span class="nudge-icon" aria-hidden="true">↑</span><span><b>Pick one</b> to see how thousands of travelers' bets turned out.</span></div>
   </div>
   <div class="modal" id="quiz-modal" hidden role="dialog" aria-modal="true" aria-labelledby="quiz-modal-title">
     <div class="modal-card">
@@ -343,7 +348,6 @@ body.still .cue, body.still .pulse { animation: none; }
         <span class="sign">Rising insight 1</span>
         <h2>Zoom out, and fares don't creep up. They jump.</h2>
         <p class="muted more">Every flight in the dataset, compared with its own price the day before: 64.5 million comparisons, not just holidays. For six weeks a typical fare barely moves. Then it jumps right after the 21-, 14- and 7-day marks, and once more the day before departure.</p>
-        <div class="counter"><span class="mono muted">AVERAGE<br>FARE</span><span id="stair-fare"></span><span class="mono muted" style="margin-left:14px">FARE<br>INDEX</span><span id="stair-index"></span></div>
         <p class="callout" data-at="0.92">Fares end 37% higher than 60 days out, and about 80% of that rise happens on just four nights.</p>
       </div>
       <div class="panel" id="stair-panel">
@@ -366,8 +370,8 @@ body.still .cue, body.still .pulse { animation: none; }
       <div class="copy">
         <span class="sign">Rising insight 2</span>
         <h2>Every route bottoms out at a different time. Almost every route ends in red.</h2>
-        <p class="muted more" id="routes-copy">Now look at each route on its own. Read every row from left to right, from two months out to the day you fly. Blue boxes are stretches where the price dropped; red boxes are where it climbed. The blue shows up at different times on different routes, but on the right, almost everything turns red.</p>
-        <div class="bigstat" data-at="0.8"><span class="num" id="routes-num">99%</span><span class="lbl" id="routes-lbl">of routes get pricier in the last week. Only the cheapest day moves around.</span></div>
+        <p class="muted more" id="routes-copy">Now look at each route on its own. Blue boxes are stretches where the price dropped; red boxes are where it climbed. The blue shows up at different times on different routes, but on the right, almost everything turns red.</p>
+        <div class="bigstat" data-at="0.8"><span class="num" id="routes-num">99%</span><span class="lbl" id="routes-lbl">of routes get pricier in the last week.</span></div>
         <p class="callout" data-at="0.88" id="routes-callout"></p>
         <p class="hint" data-at="0.9">Click a route to redraw the staircase for it. Switch to all routes to see the whole network.</p>
       </div>
@@ -389,24 +393,23 @@ body.still .cue, body.still .pulse { animation: none; }
   <div class="stage">
     <canvas id="bet-canvas" class="overlay" style="inset:0;z-index:3"></canvas>
     <div class="wrap gutter">
-      <div class="bet-top">
-        <div class="copy"><span class="sign">Main message</span><h2>Waiting is a bet you usually lose.</h2></div>
-        <p class="muted more" id="bet-copy">Each dot is one real flight. At each checkpoint it sits at its <b>Floor</b> (within 5% of the lowest of its five prices), in the <b>Middle</b> (5–10% above) or <b>Jumped</b> (10% or more above).</p>
+      <div class="copy">
+        <span class="sign">Main message</span>
+        <h2>Until day 21, fares balance out. After it, they climb.</h2>
+        <p class="muted" id="bet-copy">Each flight is compared with its own fare 60 days out, so every flight starts in one bar. Blue bands are cheaper than that first fare, red bands pricier, in steps of 10%.</p>
+      <div class="bet-story" id="bet-story" aria-live="polite">
+        <div class="st"><span class="mono">01</span><p id="bs1"></p></div>
+        <div class="st"><span class="mono">02</span><p id="bs2"></p></div>
+        <div class="st big"><span class="num" id="bs3n"></span><p id="bs3"></p></div>
       </div>
-      <div class="bet-main">
-        <div class="panel">
-          <div class="panel-head"><span class="panel-title" id="flow-title"></span>
-            <div class="legend"><span><i class="sw" style="background:var(--rose)"></i>Jumped</span><span><i class="sw" style="background:var(--flat-strong)"></i>Middle</span><span><i class="sw" style="background:var(--fell)"></i>Floor</span><button class="btn small" id="flow-reset" type="button" hidden>Show all flights</button></div>
-          </div>
-          <svg id="flow" class="cap" viewBox="0 0 1000 440" role="img" aria-label="Alluvial chart of flights moving between fare bands"></svg>
-          <div class="panel-foot"><span class="mono">Sagarika Srinivasan</span><span class="hint" data-at="0.97">Hover a ribbon · click a band to follow it</span></div>
-        </div>
-        <div class="odds-col">
-          <div id="odds"></div>
-          <p class="callout" data-at="0.95" id="odds-copy"></p>
-        </div>
       </div>
-      <p class="callout" id="flow-stat" data-at="0.97"></p>
+      <div class="panel">
+        <div class="panel-head"><span class="panel-title" id="flow-title"></span>
+          <div class="legend bands"><span class="muted">Cheaper</span><i class="sw" style="background:#2f6fd6"></i><i class="sw" style="background:#6f9fe8"></i><i class="sw" style="background:#b3cbf2"></i><i class="sw" style="background:#5d6a82"></i><i class="sw" style="background:#f2b7bf"></i><i class="sw" style="background:#ea7f8d"></i><i class="sw" style="background:#e5384f"></i><span class="muted">Pricier</span><button class="btn small" id="flow-reset" type="button" hidden>Show all flights</button></div>
+        </div>
+        <svg id="flow" class="cap" viewBox="0 0 1000 460" role="img" aria-label="Alluvial chart of flights moving between fare bands"></svg>
+        <div class="panel-foot"><span class="mono">Sagarika Srinivasan</span><span class="hint" data-at="0.97">Hover a ribbon · click a band to follow it</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -420,8 +423,7 @@ body.still .cue, body.still .pulse { animation: none; }
         <span class="sign">Solution</span>
         <h2>Stop hunting for the low point. Book before day 21.</h2>
         <div class="boardbox"><div id="b1"></div><div id="b2"></div></div>
-        <label class="field" for="fly-date" data-at="0.8">I fly on <input type="date" id="fly-date" value="2022-09-02"></label>
-        <div class="milestones" id="milestones" data-at="0.85"></div>
+        <label class="field" for="fly-date" data-at="0.8">I fly on <input type="date" id="fly-date" value="2026-12-25"></label>
       </div>
     </div>
   </div>
@@ -432,7 +434,7 @@ body.still .cue, body.still .pulse { animation: none; }
   <div class="wrap">
     <div class="copy">
       <span class="sign">One more check</span>
-      <h2>Price the nonstop before you assume the connection is cheaper.</h2>
+      <h2>Nonstop is often the cheaper ticket.</h2>
       <p class="muted" id="race-copy"></p>
       <p class="hint" id="race-hint"></p>
     </div>
@@ -453,7 +455,7 @@ body.still .cue, body.still .pulse { animation: none; }
       <div class="tag"><span class="n">01 / WHERE</span><b>Pick where with the map</b><span>Some destinations cost far less to reach from your airport.</span></div>
       <div class="tag"><span class="n">02 / WATCHING</span><b>Don't watch it daily</b><span>Day-to-day moves are noise with nothing to act on.</span></div>
       <div class="tag"><span class="n">03 / WHEN</span><b>Book before day 21</b><span>Fares jump right after the 21-, 14- and 7-day marks.</span></div>
-      <div class="tag"><span class="n">04 / HOW</span><b>Check nonstop too</b><span>Around the holidays it was often the cheaper option.</span></div>
+      <div class="tag"><span class="n">04 / HOW</span><b>Check nonstop too</b><span>It is often the cheaper option.</span></div>
     </div></div>
   </div>
 </section>
@@ -715,6 +717,15 @@ function renderPass(print) {
 }
 $('#pick-for-me').addEventListener('click', () => flyTo(Math.random() < 0.5 ? 'LAX' : 'SFO'));
 // the story continues only after a destination is picked
+function gateQuiz() {
+  if (state.quizzed || !state.flown || !quizModal.hidden) return;
+  const q = $('#quiz'), lockY = q.offsetTop + Math.max(0, q.offsetHeight - innerHeight);
+  if (scrollY > lockY + 4) {
+    scrollTo(0, lockY);
+    const n = $('#quiz-a');
+    if (!n.classList.contains('blocked')) { n.classList.add('blocked'); setTimeout(() => n.classList.remove('blocked'), 600); }
+  }
+}
 function gateWhere() {
   if (state.flown || !S.where) return;
   const el = S.where.el, total = el.offsetHeight - el.querySelector('.stage').offsetHeight;
@@ -738,11 +749,10 @@ function diaryRowsReal(origin, dest, page = 0, n = 4) {
     return { name: `Flight ${i + 1}`, airline: fl.a + (fl.ns ? ' nonstop' : ''), days };
   });
 }
-const watch = { fare: new Flap($('#w-fare'), 5), t: new Flap($('#w-t'), 4) };
+const watch = {};
 function buildWatching() {
   const base = mapFare(state.origin, state.dest);
   watch.flights = diaryRowsReal(state.origin, state.dest, state.diarySeed - 1) || diaryRows(hash(state.origin + state.dest) + state.diarySeed * 9973, 4, base);
-  $('#w-route').textContent = `${state.origin} → ${state.dest}`;
   $('#diary-title').textContent = `Daily fare checks · ${state.origin} → ${state.dest}`;
   const svg = d3.select('#diary'); svg.selectAll('*').remove();
   const x0 = 96, cell = 13, step = 15, rowH = 30, y0 = 36;
@@ -762,7 +772,7 @@ function buildWatching() {
   const all = watch.flights.flatMap(f => f.days.slice(1)).filter(d => d.cls !== 'none'), c = k => all.filter(d => d.cls === k).length, n = all.length;
   const D = SITE_DATA.diaryShares;
   $('#barely-num').textContent = `${Math.round(D.barely)}%`;
-  $('#diary-stat').textContent = `Across ${D.flights.toLocaleString('en-US')} flights tracked every day for 60 days (${(D.checks / 1e6).toFixed(2)}M checks), ${Math.round(D.barely)}% of checks barely moved, ${D.rose10}% rose 10%+ and ${D.fell10}% fell 10%+. These four flights: ${Math.round(c('flat') / n * 100)}% barely moved.`;
+  $('#diary-stat').textContent = `Across ${D.flights.toLocaleString('en-US')} flights tracked every day for 60 days (${(D.checks / 1e6).toFixed(2)}M checks), ${Math.round(D.barely)}% of checks barely moved, ${D.rose10}% rose 10%+ and ${D.fell10}% fell 10%+.`;
 }
 function updateWatching(p) {
   reveal($('#watching'), p);
@@ -771,30 +781,30 @@ function updateWatching(p) {
     const on = r === 0 ? i < n1 : (r - 1) * 60 + i < rest;
     this.style.opacity = on ? 1 : 0; this.style.transform = on ? 'none' : 'translateY(-22px)';
   }));
-  const day = watch.flights[0].days[n1 - 1];
-  watch.fare.set(usd(day.fare).padStart(5), true);
-  watch.t.set('T-' + day.d, true);
-  const al = watch.flights[0].airline ? ` (${watch.flights[0].airline})` : '';
-  $('#w-sub').textContent = n1 < 60 ? `Flight 1${al} · day ${n1} of checking` : `Flight 1${al} · 60 days of checks`;
 }
 $('#diary-redo').addEventListener('click', () => { state.diarySeed++; buildWatching(); S.watching.update(S.watching.p); });
 
 // ================= quiz =================
-function updateQuiz() { $('#quiz-q').textContent = `Your ${state.origin} → ${state.dest} fare is ${usd(mapFare(state.origin, state.dest))} today. Buy now, or wait for a better price?`; }
+function fare21(o, d) { const r = SITE_DATA.routes[`${o}-${d}`]; return r ? Math.round(r.mean[60 - 21]) : mapFare(o, d); }
+function updateQuiz() {
+  $('#quiz-when').textContent = 'Fast-forward: you fly in 21 days.';
+  $('#quiz-q').textContent = `Your ${state.origin} → ${state.dest} fare is ${usd(fare21(state.origin, state.dest))} today. Buy now, or wait for a better price?`;
+}
 const quizModal = $('#quiz-modal');
 let quizOpener = null;
 function openQuiz(choice) {
-  const rise = Math.round(SITE_DATA.allFlights.at(-1).index - 100), jumped = Math.round(SITE_DATA.ss5.summary.floor21_jumped7);
-  const fare = usd(mapFare(state.origin, state.dest));
+  const rise = Math.round(SITE_DATA.allFlights.at(-1).index - 100), up = Math.round(SITE_DATA.ss5.story.all_up10_21to7), dn = Math.round(SITE_DATA.ss5.story.all_down10_21to7);
+  const fare = usd(fare21(state.origin, state.dest));
   const copy = choice === 'buy'
     ? { tag: 'You bought now', title: `Good instinct. You locked in ${fare}.`,
-        body: `Across every flight in our data, fares ended ${rise}% higher the day before departure than 60 days out. And ${jumped}% of flights that were at their lowest price 21 days out were 10% or more above it a week later.` }
+        body: `Across every flight in our data, fares ended ${rise}% higher the day before departure than 60 days out. And between 21 and 7 days out, ${up}% of fares rose 10% or more while only ${dn}% fell that much.` }
     : { tag: 'You chose to wait', title: 'Most travelers make that bet.',
-        body: `But fares rarely drift down. They jump on four specific nights, and ${jumped}% of flights that were at their lowest price 21 days out were 10% or more above it a week later. Fares ended ${rise}% higher the day before departure.` };
+        body: `Waiting can pay until about 21 days out. After that, ${up}% of fares rose 10% or more within two weeks, and only ${dn}% fell that much. Fares ended ${rise}% higher the day before departure.` };
   $('#quiz-modal-tag').textContent = copy.tag;
   $('#quiz-modal-title').textContent = copy.title;
   $('#quiz-modal-body').textContent = copy.body;
-  $('#quiz-a').textContent = choice === 'buy' ? 'You picked: buy now.' : 'You picked: wait.';
+  state.quizzed = true; $('#quiz').classList.add('answered');
+  $('#quiz-a').innerHTML = `<span class="nudge-icon" aria-hidden="true">↓</span><span>You picked <b>${choice === 'buy' ? 'buy now' : 'wait'}</b>. Scroll on to see how it turns out.</span>`;
   quizModal.hidden = false; $('#quiz-modal-go').focus();
 }
 function closeQuiz(go) {
@@ -809,7 +819,7 @@ quizModal.addEventListener('click', e => { if (e.target === quizModal) closeQuiz
 addEventListener('keydown', e => { if (e.key === 'Escape' && !quizModal.hidden) closeQuiz(false); });
 
 // ================= 3. STEPS =================
-const stair = { W: 640, H: 290, m: { t: 30, r: 34, b: 34, l: 50 }, fare: new Flap($('#stair-fare'), 4), idx: new Flap($('#stair-index'), 3), crossed: 0, mode: 'index' };
+const stair = { W: 640, H: 290, m: { t: 30, r: 34, b: 34, l: 50 }, crossed: 0, mode: 'index' };
 document.querySelectorAll('#stair-mode button').forEach(b => b.addEventListener('click', () => {
   if (stair.mode === b.dataset.mode) return;
   stair.mode = b.dataset.mode;
@@ -902,8 +912,6 @@ function updateSteps(p) {
   const crossed = stair.jumps.filter(j => r > 0 && lead <= j.d).length;
   if (crossed > stair.crossed && stair.crossed >= 0 && !REDUCED) { const pnl = $('#stair-panel'); pnl.classList.remove('shake'); void pnl.offsetWidth; pnl.classList.add('shake'); }
   stair.crossed = crossed;
-  stair.fare.set(usd(r > 0 ? cur.mean : data[0].mean), true);
-  stair.idx.set(String(Math.round(r > 0 ? cur.index : 100)), true);
 }
 
 // ================= 4. ROUTES (linked) =================
@@ -1001,11 +1009,10 @@ document.querySelectorAll('#routes-mode button').forEach(b => b.addEventListener
 function routesCopy() {
   const keys = routeKeys(), R = SITE_DATA.routes, n = keys.length;
   const last = keys.filter(k => R[k].win.at(-1) > 0).length, early = keys.filter(k => R[k].low > 21).length;
-  const lows = keys.map(k => R[k].low).sort((a, b) => a - b), q = p => lows[Math.floor(p * (n - 1))];
-  const scope = rt.mode === 'atl' ? 'routes from Atlanta' : 'routes in the dataset';
+    const scope = rt.mode === 'atl' ? 'routes from Atlanta' : 'routes in the dataset';
   $('#routes-num').textContent = `${Math.round(100 * last / n)}%`;
-  $('#routes-lbl').textContent = `of ${n} ${scope} get pricier in the last week. Only the cheapest day moves around.`;
-  $('#routes-callout').textContent = `The cheapest day ranges from ${lows.at(-1)} to ${lows[0]} days out (middle half: ${q(0.25)}–${q(0.75)}). There is no single best day, but ${early} of ${n} routes were cheapest before day 21.`;
+  $('#routes-lbl').textContent = `of ${n} ${scope} get pricier in the last week.`;
+  $('#routes-callout').textContent = `There is no single best day, but ${early} of ${n} routes were cheapest before day 21.`;
 }
 function updateRoutes(p) {
   reveal($('#routes'), p);
@@ -1031,26 +1038,32 @@ function updateRoutes(p) {
 routesCopy();
 
 // ================= 5. THE BET =================
+// SS5 checkpoints, re-measured: each flight vs its own fare 60 days out (submissions/jangkyu-ss5-full/code/ss5_baseline.py)
 const COLS = [60, 30, 21, 14, 7];
-const BANDS = [{ k: 'J', label: 'Jumped', col: '--rose' }, { k: 'M', label: 'Middle', col: '--flat-strong' }, { k: 'F', label: 'Floor', col: '--fell' }];
-// 1,000 real flights drawn at random from every flight priced near all five checkpoints (see submissions/jangkyu-ss5-full)
+// seven bands, top to bottom: pricier to cheaper than the flight's own 60-day fare
+const BANDS = [
+  { k: 'G', label: '20%+ higher', col: '#e5384f' }, { k: 'F', label: '10–20% higher', col: '#ea7f8d' }, { k: 'E', label: '0–10% higher', col: '#f2b7bf' },
+  { k: 'Z', label: 'Same fare', col: '#5d6a82' },
+  { k: 'C', label: '0–10% cheaper', col: '#b3cbf2' }, { k: 'B', label: '10–20% cheaper', col: '#6f9fe8' }, { k: 'A', label: '20%+ cheaper', col: '#2f6fd6' }];
+const RANK = { A: 0, B: 1, C: 2, Z: 3, E: 4, F: 5, G: 6 };
 const SS5 = SITE_DATA.ss5, FLIGHTS = SS5.sample.map(p => p.split(''));
 const SS5_LINK = Object.fromEntries(SS5.links.map(([a, s, b, t, n]) => [`${a}${s}${t}`, n]));
-const SS5_SHARE = (ci, b) => SS5.summary.shares[`${{ F: 'floor', M: 'middle', J: 'jumped' }[b]}_${COLS[ci]}`];
-const ODDS = (() => { const d = SITE_DATA.allFlights.find(r => r.d === 13), up = Math.round(d.rose10), down = Math.round(d.fell10); return { up, down, flat: 100 - up - down }; })();
-const bet = { W: 1000, H: 440, m: { t: 40, b: 16, l: 110, r: 120 }, nw: 16, pad: 18 };
-(() => { // stable per-dot randomness, plus the 100 dots that become the odds grid
-  const R = rng(5); bet.rnd = FLIGHTS.map(() => R());
-  const idx = FLIGHTS.map((f, i) => i), take = (k, n, skip) => idx.filter(i => FLIGHTS[i][4] === k && !skip.has(i)).slice(0, n);
-  const red = take('J', ODDS.up, new Set()), blue = take('F', ODDS.down, new Set()), grey = idx.filter(i => FLIGHTS[i][4] !== 'J' && FLIGHTS[i][4] !== 'F').concat(idx.filter(i => FLIGHTS[i][4] === 'J').slice(ODDS.up)).slice(0, ODDS.flat);
-  bet.grid = new Map(); [...red.map(i => [i, 'rose']), ...blue.map(i => [i, 'fell']), ...grey.map(i => [i, 'flat'])].forEach(([i, c], n) => bet.grid.set(i, { n, c }));
-})();
+const SS5_SHARE = (ci, b) => SS5.shares[`${b}_${COLS[ci]}`];
+const COL_FARE = COLS.map(c => SITE_DATA.allFlights.find(r => r.d === c).mean);
+const bet = { W: 1000, H: 460, m: { t: 58, b: 28, l: 150, r: 160 }, nw: 16, pad: 9 };
+bet.rnd = (() => { const R = rng(5); return FLIGHTS.map(() => R()); })();
+const bandOf = k => BANDS.find(b => b.k === k);
+const bandName = (k, ci) => ci === 0 ? 'their 60-day fare' : bandOf(k).label.toLowerCase();
 function buildBet() {
   const svg = d3.select('#flow'); svg.selectAll('*').remove();
-  const { W, H, m, nw, pad } = bet, N = FLIGHTS.length, k = (H - m.t - m.b - pad * 2) / N;
+  const { W, H, m, nw, pad } = bet, N = FLIGHTS.length, avail = H - m.t - m.b, k = (avail - pad * (BANDS.length - 1)) / N;
   const cx = d3.scalePoint().domain(COLS).range([m.l, W - m.r - nw]);
   const inCohort = f => !state.cohort || f[state.cohort.c] === state.cohort.b;
-  const nodes = COLS.map((c, ci) => { let y = m.t; return BANDS.map(b => { const n = FLIGHTS.filter(f => f[ci] === b.k).length; const node = { ci, b: b.k, n, y, h: n * k, x: cx(c) }; y += n * k + pad; return node; }); });
+  const nodes = COLS.map((c, ci) => {
+    const counts = BANDS.map(b => FLIGHTS.filter(f => f[ci] === b.k).length), used = counts.filter(Boolean).length;
+    let y = m.t + (avail - N * k - pad * (used - 1)) / 2;
+    return BANDS.map((b, bi) => { const n = counts[bi], node = { ci, b: b.k, n, y, h: n * k, x: cx(c) }; if (n) y += n * k + pad; return node; });
+  });
   const node = (ci, b) => nodes[ci].find(n => n.b === b);
   const links = [], gaps = FLIGHTS.map(() => []);
   for (let ci = 0; ci < COLS.length - 1; ci++) {
@@ -1062,42 +1075,52 @@ function buildBet() {
     }));
     BANDS.forEach(tb => BANDS.forEach(sb => { const l = links.find(l => l.ci === ci && l.s === sb.k && l.t === tb.k); if (!l) return; l.ty = node(ci + 1, tb.k).y + to[tb.k]; to[tb.k] += l.n * k; }));
   }
+  links.forEach(l => { l.dir = RANK[l.t] - RANK[l.s]; l.op = l.t === 'Z' ? 0.18 : 0.42; });
   links.forEach(l => l.fl.forEach((f, j) => { gaps[f][l.ci] = [l.sy + (j + 0.5) * k, l.ty + (j + 0.5) * k]; }));
   Object.assign(bet, { k, cx, nodes, links, gaps });
   const ribbon = (x0, y0, x1, y1, h) => { const xm = (x0 + x1) / 2; return `M${x0},${y0}C${xm},${y0} ${xm},${y1} ${x1},${y1}L${x1},${y1 + h}C${xm},${y1 + h} ${xm},${y0 + h} ${x0},${y0 + h}Z`; };
-  const bandCol = b => `var(${BANDS.find(x => x.k === b).col})`;
+  const bandCol = b => bandOf(b).col;
   bet.ribbons = svg.append('g').selectAll('path').data(links).join('path')
     .attr('d', l => ribbon(cx(COLS[l.ci]) + nw, l.sy, cx(COLS[l.ci + 1]), l.ty, l.n * k)).style('fill', l => bandCol(l.t))
-    .on('mouseenter', function () { if (!state.cohort) d3.select(this).style('opacity', 0.6); })
-    .on('mousemove', (ev, l) => { const n = SS5_LINK[`${COLS[l.ci]}${l.s}${l.t}`] || 0; showTip(ev, `<b>${(100 * n / SS5.flights).toFixed(1)}% of flights</b> (${n.toLocaleString('en-US')} of ${SS5.flights.toLocaleString('en-US')})<br>went from ${BANDS.find(b => b.k === l.s).label} at ${COLS[l.ci]} days to ${BANDS.find(b => b.k === l.t).label} at ${COLS[l.ci + 1]} days`); })
-    .on('mouseleave', function () { hideTip(); if (!state.cohort) d3.select(this).style('opacity', 0.3); });
+    .on('mouseenter', function () { if (!state.cohort) d3.select(this).style('opacity', 0.85); })
+    .on('mousemove', (ev, l) => { const n = SS5_LINK[`${COLS[l.ci]}${l.s}${l.t}`] || 0; showTip(ev, `<b>${(100 * n / SS5.flights).toFixed(1)}% of flights</b> (${n.toLocaleString('en-US')} of ${SS5.flights.toLocaleString('en-US')})<br>went from ${bandName(l.s, l.ci)} at ${COLS[l.ci]} days to ${bandName(l.t, l.ci + 1)} at ${COLS[l.ci + 1]} days<br><span class="muted">compared with their own fare 60 days out</span>`); })
+    .on('mouseleave', () => { hideTip(); S.bet.update(S.bet.p); });
   const overlay = svg.append('g').style('pointer-events', 'none');
-  if (state.cohort) overlay.selectAll('path').data(links.filter(l => l.c)).join('path').attr('d', l => ribbon(cx(COLS[l.ci]) + nw, l.sy, cx(COLS[l.ci + 1]), l.ty, l.c * k)).style('fill', l => bandCol(l.t)).style('opacity', 0.8);
-  nodes.flat().forEach(n => {
+  if (state.cohort) overlay.selectAll('path').data(links.filter(l => l.c)).join('path').attr('d', l => ribbon(cx(COLS[l.ci]) + nw, l.sy, cx(COLS[l.ci + 1]), l.ty, l.c * k)).style('fill', l => bandCol(l.t)).style('opacity', 0.85);
+  nodes.flat().filter(n => n.n).forEach(n => {
     const sel = state.cohort && state.cohort.c === n.ci && state.cohort.b === n.b;
-    svg.append('rect').attr('x', n.x).attr('y', n.y).attr('width', nw).attr('height', Math.max(n.h, 1)).attr('rx', 2).style('fill', bandCol(n.b)).style('stroke', sel ? 'var(--ink)' : 'none').style('stroke-width', 2).style('cursor', 'pointer')
-      .on('mousemove', ev => showTip(ev, `<b>${BANDS.find(b => b.k === n.b).label} at ${COLS[n.ci]} days</b><br>${SS5_SHARE(n.ci, n.b)}% of ${SS5.flights.toLocaleString('en-US')} flights<br>Click to follow these flights`))
+    svg.append('rect').attr('x', n.x).attr('y', n.y).attr('width', nw).attr('height', Math.max(n.h, 1)).attr('rx', 2).style('fill', n.ci === 0 ? 'var(--ink-2)' : bandCol(n.b)).style('stroke', sel ? 'var(--ink)' : 'none').style('stroke-width', 2).style('cursor', 'pointer')
+      .on('mousemove', ev => showTip(ev, n.ci === 0 ? '<b>60 days out</b><br>Every flight starts at its own fare<br>Click to follow all flights' : `<b>${bandOf(n.b).label} at ${COLS[n.ci]} days</b><br>${SS5_SHARE(n.ci, n.b)}% of ${SS5.flights.toLocaleString('en-US')} flights, vs their own fare 60 days out<br>Click to follow these flights`))
       .on('mouseleave', hideTip).on('click', () => { state.cohort = sel ? null : { c: n.ci, b: n.b }; buildBet(); S.bet.update(S.bet.p); });
   });
-  COLS.forEach(c => svg.append('text').attr('x', cx(c) + nw / 2).attr('y', m.t - 12).attr('text-anchor', 'middle').text(c === 60 ? '60 days out' : c === 7 ? '7 days out' : `${c} days`).style('font-size', '12px').style('fill', 'var(--muted)'));
+  // the band that doubles after the 21-day cutoff
+  bet.hl = [node(2, 'G'), node(4, 'G')].map(n => svg.append('rect').attr('x', n.x - 5).attr('y', n.y - 5).attr('width', nw + 10).attr('height', n.h + 10).attr('rx', 4).style('fill', 'none').style('stroke', 'var(--ink)').style('stroke-width', 2.5).style('opacity', 0).style('pointer-events', 'none'));
+  const [fLo, fHi] = d3.extent(COL_FARE), fareCol = d3.interpolateRgb(tok('--ink-2'), tok('--rose'));
+  COLS.forEach((c, ci) => {
+    const x = cx(c) + nw / 2;
+    svg.append('text').attr('x', x).attr('y', m.t - 32).attr('text-anchor', 'middle').text(c === 60 ? '60 days out' : c === 7 ? '7 days out' : `${c} days`).style('font-size', '12px').style('fill', 'var(--muted)');
+    svg.append('text').attr('x', x).attr('y', m.t - 12).attr('text-anchor', 'middle').text(`avg ${usd(COL_FARE[ci])}`).style('font-size', '15px').style('font-weight', 700).style('fill', fareCol((COL_FARE[ci] - fLo) / (fHi - fLo)));
+  });
   bet.labels = svg.append('g');
-  const side = (ci, anchor, dx) => nodes[ci].forEach(n => { const t = bet.labels.append('text').attr('x', n.x + dx).attr('y', n.y + n.h / 2 + 4).attr('text-anchor', anchor).style('font-size', '13px').style('fill', 'var(--ink)'); t.append('tspan').text(BANDS.find(b => b.k === n.b).label + ' ').style('font-weight', 600); t.append('tspan').text(Math.round(SS5_SHARE(n.ci, n.b)) + '%').style('fill', 'var(--ink-2)'); });
-  side(0, 'end', -10); side(COLS.length - 1, 'start', nw + 10);
+  const start = node(0, 'Z'), st0 = bet.labels.append('text').attr('x', start.x - 10).attr('y', start.y + start.h / 2 - 6).attr('text-anchor', 'end').style('font-size', '13px').style('fill', 'var(--ink)');
+  st0.append('tspan').text('Every flight').style('font-weight', 600); st0.append('tspan').attr('x', start.x - 10).attr('dy', 17).text('at its 60-day fare').style('fill', 'var(--ink-2)');
+  nodes[COLS.length - 1].filter(n => n.n).forEach(n => { const t = bet.labels.append('text').attr('x', n.x + nw + 10).attr('y', n.y + n.h / 2 + 4).style('font-size', '13px').style('fill', 'var(--ink)'); t.append('tspan').text(bandOf(n.b).label + ' ').style('font-weight', 600); t.append('tspan').text(Math.round(SS5_SHARE(n.ci, n.b)) + '%').style('fill', 'var(--ink-2)'); });
   // boarding gate at the 21-day cutoff
   const gx = cx(21) - 18, top = m.t - 6, bot = H - m.b;
   const gate = svg.append('g').style('pointer-events', 'none');
   gate.append('line').attr('x1', gx + 4).attr('x2', gx + 4).attr('y1', top - 22).attr('y2', bot).style('stroke', 'var(--ink)').style('stroke-dasharray', '4 4').style('opacity', 0.45);
-  bet.doorT = gate.append('rect').attr('x', gx).attr('y', top).attr('width', 8).attr('rx', 2).style('fill', 'var(--ink)');
-  bet.doorB = gate.append('rect').attr('x', gx).attr('width', 8).attr('rx', 2).style('fill', 'var(--ink)');
-  bet.gateLabel = gate.append('text').attr('x', gx - 6).attr('y', top - 26).attr('text-anchor', 'end').text('21-day cutoff').style('font-size', '12px').style('fill', 'var(--ink-2)');
+  bet.gateLabel = gate.append('text').attr('x', gx - 6).attr('y', bot + 20).attr('text-anchor', 'end').text('21-day cutoff').style('font-size', '12px').style('fill', 'var(--ink-2)');
   Object.assign(bet, { top, bot });
-  const sm = SS5.summary, sh = sm.shares;
-  $('#flow-stat').textContent = `Across ${SS5.flights.toLocaleString('en-US')} flights priced near all five checkpoints, the most were at their floor on day 21 (${Math.round(sh.floor_21)}%). A week later the jumped band had grown to ${Math.round(sh.jumped_7)}%, and ${Math.round(sm.floor21_jumped7)}% of the flights that were at their floor on day 21 had jumped 10% or more by day 7.`;
-  $('#odds-copy').textContent = `Right after the 14-day mark, ${ODDS.up} in 100 fares jump 10% or more overnight. Only ${ODDS.down} in 100 drop that much.`;
-  $('#odds').setAttribute('aria-label', `100 flights after the 14-day mark: ${ODDS.up} jump, ${ODDS.down} drop, ${ODDS.flat} barely move`);
+  const sh = SS5.shares, st = SS5.story;
+  const v1 = SS5.vol['60->21'], v2 = SS5.vol['21->7'];
+  $('#bs1').innerHTML = `<b>60 to 21 days out: balanced.</b> Ups and downs are evenly distributed and cancel each other out (typical change ${v1.median > 0 ? '+' : '−'}${Math.abs(v1.median).toFixed(1)}%), and that balance holds from 60 to 21 days out.`;
+  $('#bs2').innerHTML = `<b>After 21 days out: bigger shifts.</b> In just two weeks, ${Math.round(v2.moved10)}% of fares move 10% or more, and most of them go up.`;
+  const higher = d => ['E', 'F', 'G'].reduce((t, b) => t + sh[`${b}_${d}`], 0);
+  $('#bs3n').textContent = `${Math.round(higher(7))}%`;
+  $('#bs3').textContent = `of fares are above their 60-day price by 7 days out (0–10%, 10–20% and 20%+ higher combined), up from ${Math.round(higher(21))}% at 21 days out.`;
   $('#flow-reset').hidden = !state.cohort;
-  $('#flow-title').textContent = state.cohort ? `Following the ${FLIGHTS.filter(inCohort).length} flights in ${BANDS.find(b => b.k === state.cohort.b).label} at ${COLS[state.cohort.c]} days` : "Where flights' fares stood at five checkpoints";
-  bet.col = { J: tok('--rose'), M: tok('--flat-strong'), F: tok('--fell'), rose: tok('--rose'), fell: tok('--fell'), flat: tok('--flat-strong') };
+  $('#flow-title').textContent = state.cohort ? `Following the ${FLIGHTS.filter(inCohort).length} flights ${state.cohort.c === 0 ? 'from the start' : `${bandOf(state.cohort.b).label} at ${COLS[state.cohort.c]} days`}` : 'How 1,000 fares moved, vs their own fare 60 days out';
+  bet.col = Object.fromEntries(BANDS.map(b => [b.k, b.col]));
   bet.svg = svg;
 }
 $('#flow-reset').addEventListener('click', () => { state.cohort = null; buildBet(); S.bet.update(S.bet.p); });
@@ -1111,41 +1134,35 @@ function dotPos(f, T) {
 }
 function updateBet(p) {
   reveal($('#bet'), p);
-  const live = p >= 0.97;
+  const live = p >= 0.97, story = !state.cohort;
   bet.svg.style('pointer-events', live ? 'auto' : 'none');
-  bet.ribbons.style('opacity', state.cohort ? 0.08 : lerp(0.07, 0.3, seg(p, 0.9, 0.97)));
-  bet.labels.style('opacity', seg(p, 0.86, 0.95));
-  const a = seg(p, 0.03, 0.2), T = 4 * seg(p, 0.22, 0.8), q = ease(seg(p, 0.82, 0.96));
-  const cl = ease(seg(T, 2.02, 2.4)), half = (bet.bot - bet.top) / 2;
-  bet.doorT.attr('height', cl * half); bet.doorB.attr('y', bet.bot - cl * half).attr('height', cl * half);
-  bet.gateLabel.text(cl >= 1 ? '21-day cutoff · gate closed' : '21-day cutoff');
+  const a = seg(p, 0.03, 0.22), T = 2 + 2 * seg(p, 0.3, 0.8), s2 = seg(p, 0.26, 0.34);
+  // the first three weeks are context: drawn at once, then dimmed while the last two weeks play
+  bet.ribbons.style('opacity', l => state.cohort ? 0.06 : l.ci < 2 ? l.op * lerp(1, 0.45, story ? s2 : 0) : l.op * seg(p, 0.3, 0.8) * 1.5);
+  bet.hl.forEach(r => r.style('opacity', story ? seg(p, 0.3, 0.38) : 0));
+  bet.labels.style('opacity', seg(p, 0.8, 0.9));
+  const on = [p >= 0.02, story && p >= 0.3, story && p >= 0.84];
+  document.querySelectorAll('#bet-story .st').forEach((el, i) => el.classList.toggle('on', on[i] && (i === 2 || !on[i + 1] || innerWidth > 900)));
   // canvas dots, in stage coordinates
   const stage = $('#bet .stage'), cv = $('#bet-canvas'), sr = stage.getBoundingClientRect(), fr = bet.svg.node().getBoundingClientRect();
   const ctx = sizeCanvas(cv, sr.width, sr.height); ctx.clearRect(0, 0, sr.width, sr.height);
   if (!fr.width) return;
   const k = Math.min(fr.width / bet.W, fr.height / bet.H), ox = fr.left + (fr.width - bet.W * k) / 2 - sr.left, oy = fr.top + (fr.height - bet.H * k) / 2 - sr.top, toS = ([x, y]) => [ox + x * k, oy + y * k];
-  const or = $('#odds').getBoundingClientRect(), gc = or.width / 10, r0 = Math.max(1.3, 1.8 * k);
+  const r0 = Math.max(1.3, 1.8 * k);
   for (let f = 0; f < FLIGHTS.length; f++) {
-    let pos, col, rad = r0, alpha = 0.85;
-    if (p < 0.22) {
-      const block = toS([380 + (f % 40) * 6, 145 + Math.floor(f / 40) * 6]);
-      const e = ease(clamp(a * 1.4 - bet.rnd[f] * 0.4)), dst = toS(dotPos(f, 0));
-      pos = [lerp(block[0], dst[0], e), lerp(block[1], dst[1], e)];
-      col = e < 0.5 ? bet.col.rose : bet.col[FLIGHTS[f][0]];
-      alpha = 0.85 * seg(p, 0, 0.025);
+    let pos, col, alpha = 0.9;
+    if (T <= 2) {
+      // drop into the 21-day column from above
+      const dst = toS(dotPos(f, 2)), e = ease(clamp(a * 1.4 - bet.rnd[f] * 0.4));
+      pos = [dst[0], lerp(oy - 20, dst[1], e)]; col = bet.col[FLIGHTS[f][2]]; alpha = 0.9 * clamp(e * 3);
     } else {
-      const Tf = clamp(T * 1.3 - bet.rnd[f] * 1.2, 0, 4);
+      const Tf = clamp(2 + (T - 2) * 1.3 - bet.rnd[f] * 0.6, 2, 4), g = Math.min(4, Math.floor(Tf)), u = Tf - g;
       pos = toS(dotPos(f, Tf));
-      const g = Math.min(4, Math.floor(Tf)), u = Tf - g; col = bet.col[FLIGHTS[f][u > 0.5 && g < 4 ? g + 1 : g]];
+      col = bet.col[FLIGHTS[f][g < 4 && u >= 0.12 ? g + 1 : g]];
     }
-    const gi = bet.grid.get(f);
-    if (q > 0) {
-      if (gi) { const tx = or.left - sr.left + (gi.n % 10 + 0.5) * gc, ty = or.top - sr.top + (Math.floor(gi.n / 10) + 0.5) * gc; pos = [lerp(pos[0], tx, q), lerp(pos[1], ty, q)]; rad = lerp(rad, gc * 0.34, q); if (q > 0.5) col = bet.col[gi.c]; alpha = 1; }
-      else alpha *= 1 - q;
-    }
-    if (state.cohort && p >= 0.22 && q === 0 && FLIGHTS[f][state.cohort.c] !== state.cohort.b) alpha *= 0.2;
+    if (state.cohort && FLIGHTS[f][state.cohort.c] !== state.cohort.b) alpha *= 0.2;
     if (alpha <= 0.01) continue;
-    ctx.globalAlpha = alpha; ctx.fillStyle = col; ctx.beginPath(); ctx.arc(pos[0], pos[1], rad, 0, Math.PI * 2); ctx.fill();
+    ctx.globalAlpha = alpha; ctx.fillStyle = col; ctx.beginPath(); ctx.arc(pos[0], pos[1], r0, 0, Math.PI * 2); ctx.fill();
   }
   ctx.globalAlpha = 1;
 }
@@ -1153,10 +1170,8 @@ function updateBet(p) {
 // ================= 6. BOOK =================
 const book = { b1: new Flap($('#b1'), 10), b2: new Flap($('#b2'), 10), last: null };
 const fmt = t => new Date(t).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' });
-function flyUTC() { const v = $('#fly-date').value || '2022-09-02', [Y, M, D] = v.split('-').map(Number); return Date.UTC(Y, M - 1, D); }
+function flyUTC() { const v = $('#fly-date').value || '2026-12-25', [Y, M, D] = v.split('-').map(Number); return Date.UTC(Y, M - 1, D); }
 function buildBook() {
-  const fly = flyUTC(), day = 864e5;
-  $('#milestones').innerHTML = [21, 14, 7].map(n => `<div><b>${fmt(fly - n * day)}</b>${n}-day mark: ${n === 21 ? 'fares start jumping after this' : 'another jump follows'}</div>`).join('');
   book.last = null;
 }
 function updateBook(p) {
@@ -1178,10 +1193,8 @@ $('#fly-date').addEventListener('input', () => { buildBook(); S.book.update(S.bo
 const NSF = SITE_DATA.nonstopFull;   // every flight date in the dataset, not only the holiday windows
 state.raceScope = 'all';
 function raceCopy() {
-  const atl = Object.values(NSF.routes), cheaper = atl.filter(r => r.ns < r.cn).length;
-  const flips = Object.entries(NSF.routes).filter(([, r]) => r.ns >= r.cn).map(([d]) => d);
-  $('#race-copy').textContent = `Two planes, same trip. The length of each contrail is the median fare across every search in the dataset (April to October 2022, all flight dates). Over all routes, nonstop came in at ${usd(NSF.all.ns)} against ${usd(NSF.all.cn)} for a connection. Within the same route, nonstop was still cheaper on ${NSF.sameRoute.nonstopCheaper} of ${NSF.sameRoute.routes} routes.`;
-  $('#race-hint').textContent = `Side by side (same route, same flight date, same search day), nonstop was cheaper ${Math.round(NSF.sameChoice.pctNonstopCheaper)}% of the time, by about ${Math.abs(Math.round(NSF.sameChoice.medianPct))}%. From Atlanta it held on ${cheaper} of ${atl.length} routes; ${flips.join(', ')} flip it. Switch to your route to check yours.`;
+  $('#race-copy').textContent = `A stop doesn't make a ticket cheaper. The median nonstop fare was ${usd(NSF.all.ns)}, against ${usd(NSF.all.cn)} with a connection, and nonstop won on ${NSF.sameRoute.nonstopCheaper} of ${NSF.sameRoute.routes} routes.`;
+  $('#race-hint').textContent = `Each contrail is a median fare. Switch to your route to compare yours.`;
 }
 raceCopy();
 function renderScope() {
@@ -1240,7 +1253,7 @@ const dotsNav = $('#dots');
 document.querySelectorAll('[data-status]').forEach(el => { const a = document.createElement('a'); a.href = '#' + el.id; a.setAttribute('aria-label', el.dataset.status); a.innerHTML = '<span>' + el.dataset.status + '</span>'; dotsNav.appendChild(a); });
 function tick() {
   const hh = 0;
-  gateWhere();
+  gateWhere(); gateQuiz();
   for (const s of scenes) {
     const r = s.el.getBoundingClientRect(), total = r.height - s.el.querySelector('.stage').offsetHeight;
     const p = REDUCED || total <= 0 ? 1 : clamp((hh - r.top) / total);

@@ -46,8 +46,9 @@ const nonstopFull = {
   sameChoice: { choices: +q3.choices, pctNonstopCheaper: +q3.pct_nonstop_cheaper, medianPct: +q3.median_pct_diff, medianUsd: +q3.median_usd_diff }
 };
 
-// SS5 (Sagarika's method, full dataset): five-checkpoint states, ribbon counts, 1,000-flight sample
-const ss5 = JSON.parse(read('submissions/jangkyu-ss5-full/data/website_data.json'));
+// SS5 (Sagarika's five checkpoints, full dataset), re-measured against each flight's own fare 60 days out:
+// band shares, ribbon counts, 1,000-flight sample and the day-21 story numbers (submissions/jangkyu-ss5-full/code/ss5_baseline7.py)
+const ss5 = JSON.parse(read('submissions/jangkyu-ss5-full/data/ss5_baseline7.json'));
 
 // JK3 (Jangkyu): route-level fare index (same-flight pairs), cutoff-aligned window changes, cheapest day
 const jk3 = JSON.parse(read('submissions/jangkyu-jk3/data/website_data.json'));
