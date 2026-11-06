@@ -1,4 +1,4 @@
-# When Should We Book?
+# When Should I Book?
 
 An animated, full-screen scrollytelling data story about airfares — Georgia Tech
 Data Visualization group project (Jet2 Holiday team).

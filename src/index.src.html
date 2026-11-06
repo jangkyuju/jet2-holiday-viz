@@ -1,4 +1,4 @@
-<title>When Should We Book?</title>
+<title>When Should I Book?</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -125,7 +125,7 @@ label.field { display: inline-flex; align-items: center; gap: 10px; font-size: 0
 .pass .route { font-family: var(--font-display); font-size: clamp(1.9rem, 2.6vw, 3rem); font-weight: 700; letter-spacing: 0.04em; line-height: 1; }
 .pass .stub { border-left: 2px dashed var(--line-2); padding: 12px 16px; display: grid; gap: 4px; align-content: center; justify-items: end; }
 .pass .flap { font-size: clamp(1.5rem, 2vw, 2.3rem); }
-.pass.print { animation: print 0.9s steps(12) both; }
+.pass.print { animation: print 0.3s ease-out both; }
 .origin-fixed { color: var(--ink); font-weight: 600; letter-spacing: 0.02em; }
 .nudge { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; border: 2px dashed var(--accent); border-radius: 8px; padding: 12px 14px; background: color-mix(in srgb, var(--accent) 6%, var(--surface)); }
 .nudge-icon { font-size: 1.6rem; color: var(--accent); animation: bob 1.4s ease-in-out infinite; }
@@ -184,9 +184,16 @@ body.still .ping, body.still .nudge-icon { animation: none; }
 .quiz h2 { font-size: clamp(2.4rem, 6vw, 5.6rem); max-width: 18ch; }
 .quiz .choices { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 .quiz p { margin: 0 auto; }
+.modal { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 16px; background: rgba(2, 8, 20, 0.72); backdrop-filter: blur(3px); text-align: left; }
+.modal-card { width: min(560px, 100%); background: var(--surface); border: 1px solid var(--line-2); border-top: 4px solid var(--accent); border-radius: 10px; padding: clamp(20px, 3vw, 32px); display: grid; gap: 14px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45); animation: pop 0.22s ease-out; }
+.modal-card h3 { font-size: clamp(1.8rem, 3vw, 2.6rem); }
+.modal-card p { margin: 0; max-width: none; }
+.modal-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+@keyframes pop { from { opacity: 0; transform: translateY(14px) scale(0.97); } }
+body.still .modal-card { animation: none; }
 
 /* Takeoff + carousel */
-.belt { position: absolute; left: 0; right: 0; bottom: 6%; height: 290px; z-index: 3; }
+.belt { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-40%); height: 290px; z-index: 3; }
 .belt::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 16px; background: repeating-linear-gradient(90deg, var(--runway) 0 26px, var(--ink-2) 26px 30px); border-radius: 4px; }
 .track { position: absolute; bottom: 22px; left: 0; display: flex; gap: 28px; will-change: transform; }
 .tag { flex: none; width: 360px; height: 240px; background: var(--accent); color: var(--accent-ink); clip-path: polygon(14% 0, 100% 0, 100% 100%, 14% 100%, 0 82%, 0 18%); padding: 16px 16px 16px 50px; display: grid; align-content: start; gap: 6px; position: relative; }
@@ -317,6 +324,14 @@ body.still .cue, body.still .pulse { animation: none; }
     <h2 id="quiz-q">The fare is $258 today. Buy now, or wait for a better price?</h2>
     <div class="choices"><button class="btn big yes" type="button" data-a="buy">Buy now</button><button class="btn big" type="button" data-a="wait">Wait</button></div>
     <p class="muted" id="quiz-a" aria-live="polite">Pick one. Then scroll on to see how thousands of travelers' bets turned out.</p>
+  </div>
+  <div class="modal" id="quiz-modal" hidden role="dialog" aria-modal="true" aria-labelledby="quiz-modal-title">
+    <div class="modal-card">
+      <span class="sign" id="quiz-modal-tag"></span>
+      <h3 id="quiz-modal-title"></h3>
+      <p class="muted" id="quiz-modal-body"></p>
+      <div class="modal-actions"><button class="btn big yes" type="button" id="quiz-modal-go">See what happens ↓</button><button class="btn small" type="button" id="quiz-modal-close">Close</button></div>
+    </div>
   </div>
 </section>
 
@@ -684,9 +699,9 @@ function flyTo(code) {
   hideTip(); where.hovered = null;
   where.flight.selectAll('*').remove();
   const c = contrail(where.flight, where.arcD(code), { w: 2.4, s: 1.1, op: 0.9 });
-  state.flown = true; state.dest = code; where.entry.update(1, false); styleSelection();
-  animate(1300, t => c.update(t), () => {
-    styleSelection(); renderPass(true); if (raced) runRace();
+  state.flown = true; state.dest = code; where.entry.update(1, false); styleSelection(); renderPass(true);
+  animate(700, t => c.update(t), () => {
+    styleSelection(); if (raced) runRace();
     buildWatching(); S.watching.update(S.watching.p); updateQuiz(); syncRouteFromTrip();
   });
 }
@@ -766,11 +781,32 @@ $('#diary-redo').addEventListener('click', () => { state.diarySeed++; buildWatch
 
 // ================= quiz =================
 function updateQuiz() { $('#quiz-q').textContent = `Your ${state.origin} → ${state.dest} fare is ${usd(mapFare(state.origin, state.dest))} today. Buy now, or wait for a better price?`; }
-document.querySelectorAll('#quiz [data-a]').forEach(b => b.addEventListener('click', () => {
-  $('#quiz-a').textContent = b.dataset.a === 'buy'
-    ? 'Good instinct. Scroll on to see why buying early beats most of the people who waited.'
-    : 'Most travelers make that bet. Scroll on to see how it usually turns out.';
-}));
+const quizModal = $('#quiz-modal');
+let quizOpener = null;
+function openQuiz(choice) {
+  const rise = Math.round(SITE_DATA.allFlights.at(-1).index - 100), jumped = Math.round(SITE_DATA.ss5.summary.floor21_jumped7);
+  const fare = usd(mapFare(state.origin, state.dest));
+  const copy = choice === 'buy'
+    ? { tag: 'You bought now', title: `Good instinct. You locked in ${fare}.`,
+        body: `Across every flight in our data, fares ended ${rise}% higher the day before departure than 60 days out. And ${jumped}% of flights that were at their lowest price 21 days out were 10% or more above it a week later.` }
+    : { tag: 'You chose to wait', title: 'Most travelers make that bet.',
+        body: `But fares rarely drift down. They jump on four specific nights, and ${jumped}% of flights that were at their lowest price 21 days out were 10% or more above it a week later. Fares ended ${rise}% higher the day before departure.` };
+  $('#quiz-modal-tag').textContent = copy.tag;
+  $('#quiz-modal-title').textContent = copy.title;
+  $('#quiz-modal-body').textContent = copy.body;
+  $('#quiz-a').textContent = choice === 'buy' ? 'You picked: buy now.' : 'You picked: wait.';
+  quizModal.hidden = false; $('#quiz-modal-go').focus();
+}
+function closeQuiz(go) {
+  quizModal.hidden = true;
+  if (go) document.getElementById('steps').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth' });
+  else if (quizOpener) quizOpener.focus();
+}
+document.querySelectorAll('#quiz [data-a]').forEach(b => b.addEventListener('click', () => { quizOpener = b; openQuiz(b.dataset.a); }));
+$('#quiz-modal-go').addEventListener('click', () => closeQuiz(true));
+$('#quiz-modal-close').addEventListener('click', () => closeQuiz(false));
+quizModal.addEventListener('click', e => { if (e.target === quizModal) closeQuiz(false); });
+addEventListener('keydown', e => { if (e.key === 'Escape' && !quizModal.hidden) closeQuiz(false); });
 
 // ================= 3. STEPS =================
 const stair = { W: 640, H: 290, m: { t: 30, r: 34, b: 34, l: 50 }, fare: new Flap($('#stair-fare'), 4), idx: new Flap($('#stair-index'), 3), crossed: 0, mode: 'index' };
@@ -1226,7 +1262,7 @@ initOrigin(); buildAll();
 S.title = scene('title', updateTitle); S.where = scene('where', updateWhere); S.watching = scene('watching', updateWatching);
 S.steps = scene('steps', updateSteps); S.routes = scene('routes', updateRoutes); S.bet = scene('bet', updateBet);
 S.book = scene('book', updateBook); S.fly = scene('fly', updateFly);
-title.f1.set('WHEN SHOULD'); setTimeout(() => title.f2.set('WE BOOK?'), REDUCED ? 0 : 500);
+title.f1.set('WHEN SHOULD'); setTimeout(() => title.f2.set('I BOOK?'), REDUCED ? 0 : 500);
 tick(); requestAnimationFrame(orbitLoop);
 const rebuild = () => { buildAll(); if (raced) runRace(); scenes.forEach(s => s.p = -1); tick(); };
 </script>
