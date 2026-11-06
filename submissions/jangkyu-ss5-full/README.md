@@ -27,3 +27,15 @@ dataset instead of the 48 diary flights:
 - `data/ss5_summary.json` — state shares per checkpoint and the floor-at-21 outcomes
 - `data/website_data.json` — counts plus a random sample of 1,000 flight paths (seed 42) for the site's dots
 - `code/ss5_full.py` — the run (needs the DuckDB work file from `../jangkyu-full-dataset/code`)
+
+## Re-measured for the site's main message (60-day baseline)
+
+The website's main-message chart no longer uses the Floor / Middle / Jumped states above. It keeps the same
+five checkpoints and the same 482,975 flights, but compares each flight with **its own fare 60 days out**,
+so every flight starts in one band:
+
+- `code/ss5_baseline7.py` → `data/ss5_baseline7.json`: seven bands (20%+, 10–20%, 0–10% higher; same fare;
+  0–10%, 10–20%, 20%+ cheaper), ribbon counts, a 1,000-flight sample for the dots, and discount depth.
+- `code/ss5_volatility.py` → `data/ss5_volatility.json`: share of fares moving 10%+ between checkpoints.
+  60→21 days out (5.5 weeks): 26% up, 40% down, median −1.7%. 21→7 days out (2 weeks): 48% up, 23% down, median +7.5%.
+- `code/ss5_baseline.py`, `code/ss5_baseline_cohort.py`: an earlier four-band version, kept for reference.

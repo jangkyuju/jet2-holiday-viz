@@ -62,19 +62,23 @@ rows = [{"origin": k[:3], "destination": k[4:], "days_out": 60 - i, "fare_index_
         for k, v in jw["routes"].items() for i in range(60)]
 write(pd.DataFrame(rows), "JK3_route_heatmap", "route_index_by_day.csv")
 
-# ---------- SS5 fare bands (Sagarika Srinivasan's method, all flights) ----------
+# ---------- SS5 fare bands (Sagarika Srinivasan's checkpoints, re-measured against the 60-day fare) ----------
 SD = os.path.join(SUB, "jangkyu-ss5-full", "data")
-parts = []
-for name, label in [("all_flights", "All flights"), ("july_4", "July 4"), ("labor_day", "Labor Day"), ("non-holiday", "Non-holiday")]:
-    r = pd.read_csv(os.path.join(SD, f"ribbon_widths_{name}.csv")); r.insert(0, "period", label); parts.append(r)
-write(pd.concat(parts).rename(columns={"from_cp": "from_days_out", "to_cp": "to_days_out", "count": "flights"}), "SS5_fare_bands", "ribbon_counts.csv")
-ss = json.load(open(os.path.join(SD, "ss5_summary.json")))
+b7 = json.load(open(os.path.join(SD, "ss5_baseline7.json")))
+BAND = {"G": "20%+ higher", "F": "10-20% higher", "E": "0-10% higher", "Z": "Same fare",
+        "C": "0-10% cheaper", "B": "10-20% cheaper", "A": "20%+ cheaper"}
+ORDER = list("GFEZCBA")
+write(pd.DataFrame([{"from_days_out": a, "from_band": "60-day fare" if a == 60 else BAND[s], "to_days_out": b, "to_band": BAND[t], "flights": n}
+                    for a, s, b, t, n in b7["links"]]), "SS5_fare_bands", "ribbon_counts.csv")
 rows = []
-for period, v in ss["periods"].items():
-    for cp in (60, 30, 21, 14, 7):
-        rows.append({"period": period, "flights": v["flights"], "days_out": cp, "pct_floor": v["shares"][f"floor_{cp}"],
-                     "pct_middle": v["shares"][f"middle_{cp}"], "pct_jumped": v["shares"][f"jumped_{cp}"]})
+for cp in (60, 30, 21, 14, 7):
+    for k in ORDER:
+        rows.append({"days_out": cp, "band": BAND[k], "pct_flights": b7["shares"].get(f"{k}_{cp}", 0.0)})
 write(pd.DataFrame(rows), "SS5_fare_bands", "checkpoint_shares.csv")
+vol = json.load(open(os.path.join(SD, "ss5_volatility.json")))
+write(pd.DataFrame([{"stretch": k.replace("->", " to ") + " days out", "days": v["days"], "pct_moved_10plus": v["moved10"], "pct_up_10plus": v["up10"],
+                     "pct_down_10plus": v["down10"], "pct_same_fare": v["same"], "median_change_pct": v["median"]} for k, v in vol.items()]),
+      "SS5_fare_bands", "checkpoint_moves.csv")
 
 # ---------- YH-02 nonstop vs. connecting (Yuhan Hu's method, all flight dates) ----------
 q1 = pd.read_csv(os.path.join(FD, "q7_1_pooled.csv")).query("period == 'All flights'").iloc[0]
