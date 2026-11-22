@@ -9,7 +9,7 @@ predict the days it gets more expensive — so book before the 21-day mark.
 ## View it
 
 - Live site (GitHub Pages): https://jangkyuju.github.io/jet2-holiday-viz/
-- Screencast video (3 min): _link to be added_
+- Screencast video (2:54, narrated): https://drive.google.com/file/d/1ArPoiUIB1omgbjaP6FmvAerEaH45CNCA/view?usp=sharing
 - Or open `index.html` directly in a browser. D3 v7.8.5 is bundled in `lib/d3.min.js`, so
   the charts run offline; only the Google web fonts come from the internet (the page falls
   back to system fonts without them).
